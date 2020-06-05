@@ -6,11 +6,17 @@ import AppError from '../errors/AppError';
 interface Request {
   name: string;
   email: string;
+  telephone_number: string;
   password: string;
 }
 
 class CreateUserService {
-  public async execute({ name, email, password }: Request): Promise<User> {
+  public async execute({
+    name,
+    email,
+    telephone_number,
+    password,
+  }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const checkUsersExists = await usersRepository.findOne({
@@ -29,6 +35,7 @@ class CreateUserService {
     const user = usersRepository.create({
       name,
       email,
+      telephone_number,
       password: hashedPassword,
     });
 

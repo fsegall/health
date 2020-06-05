@@ -4,30 +4,29 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
-@Entity('users')
-class User {
+import Person from './Person';
+
+@Entity('family_members')
+class FamilyMember {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  organization_name: string;
+  person_id: string;
+
+  @OneToOne(() => Person)
+  @JoinColumn({ name: 'person_id' })
+  family_member: Person;
 
   @Column()
-  name: string;
+  gender: string;
 
   @Column()
-  email: string;
-
-  @Column()
-  telephone_number: string;
-
-  @Column()
-  password: string;
-
-  @Column()
-  avatar: string;
+  age: number;
 
   @CreateDateColumn()
   created_at: Date;
@@ -36,4 +35,4 @@ class User {
   updated_at: Date;
 }
 
-export default User;
+export default FamilyMember;
