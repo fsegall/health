@@ -15,12 +15,12 @@ class FamilyMember {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  person_id: string;
-
   @OneToOne(() => Person)
   @JoinColumn({ name: 'person_id' })
   family_member: Person;
+
+  @Column()
+  person_id: string;
 
   @Column()
   gender: string;

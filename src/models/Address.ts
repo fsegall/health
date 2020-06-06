@@ -15,12 +15,12 @@ class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  household_id: string;
-
   @OneToOne(() => Household)
   @JoinColumn({ name: 'household_id' })
   household: Household;
+
+  @Column()
+  household_id: string;
 
   @Column()
   state: string;

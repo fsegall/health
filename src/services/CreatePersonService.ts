@@ -47,10 +47,10 @@ export default class CreatePersonService {
       health_conditions,
     });
 
-    // Salva no banco
+    // Save to db
     await personsRepository.save(person);
 
-    // retorna no http
+    // returns to http request
     return person;
   }
 }
