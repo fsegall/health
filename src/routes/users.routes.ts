@@ -8,13 +8,20 @@ const usersRouter = Router();
 const upload = multer(uploadConfig);
 
 usersRouter.post('/', async (request: Request, response: Response) => {
-  const { name, email, telephone_number, password } = request.body;
+  const {
+    name,
+    email,
+    organization_name,
+    telephone_number,
+    password,
+  } = request.body;
 
   const createUser = new CreateUserService();
 
   const user = await createUser.execute({
     name,
     email,
+    organization_name,
     telephone_number,
     password,
   });

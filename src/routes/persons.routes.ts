@@ -47,7 +47,7 @@ personsRouter.post('/', async (request: Request, response: Response) => {
     work_status,
     health_conditions,
   });
-  return response.json(person);
+  return response.status(201).json(person);
 });
 
 export default personsRouter;
