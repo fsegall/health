@@ -34,8 +34,6 @@ paths:
       operationId: listPersons
       security:
         - bearerAuth: []
-      requestBody:
-        $ref: '#/components/requestBodies/Person'
       responses:
         '200':
           description: successful operation
@@ -72,7 +70,7 @@ paths:
     put:
       tags:
         - person
-      summary: Update a existing person
+      summary: Update an existing person
       description: ''
       operationId: updatePerson
       security:
