@@ -1,0 +1,640 @@
+openapi: 3.0.0
+info:
+  description: 'This is an API for managing data about people and there households to conduct food security analysis during the COVID-19 pandemic'
+  version: 1.0
+  title: Health API
+  termsOfService: http://swagger.io/terms/
+  contact: email:segall.felipe@gmail.com
+#   license:
+#     name: Apache 2.0
+#     url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: person
+    description: Endpoint to manage data about the person that was interviewed
+  #     externalDocs:
+  #       description: Find out more
+  #       url: http://swagger.io
+  - name: household
+    description: Endpoint to manage data about a household
+  - name: familymember
+    description: Endpoint to manage data about a family member
+  - name: address
+    description: Endpoint to manage data about a household address
+  - name: sessions
+    description: Endpoint to authenticate the user
+  - name: user
+    description: Endpoint to create an user and store data about the research interviewer
+paths:
+  /person:
+    get:
+      tags:
+        - person
+      summary: Lists all persons that were interviewed
+      description: ''
+      operationId: listPersons
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Person'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - person
+      summary: Add a person that was interviewed
+      description: ''
+      operationId: addPerson
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Person'
+      responses:
+        '201':
+          description: A person was successfully saved to the database
+        '405':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+    put:
+      tags:
+        - person
+      summary: Update a existing person
+      description: ''
+      operationId: updatePerson
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Person'
+      responses:
+        '200':
+          description: The person was updated
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception
+        '401':
+          description: Unauthorized
+
+  '/person/{personId}':
+    get:
+      tags:
+        - person
+      summary: Find person by ID
+      description: Returns a single person
+      operationId: getPersonById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: personId
+          in: path
+          description: ID of person to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successfully returned a person profile
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Person'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+        - person
+      summary: Deletes a person
+      description: ''
+      operationId: deletePerson
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: personId
+          in: path
+          description: Get personId after creating or listing persons
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The person was deleted
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+        '401':
+          description: Unauthorized
+
+  '/person/{personId}/household':
+    get:
+      tags:
+        - person
+      summary: Returns a household
+      description: ''
+      operationId: getHouseholdByPersonId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: personId
+          in: path
+          description: Get personId after creating or listing persons
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Household'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Household'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+        '401':
+          description: Unauthorized
+
+  '/person/{personId}/family':
+    get:
+      tags:
+        - person
+      summary: Returns family members
+      description:
+      operationId: getFamilyByPersonId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: personId
+          in: path
+          description: Get personId after creating or listing persons
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successfully returned family members
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyMember'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyMember'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+        '401':
+          description: Unauthorized
+
+  /household:
+    get:
+      tags:
+        - household
+      summary: Lists all households
+      description: ''
+      operationId: listHouseholds
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Household'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Household'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Household'
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - household
+      summary: Add a household of an interviewed person
+      description: ''
+      operationId: addHousehold
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Household'
+      responses:
+        '201':
+          description: A household was successfully saved to the database
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Household'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Household'
+        '405':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+  /familymember:
+    get:
+      tags:
+        - familymember
+      summary: Lists all family members
+      description: ''
+      operationId: listFamilyMembers
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/FamilyMember'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyMember'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyMember'
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - familymember
+      summary: Add a family member of an interviewed person
+      description: ''
+      operationId: addFamilyMember
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/FamilyMember'
+      responses:
+        '201':
+          description: A family member was successfully saved to the database
+        '405':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+  /address:
+    get:
+      tags:
+        - address
+      summary: Lists all addresses
+      description: ''
+      operationId: listAddresses
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Address'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+        - address
+      summary: Add a household address
+      description: ''
+      operationId: addAddress
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/Address'
+      responses:
+        '201':
+          description: An address was successfully saved to the database
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Address'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        '405':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+  /users:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This creates an interviewer profile as an user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+        required: true
+      responses:
+        '200':
+          description: The user was successfully created
+        '400':
+          description: Invalid user data
+
+    patch:
+      tags:
+        - user
+      summary: Uploads an user avatar file
+      description: ''
+      operationId: uploadAvatar
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                fileName:
+                  type: string
+                  format: binary
+
+  /sessions:
+    post:
+      tags:
+        - sessions
+      summary: Logs user into the system
+      description: ''
+      operationId: loginUser
+      requestBody:
+        $ref: '#/components/requestBodies/Auth'
+      responses:
+        '200':
+          description: login successful
+          #           headers:
+          #             X-Rate-Limit:
+          #               description: calls per hour allowed by the user
+          #               schema:
+          #                 type: integer
+          #                 format: int32
+          #             X-Expires-After:
+          #               description: date in UTC when token expires
+          #               schema:
+          #                 type: string
+          #                 format: date-time
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Auth'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+        '400':
+          description: Invalid username/password supplied
+
+externalDocs:
+  description: Find out more about this API here
+  url: http://swagger.io
+servers:
+  - url: http://localhost:3333
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  requestBodies:
+    Person:
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: '#/components/schemas/Person'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Person'
+      description: Data format to create a person
+      required: true
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/User'
+      description: Data format to add an user
+      required: true
+    Household:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Household'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Household'
+      description: Data format to add a Household
+      required: true
+    FamilyMember:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FamilyMember'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/FamilyMember'
+      description: Data format to add a family member
+      required: true
+    Address:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Address'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Address'
+      description: Data format to add a address
+      required: true
+    Auth:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Auth'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Auth'
+      description: Data format to authenticate an user
+      required: true
+  schemas:
+    Person:
+      type: object
+      properties:
+        interviewer_id:
+          type: string
+        name:
+          type: string
+        race_color:
+          type: string
+        religion:
+          type: string
+        marital_status:
+          type: string
+        education:
+          type: string
+        work_status:
+          type: string
+        health_conditions:
+          type: string
+        date_of_birth:
+          type: string
+          format: date-time
+        gender:
+          type: string
+          description: Person gender
+          enum:
+            - male
+            - female
+        literacy:
+          type: boolean
+          default: true
+      xml:
+        name: Person
+    Household:
+      type: object
+      properties:
+        person_id:
+          type: string
+        relationship_to_main_person:
+          type: string
+        location_of_residence:
+          type: string
+        type_of_residence:
+          type: string
+        drinking_water:
+          type: string
+        number_of_rooms:
+          type: integer
+          format: int32
+        number_of_people_household:
+          type: integer
+          format: int32
+        family_income:
+          type: integer
+          format: int32
+        household_main_person:
+          type: boolean
+          default: true
+        bath_room_inside_house:
+          type: boolean
+        garbage_service:
+          type: boolean
+      xml:
+        name: Household
+    FamilyMember:
+      type: object
+      properties:
+        person_id:
+          type: string
+        gender:
+          type: string
+          description: Person gender
+          enum:
+            - male
+            - female
+        age:
+          type: integer
+          format: int32
+      xml:
+        name: FamilyMember
+    Address:
+      type: object
+      properties:
+        household_id:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        post_code:
+          type: string
+        neighborhood:
+          type: string
+        street_or_location:
+          type: string
+        telephone_number:
+          type: string
+        house_number:
+          type: integer
+          format: int32
+      xml:
+        name: Address
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        organization_name:
+          type: string
+        telephone_number:
+          type: string
+        password:
+          type: string
+      xml:
+        name: User
+    Auth:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      xml:
+        name: Auth
