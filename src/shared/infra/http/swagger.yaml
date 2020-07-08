@@ -22,6 +22,8 @@ tags:
     description: Endpoint to manage data about a household address
   - name: sessions
     description: Endpoint to authenticate the user
+  - name: password
+    description: Endpoint to make a new password
   - name: user
     description: Endpoint to create an user and store data about the research interviewer
 paths:
@@ -467,6 +469,64 @@ paths:
         '400':
           description: Invalid username/password supplied
 
+  /password/forgot:
+    post:
+      tags:
+        - password
+      summary: Allows user to ask for new password
+      description: ''
+      operationId: newPassword
+      requestBody:
+        $ref: '#/components/requestBodies/Pass'
+      responses:
+        '200':
+          description: login successful
+          #           headers:
+          #             X-Rate-Limit:
+          #               description: calls per hour allowed by the user
+          #               schema:
+          #                 type: integer
+          #                 format: int32
+          #             X-Expires-After:
+          #               description: date in UTC when token expires
+          #               schema:
+          #                 type: string
+          #                 format: date-time
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pass'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pass'
+        '400':
+          description: Invalid email supplied
+  /password/reset:
+    post:
+      tags:
+        - password
+      summary: Allows user to change password
+      description: ''
+      operationId: newPassword
+      requestBody:
+        $ref: '#/components/requestBodies/NewPass'
+      responses:
+        '200':
+          description: Password modified successfully
+        #           headers:
+        #             X-Rate-Limit:
+        #               description: calls per hour allowed by the user
+        #               schema:
+        #                 type: integer
+        #                 format: int32
+        #             X-Expires-After:
+        #               description: date in UTC when token expires
+        #               schema:
+        #                 type: string
+        #                 format: date-time
+        '400':
+          description: Invalid username/password supplied
+
 externalDocs:
   description: Find out more about this API here
   url: http://swagger.io
@@ -540,6 +600,26 @@ components:
           schema:
             $ref: '#/components/schemas/Auth'
       description: Data format to authenticate an user
+      required: true
+    Pass:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pass'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pass'
+      description: Data format to reset password for the user
+      required: true
+    NewPass:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewPass'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/NewPass'
+      description: Data format to reset password for the user
       required: true
   schemas:
     Person:
@@ -668,3 +748,19 @@ components:
           type: string
       xml:
         name: Auth
+    Pass:
+      type: object
+      properties:
+        email:
+          type: string
+      xml:
+        name: Pass
+    NewPass:
+      type: object
+      properties:
+        password:
+          type: string
+        token:
+          type: string
+      xml:
+        name: Pass

@@ -35,12 +35,12 @@ describe('UpdateUserAvatar', () => {
       fakeStorageProvider,
     );
 
-    expect(
+    await expect(
       updateUserAvatar.execute({
         user_id: 'non-existing-user',
         avatarFilename: 'avatar.jpg',
       }),
-    ).rejects.toBeInstanceOf('AppError');
+    ).rejects.toBeInstanceOf(AppError);
   });
   it('should delete old avatar when updating', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
