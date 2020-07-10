@@ -23,6 +23,14 @@ class FamilyMemberRepository implements IFamilyMemberRepository {
     await this.ormRepository.save(person);
     return person;
   }
+  public async findByPerson(person_id: string): Promise<FamilyMember[]> {
+    const family = await this.ormRepository
+      .createQueryBuilder('family')
+      .where('family.person_id = :id', { id: person_id })
+      .getMany();
+
+    return family;
+  }
 }
 
 export default FamilyMemberRepository;

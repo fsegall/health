@@ -13,6 +13,8 @@ const userAvatarController = new UserAvatarController();
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 
+usersRouter.get('/', userController.list);
+usersRouter.get('/:id', userController.show);
 usersRouter.post('/', userController.create);
 
 // Atualização de uma propriedade apenas

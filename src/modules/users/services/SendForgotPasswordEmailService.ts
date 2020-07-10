@@ -1,4 +1,5 @@
 /* import User from '../infra/typeorm/entities/User'; */
+import path from 'path';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
@@ -20,6 +21,12 @@ class SendForgotPasswordEmailService {
     private userTokensRepository: IUserTokensRepository,
   ) {}
   public async execute({ email }: IRequest): Promise<void> {
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgot_password.hbs',
+    );
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
@@ -27,10 +34,20 @@ class SendForgotPasswordEmailService {
     }
 
     const { token } = await this.userTokensRepository.generate(user.id);
-    await this.mailProvider.sendMail(
-      email,
-      `Pedido de recuperação de senha recebido ${token}`,
-    );
+    await this.mailProvider.sendMail({
+      to: {
+        name: user.name,
+        email: user.email,
+      },
+      subject: 'Safety - Recuperação de senha',
+      templateData: {
+        file: forgotPasswordTemplate,
+        variables: {
+          name: user.name,
+          link: `http://localhost:3000/reset_password?token=${token}`,
+        },
+      },
+    });
   }
 }
 

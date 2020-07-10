@@ -397,6 +397,30 @@ paths:
         '401':
           description: Unauthorized
   /users:
+    get:
+      tags:
+        - user
+      summary: Lists all users
+      description: ''
+      operationId: listUsers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
     post:
       tags:
         - user
@@ -435,6 +459,38 @@ paths:
                 fileName:
                   type: string
                   format: binary
+  '/users/{userId}':
+    get:
+      tags:
+        - user
+      summary: Find user by ID
+      description: Returns a single user
+      operationId: getUserById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successfully returned a user profile
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Person'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
 
   /sessions:
     post:

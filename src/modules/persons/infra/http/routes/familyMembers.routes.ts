@@ -17,6 +17,8 @@ familyMembersRouter.use(ensureAuthenticated);
 
 const familyMembersController = new FamilyMembersController();
 
+/* familyMembersRouter.get('/:id', familyMembersController.list); */
+
 familyMembersRouter.post('/', familyMembersController.create);
 
 export default familyMembersRouter;

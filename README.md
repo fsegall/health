@@ -23,7 +23,6 @@ Incluir campo número de identidade para o entrevistador e entrevistado
 
 - O entrevistador poderá preencher os dados de uma pessoa entrevistada
 - O entrevistador receberá um email de confirmação com os dados da pessoa entrevista
-- Os dados deverão ser armazenados no local storage do usuário
 - Os entrevistadores devem receber uma notificação sempre que um entrevistado for incluído na pesquisa.
 - O entrevistador poderá visualizar as notificações não lidas.
 

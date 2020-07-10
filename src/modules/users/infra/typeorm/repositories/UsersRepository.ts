@@ -28,6 +28,10 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  public async list(): Promise<User[]> {
+    return this.ormRepository.find();
+  }
+
   public async save(user: User): Promise<User> {
     return this.ormRepository.save(user);
   }
