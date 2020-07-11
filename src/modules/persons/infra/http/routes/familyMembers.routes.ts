@@ -9,7 +9,7 @@ const familyMembersRouter = Router();
 familyMembersRouter.use(ensureAuthenticated);
 
 /* familyMembersRouter.get('/', async (request: Request, response: Response) => {
-  console.log(request.user);
+
   const familyMembersRepository = getCustomRepository(FamilyMembersRepository);
   const familyMember = await familyMembersRepository.find();
   return response.json(familyMember);

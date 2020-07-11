@@ -1,9 +1,9 @@
 import Household from '../infra/typeorm/entities/Household';
-import { getCustomRepository } from 'typeorm';
-import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
-// import AppError from '../errors/AppError';
+import { injectable, inject } from 'tsyringe';
+import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import AppError from '@shared/errors/AppError';
 
-interface Request {
+interface IRequest {
   person_id: string;
   household_main_person: boolean;
   relationship_to_main_person: string;
@@ -17,7 +17,12 @@ interface Request {
   garbage_service: boolean;
 }
 
-export default class CreatePersonService {
+@injectable()
+export default class CreateHouseholdService {
+  constructor(
+    @inject('HouseholdsRepository')
+    private householdsRepository: IHouseholdsRepository,
+  ) {}
   public async execute({
     person_id,
     household_main_person,
@@ -30,10 +35,17 @@ export default class CreatePersonService {
     drinking_water,
     bathroom_inside_house,
     garbage_service,
-  }: Request): Promise<Household> {
-    const householdsRepository = getCustomRepository(HouseholdsRepository);
+  }: IRequest): Promise<Household> {
+    const hasHousehold = await this.householdsRepository.findByPerson(
+      person_id,
+    );
 
-    const household: Household = householdsRepository.create({
+    if (hasHousehold) {
+      throw new AppError(
+        'This person already has a household. Please delete or update it.',
+      );
+    }
+    const household: Household = await this.householdsRepository.create({
       person_id,
       household_main_person,
       relationship_to_main_person,
@@ -47,10 +59,8 @@ export default class CreatePersonService {
       garbage_service,
     });
 
-    // Save to db
-    await householdsRepository.save(household);
+    await this.householdsRepository.save(household);
 
-    // returns to http request
     return household;
   }
 }

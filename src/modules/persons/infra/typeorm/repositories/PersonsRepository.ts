@@ -57,7 +57,7 @@ class PersonsRepository implements IPersonsRepository {
 
   public async delete(person_id: string): Promise<void> {
     const person = await this.ormRepository.findOne(person_id);
-    console.log('teste', person);
+
     if (!person) {
       throw new AppError('There is no person with this id.');
     }

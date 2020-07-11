@@ -45,7 +45,7 @@ export default class PersonsController {
   public async list(request: Request, response: Response): Promise<Response> {
     const listPersons = container.resolve(ListPersonsService);
     const persons = await listPersons.execute();
-    console.log(persons);
+
     return response.json(persons);
   }
   public async update(request: Request, response: Response): Promise<Response> {
@@ -79,7 +79,7 @@ export default class PersonsController {
       work_status,
       health_conditions,
     });
-    console.log(person);
+
     return response.json(person);
   }
 
@@ -95,12 +95,10 @@ export default class PersonsController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    console.log(id);
+
     const deletePerson = container.resolve(DeletePersonService);
 
     const person = await deletePerson.execute({ person_id: id });
-
-    console.log(person);
 
     return response.json(person);
   }

@@ -9,7 +9,6 @@ const addressesRouter = Router();
 addressesRouter.use(ensureAuthenticated);
 
 addressesRouter.get('/', async (request: Request, response: Response) => {
-  console.log(request.user);
   const addressesRepository = getRepository(Addresses);
   const addresses = await addressesRepository.find();
   return response.json(addresses);

@@ -51,8 +51,6 @@ class UpdatePersonService {
       person => person.id === person_id,
     );
 
-    console.log(personsInterviewedByUser);
-
     if (personsInterviewedByUser.length === 0) {
       throw new AppError('No person was interviewed by this user');
     }

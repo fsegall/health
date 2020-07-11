@@ -8,6 +8,9 @@ import PersonsRepository from '@modules/persons/infra/typeorm/repositories/Perso
 import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
 
+import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
+
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
@@ -22,6 +25,11 @@ container.registerSingleton<IPersonsRepository>(
 container.registerSingleton<IFamilyMembersRepository>(
   'FamilyMembersRepository',
   FamilyMembersRepository,
+);
+
+container.registerSingleton<IHouseholdsRepository>(
+  'HouseholdsRepository',
+  HouseholdsRepository,
 );
 
 container.registerSingleton<IUsersRepository>(
