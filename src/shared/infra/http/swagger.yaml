@@ -78,7 +78,7 @@ paths:
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Person'
+        $ref: '#/components/requestBodies/PersonUpdate'
       responses:
         '200':
           description: The person was updated
@@ -227,8 +227,6 @@ paths:
       operationId: listHouseholds
       security:
         - bearerAuth: []
-      requestBody:
-        $ref: '#/components/requestBodies/Household'
       responses:
         '200':
           description: successful operation
@@ -322,8 +320,6 @@ paths:
       operationId: listAddresses
       security:
         - bearerAuth: []
-      requestBody:
-        $ref: '#/components/requestBodies/Address'
       responses:
         '200':
           description: successful operation
@@ -607,6 +603,17 @@ components:
             $ref: '#/components/schemas/Person'
       description: Data format to create a person
       required: true
+    PersonUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: '#/components/schemas/PersonUpdate'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/PersonUpdate'
+      description: Data format to create a person
+      required: true
     User:
       content:
         application/json:
@@ -711,6 +718,41 @@ components:
           default: true
       xml:
         name: Person
+    PersonUpdate:
+      type: object
+      properties:
+        interviewer_id:
+          type: string
+        person_id:
+          type: string
+        name:
+          type: string
+        race_color:
+          type: string
+        religion:
+          type: string
+        marital_status:
+          type: string
+        education:
+          type: string
+        work_status:
+          type: string
+        health_conditions:
+          type: string
+        date_of_birth:
+          type: string
+          format: date-time
+        gender:
+          type: string
+          description: Person gender
+          enum:
+            - male
+            - female
+        literacy:
+          type: boolean
+          default: true
+      xml:
+        name: Person
     Household:
       type: object
       properties:
@@ -736,7 +778,7 @@ components:
         household_main_person:
           type: boolean
           default: true
-        bath_room_inside_house:
+        bathroom_inside_house:
           type: boolean
         garbage_service:
           type: boolean
