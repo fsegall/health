@@ -85,7 +85,7 @@ paths:
         '400':
           description: Invalid ID supplied
         '404':
-          description: Pet not found
+          description: Person not found
         '405':
           description: Validation exception
         '401':
@@ -431,11 +431,32 @@ paths:
         description: Created user object
         required: true
       responses:
-        '200':
+        '201':
           description: The user was successfully created
         '400':
           description: Invalid user data
-
+    put:
+      tags:
+        - user
+      summary: Update an existing user - Interviewer profile
+      description: ''
+      operationId: updateUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/UserUpdate'
+      responses:
+        '200':
+          description: The user was updated
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+        '401':
+          description: Unauthorized
+  /users/avatar:
     patch:
       tags:
         - user
@@ -450,11 +471,15 @@ paths:
             schema:
               type: object
               properties:
-                userId:
-                  type: string
-                fileName:
+                avatar:
                   type: string
                   format: binary
+      responses:
+        '201':
+          description: The user was successfully created
+        '400':
+          description: Invalid user data
+
   '/users/{userId}':
     get:
       tags:
@@ -624,6 +649,17 @@ components:
             $ref: '#/components/schemas/User'
       description: Data format to add an user
       required: true
+    UserUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            $ref: '#/components/schemas/UserUpdate'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/UserUpdate'
+      description: Data format to create a person
+      required: true
     Household:
       content:
         application/json:
@@ -644,6 +680,7 @@ components:
             $ref: '#/components/schemas/FamilyMember'
       description: Data format to add a family member
       required: true
+
     Address:
       content:
         application/json:
@@ -837,6 +874,25 @@ components:
           type: string
       xml:
         name: User
+    UserUpdate:
+      type: object
+      properties:
+        user_id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        organization_name:
+          type: string
+        telephone_number:
+          type: string
+        old_password:
+          type: string
+        password:
+          type: string
+      xml:
+        name: User
     Auth:
       type: object
       properties:
@@ -856,6 +912,8 @@ components:
     NewPass:
       type: object
       properties:
+        password_confirmation:
+          type: string
         password:
           type: string
         token:

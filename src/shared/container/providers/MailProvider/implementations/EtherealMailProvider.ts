@@ -51,5 +51,6 @@ export default class EtherealMailProvider implements IMailProvider {
       subject: 'Recuperação de senha',
       html: await this.mailTemplateProvider.parse(templateData),
     });
+    console.log(nodemailer.getTestMessageUrl(message));
   }
 }

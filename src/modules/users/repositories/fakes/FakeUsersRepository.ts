@@ -32,6 +32,10 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  public async list(): Promise<User[]> {
+    return this.users;
+  }
+
   public async save(user: User): Promise<User> {
     // replace user object to simulate save
     const findIndex = this.users.findIndex(findUser => findUser.id === user.id);

@@ -9,7 +9,7 @@ export default class ForgotPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { password, token } = request.body;
     const resetPassword = container.resolve(ResetPasswordService);
-
+    console.log('got token', token);
     await resetPassword.execute({
       token,
       password,

@@ -16,6 +16,7 @@ const upload = multer(uploadConfig);
 usersRouter.get('/', userController.list);
 usersRouter.get('/:id', userController.show);
 usersRouter.post('/', userController.create);
+usersRouter.put('/', userController.update);
 
 // Atualização de uma propriedade apenas
 usersRouter.patch(

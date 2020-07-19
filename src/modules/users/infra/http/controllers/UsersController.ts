@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
 import ListProfilesService from '@modules/users/services/ListProfilesService';
+import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -48,5 +49,30 @@ export default class UsersController {
     const users = await listUsers.execute();
 
     return response.json(users);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      user_id,
+      name,
+      organization_name,
+      telephone_number,
+      email,
+      old_password,
+      password,
+    } = request.body;
+    const updateUser = container.resolve(UpdateProfileService);
+
+    const user = await updateUser.execute({
+      user_id,
+      name,
+      organization_name,
+      telephone_number,
+      email,
+      old_password,
+      password,
+    });
+
+    return response.json(user);
   }
 }
