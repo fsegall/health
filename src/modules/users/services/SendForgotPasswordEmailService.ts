@@ -19,7 +19,7 @@ class SendForgotPasswordEmailService {
     private mailProvider: IMailProvider,
     @inject('UserTokensRepository')
     private userTokensRepository: IUserTokensRepository,
-  ) {}
+  ) { }
   public async execute({ email }: IRequest): Promise<void> {
     const forgotPasswordTemplate = path.resolve(
       __dirname,
@@ -33,6 +33,8 @@ class SendForgotPasswordEmailService {
       throw new AppError('User does not exist');
     }
 
+    console.log(user.email)
+
     const { token } = await this.userTokensRepository.generate(user.id);
     await this.mailProvider.sendMail({
       to: {
@@ -44,7 +46,7 @@ class SendForgotPasswordEmailService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `http://localhost:3000/reset-password?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`,
         },
       },
     });

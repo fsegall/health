@@ -1,6 +1,8 @@
+import { isPropertyAccessChain } from 'typescript';
+
 export default {
   jwt: {
-    secret: 'e8bc04da2a9895c4f17115511eab35ec',
+    secret: process.env.APP_SECRET,
     expiresIn: '1d',
   },
 };

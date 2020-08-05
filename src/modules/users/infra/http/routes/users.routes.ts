@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 
@@ -11,11 +12,25 @@ const userController = new UserController();
 const userAvatarController = new UserAvatarController();
 
 const usersRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 
 usersRouter.get('/', userController.list);
 usersRouter.get('/:id', userController.show);
-usersRouter.post('/', userController.create);
+
+usersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      organization_name: Joi.string(),
+      telephone_number: Joi.string().required(),
+      password: Joi.string().min(6).required(),
+    },
+  }),
+  userController.create,
+);
+
 usersRouter.put('/', userController.update);
 
 // Atualização de uma propriedade apenas

@@ -1,7 +1,9 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors'; // Para o express pegar os erros dentro uma rota async
 import cors from 'cors';
+import { errors } from 'celebrate';
 import routes from './routes';
 
 import uploadConfig from '@config/upload';
@@ -13,7 +15,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
+console.log('here');
 app.use(routes);
+console.log('there');
+
+app.use(errors());
+
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
@@ -28,4 +35,5 @@ app.use(
     });
   },
 );
+
 app.listen(3333, () => console.log('Server started on Port 3333!'));

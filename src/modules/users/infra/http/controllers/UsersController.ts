@@ -1,7 +1,7 @@
 // index, show, create, update, delete
 
 import { Request, Response } from 'express';
-
+import { classToClass } from 'class-transformer';
 import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
@@ -28,9 +28,8 @@ export default class UsersController {
       password,
     });
 
-    delete user.password;
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -40,15 +39,16 @@ export default class UsersController {
 
     const user = await showUser.execute({ user_id: id });
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
+    console.log('users');
     const listUsers = container.resolve(ListProfilesService);
 
     const users = await listUsers.execute();
 
-    return response.json(users);
+    return response.json(classToClass(users));
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -73,6 +73,6 @@ export default class UsersController {
       password,
     });
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 }

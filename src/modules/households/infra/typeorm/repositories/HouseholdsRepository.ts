@@ -47,6 +47,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
   }
 
   public async list(): Promise<Household[]> {
+    console.log('houses');
     const households = this.ormRepository.find();
     return households;
   }
