@@ -38,7 +38,7 @@ jobs:
           ${{ runner.os }}-yarn-
           
     - name: Install dependencies
-      run: yarn
+      run: yarn install
       
     - name: Run build
       run: yarn build
@@ -61,8 +61,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         key:  ${{ secrets.SSH_KEY }}
         script: |
-          cd ~/app/health
-          yarn
+          cd ~/app/health && yarn install
           ./node_modules/.bin/typeorm migration:run
           pm2 restart safety-api
       
