@@ -41,20 +41,7 @@ jobs:
         source: ".,!node_modules"
         target: "~/app/health"
         
-    - name: Run migrations on Digital Ocean
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        port: ${{ secrets.SSH_PORT }}
-        key:  ${{ secrets.SSH_KEY }}
-        script: |
-          cd ~/app/health
-          ./node_modules/.bin/typeorm migration:run
-          exit
-      
-          
-    - name: Install production dependencies
+    - name: Run production scripts
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -64,7 +51,12 @@ jobs:
         script: |
           cd ~/app/health
           yarn
-          pm2 restart safety-api
+          ./node_modules/.bin/typeorm migration:run
+
+
+      
+
+
       
      
 
