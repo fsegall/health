@@ -53,7 +53,7 @@ jobs:
         source: ".,!node_modules"
         target: "~/app/health"
         
-    - name: run production scripts
+    - name: Run production scripts
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
