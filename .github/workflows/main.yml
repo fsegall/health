@@ -52,6 +52,7 @@ jobs:
           cd ~/app/health
           yarn
           ./node_modules/.bin/typeorm migration:run
+          pm2 restart safety-api
 
 
       
