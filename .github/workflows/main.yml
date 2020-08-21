@@ -51,6 +51,7 @@ jobs:
         script: |
           cd ~/app/health
           ./node_modules/.bin/typeorm migration:run
+          exit
       
           
     - name: Install production dependencies
