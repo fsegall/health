@@ -49,9 +49,15 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         key:  ${{ secrets.SSH_KEY }}
         script: |
-          cd ~/app/health && yarn install
+          cd ~/app/health
+          yarn
           ./node_modules/.bin/typeorm migration:run
-          pm2 restart safety-api
+          ~/.nvm/versions/node/v12.18.2/bin/pm2 restart safety-api
+
+
+      
+
+
       
      
 
