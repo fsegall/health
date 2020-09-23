@@ -15,12 +15,22 @@ export default class PersonsController {
       date_of_birth,
       gender,
       race_color,
-      religion,
-      marital_status,
       literacy,
       education,
+      unemployed,
+      employed_normal_salary,
+      employed_salary_reduced,
+      employed_vacations,
+      employed_on_leave_salary_reduced,
+      employed_on_leave_normal_salary,
+      employed_on_leave_no_salary,
+      retired,
+      self_employed_legally,
+      odd_jobs,
+      revenue,
+      employer,
       work_status,
-      health_conditions,
+      covid_diagnose
     } = request.body;
 
     const createPerson = container.resolve(CreatePersonService);
@@ -31,12 +41,22 @@ export default class PersonsController {
       date_of_birth,
       gender,
       race_color,
-      religion,
-      marital_status,
       literacy,
       education,
+      unemployed,
+      employed_normal_salary,
+      employed_salary_reduced,
+      employed_vacations,
+      employed_on_leave_salary_reduced,
+      employed_on_leave_normal_salary,
+      employed_on_leave_no_salary,
+      retired,
+      self_employed_legally,
+      odd_jobs,
+      revenue,
+      employer,
       work_status,
-      health_conditions,
+      covid_diagnose
     });
 
     return response.status(201).json(person);
@@ -50,18 +70,28 @@ export default class PersonsController {
   }
   public async update(request: Request, response: Response): Promise<Response> {
     const {
-      interviewer_id,
       person_id,
+      interviewer_id,
       name,
       date_of_birth,
       gender,
       race_color,
-      religion,
-      marital_status,
       literacy,
       education,
+      unemployed,
+      employed_normal_salary,
+      employed_salary_reduced,
+      employed_vacations,
+      employed_on_leave_salary_reduced,
+      employed_on_leave_normal_salary,
+      employed_on_leave_no_salary,
+      retired,
+      self_employed_legally,
+      odd_jobs,
+      revenue,
+      employer,
       work_status,
-      health_conditions,
+      covid_diagnose
     } = request.body;
     const updatePerson = container.resolve(UpdatePersonService);
     const person = await updatePerson.execute({
@@ -72,12 +102,22 @@ export default class PersonsController {
       date_of_birth,
       gender,
       race_color,
-      religion,
-      marital_status,
       literacy,
       education,
+      unemployed,
+      employed_normal_salary,
+      employed_salary_reduced,
+      employed_vacations,
+      employed_on_leave_salary_reduced,
+      employed_on_leave_normal_salary,
+      employed_on_leave_no_salary,
+      retired,
+      self_employed_legally,
+      odd_jobs,
+      revenue,
+      employer,
       work_status,
-      health_conditions,
+      covid_diagnose
     });
 
     return response.json(person);
