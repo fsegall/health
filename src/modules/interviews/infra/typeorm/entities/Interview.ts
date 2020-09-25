@@ -43,8 +43,8 @@ class Interview {
   @Column()
   address_id: string;
 
-  @Column()
-  family_member_id: string;
+  /*   @Column()
+    family_member_id: string; */
 
   @Column()
   is_complete: boolean;
@@ -52,7 +52,7 @@ class Interview {
   @Column()
   interview_type: string;
 
-  @Column()
+  @Column({ nullable: true })
   comments: string;
 
   @CreateDateColumn()

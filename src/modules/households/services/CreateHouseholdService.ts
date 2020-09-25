@@ -64,8 +64,14 @@ interface IRequest {
   market_profile: string;
   difficulty_selling_food: string;
   could_not_sell_food: string;
-  income_unkown: boolean;
+  income_unknown: boolean;
   family_income: number;
+  job_loss?: boolean;
+  salary_reduction?: boolean;
+  financial_support?: boolean;
+  debt?: boolean;
+  cut_costs?: boolean;
+  cut_non_essential_costs?: boolean;
   worried_food_supply: string;
   lack_food_supply: string;
   afford_healthy_food: string;
@@ -148,8 +154,14 @@ export default class CreateHouseholdService {
     market_profile,
     difficulty_selling_food,
     could_not_sell_food,
-    income_unkown,
+    income_unknown,
     family_income,
+    job_loss,
+    salary_reduction,
+    financial_support,
+    debt,
+    cut_costs,
+    cut_non_essential_costs,
     worried_food_supply,
     lack_food_supply,
     afford_healthy_food,
@@ -234,8 +246,14 @@ export default class CreateHouseholdService {
       market_profile,
       difficulty_selling_food,
       could_not_sell_food,
-      income_unkown,
+      income_unknown,
       family_income,
+      job_loss,
+      salary_reduction,
+      financial_support,
+      debt,
+      cut_costs,
+      cut_non_essential_costs,
       worried_food_supply,
       lack_food_supply,
       afford_healthy_food,

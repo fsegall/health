@@ -11,7 +11,7 @@ export default class interviewsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
       interviewer_id,
-      project_id,
+      project_name,
       person_id,
       household_id,
       address_id,
@@ -24,7 +24,7 @@ export default class interviewsController {
 
     const interview = await createInterview.execute({
       interviewer_id,
-      project_id,
+      project_name,
       person_id,
       household_id,
       address_id,

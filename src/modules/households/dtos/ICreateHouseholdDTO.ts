@@ -59,8 +59,14 @@ export default interface ICreateHouseholdDTO {
   market_profile?: string;
   difficulty_selling_food?: string;
   could_not_sell_food?: string;
-  income_unkown?: boolean;
+  income_unknown?: boolean;
   family_income?: number;
+  job_loss?: boolean;
+  salary_reduction?: boolean;
+  financial_support?: boolean;
+  debt?: boolean;
+  cut_costs?: boolean;
+  cut_non_essential_costs?: boolean;
   worried_food_supply: string;
   lack_food_supply: string;
   afford_healthy_food: string;

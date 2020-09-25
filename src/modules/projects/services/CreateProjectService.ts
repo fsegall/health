@@ -23,7 +23,8 @@ export default class CreateProjectService {
     organizations,
   }: IRequest): Promise<Project> {
 
-    const projectExists = this.projectsRepository.findByName(name);
+    const projectExists = await this.projectsRepository.findByName(name);
+    console.log('exists', projectExists)
 
     if (projectExists) {
       throw new AppError(`Já existe um projeto cadastrado com este nome: ${name}`)

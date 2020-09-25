@@ -252,12 +252,36 @@ export default class CreateHouseholds1599955459281 implements MigrationInterface
             type: 'varchar',
           },
           {
-            name: 'income_unkown',
+            name: 'income_unknown',
             type: 'boolean',
           },
           {
             name: 'family_income',
             type: 'integer',
+          },
+          {
+            name: 'job_loss',
+            type: 'boolean',
+          },
+          {
+            name: 'salary_reduction',
+            type: 'boolean',
+          },
+          {
+            name: 'financial_support',
+            type: 'boolean',
+          },
+          {
+            name: 'debt',
+            type: 'boolean',
+          },
+          {
+            name: 'cut_costs',
+            type: 'boolean',
+          },
+          {
+            name: 'cut_non_essential_costs',
+            type: 'boolean',
           },
           {
             name: 'worried_food_supply',

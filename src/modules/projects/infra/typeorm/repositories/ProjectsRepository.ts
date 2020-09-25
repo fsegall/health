@@ -42,6 +42,7 @@ class ProjectsRepository implements IProjectsRepository {
     const project = await this.ormRepository.findOne({
       where: { name: project_name }
     });
+    console.log(project)
     return project;
   }
 

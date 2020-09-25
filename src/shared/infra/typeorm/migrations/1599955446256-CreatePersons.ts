@@ -49,54 +49,6 @@ export default class CreatePersons1599955446256 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'unemployed',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_normal_salary',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_salary_reduced',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_vacations',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_on_leave_salary_reduced',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_on_leave_normal_salary',
-            type: 'boolean',
-          },
-          {
-            name: 'employed_on_leave_no_salary',
-            type: 'boolean',
-          },
-          {
-            name: 'retired',
-            type: 'boolean',
-          },
-          {
-            name: 'self_employed_legally',
-            type: 'boolean',
-          },
-          {
-            name: 'odd_jobs',
-            type: 'boolean',
-          },
-          {
-            name: 'revenue',
-            type: 'boolean',
-          },
-          {
-            name: 'employer',
-            type: 'boolean',
-          },
-          {
             name: 'work_status',
             type: 'varchar',
           },

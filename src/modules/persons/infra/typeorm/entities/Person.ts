@@ -46,42 +46,6 @@ class Person {
   @Column()
   covid_diagnose: string;
 
-  @Column()
-  unemployed: boolean;
-
-  @Column()
-  employed_normal_salary: boolean;
-
-  @Column()
-  employed_salary_reduced: boolean;
-
-  @Column()
-  employed_vacations: boolean;
-
-  @Column()
-  employed_on_leave_salary_reduced: boolean;
-
-  @Column()
-  employed_on_leave_normal_salary: boolean;
-
-  @Column()
-  employed_on_leave_no_salary: boolean;
-
-  @Column()
-  retired: boolean;
-
-  @Column()
-  self_employed_legally: boolean;
-
-  @Column()
-  odd_jobs: boolean;
-
-  @Column()
-  revenue: boolean;
-
-  @Column()
-  employer: boolean;
-
   @CreateDateColumn()
   created_at: Date;
 

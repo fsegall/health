@@ -40,7 +40,7 @@ class Household {
   @Column()
   type_of_residence: string;
 
-  @Column()
+  @Column({ nullable: true })
   number_of_rooms: number;
 
   @Column()
@@ -52,22 +52,22 @@ class Household {
   @Column()
   sewage: string;
 
-  @Column()
+  @Column({ nullable: true })
   number_of_people_household: number;
 
   @Column()
   one_person_household: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   five_years_old_or_more: number;
 
-  @Column()
+  @Column({ nullable: true })
   between_6_and_18: number;
 
-  @Column()
+  @Column({ nullable: true })
   between_19_and_59: number;
 
-  @Column()
+  @Column({ nullable: true })
   sixty_years_old_or_more: number;
 
   @Column()
@@ -172,7 +172,7 @@ class Household {
   @Column()
   covid_cash_assistance: string;
 
-  @Column()
+  @Column({ nullable: true })
   covid_cash_assistance_number_of_times: number;
 
   @Column()
@@ -200,10 +200,28 @@ class Household {
   could_not_sell_food: string;
 
   @Column()
-  income_unkown: boolean;
+  income_unknown: boolean;
+
+  @Column({ nullable: true })
+  family_income: number;
 
   @Column()
-  family_income: number;
+  job_loss: boolean;
+
+  @Column()
+  salary_reduction: boolean;
+
+  @Column()
+  financial_support: boolean;
+
+  @Column()
+  debt: boolean;
+
+  @Column()
+  cut_costs: boolean;
+
+  @Column()
+  cut_non_essential_costs: boolean;
 
   @Column()
   worried_food_supply: string;
