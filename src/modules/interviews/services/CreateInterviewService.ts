@@ -8,6 +8,7 @@ import AppError from '@shared/errors/AppError';
 interface IRequest {
   interviewer_id: string;
   project_name: string;
+  project_number: number;
   person_id: string;
   household_id: string;
   address_id: string;
@@ -27,6 +28,7 @@ export default class CreateInterviewService {
   public async execute({
     interviewer_id,
     project_name,
+    project_number,
     person_id,
     household_id,
     address_id,
@@ -35,16 +37,29 @@ export default class CreateInterviewService {
     comments,
   }: IRequest): Promise<Interview> {
 
-    const projectExists = await this.projectsRepository.findByName(project_name);
+    const projectExists = await this.projectsRepository.findByName(project_name.toUpperCase());
 
     if (!projectExists) {
       throw new AppError("Este projeto não foi cadastrado ainda")
+    }
+
+    const projectNumberExists = await this.projectsRepository.findByNumber(project_number);
+
+    if (!projectNumberExists) {
+      throw new AppError("Este número de projeto não foi cadastrado ainda")
+    }
+
+    const personAlreadyInterviewed = await this.interviewsRepository.findByPersonId(person_id);
+
+    if (personAlreadyInterviewed) {
+      throw new AppError("Esta pessoa já tem uma entrevista cadastrada");
     }
 
     const interview: Interview = await this.interviewsRepository.create({
       interviewer_id,
       project_id: projectExists.id,
       project_name,
+      project_number,
       person_id,
       household_id,
       address_id,

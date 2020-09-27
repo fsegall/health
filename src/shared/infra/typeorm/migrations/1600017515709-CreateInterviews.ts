@@ -23,6 +23,10 @@ export class CreateInterviews1600017515709 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'project_number',
+            type: 'integer',
+          },
+          {
             name: 'project_id',
             type: 'uuid',
             isNullable: true,

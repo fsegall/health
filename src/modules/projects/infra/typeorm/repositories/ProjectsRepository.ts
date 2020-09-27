@@ -16,6 +16,7 @@ class ProjectsRepository implements IProjectsRepository {
   public async create({
     user_id,
     name,
+    project_number,
     organizations,
   }: ICreateProjectDTO): Promise<Project> {
 
@@ -27,6 +28,7 @@ class ProjectsRepository implements IProjectsRepository {
     const project = this.ormRepository.create({
       user_id,
       name,
+      project_number,
       organizations: organizationsArray,
     });
 
@@ -41,6 +43,14 @@ class ProjectsRepository implements IProjectsRepository {
   public async findByName(project_name: string): Promise<Project | undefined> {
     const project = await this.ormRepository.findOne({
       where: { name: project_name }
+    });
+    console.log(project)
+    return project;
+  }
+
+  public async findByNumber(project_number: string): Promise<Project | undefined> {
+    const project = await this.ormRepository.findOne({
+      where: { project_number }
     });
     console.log(project)
     return project;

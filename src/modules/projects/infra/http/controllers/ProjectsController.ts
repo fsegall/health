@@ -12,6 +12,7 @@ export default class ProjectsController {
     const {
       user_id,
       name,
+      project_number,
       organizations,
     } = request.body;
 
@@ -20,6 +21,7 @@ export default class ProjectsController {
     const project = await createProject.execute({
       user_id,
       name,
+      project_number,
       organizations,
     });
 

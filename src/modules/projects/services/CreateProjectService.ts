@@ -8,6 +8,7 @@ import AppError from '@shared/errors/AppError';
 interface IRequest {
   user_id: string;
   name: string;
+  project_number: number;
   organizations: string;
 }
 
@@ -20,19 +21,30 @@ export default class CreateProjectService {
   public async execute({
     user_id,
     name,
+    project_number,
     organizations,
   }: IRequest): Promise<Project> {
 
-    const projectExists = await this.projectsRepository.findByName(name);
-    console.log('exists', projectExists)
+    const parsedName = name.toUpperCase()
 
-    if (projectExists) {
+    const projectNameExists = await this.projectsRepository.findByName(parsedName);
+    console.log('exists', projectNameExists)
+
+    if (projectNameExists) {
       throw new AppError(`Já existe um projeto cadastrado com este nome: ${name}`)
+    }
+
+    const projectNumberExists = await this.projectsRepository.findByNumber(project_number);
+    console.log('exists', projectNumberExists)
+
+    if (projectNumberExists) {
+      throw new AppError(`Já existe um projeto cadastrado com este número: ${project_number}`)
     }
 
     const project: Project = await this.projectsRepository.create({
       user_id,
-      name,
+      name: parsedName,
+      project_number,
       organizations,
     });
 

@@ -5,6 +5,7 @@ export default interface ICreateHouseholdDTO {
   traditional_peoples: string;
   which_traditional_peoples?: string;
   household_main_person: string;
+  reference_person_gender?: string; //
   type_of_residence: string;
   number_of_rooms: number;
   construction_material: string;
@@ -28,6 +29,10 @@ export default interface ICreateHouseholdDTO {
   ovo_frito_cozido_mexido?: boolean;
   leite?: boolean;
   amendoim_castanha_de_caju_ou_castanha_do_brasil_para?: boolean;
+
+  mamao_manga_melaoamarelo_caqui_pequi?: boolean; //
+  carne_de_boi_porco_frango_peixe?: boolean; //
+
   soft_drink?: boolean;
   juice_can_or_box?: boolean;
   juice_powder?: boolean;

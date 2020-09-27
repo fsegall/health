@@ -12,6 +12,7 @@ export default class interviewsController {
     const {
       interviewer_id,
       project_name,
+      project_number,
       person_id,
       household_id,
       address_id,
@@ -20,11 +21,14 @@ export default class interviewsController {
       comments,
     } = request.body;
 
+    console.log('comments', comments);
+
     const createInterview = container.resolve(CreateInterviewService);
 
     const interview = await createInterview.execute({
       interviewer_id,
       project_name,
+      project_number,
       person_id,
       household_id,
       address_id,

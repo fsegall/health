@@ -45,6 +45,10 @@ export default class CreateHouseholds1599955459281 implements MigrationInterface
             type: 'varchar',
           },
           {
+            name: 'reference_person_gender',
+            type: 'varchar',
+          },
+          {
             name: 'type_of_residence',
             type: 'varchar',
           },
@@ -134,6 +138,14 @@ export default class CreateHouseholds1599955459281 implements MigrationInterface
           },
           {
             name: 'amendoim_castanha_de_caju_ou_castanha_do_brasil_para',
+            type: 'boolean',
+          },
+          {
+            name: 'mamao_manga_melaoamarelo_caqui_pequi',
+            type: 'boolean',
+          },
+          {
+            name: 'carne_de_boi_porco_frango_peixe',
             type: 'boolean',
           },
           {

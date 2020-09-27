@@ -27,6 +27,9 @@ class Interview {
   @Column()
   project_name: string;
 
+  @Column({ nullable: true })
+  project_number: number;
+
   @Column()
   project_id: string;
 

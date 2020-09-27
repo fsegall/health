@@ -14,6 +14,7 @@ class InterviewsRepository implements IInterviewsRepository {
   public async create({
     interviewer_id,
     project_name,
+    project_number,
     project_id,
     person_id,
     household_id,
@@ -25,6 +26,7 @@ class InterviewsRepository implements IInterviewsRepository {
     const interview = this.ormRepository.create({
       interviewer_id,
       project_name,
+      project_number,
       project_id,
       person_id,
       household_id,
@@ -35,6 +37,14 @@ class InterviewsRepository implements IInterviewsRepository {
     });
     await this.ormRepository.save(interview);
     return interview;
+  }
+
+  public findByPersonId(person_id: string): Promise<Interview | undefined> {
+    return this.ormRepository.findOne({
+      where: {
+        person_id
+      }
+    });
   }
 
   public async save(interview: Interview): Promise<Interview> {

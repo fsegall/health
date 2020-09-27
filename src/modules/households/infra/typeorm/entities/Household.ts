@@ -38,6 +38,9 @@ class Household {
   household_main_person: string;
 
   @Column()
+  reference_person_gender: string;
+
+  @Column()
   type_of_residence: string;
 
   @Column({ nullable: true })
@@ -105,6 +108,12 @@ class Household {
 
   @Column()
   amendoim_castanha_de_caju_ou_castanha_do_brasil_para: boolean;
+
+  @Column()
+  mamao_manga_melaoamarelo_caqui_pequi: boolean;
+
+  @Column()
+  carne_de_boi_porco_frango_peixe: boolean;
 
   @Column()
   soft_drink: boolean;

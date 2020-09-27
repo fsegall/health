@@ -24,6 +24,10 @@ export class CreateProjects1600017496100 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'project_number',
+            type: 'integer',
+          },
+          {
             name: 'organizations',
             type: 'varchar[]',
           },

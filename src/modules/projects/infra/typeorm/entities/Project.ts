@@ -30,6 +30,9 @@ class Project {
   @Column()
   name: string;
 
+  @Column()
+  project_number: number;
+
   @Column("text", { array: true })
   organizations: string[];
 

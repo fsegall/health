@@ -4,6 +4,7 @@ import ICreateProjectDTO from '@modules/projects/dtos/ICreateProjectDTO';
 export default interface IProjectsRepository {
   create(data: ICreateProjectDTO): Promise<Project>;
   findByName(project_name: string): Promise<Project | undefined>;
+  findByNumber(project_number: number): Promise<Project | undefined>;
   /*   findById(project_id: string): Promise<Project | undefined>;
     list(): Promise<Project[]>;
     save(project: Project): Promise<Project>;
