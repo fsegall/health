@@ -13,6 +13,7 @@ interface IRequest {
   household_id: string;
   address_id: string;
   is_complete: boolean;
+  is_complete_with_errors: boolean;
   interview_type: string;
   comments: string;
 }
@@ -33,6 +34,7 @@ export default class CreateInterviewService {
     household_id,
     address_id,
     is_complete,
+    is_complete_with_errors,
     interview_type,
     comments,
   }: IRequest): Promise<Interview> {
@@ -64,6 +66,7 @@ export default class CreateInterviewService {
       household_id,
       address_id,
       is_complete,
+      is_complete_with_errors,
       interview_type,
       comments,
     });

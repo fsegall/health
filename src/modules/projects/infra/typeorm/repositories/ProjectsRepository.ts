@@ -44,15 +44,15 @@ class ProjectsRepository implements IProjectsRepository {
     const project = await this.ormRepository.findOne({
       where: { name: project_name }
     });
-    console.log(project)
+
     return project;
   }
 
-  public async findByNumber(project_number: string): Promise<Project | undefined> {
+  public async findByNumber(project_number: number): Promise<Project | undefined> {
     const project = await this.ormRepository.findOne({
       where: { project_number }
     });
-    console.log(project)
+
     return project;
   }
 

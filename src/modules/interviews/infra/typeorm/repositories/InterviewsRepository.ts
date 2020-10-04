@@ -20,6 +20,7 @@ class InterviewsRepository implements IInterviewsRepository {
     household_id,
     address_id,
     is_complete,
+    is_complete_with_errors,
     interview_type,
     comments,
   }: ICreateInterviewDTO): Promise<Interview> {
@@ -32,6 +33,7 @@ class InterviewsRepository implements IInterviewsRepository {
       household_id,
       address_id,
       is_complete,
+      is_complete_with_errors,
       interview_type,
       comments,
     });

@@ -53,6 +53,9 @@ class Interview {
   is_complete: boolean;
 
   @Column()
+  is_complete_with_errors: boolean;
+
+  @Column()
   interview_type: string;
 
   @Column({ nullable: true })

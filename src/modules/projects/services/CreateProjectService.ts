@@ -28,14 +28,14 @@ export default class CreateProjectService {
     const parsedName = name.toUpperCase()
 
     const projectNameExists = await this.projectsRepository.findByName(parsedName);
-    console.log('exists', projectNameExists)
+
 
     if (projectNameExists) {
       throw new AppError(`Já existe um projeto cadastrado com este nome: ${name}`)
     }
 
     const projectNumberExists = await this.projectsRepository.findByNumber(project_number);
-    console.log('exists', projectNumberExists)
+
 
     if (projectNumberExists) {
       throw new AppError(`Já existe um projeto cadastrado com este número: ${project_number}`)

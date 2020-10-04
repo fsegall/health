@@ -75,6 +75,7 @@ interface IRequest {
   debt?: boolean;
   cut_costs?: boolean;
   cut_non_essential_costs?: boolean;
+  ns_nr_work_salary?: boolean;
   worried_food_supply: string;
   lack_food_supply: string;
   afford_healthy_food: string;
@@ -168,6 +169,7 @@ export default class CreateHouseholdService {
     debt,
     cut_costs,
     cut_non_essential_costs,
+    ns_nr_work_salary,
     worried_food_supply,
     lack_food_supply,
     afford_healthy_food,
@@ -263,6 +265,7 @@ export default class CreateHouseholdService {
       debt,
       cut_costs,
       cut_non_essential_costs,
+      ns_nr_work_salary,
       worried_food_supply,
       lack_food_supply,
       afford_healthy_food,

@@ -233,6 +233,9 @@ class Household {
   cut_non_essential_costs: boolean;
 
   @Column()
+  ns_nr_work_salary: boolean;
+
+  @Column()
   worried_food_supply: string;
 
   @Column()

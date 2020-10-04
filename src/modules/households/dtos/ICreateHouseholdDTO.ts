@@ -72,6 +72,7 @@ export default interface ICreateHouseholdDTO {
   debt?: boolean;
   cut_costs?: boolean;
   cut_non_essential_costs?: boolean;
+  ns_nr_work_salary?: boolean;
   worried_food_supply: string;
   lack_food_supply: string;
   afford_healthy_food: string;

@@ -43,7 +43,7 @@ export default class UsersController {
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
-    console.log('users');
+
     const listUsers = container.resolve(ListProfilesService);
 
     const users = await listUsers.execute();

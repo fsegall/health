@@ -83,6 +83,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
     debt,
     cut_costs,
     cut_non_essential_costs,
+    ns_nr_work_salary,
     worried_food_supply,
     lack_food_supply,
     afford_healthy_food,
@@ -169,6 +170,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
       debt,
       cut_costs,
       cut_non_essential_costs,
+      ns_nr_work_salary,
       worried_food_supply,
       lack_food_supply,
       afford_healthy_food,
@@ -193,7 +195,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
   }
 
   public async list(): Promise<Household[]> {
-    console.log('houses');
+
     const households = this.ormRepository.find();
     return households;
   }

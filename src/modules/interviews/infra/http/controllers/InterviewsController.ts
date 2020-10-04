@@ -17,11 +17,12 @@ export default class interviewsController {
       household_id,
       address_id,
       is_complete,
+      is_complete_with_errors,
       interview_type,
       comments,
     } = request.body;
 
-    console.log('comments', comments);
+
 
     const createInterview = container.resolve(CreateInterviewService);
 
@@ -33,6 +34,7 @@ export default class interviewsController {
       household_id,
       address_id,
       is_complete,
+      is_complete_with_errors,
       interview_type,
       comments,
     });
