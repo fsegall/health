@@ -53,6 +53,10 @@ export default class CreatePersons1599955446256 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'work_shift_reduction',
+            type: 'varchar',
+          },
+          {
             name: 'covid_diagnose',
             type: 'varchar',
           },

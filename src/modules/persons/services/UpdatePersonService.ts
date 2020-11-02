@@ -15,6 +15,7 @@ interface IRequest {
   literacy: string;
   education: string;
   work_status: string;
+  work_shift_reduction?: string;
   covid_diagnose: string;
 }
 
@@ -37,6 +38,7 @@ class UpdatePersonService {
     literacy,
     education,
     work_status,
+    work_shift_reduction,
     covid_diagnose
   }: IRequest): Promise<Person | undefined> {
     const personsInterviewedByUser = await this.personsRepository.findByUser(
@@ -66,6 +68,7 @@ class UpdatePersonService {
         literacy,
         education,
         work_status,
+        work_shift_reduction,
         covid_diagnose
       });
 

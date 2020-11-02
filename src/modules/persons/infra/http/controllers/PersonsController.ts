@@ -17,19 +17,8 @@ export default class PersonsController {
       race_color,
       literacy,
       education,
-      unemployed,
-      employed_normal_salary,
-      employed_salary_reduced,
-      employed_vacations,
-      employed_on_leave_salary_reduced,
-      employed_on_leave_normal_salary,
-      employed_on_leave_no_salary,
-      retired,
-      self_employed_legally,
-      odd_jobs,
-      revenue,
-      employer,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     } = request.body;
 
@@ -43,19 +32,8 @@ export default class PersonsController {
       race_color,
       literacy,
       education,
-      unemployed,
-      employed_normal_salary,
-      employed_salary_reduced,
-      employed_vacations,
-      employed_on_leave_salary_reduced,
-      employed_on_leave_normal_salary,
-      employed_on_leave_no_salary,
-      retired,
-      self_employed_legally,
-      odd_jobs,
-      revenue,
-      employer,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     });
 
@@ -78,19 +56,8 @@ export default class PersonsController {
       race_color,
       literacy,
       education,
-      unemployed,
-      employed_normal_salary,
-      employed_salary_reduced,
-      employed_vacations,
-      employed_on_leave_salary_reduced,
-      employed_on_leave_normal_salary,
-      employed_on_leave_no_salary,
-      retired,
-      self_employed_legally,
-      odd_jobs,
-      revenue,
-      employer,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     } = request.body;
     const updatePerson = container.resolve(UpdatePersonService);
@@ -104,19 +71,8 @@ export default class PersonsController {
       race_color,
       literacy,
       education,
-      unemployed,
-      employed_normal_salary,
-      employed_salary_reduced,
-      employed_vacations,
-      employed_on_leave_salary_reduced,
-      employed_on_leave_normal_salary,
-      employed_on_leave_no_salary,
-      retired,
-      self_employed_legally,
-      odd_jobs,
-      revenue,
-      employer,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     });
 

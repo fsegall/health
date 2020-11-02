@@ -44,6 +44,9 @@ class Person {
   work_status: string;
 
   @Column()
+  work_shift_reduction: string;
+
+  @Column()
   covid_diagnose: string;
 
   @CreateDateColumn()

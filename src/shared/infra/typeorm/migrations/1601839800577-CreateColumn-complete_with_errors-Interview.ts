@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, TableColumn } from "typeorm";
 
-export class CreateColumnCompleteWithErrorsInterview1601839800577 implements MigrationInterface {
+export default class CreateColumnCompleteWithErrorsInterview1601839800577 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(

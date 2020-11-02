@@ -13,6 +13,7 @@ interface IRequest {
   literacy: string;
   education: string;
   work_status: string;
+  work_shift_reduction?: string;
   covid_diagnose: string;
 }
 
@@ -31,6 +32,7 @@ export default class CreatePersonService {
     literacy,
     education,
     work_status,
+    work_shift_reduction,
     covid_diagnose
   }: IRequest): Promise<Person> {
     const person: Person = await this.personsRepository.create({
@@ -42,6 +44,7 @@ export default class CreatePersonService {
       literacy,
       education,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     });
 

@@ -20,6 +20,7 @@ class PersonsRepository implements IPersonsRepository {
     literacy,
     education,
     work_status,
+    work_shift_reduction,
     covid_diagnose
   }: ICreatePersonDTO): Promise<Person> {
     const person = this.ormRepository.create({
@@ -31,6 +32,7 @@ class PersonsRepository implements IPersonsRepository {
       literacy,
       education,
       work_status,
+      work_shift_reduction,
       covid_diagnose
     });
     await this.ormRepository.save(person);

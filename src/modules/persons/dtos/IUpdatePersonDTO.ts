@@ -8,5 +8,6 @@ export default interface IUpdatePersonDTO {
   literacy: string;
   education: string;
   work_status: string;
+  work_shift_reduction?: string;
   covid_diagnose: string;
 }

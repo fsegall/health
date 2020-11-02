@@ -214,8 +214,12 @@ class HouseholdsRepository implements IHouseholdsRepository {
   }
 
   public async findByPerson(person_id: string): Promise<Household | undefined> {
-    const household = await this.ormRepository.findOne({ person_id });
-
+    const household = await this.ormRepository.findOne({
+      where: {
+        person_id
+      }
+    });
+    console.log('findByPerson', household)
     return household;
   }
 }
