@@ -9,7 +9,7 @@ interface IRequest {
   person_id: string;
   logged_id: string;
   name: string;
-  date_of_birth: Date;
+  age: number;
   gender: string;
   race_color: string;
   literacy: string;
@@ -32,7 +32,7 @@ class UpdatePersonService {
     person_id,
     logged_id,
     name,
-    date_of_birth,
+    age,
     gender,
     race_color,
     literacy,
@@ -62,7 +62,7 @@ class UpdatePersonService {
     if (personWasInterviewedByUser) {
       const updatedUser = Object.assign(personWasInterviewedByUser, {
         name,
-        date_of_birth,
+        age,
         gender,
         race_color,
         literacy,

@@ -1,7 +1,7 @@
 export default interface ICreatePersonDTO {
   interviewer_id: string;
   name: string;
-  date_of_birth: Date;
+  age: number;
   gender: string;
   race_color: string;
   literacy: string;

@@ -29,8 +29,8 @@ export default class CreatePersons1599955446256 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'date_of_birth',
-            type: 'date',
+            name: 'age',
+            type: 'integer',
           },
           {
             name: 'gender',

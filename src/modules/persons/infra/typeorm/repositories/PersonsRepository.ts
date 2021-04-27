@@ -14,7 +14,7 @@ class PersonsRepository implements IPersonsRepository {
   public async create({
     interviewer_id,
     name,
-    date_of_birth,
+    age,
     gender,
     race_color,
     literacy,
@@ -26,7 +26,7 @@ class PersonsRepository implements IPersonsRepository {
     const person = this.ormRepository.create({
       interviewer_id,
       name,
-      date_of_birth,
+      age,
       gender,
       race_color,
       literacy,

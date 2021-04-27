@@ -7,7 +7,7 @@ import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository
 interface IRequest {
   interviewer_id: string;
   name: string;
-  date_of_birth: Date;
+  age: number;
   gender: string;
   race_color: string;
   literacy: string;
@@ -26,7 +26,7 @@ export default class CreatePersonService {
   public async execute({
     interviewer_id,
     name,
-    date_of_birth,
+    age,
     gender,
     race_color,
     literacy,
@@ -38,7 +38,7 @@ export default class CreatePersonService {
     const person: Person = await this.personsRepository.create({
       interviewer_id,
       name,
-      date_of_birth,
+      age,
       gender,
       race_color,
       literacy,

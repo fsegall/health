@@ -26,7 +26,7 @@ class Person {
   name: string;
 
   @Column()
-  date_of_birth: Date;
+  age: number;
 
   @Column()
   gender: string;
