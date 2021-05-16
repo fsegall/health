@@ -13,27 +13,29 @@ class PersonsRepository implements IPersonsRepository {
 
   public async create({
     interviewer_id,
-    name,
-    age,
-    gender,
-    race_color,
-    literacy,
-    education,
-    work_status,
-    work_shift_reduction,
-    covid_diagnose
+    nome,
+    idade,
+    sexo,
+    raca_cor,
+    ler_escrever,
+    escolaridade,
+    situacao_de_trabalho,
+    ocupacao,
+    local_de_trabalho,
+    diagnostico_covid,
   }: ICreatePersonDTO): Promise<Person> {
     const person = this.ormRepository.create({
       interviewer_id,
-      name,
-      age,
-      gender,
-      race_color,
-      literacy,
-      education,
-      work_status,
-      work_shift_reduction,
-      covid_diagnose
+      nome,
+      idade,
+      sexo,
+      raca_cor,
+      ler_escrever,
+      escolaridade,
+      situacao_de_trabalho,
+      ocupacao,
+      local_de_trabalho,
+      diagnostico_covid,
     });
     await this.ormRepository.save(person);
     return person;

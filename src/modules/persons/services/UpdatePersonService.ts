@@ -8,15 +8,16 @@ interface IRequest {
   interviewer_id: string;
   person_id: string;
   logged_id: string;
-  name: string;
-  age: number;
-  gender: string;
-  race_color: string;
-  literacy: string;
-  education: string;
-  work_status: string;
-  work_shift_reduction?: string;
-  covid_diagnose: string;
+  nome: string;
+  idade: number;
+  sexo: string;
+  raca_cor: string;
+  ler_escrever: string;
+  escolaridade: string;
+  situacao_de_trabalho: string;
+  ocupacao: string;
+  local_de_trabalho: string;
+  diagnostico_covid: string;
 }
 
 @injectable()
@@ -31,15 +32,16 @@ class UpdatePersonService {
     interviewer_id,
     person_id,
     logged_id,
-    name,
-    age,
-    gender,
-    race_color,
-    literacy,
-    education,
-    work_status,
-    work_shift_reduction,
-    covid_diagnose
+    nome,
+    idade,
+    sexo,
+    raca_cor,
+    ler_escrever,
+    escolaridade,
+    situacao_de_trabalho,
+    ocupacao,
+    local_de_trabalho,
+    diagnostico_covid,
   }: IRequest): Promise<Person | undefined> {
     const personsInterviewedByUser = await this.personsRepository.findByUser(
       interviewer_id,
@@ -61,15 +63,16 @@ class UpdatePersonService {
 
     if (personWasInterviewedByUser) {
       const updatedUser = Object.assign(personWasInterviewedByUser, {
-        name,
-        age,
-        gender,
-        race_color,
-        literacy,
-        education,
-        work_status,
-        work_shift_reduction,
-        covid_diagnose
+        nome,
+        idade,
+        sexo,
+        raca_cor,
+        ler_escrever,
+        escolaridade,
+        situacao_de_trabalho,
+        ocupacao,
+        local_de_trabalho,
+        diagnostico_covid,
       });
 
       this.personsRepository.save(updatedUser);

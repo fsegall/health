@@ -23,262 +23,260 @@ class Household {
   household: Person;
 
   @Column()
-  location_of_residence: string;
+  local_do_domicilio: string;
 
   @Column()
-  homeless: string;
+  morador_de_rua: string;
 
   @Column()
-  traditional_peoples: string;
+  povos_tradicionais: string;
 
   @Column()
-  which_traditional_peoples: string;
+  qual_povo_tradicional: string;
 
   @Column()
-  household_main_person: string;
+  pessoa_de_referencia: string;
 
   @Column()
-  reference_person_gender: string;
+  idade_pessoa_de_referencia: number;
 
   @Column()
-  type_of_residence: string;
+  sexo_pessoa_de_referencia: string;
+
+  @Column()
+  raca_cor: string;
+
+  @Column()
+  ler_escrever: string;
+
+  @Column()
+  escolaridade: string;
+
+  @Column()
+  situacao_de_trabalho: string;
+
+  @Column()
+  ocupacao_profissional: string;
+
+  @Column()
+  local_de_trabalho: string;
+
+  @Column()
+  covid_2020: string;
+
+  @Column()
+  covid_perda_2020: string;
+
+  @Column()
+  covid_2021: string;
+
+  @Column()
+  covid_perda_2021: string;
+
+  @Column()
+  tipo_de_residencia: string;
 
   @Column({ nullable: true })
-  number_of_rooms: number;
+  numero_de_comodos: number;
 
   @Column()
-  construction_material: string;
+  material_de_construcao: string;
 
   @Column()
-  drinking_water: string;
+  agua_potavel: string;
 
   @Column()
-  sewage: string;
+  agua_animais: string;
+
+  @Column()
+  agua_producao_alimentos: string;
+
+  @Column()
+  esgoto: string;
 
   @Column({ nullable: true })
-  number_of_people_household: number;
+  numero_de_pessoas: number;
 
   @Column()
-  one_person_household: boolean;
+  uma_pessoa_domicilio: boolean;
 
   @Column({ nullable: true })
-  five_years_old_or_more: number;
+  cinco_anos_ou_mais: number;
 
   @Column({ nullable: true })
-  between_6_and_18: number;
+  entre_6_e_18: number;
 
   @Column({ nullable: true })
-  between_19_and_59: number;
+  entre_19_e_59: number;
 
   @Column({ nullable: true })
-  sixty_years_old_or_more: number;
+  sessenta_anos_ou_mais: number;
 
   @Column()
-  people_invited: string;
+  pessoas_convidadas: string;
 
   @Column()
-  alface_acelga_repolho: boolean;
+  nao_sabe_renda: boolean;
+
+  @Column({ nullable: true })
+  renda_familiar: number;
 
   @Column()
-  couve_brocolis_almeirao_agriao_espinafre: boolean;
+  faixa_de_renda: string;
 
   @Column()
-  abobora_cenoura_batata_doce_quiabo_caruru: boolean;
+  perda_de_emprego: boolean;
 
   @Column()
-  tomate_pepino_abobrinha_berinjela_chuchu_beterraba: boolean;
+  reducao_de_salario: boolean;
 
   @Column()
-  laranja_banana_maca_abacaxi: boolean;
+  ajuda_financeira: boolean;
 
   @Column()
-  arroz_macarrao_polenta_cuscuz_milho_verde: boolean;
+  divida: boolean;
 
   @Column()
-  feijao_ervilha_lentilha_grao_de_bico: boolean;
+  corte_de_gastos: boolean;
 
   @Column()
-  batata_comum_mandioca_cara_inhame: boolean;
+  corte_de_gastos_nao_essenciais: boolean;
 
   @Column()
-  ovo_frito_cozido_mexido: boolean;
+  ns_nr_trabalho: boolean;
+
+  @Column()
+  educacao_basica_publica: string;
+
+  @Column()
+  pnae: string;
+
+  @Column()
+  cadastro_unico: string;
+
+  @Column()
+  bolsa_familia: string;
+
+  @Column()
+  bpc: string;
+
+  @Column()
+  pensao: string;
+
+  @Column()
+  auxilio_reclusao: string;
+
+  @Column()
+  cesta_de_alimentos: string;
+
+  @Column()
+  restaurantes_populares: string;
+
+  @Column()
+  auxilio_emergencial: string;
+
+  @Column({ nullable: true })
+  auxilio_vezes: number;
+
+  @Column()
+  ajuda_instituicao_caridade: string;
+
+  @Column()
+  tipo_de_ajuda: string;
+
+  @Column()
+  vergonha: string;
+
+  @Column()
+  produz_alimento: string;
+
+  @Column()
+  alimento_para_venda: string;
+
+  @Column()
+  divisao_alimento: string;
+
+  @Column()
+  dificuldade_venda: string;
+
+  @Column()
+  nao_vendeu: string;
+
+  @Column()
+  preocupacao_alimentos: string;
+
+  @Column()
+  alimentos_acabaram: string;
+
+  @Column()
+  alimentos_saudaveis: string;
+
+  @Column()
+  alimentos_poucos_tipos: string;
+
+  @Column()
+  refeicoes_adulto: string;
+
+  @Column()
+  adulto_comeu_menos: string;
+
+  @Column()
+  adulto_fome: string;
+
+  @Column()
+  adulto_uma_refeicao: string;
+
+  @Column()
+  como_adquiriu_comida: string;
+
+  @Column()
+  alteracao_preco_comidas: string;
+
+  @Column()
+  perfil_de_compra: string;
+
+  @Column()
+  mercado: string;
+
+  @Column()
+  gastos_alimentacao: string;
+
+  @Column()
+  feijao: boolean;
+
+  @Column()
+  arroz: boolean;
+
+  @Column()
+  carnes: boolean;
+
+  @Column()
+  verduras_legumes: boolean;
+
+  @Column()
+  frutas_frescas: boolean;
 
   @Column()
   leite: boolean;
 
   @Column()
-  amendoim_castanha_de_caju_ou_castanha_do_brasil_para: boolean;
+  hamburguer_embutidos: boolean;
 
   @Column()
-  mamao_manga_melaoamarelo_caqui_pequi: boolean;
+  bebidas_adocadas: boolean;
 
   @Column()
-  carne_de_boi_porco_frango_peixe: boolean;
+  macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados: boolean;
 
   @Column()
-  soft_drink: boolean;
-
-  @Column()
-  juice_can_or_box: boolean;
-
-  @Column()
-  juice_powder: boolean;
-
-  @Column()
-  chocolate_beverage: boolean;
-
-  @Column()
-  flavored_yogurt: boolean;
-
-  @Column()
-  salty_snacks: boolean;
-
-  @Column()
-  cookies: boolean;
-
-  @Column()
-  industrialized_dessert: boolean;
-
-  @Column()
-  sausages: boolean;
-
-  @Column()
-  hot_dog_or_burguer_bread: boolean;
-
-  @Column()
-  mayonnaise_ketchup_mustard: boolean;
-
-  @Column()
-  margarine: boolean;
-
-  @Column()
-  instant_noodles_or_soup_or_frozen_food: boolean;
-
-  @Column()
-  government_assistance_program_cadastro_unico: string;
-
-  @Column()
-  government_assistance_program_bolsa_familia: string;
-
-  @Column()
-  government_assistance_program_bpc: string;
-
-  @Column()
-  pension: string;
-
-  @Column()
-  prison_cash_assistance: string;
-
-  @Column()
-  government_assistance_program_pnae: string;
-
-  @Column()
-  food_basket_assistance: string;
-
-  @Column()
-  low_income_restaurants: string;
-
-  @Column()
-  covid_cash_assistance: string;
-
-  @Column({ nullable: true })
-  covid_cash_assistance_number_of_times: number;
-
-  @Column()
-  charity: string;
-
-  @Column()
-  type_of_charity: string;
-
-  @Column()
-  embarassement: string;
-
-  @Column()
-  home_grown: string;
-
-  @Column()
-  food_for_market: string;
-
-  @Column()
-  market_profile: string;
-
-  @Column()
-  difficulty_selling_food: string;
-
-  @Column()
-  could_not_sell_food: string;
-
-  @Column()
-  income_unknown: boolean;
-
-  @Column({ nullable: true })
-  family_income: number;
-
-  @Column()
-  job_loss: boolean;
-
-  @Column()
-  salary_reduction: boolean;
-
-  @Column()
-  financial_support: boolean;
-
-  @Column()
-  debt: boolean;
-
-  @Column()
-  cut_costs: boolean;
-
-  @Column()
-  cut_non_essential_costs: boolean;
-
-  @Column()
-  ns_nr_work_salary: boolean;
-
-  @Column()
-  worried_food_supply: string;
-
-  @Column()
-  lack_food_supply: string;
-
-  @Column()
-  afford_healthy_food: string;
-
-  @Column()
-  poor_food_choice: string;
-
-  @Column()
-  adult_meals: string;
-
-  @Column()
-  adult_food_privation: string;
-
-  @Column()
-  adult_hunger: string;
-
-  @Column()
-  adult_one_meal_or_none: string;
-
-  @Column()
-  how_food_is_obtained: string;
-
-  @Column()
-  food_price_change: string;
-
-  @Column()
-  food_profile_change: string;
-
-  @Column()
-  food_store_type: string;
-
-  @Column()
-  food_expenditure: string;
+  biscoito_recheado_doces_guloseimas: boolean;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
+
 }
 
 export default Household;

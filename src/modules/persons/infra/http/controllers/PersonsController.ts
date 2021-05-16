@@ -11,30 +11,32 @@ export default class PersonsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
       interviewer_id,
-      name,
-      age,
-      gender,
-      race_color,
-      literacy,
-      education,
-      work_status,
-      work_shift_reduction,
-      covid_diagnose
+      nome,
+      idade,
+      sexo,
+      raca_cor,
+      ler_escrever,
+      escolaridade,
+      situacao_de_trabalho,
+      ocupacao,
+      local_de_trabalho,
+      diagnostico_covid,
     } = request.body;
 
     const createPerson = container.resolve(CreatePersonService);
 
     const person = await createPerson.execute({
       interviewer_id,
-      name,
-      age,
-      gender,
-      race_color,
-      literacy,
-      education,
-      work_status,
-      work_shift_reduction,
-      covid_diagnose
+      nome,
+      idade,
+      sexo,
+      raca_cor,
+      ler_escrever,
+      escolaridade,
+      situacao_de_trabalho,
+      ocupacao,
+      local_de_trabalho,
+      diagnostico_covid,
     });
 
     return response.status(201).json(person);
@@ -50,30 +52,32 @@ export default class PersonsController {
     const {
       person_id,
       interviewer_id,
-      name,
-      age,
-      gender,
-      race_color,
-      literacy,
-      education,
-      work_status,
-      work_shift_reduction,
-      covid_diagnose
+      nome,
+      idade,
+      sexo,
+      raca_cor,
+      ler_escrever,
+      escolaridade,
+      situacao_de_trabalho,
+      ocupacao,
+      local_de_trabalho,
+      diagnostico_covid,
     } = request.body;
     const updatePerson = container.resolve(UpdatePersonService);
     const person = await updatePerson.execute({
       interviewer_id,
       person_id,
       logged_id: request.user.id,
-      name,
-      age,
-      gender,
-      race_color,
-      literacy,
-      education,
-      work_status,
-      work_shift_reduction,
-      covid_diagnose
+      nome,
+      idade,
+      sexo,
+      raca_cor,
+      ler_escrever,
+      escolaridade,
+      situacao_de_trabalho,
+      ocupacao,
+      local_de_trabalho,
+      diagnostico_covid,
     });
 
     return response.json(person);
