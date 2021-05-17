@@ -10,7 +10,7 @@ interface Request {
   neighborhood: string;
   street_or_location: string;
   house_number: number;
-  telephone_number: string;
+  telephone_number?: string;
 }
 
 export default class CreateAddressService {
