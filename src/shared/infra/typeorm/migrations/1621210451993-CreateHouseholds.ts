@@ -231,7 +231,7 @@ export default class CreateHouseholds1621210451993 implements MigrationInterface
           },
           {
             name: 'auxilio_vezes',
-            type: 'integer',
+            type: 'varchar',
           },
           {
             name: 'ajuda_instituicao_caridade',
@@ -303,7 +303,7 @@ export default class CreateHouseholds1621210451993 implements MigrationInterface
             type: 'varchar',
           },
           {
-            name: 'alteracao_preco_comidas',
+            name: 'alteracao_preco_comida',
             type: 'varchar',
           },
           {

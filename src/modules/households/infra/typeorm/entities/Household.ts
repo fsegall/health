@@ -37,7 +37,7 @@ class Household {
   @Column()
   pessoa_de_referencia: string;
 
-  @Column()
+  @Column({ nullable: true })
   idade_pessoa_de_referencia: number;
 
   @Column()
@@ -175,8 +175,8 @@ class Household {
   @Column()
   auxilio_emergencial: string;
 
-  @Column({ nullable: true })
-  auxilio_vezes: number;
+  @Column()
+  auxilio_vezes: string;
 
   @Column()
   ajuda_instituicao_caridade: string;
@@ -230,7 +230,7 @@ class Household {
   como_adquiriu_comida: string;
 
   @Column()
-  alteracao_preco_comidas: string;
+  alteracao_preco_comida: string;
 
   @Column()
   perfil_de_compra: string;
