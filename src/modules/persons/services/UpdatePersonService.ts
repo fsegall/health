@@ -55,11 +55,11 @@ class UpdatePersonService {
       throw new AppError('No person was interviewed by this user');
     }
 
-    if (personWasInterviewedByUser?.interviewer_id !== logged_id) {
-      throw new AppError(
-        'You can only update a person interviewed by yourself.',
-      );
-    }
+    /*     if (personWasInterviewedByUser?.interviewer_id !== logged_id) {
+          throw new AppError(
+            'You can only update a person interviewed by yourself.',
+          );
+        } */ // Fix babel to compile ?. syntax
 
     if (personWasInterviewedByUser) {
       const updatedUser = Object.assign(personWasInterviewedByUser, {
