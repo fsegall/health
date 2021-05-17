@@ -5,12 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreatePersons1599955446256 implements MigrationInterface {
+export default class CreateAddresses1621217450568 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'persons',
+        name: 'addresses',
         columns: [
           {
             name: 'id',
@@ -20,45 +20,37 @@ export default class CreatePersons1599955446256 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'interviewer_id',
+            name: 'household_id',
             type: 'uuid',
             isNullable: true,
           },
           {
-            name: 'name',
+            name: 'state',
             type: 'varchar',
           },
           {
-            name: 'date_of_birth',
-            type: 'date',
-          },
-          {
-            name: 'gender',
+            name: 'city',
             type: 'varchar',
           },
           {
-            name: 'race_color',
+            name: 'post_code',
             type: 'varchar',
           },
           {
-            name: 'literacy',
+            name: 'neighborhood',
             type: 'varchar',
           },
           {
-            name: 'education',
+            name: 'street_or_location',
             type: 'varchar',
           },
           {
-            name: 'work_status',
+            name: 'telephone_number',
             type: 'varchar',
           },
           {
-            name: 'work_shift_reduction',
-            type: 'varchar',
-          },
-          {
-            name: 'covid_diagnose',
-            type: 'varchar',
+            name: 'house_number',
+            type: 'integer',
           },
           {
             name: 'created_at',
@@ -73,23 +65,23 @@ export default class CreatePersons1599955446256 implements MigrationInterface {
         ],
       }),
     );
-
     await queryRunner.createForeignKey(
-      'persons',
+      'addresses',
       new TableForeignKey({
-        name: 'Interviewer',
-        columnNames: ['interviewer_id'],
+        name: 'Address',
+        columnNames: ['household_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'users',
+        referencedTableName: 'households',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),
     );
+
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('persons', 'Interviewer');
-    await queryRunner.dropTable('persons');
+    await queryRunner.dropForeignKey('addresses', 'Address');
+    await queryRunner.dropTable('addresses');
   }
 
 }

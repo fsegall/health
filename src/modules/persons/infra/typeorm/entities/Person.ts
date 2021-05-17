@@ -23,31 +23,34 @@ class Person {
   interviewer: User;
 
   @Column()
-  name: string;
+  nome: string;
 
   @Column()
-  date_of_birth: Date;
+  idade: number;
 
   @Column()
-  gender: string;
+  sexo: string;
 
   @Column()
-  race_color: string;
+  raca_cor: string;
 
   @Column()
-  literacy: string;
+  ler_escrever: string;
 
   @Column()
-  education: string;
+  escolaridade: string;
 
   @Column()
-  work_status: string;
+  situacao_de_trabalho: string;
 
   @Column()
-  work_shift_reduction: string;
+  ocupacao: string;
 
   @Column()
-  covid_diagnose: string;
+  local_de_trabalho: string;
+
+  @Column()
+  diagnostico_covid: string;
 
   @CreateDateColumn()
   created_at: Date;
