@@ -136,7 +136,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
       nao_sabe_renda,
       renda_familiar,
       faixa_de_renda,
-      // D35 - multipla escolha
+
       perda_de_emprego,
       reducao_de_salario,
       ajuda_financeira,
@@ -144,7 +144,7 @@ class HouseholdsRepository implements IHouseholdsRepository {
       corte_de_gastos,
       corte_de_gastos_nao_essenciais,
       ns_nr_trabalho,
-      //
+
       educacao_basica_publica,
       pnae,
       cadastro_unico,

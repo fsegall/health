@@ -39,7 +39,7 @@ interface IRequest {
   nao_sabe_renda: boolean;
   renda_familiar?: number;
   faixa_de_renda: string;
-  // D35 - multipla escolha
+
   perda_de_emprego?: boolean;
   reducao_de_salario?: boolean;
   ajuda_financeira?: boolean;
@@ -47,7 +47,7 @@ interface IRequest {
   corte_de_gastos?: boolean;
   corte_de_gastos_nao_essenciais?: boolean;
   ns_nr_trabalho?: boolean;
-  //
+
   educacao_basica_publica: string;
   pnae?: string;
   cadastro_unico: string;
@@ -70,11 +70,11 @@ interface IRequest {
   preocupacao_alimentos: string;
   alimentos_acabaram: string;
   alimentos_saudaveis: string;
-  alimentos_poucos_tipos: string;
-  refeicoes_adulto: string;
-  adulto_comeu_menos: string;
-  adulto_fome: string;
-  adulto_uma_refeicao: string;
+  alimentos_poucos_tipos?: string;
+  refeicoes_adulto?: string;
+  adulto_comeu_menos?: string;
+  adulto_fome?: string;
+  adulto_uma_refeicao?: string;
   como_adquiriu_comida: string;
   alteracao_preco_comida: string;
   perfil_de_compra?: string;
