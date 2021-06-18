@@ -53,6 +53,22 @@ class InterviewsRepository implements IInterviewsRepository {
     return this.ormRepository.save(interview);
   }
 
+  public async list(): Promise<Interview[]> {
+    console.log('interviews');
+    const interviews = this.ormRepository.find();
+    return interviews;
+  }
+
+  public async listByInterviewer(interviewer_id: string): Promise<Interview[]> {
+    console.log('interviews');
+    const interviews = this.ormRepository.find({
+      where: {
+        interviewer_id
+      }
+    });
+    return interviews;
+  }
+
   /*   public async findById(interview_id: string): Promise<Interview | undefined> {
       const interview = await this.ormRepository.findOne(interview_id);
       return interview;

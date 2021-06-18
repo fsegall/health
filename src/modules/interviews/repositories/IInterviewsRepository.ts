@@ -4,6 +4,8 @@ export default interface IInterviewsRepository {
   create(data: ICreateInterviewDTO): Promise<Interview>;
   save(interview: Interview): Promise<Interview>;
   findByPersonId(person_id: string): Promise<Interview | undefined>;
+  list(): Promise<Interview[]>
+  listByInterviewer(interviewer_id: string): Promise<Interview[]>
   /*   findById(interview_id: string): Promise<Interview | undefined>;
     list(): Promise<Interview[]>;
     delete(interview_id: string): Promise<void>; */

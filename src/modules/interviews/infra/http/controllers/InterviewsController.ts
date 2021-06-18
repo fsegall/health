@@ -3,6 +3,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateInterviewService from '@modules/interviews/services/CreateInterviewService';
+import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
+import ListInterviewsByInterviewerService from '@modules/interviews/services/ListInterviewsByInterviewerService';
 /* import ListinterviewsService from '@modules/interviews/services/ListinterviewsService';
 import UpdateinterviewService from '@modules/interviews/services/UpdateinterviewService';
 import Showinterviewservice from '@modules/interviews/services/ShowinterviewService';
@@ -26,6 +28,7 @@ export default class interviewsController {
 
     const createInterview = container.resolve(CreateInterviewService);
 
+
     const interview = await createInterview.execute({
       interviewer_id,
       project_name,
@@ -42,6 +45,22 @@ export default class interviewsController {
     return response.status(201).json(interview);
   }
 
+  public async list(request: Request, response: Response): Promise<Response> {
+    const listInterviews = container.resolve(ListInterviewsService);
+    const interviews = await listInterviews.execute();
+
+    return response.json(interviews);
+  }
+
+  public async listByInterviewer(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const listInterviews = container.resolve(ListInterviewsByInterviewerService);
+
+    const interview = await listInterviews.execute({ interviewer_id: id });
+
+    return response.json(interview);
+  }
   /* public async list(request: Request, response: Response): Promise<Response> {
     const listInterviews = container.resolve(ListInterviewsService);
     const interviews = await listInterviews.execute();

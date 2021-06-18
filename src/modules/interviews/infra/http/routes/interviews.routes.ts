@@ -8,6 +8,10 @@ const interviewsRouter = Router();
 
 interviewsRouter.use(ensureAuthenticated);
 
+interviewsRouter.get('/', interviewsController.list);
+
+interviewsRouter.get('/:id', interviewsController.listByInterviewer);
+
 /* interviewsRouter.get('/:id', interviewsController.show);
 
 interviewsRouter.get('/', interviewsController.list); */
