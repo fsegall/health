@@ -223,7 +223,6 @@ class HouseholdsRepository implements IHouseholdsRepository {
         person_id
       }
     });
-    console.log('findByPerson', household)
     return household;
   }
 }

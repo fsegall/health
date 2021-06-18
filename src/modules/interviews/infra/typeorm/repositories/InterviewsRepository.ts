@@ -54,13 +54,11 @@ class InterviewsRepository implements IInterviewsRepository {
   }
 
   public async list(): Promise<Interview[]> {
-    console.log('interviews');
     const interviews = this.ormRepository.find();
     return interviews;
   }
 
   public async listByInterviewer(interviewer_id: string): Promise<Interview[]> {
-    console.log('interviews');
     const interviews = this.ormRepository.find({
       where: {
         interviewer_id
@@ -75,7 +73,6 @@ class InterviewsRepository implements IInterviewsRepository {
     }
 
     public async list(): Promise<Interview[]> {
-      console.log('houses');
       const interviews = this.ormRepository.find();
       return interviews;
     }

@@ -15,9 +15,7 @@ class PersonsHouseholdService {
   public async execute({
     person_id,
   }: IRequest): Promise<Household | undefined> {
-    console.log('person id inside service', person_id)
     const household = await this.householdsRepository.findByPerson(person_id);
-    console.log('House', household)
     return household;
   }
 }
