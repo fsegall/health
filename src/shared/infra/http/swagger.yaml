@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: "This is an API for managing data about people and there households to conduct food security analysis during the COVID-19 pandemic"
+  description: "This is an API for managing data about people and their households to conduct food security analysis during the COVID-19 pandemic"
   version: 1.0
   title: Health API
   termsOfService: http://swagger.io/terms/
@@ -797,6 +797,9 @@ components:
           type: string
         name:
           type: string
+        project_number:
+          type: integer
+          format: int32
         organizations:
           type: string
       xml:
@@ -806,16 +809,23 @@ components:
       properties:
         interviewer_id:
           type: string
+        project_name:
+          type: string
+        project_number:
+          type: integer
+          format: int32
         person_id:
           type: string
         household_id:
           type: string
         address_id:
           type: string
-        familymember_id:
-          type: string
+ #       familymember_id:
+ #         type: string
         is_complete:
-          type: booelan
+          type: boolean
+        is_complete_with_errors:
+          type: boolean
         interview_type:
           type: string
         comments:
@@ -827,50 +837,32 @@ components:
       properties:
         interviewer_id:
           type: string
-        name:
+        nome:
           type: string
-        race_color:
-          type: string
-        education:
-          type: string
-        work_status:
-          type: string
-        covid_diagnose:
-          type: string
-        date_of_birth:
-          type: string
-          format: date-time
-        gender:
+        idade:
+          type: integer
+          format: int32
+        sexo:
           type: string
           description: Person gender
           enum:
-            - male
-            - female
-            - other
-        literacy:
+            - masculino
+            - feminino
+            - outro
+        raca_cor:
           type: string
-        employed_normal_salary:
-          type: boolean
-        employed_salary_reduced:
-          type: boolean
-        employed_vacations:
-          type: boolean
-        employed_on_leave_salary_reduced:
-          type: boolean
-        employed_on_leave_normal_salary:
-          type: boolean
-        employed_on_leave_no_salary:
-          type: boolean
-        retired:
-          type: boolean
-        self_employed_legally:
-          type: boolean
-        odd_jobs:
-          type: boolean
-        revenue:
-          type: boolean
-        employer:
-          type: boolean
+        ler_escrever:
+          type: string
+        escolaridade:
+          type: string
+        situacao_de_trabalho:
+          type: string
+        ocupacao:
+          type: string
+        local_de_trabalho:
+          type: string
+        diagnostico_covid:
+          type: string
       xml:
         name: Person
     PersonUpdate:
@@ -880,50 +872,32 @@ components:
           type: string
         person_id:
           type: string
-        name:
+        nome:
           type: string
-        race_color:
-          type: string
-        education:
-          type: string
-        work_status:
-          type: string
-        covid_diagnose:
-          type: string
-        date_of_birth:
-          type: string
-          format: date-time
-        gender:
+        idade:
+          type: integer
+          format: int32
+        sexo:
           type: string
           description: Person gender
           enum:
             - masculino
             - feminino
             - outro
-        literacy:
+        raca_cor:
           type: string
-        employed_normal_salary:
-          type: boolean
-        employed_salary_reduced:
-          type: boolean
-        employed_vacations:
-          type: boolean
-        employed_on_leave_salary_reduced:
-          type: boolean
-        employed_on_leave_normal_salary:
-          type: boolean
-        employed_on_leave_no_salary:
-          type: boolean
-        retired:
-          type: boolean
-        self_employed_legally:
-          type: boolean
-        odd_jobs:
-          type: boolean
-        revenue:
-          type: boolean
-        employer:
-          type: boolean
+        ler_escrever:
+          type: string
+        escolaridade:
+          type: string
+        situacao_de_trabalho:
+          type: string
+        ocupacao:
+          type: string
+        local_de_trabalho:
+          type: string
+        diagnostico_covid:
+          type: string
       xml:
         name: Person
     Household:
@@ -931,164 +905,187 @@ components:
       properties:
         person_id:
           type: string
-        household_main_person:
+        local_do_domicilio:
           type: string
-        location_of_residence:
+        morador_de_rua:
           type: string
-        homeless:
+        povos_tradicionais:
           type: string
-        traditional_peoples:
+        qual_povo_tradicional:
           type: string
-        which_traditional_peoples:
+        pessoa_de_referencia:
           type: string
-        type_of_residence:
-          type: string
-        construction_material:
-          type: string
-        drinking_water:
-          type: string
-        sewage:
-          type: string
-        number_of_rooms:
+        idade_pessoa_de_referencia:
           type: integer
           format: int32
-        number_of_people_household:
+        sexo_pessoa_de_referencia:
+          type: string
+          description: Person gender
+          enum:
+            - masculino
+            - feminino
+            - outro
+        raca_cor:
+          type: string
+        ler_escrever:
+          type: string
+        escolaridade:
+          type: string
+        situacao_de_trabalho:
+          type: string
+        ocupacao_profissional:
+          type: string
+        local_de_trabalho:
+          type: string
+        covid_2020:
+          type: string
+        covid_perda_2020:
+          type: string
+        covid_2021:
+          type: string
+        covid_perda_2021:
+          type: string
+        tipo_de_residencia:
+          type: string
+        numero_de_comodos:
           type: integer
           format: int32
-        one_person_household:
+        material_de_construcao:
+          type: string
+        agua_potavel:
+          type: string
+        agua_animais:
+          type: string
+        agua_producao_alimentos:
+          type: string
+        esgoto:
+          type: string
+        numero_de_pessoas:
+          type: integer
+          format: int32
+        uma_pessoa_domicilio:
           type: boolean
-        five_years_old_or_more:
+        cinco_anos_ou_mais:
           type: integer
           format: int32
-        between_6_and_18:
+        entre_6_e_18:
           type: integer
           format: int32
-        between_19_and_59:
+        entre_19_e_59:
           type: integer
           format: int32
-        sixty_years_old_or_more:
+        sessenta_anos_ou_mais:
           type: integer
           format: int32
-        people_invited:
+        pessoas_convidadas:
+          type: string
+        nao_sabe_renda:
+          type: boolean
+        renda_familiar:
+          type: integer
+          format: int32
+        faixa_de_renda:
+          type: string
+        perda_de_emprego:
+          type: boolean
+        reducao_de_salario:
+          type: boolean
+        ajuda_financeira:
+          type: boolean
+        divida:
+          type: boolean
+        corte_de_gastos:
+          type: boolean
+        corte_de_gastos_nao_essenciais:
+          type: boolean
+        ns_nr_trabalho:
+          type: boolean
+        educacao_basica_publica:
+          type: string
+        pnae:
+          type: string
+        cadastro_unico:
+          type: string
+        bolsa_familia:
+          type: string
+        bpc:
+          type: string
+        pensao:
+          type: string
+        auxilio_reclusao:
+          type: string
+        cesta_de_alimentos:
+          type: string
+        restaurantes_populares:
+          type: string
+        auxilio_emergencial:
+          type: string
+        auxilio_vezes:
+          type: string
+        ajuda_instituicao_caridade:
+          type: string
+        tipo_de_ajuda:
+          type: string
+        vergonha:
+          type: string
+        produz_alimento:
+          type: string
+        alimento_para_venda:
+          type: string
+        divisao_alimento:
+          type: string
+        dificuldade_venda:
+          type: string
+        nao_vendeu:
+          type: string
+        preocupacao_alimentos:
+          type: string
+        alimentos_acabaram:
+          type: string
+        alimentos_saudaveis:
+          type: string
+        alimentos_poucos_tipos:
+          type: string
+        refeicoes_adulto:
+          type: string
+        adulto_comeu_menos:
+          type: string
+        adulto_fome:
+          type: string
+        adulto_uma_refeicao:
+          type: string
+        como_adquiriu_comida:
+          type: string
+        alteracao_preco_comida:
+          type: string
+        perfil_de_compra:
+          type: string
+        mercado:
+          type: string
+        gastos_alimentacao:
           type: string
 #  Household diet start
-        alface_acelga_repolho:
+        feijao:
           type: boolean
-        couve_brocolis_almeirao_agriao_espinafre:
+        arroz:
           type: boolean
-        abobora_cenoura_batata_doce_quiabo_caruru:
+        carnes:
           type: boolean
-        tomate_pepino_abobrinha_berinjela_chuchu_beterraba:
+        verduras_legumes:
           type: boolean
-        laranja_banana_maca_abacaxi:
-          type: boolean
-        arroz_macarrao_polenta_cuscuz_milho_verde:
-          type: boolean
-        feijao_ervilha_lentilha_grao_de_bico:
-          type: boolean
-        batata_comum_mandioca_cara_inhame:
-          type: boolean
-        ovo_frito_cozido_mexido:
+        frutas_frescas:
           type: boolean
         leite:
           type: boolean
-        amendoim_castanha_de_caju_ou_castanha_do_brasil_para:
+        hamburguer_embutidos:
           type: boolean
-        soft_drink:
+        bebidas_adocadas:
           type: boolean
-        juice_can_or_box:
+        macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados:
           type: boolean
-        juice_powder:
-          type: boolean
-        chocolate_beverage:
-          type: boolean
-        flavored_yogurt:
-          type: boolean
-        salty_snacks:
-          type: boolean
-        cookies:
-          type: boolean
-        industrialized_dessert:
-          type: boolean
-        sausages:
-          type: boolean
-        hot_dog_or_burguer_bread:
-          type: boolean
-        mayonnaise_ketchup_mustard:
-          type: boolean
-        margarine:
-          type: boolean
-        instant_noodles_or_soup_or_frozen_food:
+        biscoito_recheado_doces_guloseimas:
           type: boolean
 #  Household diet end
-        government_assistance_program_cadastro_unico:
-          type: string
-        government_assistance_program_bolsa_familia:
-          type: string
-        government_assistance_program_bpc:
-          type: string
-        pension:
-          type: string
-        prison_cash_assistance:
-          type: string
-        government_assistance_program_pnae:
-          type: string
-        food_basket_assistance:
-          type: string
-        low_income_restaurants:
-          type: string
-        covid_cash_assistance:
-          type: string
-        covid_cash_assistance_number_of_times:
-          type: integer
-          format: int32
-        charity:
-          type: string
-        type_of_charity:
-          type: string
-        embarassement:
-          type: string
-        home_grown:
-          type: string
-        food_for_market:
-          type: string
-        market_profile:
-          type: string
-        difficulty_selling_food:
-          type: string
-        could_not_sell_food:
-          type: string
-        income_unkown:
-          type: boolean
-        family_income:
-          type: integer
-          format: int32
-        worried_food_supply:
-          type: string
-        lack_food_supply:
-          type: string
-        afford_healthy_food:
-          type: string
-        poor_food_choice:
-          type: string
-        adult_meals:
-          type: string
-        adult_food_privation:
-          type: string
-        adult_hunger:
-          type: string
-        adult_one_meal_or_none:
-          type: string
-        how_food_is_obtained:
-          type: string
-        food_price_change:
-          type: string
-        food_profile_change:
-          type: string
-        food_store_type:
-          type: string
-        food_expenditure:
-          type: string
       xml:
         name: Household
     FamilyMember:
