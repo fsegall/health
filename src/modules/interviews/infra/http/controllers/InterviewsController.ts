@@ -1,6 +1,7 @@
 // index, show, create, update, delete
 
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
 import { container } from 'tsyringe';
 import CreateInterviewService from '@modules/interviews/services/CreateInterviewService';
 import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
@@ -42,14 +43,14 @@ export default class interviewsController {
       comments,
     });
 
-    return response.status(201).json(interview);
+    return response.status(201).json(classToClass(interview));
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
     const listInterviews = container.resolve(ListInterviewsService);
     const interviews = await listInterviews.execute();
 
-    return response.json(interviews);
+    return response.json(classToClass(interviews));
   }
 
   public async listByInterviewer(request: Request, response: Response): Promise<Response> {
@@ -59,7 +60,7 @@ export default class interviewsController {
 
     const interview = await listInterviews.execute({ interviewer_id: id });
 
-    return response.json(interview);
+    return response.json(classToClass(interview));
   }
   /* public async list(request: Request, response: Response): Promise<Response> {
     const listInterviews = container.resolve(ListInterviewsService);

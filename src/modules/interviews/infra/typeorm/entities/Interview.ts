@@ -9,6 +9,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 import User from '@modules/users/infra/typeorm/entities/User';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
 
@@ -28,22 +30,30 @@ class Interview {
   project_name: string;
 
   @Column({ nullable: true })
+  @Exclude()
   project_number: number;
 
   @Column()
+  @Exclude()
   project_id: string;
 
   @ManyToOne(() => Project, project => project.interviews)
   @JoinColumn({ name: 'project_id' })
   project: Project;
 
+
   @Column()
+  @Exclude()
   person_id: string;
 
-  @Column()
-  household_id: string;
 
   @Column()
+  @Exclude()
+  household_id: string;
+
+
+  @Column()
+  @Exclude()
   address_id: string;
 
   /*   @Column()
