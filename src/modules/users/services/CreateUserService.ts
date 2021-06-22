@@ -1,4 +1,5 @@
 import User from '../infra/typeorm/entities/User';
+import { Roles } from '../authorization/constants';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
@@ -19,7 +20,7 @@ class CreateUserService {
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
     private hashProvider: IHashProvider,
-  ) {}
+  ) { }
   public async execute({
     name,
     organization_name,
@@ -41,6 +42,7 @@ class CreateUserService {
       email,
       telephone_number,
       password: hashedPassword,
+      role: Roles.INTERVIEWER
     });
 
     return user;
