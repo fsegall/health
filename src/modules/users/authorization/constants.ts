@@ -1,0 +1,5 @@
+export enum Roles {
+  ADMIN = "ADMIN",
+  COORDINATOR = "COORDINATOR",
+  INTERVIEWER = "INTERVIEWER"
+};

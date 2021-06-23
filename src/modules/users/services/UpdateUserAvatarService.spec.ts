@@ -2,6 +2,7 @@ import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 import AppError from '@shared/errors/AppError';
+import { Roles } from '@modules/users/authorization/constants';
 let fakeUsersRepository: FakeUsersRepository;
 let fakeStorageProvider: FakeStorageProvider;
 let updateUserAvatar: UpdateUserAvatarService;
@@ -21,6 +22,7 @@ describe('UpdateUserAvatar', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await updateUserAvatar.execute({
@@ -47,6 +49,7 @@ describe('UpdateUserAvatar', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await updateUserAvatar.execute({

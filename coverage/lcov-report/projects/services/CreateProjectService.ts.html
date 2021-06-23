@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for households/services/CreateAddressService.ts</title>
+    <title>Code coverage report for projects/services/CreateProjectService.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">households/services</a> CreateAddressService.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">projects/services</a> CreateProjectService.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/46</span>
+                <span class='fraction'>0/55</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/46</span>
+                <span class='fraction'>0/55</span>
             </div>
         
             
@@ -103,7 +103,16 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -149,50 +158,68 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Address from '@modules/households/infra/typeorm/entities/Address';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { getRepository } from 'typeorm';</span>
-<span class="cstat-no" title="statement not covered" >// import AppError from '../errors/AppError';</span>
-<span class="cstat-no" title="statement not covered" >// The Service has no access to Request and Response</span>
-<span class="cstat-no" title="statement not covered" >interface Request {</span>
-<span class="cstat-no" title="statement not covered" >  household_id: string;</span>
-<span class="cstat-no" title="statement not covered" >  state: string;</span>
-<span class="cstat-no" title="statement not covered" >  city: string;</span>
-<span class="cstat-no" title="statement not covered" >  post_code?: string;</span>
-<span class="cstat-no" title="statement not covered" >  neighborhood: string;</span>
-<span class="cstat-no" title="statement not covered" >  street_or_location: string;</span>
-<span class="cstat-no" title="statement not covered" >  house_number: number;</span>
-<span class="cstat-no" title="statement not covered" >  telephone_number?: string;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Project from '../infra/typeorm/entities/Project';</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { injectable, inject } from 'tsyringe';</span>
+<span class="cstat-no" title="statement not covered" >import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';</span>
+<span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/* import AppError from '@shared/errors/AppError'; */</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >interface IRequest {</span>
+<span class="cstat-no" title="statement not covered" >  user_id: string;</span>
+<span class="cstat-no" title="statement not covered" >  name: string;</span>
+<span class="cstat-no" title="statement not covered" >  project_number: number;</span>
+<span class="cstat-no" title="statement not covered" >  organizations: string;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default class CreateAddressService {</span>
+<span class="cstat-no" title="statement not covered" >@injectable()</span>
+<span class="cstat-no" title="statement not covered" >export default class CreateProjectService {</span>
+<span class="cstat-no" title="statement not covered" >  constructor(</span>
+<span class="cstat-no" title="statement not covered" >    @inject('ProjectsRepository')</span>
+<span class="cstat-no" title="statement not covered" >    private projectsRepository: IProjectsRepository</span>
+<span class="cstat-no" title="statement not covered" >  ) { }</span>
 <span class="cstat-no" title="statement not covered" >  public async execute({</span>
-<span class="cstat-no" title="statement not covered" >    household_id,</span>
-<span class="cstat-no" title="statement not covered" >    state,</span>
-<span class="cstat-no" title="statement not covered" >    city,</span>
-<span class="cstat-no" title="statement not covered" >    post_code,</span>
-<span class="cstat-no" title="statement not covered" >    neighborhood,</span>
-<span class="cstat-no" title="statement not covered" >    street_or_location,</span>
-<span class="cstat-no" title="statement not covered" >    house_number,</span>
-<span class="cstat-no" title="statement not covered" >    telephone_number,</span>
-<span class="cstat-no" title="statement not covered" >  }: Request): Promise&lt;Address&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const addressesRepository = getRepository(Address);</span>
+<span class="cstat-no" title="statement not covered" >    user_id,</span>
+<span class="cstat-no" title="statement not covered" >    name,</span>
+<span class="cstat-no" title="statement not covered" >    project_number,</span>
+<span class="cstat-no" title="statement not covered" >    organizations,</span>
+<span class="cstat-no" title="statement not covered" >  }: IRequest): Promise&lt;Project&gt; {</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const address: Address = addressesRepository.create({</span>
-<span class="cstat-no" title="statement not covered" >      household_id,</span>
-<span class="cstat-no" title="statement not covered" >      state,</span>
-<span class="cstat-no" title="statement not covered" >      city,</span>
-<span class="cstat-no" title="statement not covered" >      post_code,</span>
-<span class="cstat-no" title="statement not covered" >      neighborhood,</span>
-<span class="cstat-no" title="statement not covered" >      street_or_location,</span>
-<span class="cstat-no" title="statement not covered" >      house_number,</span>
-<span class="cstat-no" title="statement not covered" >      telephone_number,</span>
+<span class="cstat-no" title="statement not covered" >    const parsedName = name.toUpperCase()</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const projectNameExists = await this.projectsRepository.findByName(parsedName);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (projectNameExists) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError(`Já existe um projeto cadastrado com este nome: ${name}`)</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const projectNumberExists = await this.projectsRepository.findByNumber(project_number);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (projectNumberExists) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError(`Já existe um projeto cadastrado com este número: ${project_number}`)</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const project: Project = await this.projectsRepository.create({</span>
+<span class="cstat-no" title="statement not covered" >      user_id,</span>
+<span class="cstat-no" title="statement not covered" >      name: parsedName,</span>
+<span class="cstat-no" title="statement not covered" >      project_number,</span>
+<span class="cstat-no" title="statement not covered" >      organizations,</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // Save to db</span>
-<span class="cstat-no" title="statement not covered" >    await addressesRepository.save(address);</span>
+<span class="cstat-no" title="statement not covered" >    await this.projectsRepository.save(project);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    // returns to http request</span>
-<span class="cstat-no" title="statement not covered" >    return address;</span>
+<span class="cstat-no" title="statement not covered" >    return project;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>

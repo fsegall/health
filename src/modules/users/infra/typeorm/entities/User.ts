@@ -7,6 +7,8 @@ import {
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
 import uploadConfig from '@config/upload';
+
+
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
@@ -27,6 +29,10 @@ class User {
   @Column()
   @Exclude()
   password: string;
+
+  // Testing to create authorization control
+  @Column()
+  role: string;
 
   @Column()
   avatar: string;

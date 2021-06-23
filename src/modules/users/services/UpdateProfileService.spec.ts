@@ -2,6 +2,7 @@ import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 import UpdateProfileService from './UpdateProfileService';
 import AppError from '@shared/errors/AppError';
+import { Roles } from '@modules/users/authorization/constants';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
@@ -22,6 +23,7 @@ describe('UpdateUserProfile', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     const updatedUser = await updateProfile.execute({
@@ -43,6 +45,7 @@ describe('UpdateUserProfile', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     const user = await fakeUsersRepository.create({
@@ -51,6 +54,7 @@ describe('UpdateUserProfile', () => {
       email: 'test@example.com',
       telephone_number: '112233445533',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await expect(
@@ -71,6 +75,7 @@ describe('UpdateUserProfile', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await expect(
@@ -92,6 +97,7 @@ describe('UpdateUserProfile', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await expect(

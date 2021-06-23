@@ -1,7 +1,9 @@
 import Project from '../infra/typeorm/entities/Project';
 import { injectable, inject } from 'tsyringe';
 import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
+import { Roles } from '@modules/users/authorization/constants';
 
 /* import AppError from '@shared/errors/AppError'; */
 
@@ -16,7 +18,9 @@ interface IRequest {
 export default class CreateProjectService {
   constructor(
     @inject('ProjectsRepository')
-    private projectsRepository: IProjectsRepository
+    private projectsRepository: IProjectsRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) { }
   public async execute({
     user_id,
@@ -24,6 +28,12 @@ export default class CreateProjectService {
     project_number,
     organizations,
   }: IRequest): Promise<Project> {
+
+    const checkUsersRole = await this.usersRepository.findById(user_id);
+
+    if (checkUsersRole?.role === Roles.INTERVIEWER) {
+      throw new AppError('O usuário não tem permissão para criar um projeto');
+    }
 
     const parsedName = name.toUpperCase()
 
