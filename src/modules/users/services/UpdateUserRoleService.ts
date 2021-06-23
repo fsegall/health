@@ -5,8 +5,8 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Roles } from '@modules/users/authorization/constants';
 
 interface IRequest {
-  gives_permition_id: string;
-  receives_permition_id: string;
+  gives_permission_id: string;
+  receives_permission_id: string;
 }
 
 @injectable()
@@ -16,15 +16,15 @@ class UpdateUserRoleService {
     private usersRepository: IUsersRepository,
   ) { }
   public async execute({
-    gives_permition_id,
-    receives_permition_id,
+    gives_permission_id,
+    receives_permission_id,
   }: IRequest): Promise<User> {
 
-    const checkCoordinator = await this.usersRepository.findById(gives_permition_id);
-    const checkInterviewer = await this.usersRepository.findById(receives_permition_id);
+    const checkCoordinator = await this.usersRepository.findById(gives_permission_id);
+    const checkInterviewer = await this.usersRepository.findById(receives_permission_id);
 
     if (checkCoordinator?.role === Roles.INTERVIEWER) {
-      throw new AppError('User cannot assign permitions.');
+      throw new AppError('User cannot assign permissions.');
     }
 
     const updatedUser = Object.assign(checkInterviewer, {

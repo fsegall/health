@@ -10,15 +10,15 @@ export default class UserRoleController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const {
-      gives_permition_id,
-      receives_permition_id,
+      gives_permission_id,
+      receives_permission_id,
     } = request.body;
 
     const updateUserRole = container.resolve(UpdateUserRoleService);
 
     const user = await updateUserRole.execute({
-      gives_permition_id,
-      receives_permition_id,
+      gives_permission_id,
+      receives_permission_id,
     });
 
     return response.json(classToClass(user));
