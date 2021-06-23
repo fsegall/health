@@ -4,6 +4,7 @@ import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
 /* import CreateUserService from './CreateUserService'; */
+import { Roles } from '@modules/users/authorization/constants';
 import AppError from '@shared/errors/AppError';
 
 let fakeUsersRepository: FakeUsersRepository;
@@ -32,6 +33,7 @@ describe('CreateUser', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await sendForgotPasswordEmail.execute({
@@ -57,6 +59,7 @@ describe('CreateUser', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     await sendForgotPasswordEmail.execute({

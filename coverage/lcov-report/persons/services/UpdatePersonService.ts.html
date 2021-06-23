@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for persons/services/CreatePersonService.ts</title>
+    <title>Code coverage report for persons/services/UpdatePersonService.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">persons/services</a> CreatePersonService.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">persons/services</a> UpdatePersonService.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/56</span>
+                <span class='fraction'>0/85</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/56</span>
+                <span class='fraction'>0/85</span>
             </div>
         
             
@@ -113,7 +113,36 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -169,14 +198,45 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Person from '@modules/persons/infra/typeorm/entities/Person';</span></span></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Person from '../infra/typeorm/entities/Person';</span></span></span>
 <span class="cstat-no" title="statement not covered" >import { injectable, inject } from 'tsyringe';</span>
+<span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
 <span class="cstat-no" title="statement not covered" >import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// import AppError from '../errors/AppError';</span>
+<span class="cstat-no" title="statement not covered" >import IUsersRepository from '@modules/users/repositories/IUsersRepository';</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >interface IRequest {</span>
 <span class="cstat-no" title="statement not covered" >  interviewer_id: string;</span>
+<span class="cstat-no" title="statement not covered" >  person_id: string;</span>
+<span class="cstat-no" title="statement not covered" >  logged_id: string;</span>
 <span class="cstat-no" title="statement not covered" >  nome: string;</span>
 <span class="cstat-no" title="statement not covered" >  idade: number;</span>
 <span class="cstat-no" title="statement not covered" >  sexo: string;</span>
@@ -190,13 +250,17 @@
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >@injectable()</span>
-<span class="cstat-no" title="statement not covered" >export default class CreatePersonService {</span>
+<span class="cstat-no" title="statement not covered" >class UpdatePersonService {</span>
 <span class="cstat-no" title="statement not covered" >  constructor(</span>
+<span class="cstat-no" title="statement not covered" >    @inject('UsersRepository')</span>
+<span class="cstat-no" title="statement not covered" >    private usersRepository: IUsersRepository,</span>
 <span class="cstat-no" title="statement not covered" >    @inject('PersonsRepository')</span>
 <span class="cstat-no" title="statement not covered" >    private personsRepository: IPersonsRepository,</span>
 <span class="cstat-no" title="statement not covered" >  ) { }</span>
 <span class="cstat-no" title="statement not covered" >  public async execute({</span>
 <span class="cstat-no" title="statement not covered" >    interviewer_id,</span>
+<span class="cstat-no" title="statement not covered" >    person_id,</span>
+<span class="cstat-no" title="statement not covered" >    logged_id,</span>
 <span class="cstat-no" title="statement not covered" >    nome,</span>
 <span class="cstat-no" title="statement not covered" >    idade,</span>
 <span class="cstat-no" title="statement not covered" >    sexo,</span>
@@ -207,24 +271,47 @@
 <span class="cstat-no" title="statement not covered" >    ocupacao,</span>
 <span class="cstat-no" title="statement not covered" >    local_de_trabalho,</span>
 <span class="cstat-no" title="statement not covered" >    diagnostico_covid,</span>
-<span class="cstat-no" title="statement not covered" >  }: IRequest): Promise&lt;Person&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const person: Person = await this.personsRepository.create({</span>
+<span class="cstat-no" title="statement not covered" >  }: IRequest): Promise&lt;Person | undefined&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const personsInterviewedByUser = await this.personsRepository.findByUser(</span>
 <span class="cstat-no" title="statement not covered" >      interviewer_id,</span>
-<span class="cstat-no" title="statement not covered" >      nome,</span>
-<span class="cstat-no" title="statement not covered" >      idade,</span>
-<span class="cstat-no" title="statement not covered" >      sexo,</span>
-<span class="cstat-no" title="statement not covered" >      raca_cor,</span>
-<span class="cstat-no" title="statement not covered" >      ler_escrever,</span>
-<span class="cstat-no" title="statement not covered" >      escolaridade,</span>
-<span class="cstat-no" title="statement not covered" >      situacao_de_trabalho,</span>
-<span class="cstat-no" title="statement not covered" >      ocupacao,</span>
-<span class="cstat-no" title="statement not covered" >      local_de_trabalho,</span>
-<span class="cstat-no" title="statement not covered" >      diagnostico_covid,</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return person;</span>
+<span class="cstat-no" title="statement not covered" >    const personWasInterviewedByUser = personsInterviewedByUser.find(</span>
+<span class="cstat-no" title="statement not covered" >      person =&gt; person.id === person_id,</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (personsInterviewedByUser.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError('No person was interviewed by this user');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (personWasInterviewedByUser?.interviewer_id !== logged_id) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError(</span>
+<span class="cstat-no" title="statement not covered" >        'You can only update a person interviewed by yourself.',</span>
+<span class="cstat-no" title="statement not covered" >      );</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (personWasInterviewedByUser) {</span>
+<span class="cstat-no" title="statement not covered" >      const updatedUser = Object.assign(personWasInterviewedByUser, {</span>
+<span class="cstat-no" title="statement not covered" >        nome,</span>
+<span class="cstat-no" title="statement not covered" >        idade,</span>
+<span class="cstat-no" title="statement not covered" >        sexo,</span>
+<span class="cstat-no" title="statement not covered" >        raca_cor,</span>
+<span class="cstat-no" title="statement not covered" >        ler_escrever,</span>
+<span class="cstat-no" title="statement not covered" >        escolaridade,</span>
+<span class="cstat-no" title="statement not covered" >        situacao_de_trabalho,</span>
+<span class="cstat-no" title="statement not covered" >        ocupacao,</span>
+<span class="cstat-no" title="statement not covered" >        local_de_trabalho,</span>
+<span class="cstat-no" title="statement not covered" >        diagnostico_covid,</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      this.personsRepository.save(updatedUser);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      return updatedUser;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default UpdatePersonService;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

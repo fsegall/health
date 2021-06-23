@@ -4,6 +4,7 @@ import ResetPasswordService from './ResetPasswordService';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
 import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 /* import CreateUserService from './CreateUserService'; */
+import { Roles } from '@modules/users/authorization/constants';
 import AppError from '@shared/errors/AppError';
 import { Generated } from 'typeorm';
 import { DelayedConstructor } from 'tsyringe/dist/typings/lazy-helpers';
@@ -32,6 +33,7 @@ describe('ResetPasswordService', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     const { token } = await fakeUserTokensRepository.generate(user.id);
@@ -76,6 +78,7 @@ describe('ResetPasswordService', () => {
       email: 'johndoe@example.com',
       telephone_number: '112233445566',
       password: '123456',
+      role: Roles.INTERVIEWER
     });
 
     const { token } = await fakeUserTokensRepository.generate(user.id);
