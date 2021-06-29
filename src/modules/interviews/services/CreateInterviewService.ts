@@ -60,7 +60,7 @@ export default class CreateInterviewService {
     const interview: Interview = await this.interviewsRepository.create({
       interviewer_id,
       project_id: projectExists.id,
-      project_name,
+      project_name: project_name.toUpperCase(),
       project_number,
       person_id,
       household_id,
