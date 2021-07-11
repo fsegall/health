@@ -87,4 +87,6 @@ export default interface ICreateHouseholdDTO {
   macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados?: boolean;
   biscoito_recheado_doces_guloseimas?: boolean;
   //
+  vacina: string;
+  nao_tomou_vacina?: string;
 }
