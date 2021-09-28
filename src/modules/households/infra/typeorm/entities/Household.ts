@@ -271,12 +271,6 @@ class Household {
   @Column()
   biscoito_recheado_doces_guloseimas: boolean;
 
-  @Column()
-  vacina: string;
-
-  @Column()
-  nao_tomou_vacina: string;
-
   @CreateDateColumn()
   created_at: Date;
 

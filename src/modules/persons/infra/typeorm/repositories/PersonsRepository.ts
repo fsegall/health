@@ -23,6 +23,8 @@ class PersonsRepository implements IPersonsRepository {
     ocupacao,
     local_de_trabalho,
     diagnostico_covid,
+    vacina,
+    nao_tomou_vacina,
   }: ICreatePersonDTO): Promise<Person> {
     const person = this.ormRepository.create({
       interviewer_id,
@@ -36,6 +38,8 @@ class PersonsRepository implements IPersonsRepository {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     });
     await this.ormRepository.save(person);
     return person;

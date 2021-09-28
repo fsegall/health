@@ -18,6 +18,8 @@ interface IRequest {
   ocupacao: string;
   local_de_trabalho: string;
   diagnostico_covid: string;
+  vacina: string;
+  nao_tomou_vacina?: string;
 }
 
 @injectable()
@@ -42,6 +44,8 @@ class UpdatePersonService {
     ocupacao,
     local_de_trabalho,
     diagnostico_covid,
+    vacina,
+    nao_tomou_vacina,
   }: IRequest): Promise<Person | undefined> {
     const personsInterviewedByUser = await this.personsRepository.findByUser(
       interviewer_id,
@@ -73,6 +77,8 @@ class UpdatePersonService {
         ocupacao,
         local_de_trabalho,
         diagnostico_covid,
+        vacina,
+        nao_tomou_vacina,
       });
 
       this.personsRepository.save(updatedUser);

@@ -99,8 +99,6 @@ export default class HouseholdsController {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-      vacina,
-      nao_tomou_vacina,
     } = request.body;
 
     const createHousehold = container.resolve(CreateHouseholdService);
@@ -193,8 +191,6 @@ export default class HouseholdsController {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-      vacina,
-      nao_tomou_vacina,
     });
 
     return response.status(201).json(household);

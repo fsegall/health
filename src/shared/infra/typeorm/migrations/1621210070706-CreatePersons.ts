@@ -65,6 +65,14 @@ export default class CreatePersons1621210070706 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'vacina',
+            type: 'varchar',
+          },
+          {
+            name: 'nao_tomou_vacina',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

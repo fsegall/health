@@ -21,6 +21,8 @@ export default class PersonsController {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     } = request.body;
 
     const createPerson = container.resolve(CreatePersonService);
@@ -37,6 +39,8 @@ export default class PersonsController {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     });
 
     return response.status(201).json(person);
@@ -62,6 +66,8 @@ export default class PersonsController {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     } = request.body;
     const updatePerson = container.resolve(UpdatePersonService);
     const person = await updatePerson.execute({
@@ -78,6 +84,8 @@ export default class PersonsController {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     });
 
     return response.json(person);

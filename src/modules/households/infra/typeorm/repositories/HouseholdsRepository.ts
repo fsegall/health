@@ -99,8 +99,6 @@ class HouseholdsRepository implements IHouseholdsRepository {
     bebidas_adocadas,
     macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
     biscoito_recheado_doces_guloseimas,
-    vacina,
-    nao_tomou_vacina,
   }: ICreateHouseholdDTO): Promise<Household> {
     const household = this.ormRepository.create({
       person_id,
@@ -190,8 +188,6 @@ class HouseholdsRepository implements IHouseholdsRepository {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-      vacina,
-      nao_tomou_vacina,
     });
     await this.ormRepository.save(household);
     return household;

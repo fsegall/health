@@ -16,6 +16,8 @@ interface IRequest {
   ocupacao: string;
   local_de_trabalho: string;
   diagnostico_covid: string;
+  vacina: string;
+  nao_tomou_vacina?: string;
 }
 
 @injectable()
@@ -36,6 +38,8 @@ export default class CreatePersonService {
     ocupacao,
     local_de_trabalho,
     diagnostico_covid,
+    vacina,
+    nao_tomou_vacina,
   }: IRequest): Promise<Person> {
     const person: Person = await this.personsRepository.create({
       interviewer_id,
@@ -49,6 +53,8 @@ export default class CreatePersonService {
       ocupacao,
       local_de_trabalho,
       diagnostico_covid,
+      vacina,
+      nao_tomou_vacina,
     });
 
     return person;

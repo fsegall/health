@@ -52,6 +52,12 @@ class Person {
   @Column()
   diagnostico_covid: string;
 
+  @Column()
+  vacina: string;
+
+  @Column()
+  nao_tomou_vacina: string;
+
   @CreateDateColumn()
   created_at: Date;
 

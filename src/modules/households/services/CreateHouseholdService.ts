@@ -91,8 +91,6 @@ interface IRequest {
   bebidas_adocadas?: boolean;
   macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados?: boolean;
   biscoito_recheado_doces_guloseimas?: boolean;
-  vacina: string;
-  nao_tomou_vacina?: string;
 }
 
 @injectable()
@@ -189,8 +187,6 @@ export default class CreateHouseholdService {
     bebidas_adocadas,
     macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
     biscoito_recheado_doces_guloseimas,
-    vacina,
-    nao_tomou_vacina,
   }: IRequest): Promise<Household> {
     const hasHousehold = await this.householdsRepository.findByPerson(
       person_id,
@@ -289,8 +285,6 @@ export default class CreateHouseholdService {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-      vacina,
-      nao_tomou_vacina,
     });
 
     await this.householdsRepository.save(household);
