@@ -10,18 +10,18 @@ const personsRouter = Router();
 
 personsRouter.use(ensureAuthenticated);
 
-personsRouter.get('/:id', personsController.show);
+// personsRouter.get('/:id', personsController.show);
 
-personsRouter.get('/', personsController.list);
+// personsRouter.get('/', personsController.list);
 
 personsRouter.post('/', personsController.create);
 
-personsRouter.put('/', personsController.update);
+// personsRouter.put('/', personsController.update);
 
-personsRouter.delete('/:id', personsController.delete);
+// personsRouter.delete('/:id', personsController.delete);
 
-personsRouter.get('/:id/family', familyMembersController.list);
+// personsRouter.get('/:id/family', familyMembersController.list);
 
-personsRouter.get('/:id/household', householdsController.show);
+// personsRouter.get('/:id/household', householdsController.show);
 
 export default personsRouter;
