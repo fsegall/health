@@ -1,8 +1,9 @@
 import Person from '@modules/persons/infra/typeorm/entities/Person';
 import { injectable, inject } from 'tsyringe';
 import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
-
-// import AppError from '../errors/AppError';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import { Roles } from '@modules/users/authorization/constants';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   interviewer_id: string;
@@ -25,6 +26,8 @@ export default class CreatePersonService {
   constructor(
     @inject('PersonsRepository')
     private personsRepository: IPersonsRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) { }
   public async execute({
     interviewer_id,
@@ -41,6 +44,13 @@ export default class CreatePersonService {
     vacina,
     nao_tomou_vacina,
   }: IRequest): Promise<Person> {
+
+    const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
+
+    if (checkIsVisitor?.role === Roles.VISITOR) {
+      throw new AppError('O usuário não tem permissão para criar entrevistas.');
+    }
+
     const person: Person = await this.personsRepository.create({
       interviewer_id,
       nome,
