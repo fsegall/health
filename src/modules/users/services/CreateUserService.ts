@@ -42,7 +42,7 @@ class CreateUserService {
       email,
       telephone_number,
       password: hashedPassword,
-      role: Roles.INTERVIEWER
+      role: Roles.VISITOR
     });
 
     return user;

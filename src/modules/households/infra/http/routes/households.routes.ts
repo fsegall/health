@@ -10,7 +10,7 @@ householdsRouter.use(ensureAuthenticated);
 
 // householdsRouter.get('/:id', householdsController.show);
 
-householdsRouter.get('/', householdsController.list);
+// householdsRouter.get('/', householdsController.list);
 
 householdsRouter.post('/', householdsController.create);
 

@@ -6,5 +6,5 @@ export default interface ICreateUserDTO {
   telephone_number: string;
   email: string;
   password: string;
-  role: Roles.INTERVIEWER;
+  role: Roles.VISITOR;
 }
