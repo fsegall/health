@@ -23,6 +23,10 @@ class UpdateUserRoleService {
     const checkCoordinator = await this.usersRepository.findById(gives_permission_id);
     const checkInterviewer = await this.usersRepository.findById(receives_permission_id);
 
+    if (checkCoordinator?.role === Roles.VISITOR) {
+      throw new AppError('User cannot assign permissions.');
+    }
+
     if (checkCoordinator?.role === Roles.INTERVIEWER) {
       throw new AppError('User cannot assign permissions.');
     }
