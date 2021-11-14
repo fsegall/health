@@ -50,6 +50,7 @@ export default class UsersController {
 
     const usersResponse = response.json(classToClass(users).map((user) => {
       user.telephone_number = "XXXXXX";
+      user.email = "XXXXXX";
       return user;
     }));
 
