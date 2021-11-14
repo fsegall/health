@@ -21,7 +21,7 @@ class UpdateUserRoleService {
   }: IRequest): Promise<User> {
 
     const checkCoordinator = await this.usersRepository.findById(gives_permission_id);
-    const checkInterviewer = await this.usersRepository.findById(receives_permission_id);
+    const visitor = await this.usersRepository.findById(receives_permission_id);
 
     if (checkCoordinator?.role === Roles.VISITOR) {
       throw new AppError('User cannot assign permissions.');
@@ -31,8 +31,8 @@ class UpdateUserRoleService {
       throw new AppError('User cannot assign permissions.');
     }
 
-    const updatedUser = Object.assign(checkInterviewer, {
-      role: 'COORDINATOR'
+    const updatedUser = Object.assign(visitor, {
+      role: 'INTERVIEWER'
     });
 
     return this.usersRepository.save(updatedUser);

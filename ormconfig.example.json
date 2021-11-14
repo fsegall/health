@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "docker",
-  "database": "safety",
+  "database": "your-db",
   "entities": [
     "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
