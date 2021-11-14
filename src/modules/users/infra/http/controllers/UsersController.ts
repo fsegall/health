@@ -48,7 +48,10 @@ export default class UsersController {
 
     const users = await listUsers.execute();
 
-    const usersResponse = response.json(classToClass(users).map((user) => user.telephone_number = "XXXXXX"));
+    const usersResponse = response.json(classToClass(users).map((user) => {
+      user.telephone_number = "XXXXXX";
+      return user;
+    }));
 
     return usersResponse;
   }
