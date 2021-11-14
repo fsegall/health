@@ -48,7 +48,9 @@ export default class UsersController {
 
     const users = await listUsers.execute();
 
-    return response.json(classToClass(users));
+    const usersResponse = response.json(classToClass(users).map((user) => user.telephone_number = "XXXXXX"));
+
+    return usersResponse;
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
