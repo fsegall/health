@@ -19,9 +19,9 @@ interface IRequest {
   ocupacao_profissional?: string;
   local_de_trabalho?: string;
   covid_2020: string;
-  covid_perda_2020?: string;
   covid_2021: string;
-  covid_perda_2021?: string;
+  covid_2022: string;
+  covid_perda: string;
   tipo_de_residencia: string;
   numero_de_comodos: number;
   material_de_construcao: string;
@@ -115,9 +115,9 @@ export default class CreateHouseholdService {
     ocupacao_profissional,
     local_de_trabalho,
     covid_2020,
-    covid_perda_2020,
     covid_2021,
-    covid_perda_2021,
+    covid_2022,
+    covid_perda,
     tipo_de_residencia,
     numero_de_comodos,
     material_de_construcao,
@@ -213,9 +213,9 @@ export default class CreateHouseholdService {
       ocupacao_profissional,
       local_de_trabalho,
       covid_2020,
-      covid_perda_2020,
       covid_2021,
-      covid_perda_2021,
+      covid_2022,
+      covid_perda,
       tipo_de_residencia,
       numero_de_comodos,
       material_de_construcao,

@@ -81,15 +81,15 @@ export default class CreateHouseholds1621210451993 implements MigrationInterface
             type: 'varchar',
           },
           {
-            name: 'covid_perda_2020',
-            type: 'varchar',
-          },
-          {
             name: 'covid_2021',
             type: 'varchar',
           },
           {
-            name: 'covid_perda_2021',
+            name: 'covid_2022',
+            type: 'varchar',
+          },
+          {
+            name: 'covid_perda',
             type: 'varchar',
           },
           {
