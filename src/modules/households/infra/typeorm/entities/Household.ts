@@ -65,13 +65,13 @@ class Household {
   covid_2020: string;
 
   @Column()
-  covid_perda_2020: string;
-
-  @Column()
   covid_2021: string;
 
   @Column()
-  covid_perda_2021: string;
+  covid_2022: string;
+
+  @Column()
+  covid_perda: string;
 
   @Column()
   tipo_de_residencia: string;
