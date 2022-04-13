@@ -8,7 +8,7 @@ import familyMembersRouter from '@modules/persons/infra/http/routes/familyMember
 import projectsRouter from '@modules/projects/infra/http/routes/projects.routes';
 import interviewsRouter from '@modules/interviews/infra/http/routes/interviews.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
-
+import offlineRouter from '../offline'
 const routes = Router();
 
 routes.use('/password', passwordRouter);
@@ -20,5 +20,6 @@ routes.use('/projects', projectsRouter);
 routes.use('/interviews', interviewsRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
+routes.use('/offline', offlineRouter);
 
 export default routes;
