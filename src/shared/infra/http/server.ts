@@ -5,6 +5,8 @@ import 'express-async-errors'; // Para o express pegar os erros dentro uma rota 
 import cors from 'cors';
 import { errors } from 'celebrate';
 import routes from './routes';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from './swagger.json';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
@@ -17,6 +19,7 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 
 app.use(errors());
