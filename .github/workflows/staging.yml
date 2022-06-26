@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ develop ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    
+    - name: Allow path
+      id: step_one
+      run: |
+        echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+
+    - name: Setup Node.js environment
+
+      uses: actions/setup-node@v2.1.1
+      with:
+        node-version: 14.x
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+          
+    - name: Install dependencies
+      run: yarn install
+      
+    - name: Run build
+      run: yarn build
+  
+    - name: Copy files to Digital Ocean
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST_STAGING }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key:  ${{ secrets.SSH_KEY }}
+        source: ".,!node_modules"
+        target: "~/app/health"
+        
+    - name: Run production scripts
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST_STAGING }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key:  ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~/app/health
+          yarn
+          ./node_modules/.bin/typeorm migration:run
+          /home/deploy/.nvm/versions/node/v12.18.2/bin/pm2 restart safety-api
+
+
+      
+
+
+      
+     
+

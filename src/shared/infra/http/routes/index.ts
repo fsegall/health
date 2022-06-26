@@ -8,7 +8,7 @@ import familyMembersRouter from '@modules/persons/infra/http/routes/familyMember
 import projectsRouter from '@modules/projects/infra/http/routes/projects.routes';
 import interviewsRouter from '@modules/interviews/infra/http/routes/interviews.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
-import offlineRouter from '../offline'
+import offlineRouter from '../offlineRecover'
 const routes = Router();
 
 routes.use('/password', passwordRouter);
