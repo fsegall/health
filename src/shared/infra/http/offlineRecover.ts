@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import fs from 'fs';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated'
-
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const offlineRouter = Router();
 
