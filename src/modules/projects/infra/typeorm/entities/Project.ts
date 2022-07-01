@@ -33,7 +33,7 @@ class Project {
   @Column()
   project_number: number;
 
-  @Column("text", { array: true })
+  @Column("text", { array: true, nullable: true })
   organizations: string[];
 
   @CreateDateColumn()

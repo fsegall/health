@@ -6,24 +6,27 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
+  OneToOne,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
+import Person from '@modules/persons/infra/typeorm/entities/Person';
 
 @Entity('interviews')
 class Interview {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  interviewer_id: string;
-
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, user => user.interviews)
   @JoinColumn({ name: 'interviewer_id' })
   interviewer: User;
+
+  @Column({ nullable: true })
+  interviewer_id: string;
 
   @Column()
   project_name: string;
@@ -41,10 +44,13 @@ class Interview {
   project: Project;
 
 
-  @Column()
+  @OneToOne(() => Person, { nullable: true })
+  @JoinColumn({ name: 'person_id' })
+  person: Person;
+
+  @Column({ nullable: true })
   @Exclude()
   person_id: string;
-
 
   @Column()
   @Exclude()
