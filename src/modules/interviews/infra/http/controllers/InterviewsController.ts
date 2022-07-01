@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import CreateInterviewService from '@modules/interviews/services/CreateInterviewService';
 import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
 import ListInterviewsByInterviewerService from '@modules/interviews/services/ListInterviewsByInterviewerService';
+import FindInterviewsService from '@modules/interviews/services/FindInterviewService';
 /* import ListinterviewsService from '@modules/interviews/services/ListinterviewsService';
 import UpdateinterviewService from '@modules/interviews/services/UpdateinterviewService';
 import Showinterviewservice from '@modules/interviews/services/ShowinterviewService';
@@ -62,6 +63,17 @@ export default class interviewsController {
 
     return response.json(classToClass(interview));
   }
+
+  public async handleOfflineInterviews(request: Request, response: Response): Promise<Response> {
+    const offlineInterviews = request.body
+
+    const handleFindInterviews = container.resolve(FindInterviewsService);
+
+    const notSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(offlineInterviews)
+
+    return response.status(201).json(notSavedInterviews)
+  }
+
   /* public async list(request: Request, response: Response): Promise<Response> {
     const listInterviews = container.resolve(ListInterviewsService);
     const interviews = await listInterviews.execute();
