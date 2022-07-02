@@ -18,6 +18,8 @@ interviewsRouter.get('/', interviewsController.list); */
 
 interviewsRouter.post('/', interviewsController.create);
 
+interviewsRouter.post('/handle-offline-data', interviewsController.handleOfflineInterviews);
+
 /* interviewsRouter.put('/', interviewsController.update);
 
 interviewsRouter.delete('/:id', interviewsController.delete); */

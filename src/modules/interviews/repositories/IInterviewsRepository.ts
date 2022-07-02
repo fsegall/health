@@ -6,6 +6,11 @@ export default interface IInterviewsRepository {
   findByPersonId(person_id: string): Promise<Interview | undefined>;
   list(): Promise<Interview[]>
   listByInterviewer(interviewer_id: string): Promise<Interview[]>
+  findAlreadyRegistered({
+    person_nome, person_idade, project_number, interviewer_id
+  }: {
+    person_nome: string, person_idade: number, project_number: number, interviewer_id: string
+  }): Promise<Boolean>
   /*   findById(interview_id: string): Promise<Interview | undefined>;
     list(): Promise<Interview[]>;
     delete(interview_id: string): Promise<void>; */

@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
 import uploadConfig from '@config/upload';
+import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
 
 
 @Entity('users')
@@ -26,6 +28,9 @@ class User {
   @Column()
   telephone_number: string;
 
+  @OneToMany(() => Interview, interview => interview.interviewer)
+  interviews: Interview[];
+
   @Column()
   @Exclude()
   password: string;
@@ -34,7 +39,7 @@ class User {
   @Column()
   role: string;
 
-  @Column()
+  @Column({ nullable: true })
   avatar: string;
 
   @CreateDateColumn()

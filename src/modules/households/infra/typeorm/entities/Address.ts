@@ -15,7 +15,7 @@ class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   household_id: string;
 
   @OneToOne(() => Household)
