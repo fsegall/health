@@ -71,7 +71,9 @@ export default class interviewsController {
 
     const notSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(offlineInterviews)
 
-    return response.status(201).json(notSavedInterviews)
+    const stillNotSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(notSavedInterviews)
+
+    return response.status(201).json(stillNotSavedInterviews)
   }
 
   /* public async list(request: Request, response: Response): Promise<Response> {

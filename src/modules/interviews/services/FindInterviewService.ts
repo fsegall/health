@@ -1,11 +1,13 @@
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import { injectable, inject } from 'tsyringe';
+import CreateAllStepsOfOfflineInterview from './CreateAllStepsOfOfflineInterview';
 
 @injectable()
 class FindInterviewsService {
   constructor(
     @inject('InterviewsRepository')
     private interviewsRepository: IInterviewsRepository,
+    private createAllStepsOfOfflineInterviewService: CreateAllStepsOfOfflineInterview,
   ) { }
 
   public async handleAllOfflineInterviews(offlineInterviews: any): Promise<any> {
@@ -27,6 +29,12 @@ class FindInterviewsService {
           })
           if (!isSaved) {
             notRegistered.push(offlineInterview)
+            await this.createAllStepsOfOfflineInterviewService.createAll({
+              person: data?.person,
+              household: data?.household,
+              address: data?.address,
+              interviewData: data?.interview
+            })
           }
         }
       })
