@@ -69,9 +69,12 @@ export default class interviewsController {
 
     const handleFindInterviews = container.resolve(FindInterviewsService);
 
+    handleFindInterviews.createOfflineRequestBackup(offlineInterviews)
+
     const notSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(offlineInterviews)
 
     const stillNotSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(notSavedInterviews)
+
 
     return response.status(201).json(stillNotSavedInterviews)
   }

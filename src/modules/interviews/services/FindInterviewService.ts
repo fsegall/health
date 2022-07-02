@@ -1,6 +1,7 @@
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import { injectable, inject } from 'tsyringe';
 import CreateAllStepsOfOfflineInterview from './CreateAllStepsOfOfflineInterview';
+import fs from 'fs';
 
 @injectable()
 class FindInterviewsService {
@@ -9,6 +10,12 @@ class FindInterviewsService {
     private interviewsRepository: IInterviewsRepository,
     private createAllStepsOfOfflineInterviewService: CreateAllStepsOfOfflineInterview,
   ) { }
+
+  public async createOfflineRequestBackup(data: any): Promise<void> {
+    const path = require('path');
+    const backUpName = String('backup-' + new Date().getTime())
+    fs.writeFileSync(path.join(process.cwd(), `src/backups/${backUpName}.json`), JSON.stringify(data), 'utf8' );
+  }
 
   public async handleAllOfflineInterviews(offlineInterviews: any): Promise<any> {
     const notRegistered: any = []
