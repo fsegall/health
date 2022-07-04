@@ -1290,6 +1290,12 @@
           },
           "diagnostico_covid": {
             "type": "string"
+          },
+          "vacina": {
+            "type": "string"
+          },
+          "nao_tomou_vacina": {
+            "type": "string"
           }
         },
         "xml": {
