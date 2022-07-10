@@ -11,6 +11,7 @@ export default interface IInterviewsRepository {
   }: {
     person_nome: string, person_idade: number, project_number: number, interviewer_id: string
   }): Promise<Boolean>
+  findOne(interviewId: string): Promise<Interview>
   /*   findById(interview_id: string): Promise<Interview | undefined>;
     list(): Promise<Interview[]>;
     delete(interview_id: string): Promise<void>; */

@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import ICreateInterviewDTO from '@modules/interviews/dtos/ICreateInterviewDTO';
 import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
+import { Exception } from 'handlebars';
 /* import AppError from '@shared/errors/AppError'; */
 
 class InterviewsRepository implements IInterviewsRepository {
@@ -47,6 +48,16 @@ class InterviewsRepository implements IInterviewsRepository {
         person_id
       }
     });
+  }
+
+  public async findOne(interviewId: string): Promise<Interview> {
+    const foundInterview = await this.ormRepository.findOne(interviewId, {
+      relations: ['interviewer', 'person', 'project']
+    })
+    if (!foundInterview) {
+      throw new Exception('INTERVIEW_NOT_FOUND')
+    }
+    return foundInterview
   }
 
   public async save(interview: Interview): Promise<Interview> {
