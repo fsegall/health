@@ -52,7 +52,7 @@ class InterviewsRepository implements IInterviewsRepository {
 
   public async findOne(interviewId: string): Promise<Interview> {
     const foundInterview = await this.ormRepository.findOne(interviewId, {
-      relations: ['interviewer', 'person', 'project']
+      relations: ['interviewer', 'person', 'project', 'address', 'household']
     })
     if (!foundInterview) {
       throw new Exception('INTERVIEW_NOT_FOUND')
