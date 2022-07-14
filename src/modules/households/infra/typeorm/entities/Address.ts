@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Household from './Household';
+import Household from './Household'
 
 @Entity('addresses')
 class Address {

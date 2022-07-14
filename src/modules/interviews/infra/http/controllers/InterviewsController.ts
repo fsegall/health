@@ -7,6 +7,7 @@ import CreateInterviewService from '@modules/interviews/services/CreateInterview
 import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
 import ListInterviewsByInterviewerService from '@modules/interviews/services/ListInterviewsByInterviewerService';
 import FindInterviewsService from '@modules/interviews/services/FindInterviewService';
+import Interview from '../../typeorm/entities/Interview';
 /* import ListinterviewsService from '@modules/interviews/services/ListinterviewsService';
 import UpdateinterviewService from '@modules/interviews/services/UpdateinterviewService';
 import Showinterviewservice from '@modules/interviews/services/ShowinterviewService';
@@ -62,6 +63,13 @@ export default class interviewsController {
     const interview = await listInterviews.execute({ interviewer_id: id });
 
     return response.json(classToClass(interview));
+  }
+
+  public async getInterviewById(request: Request, response: Response): Promise<Response> {
+    const { interviewId } = request.params;
+    const getInterview = container.resolve(ListInterviewsService);
+    const interview = await getInterview.findOne(interviewId)
+    return response.json(classToClass(interview))
   }
 
   public async handleOfflineInterviews(request: Request, response: Response): Promise<Response> {

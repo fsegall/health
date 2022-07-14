@@ -14,6 +14,10 @@ class ListInterviewsService {
     const interviews = await this.interviewsRepository.list();
     return interviews;
   }
+
+  public async findOne(id: string): Promise<Interview> {
+    return await this.interviewsRepository.findOne(id)
+  }
 }
 
 export default ListInterviewsService;

@@ -15,6 +15,8 @@ import { Exclude } from 'class-transformer';
 import User from '@modules/users/infra/typeorm/entities/User';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
 import Person from '@modules/persons/infra/typeorm/entities/Person';
+import Address from '../../../../households/infra/typeorm/entities/Address';
+import Household from '@modules/households/infra/typeorm/entities/Household';
 
 @Entity('interviews')
 class Interview {
@@ -52,10 +54,20 @@ class Interview {
   @Exclude()
   person_id: string;
 
+
+  @OneToOne(() => Household, { nullable: true })
+  @JoinColumn({ name: 'household_id' })
+  household: Household;
+
+
   @Column()
   @Exclude()
   household_id: string;
 
+
+  @OneToOne(() => Address, { nullable: true })
+  @JoinColumn({ name: 'address_id' })
+  address: Address;
 
   @Column()
   @Exclude()
