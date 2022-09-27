@@ -2,26 +2,22 @@ import { container } from 'tsyringe';
 import '@modules/users/providers';
 import './providers';
 
-import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
-import PersonsRepository from '@modules/persons/infra/typeorm/repositories/PersonsRepository';
-
-import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
-import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
-
-import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
-
-import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
+import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import { IndigeanousInterviewRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewRepository';
+import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
-
-import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
+import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
+import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
+import PersonsRepository from '@modules/persons/infra/typeorm/repositories/PersonsRepository';
+import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
+import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
 import ProjectsRepository from '@modules/projects/infra/typeorm/repositories/ProjectsRepository';
-
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
-
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 
 container.registerSingleton<IPersonsRepository>(
   'PersonsRepository',
@@ -56,4 +52,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUserTokensRepository>(
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<IIndigeanousInterviewRepository>(
+  'IndigeanousInterviewRepository',
+  IndigeanousInterviewRepository,
 );
