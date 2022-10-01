@@ -4,7 +4,9 @@ import './providers';
 
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import { IndigeanousInterviewDemographyRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewDemographyRepository';
 import { IndigeanousInterviewRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewRepository';
+import { IIndigeanousInterviewDemographyRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewDemographyRepository';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
@@ -57,4 +59,9 @@ container.registerSingleton<IUserTokensRepository>(
 container.registerSingleton<IIndigeanousInterviewRepository>(
   'IndigeanousInterviewRepository',
   IndigeanousInterviewRepository,
+);
+
+container.registerSingleton<IIndigeanousInterviewDemographyRepository>(
+  'IndigeanousInterviewDemographyRepository',
+  IndigeanousInterviewDemographyRepository,
 );

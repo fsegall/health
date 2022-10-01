@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -10,6 +11,8 @@ import { uuid } from 'uuidv4';
 
 import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
+
+import { IndigeanousDemography } from './IndiagenousDemography';
 
 @Entity('indigeanous_interviews')
 export class IndigeanousInterview {
@@ -51,6 +54,9 @@ export class IndigeanousInterview {
 
   @ManyToOne(() => Project)
   project: Project;
+
+  @OneToOne(() => IndigeanousDemography)
+  indigeanousDemography: IndigeanousDemography;
 
   constructor() {
     if (!this.id) this.id = uuid();

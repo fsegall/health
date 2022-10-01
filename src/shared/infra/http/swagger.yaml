@@ -609,6 +609,10 @@ paths:
       responses:
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IndigeanousInterview"
         "403":
           description: Interviewer does not have access to project
         "404":
@@ -637,6 +641,97 @@ paths:
                 date:
                   type: string
                   format: date-time
+              required:
+                - city
+                - comunity
+                - land
+                - area
+                - campName
+                - interviewerId
+                - projectNumber
+                - date
+  /indigeanous-interviews/demography:
+    post:
+      summary: ""
+      operationId: post-indigeanous-interviews-demography
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IndigeanousDemography"
+        "404":
+          description: Indigeanous interview not found
+      description: Create demography data of indigeanous interview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                indigeanousInterviewId:
+                  type: string
+                totalResidents:
+                  type: number
+                residents:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      chiefRelation:
+                        type: string
+                      age:
+                        type: number
+                      gender:
+                        type: string
+                      indigeanous:
+                        type: boolean
+                      ethnicity:
+                        type: string
+                      indigeanousLanguage:
+                        type: string
+                      speakPortuguese:
+                        type: boolean
+                      readOrWritePortuguese:
+                        type: boolean
+                      religion:
+                        type: string
+                      goToSchool:
+                        type: boolean
+                      schoolGrade:
+                        type: string
+                      workStatus:
+                        type: string
+                      profession:
+                        type: string
+                      roleComunity:
+                        type: string
+                    required:
+                      - name
+                      - chiefRelation
+                      - age
+                      - gender
+                      - indigeanous
+                      - ethnicity
+                      - indigeanousLanguage
+                      - speakPortuguese
+                      - readOrWritePortuguese
+                      - religion
+                      - goToSchool
+                      - schoolGrade
+                      - workStatus
+                      - profession
+                      - roleComunity
+                workedHarvest:
+                  type: string
+              required:
+                - indigeanousInterviewId
+                - totalResidents
+                - residents
+                - workedHarvest
 externalDocs:
   description: Find out more about this API here
   url: "http://swagger.io"
@@ -1169,3 +1264,58 @@ components:
           type: string
       xml:
         name: Pass
+    IndigeanousInterview:
+      title: IndigeanousInterview
+      x-stoplight:
+        id: 3f32wqpsyh906
+      type: object
+      properties:
+        id:
+          type: string
+        city:
+          type: string
+        comunity:
+          type: string
+        land:
+          type: string
+        area:
+          type: number
+        campName:
+          type: string
+        interviewerId:
+          type: string
+        projectId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    IndigeanousDemography:
+      title: IndigeanousDemography
+      x-stoplight:
+        id: 344vm2vf65vzh
+      type: object
+      properties:
+        id:
+          type: string
+        indigeanousInterviewId:
+          type: string
+        totalResidents:
+          type: number
+        residents:
+          type: array
+          items:
+            type: object
+        workedHarvest:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

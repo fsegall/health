@@ -8,6 +8,7 @@ import {
 import { uuid } from 'uuidv4';
 
 import { BasicAnswers } from '@modules/indiagenous/enums';
+import { IResidents } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
 
 @Entity('indigeanous_demography')
 export class IndigeanousDemography {
@@ -21,7 +22,7 @@ export class IndigeanousDemography {
   totalResidents: number;
 
   @Column()
-  residents: string;
+  residents: IResidents[];
 
   @Column({ name: 'worked_harvest' })
   workedHarvest: BasicAnswers;
