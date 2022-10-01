@@ -1,4 +1,4 @@
-export interface ICreateIndigeanousInterviewDTO {
+export interface ICreateIndigeanousInterview {
   city: string;
 
   comunity: string;
@@ -11,7 +11,7 @@ export interface ICreateIndigeanousInterviewDTO {
 
   interviewerId: string;
 
-  projectNumber: number;
+  projectId: string;
 
   date: Date;
 }

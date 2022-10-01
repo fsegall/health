@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { ICreateIndigeanousInterviewDTO } from '@modules/indiagenous/dtos/ICreateIndigeanousInterviewDTO';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
+import { ICreateIndigeanousInterview } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterview';
 
 import { IndigeanousInterview } from '../entities/IndiagenousInterview';
 
@@ -14,7 +14,7 @@ export class IndigeanousInterviewRepository
   }
 
   async create(
-    data: ICreateIndigeanousInterviewDTO,
+    data: ICreateIndigeanousInterview,
   ): Promise<IndigeanousInterview> {
     const indigeanousInterview = this.repository.create(data);
 

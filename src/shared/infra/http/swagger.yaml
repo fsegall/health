@@ -1,20 +1,18 @@
 openapi: 3.0.0
+x-stoplight:
+  id: l1czuwlxslihl
 info:
-  description: "This is an API for managing data about people and their households to conduct food security analysis during the COVID-19 pandemic"
-  version: 1.0
+  description: This is an API for managing data about people and their households to conduct food security analysis during the COVID-19 pandemic
+  version: 1
   title: Health API
-  termsOfService: http://swagger.io/terms/
-  contact:
-    email:segall.felipe@gmail.com
+  termsOfService: "http://swagger.io/terms/"
+  contact: "email:segall.felipe@gmail.com"
   license:
     name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 tags:
   - name: persons
     description: Endpoint to manage data about the person that was interviewed
-#     externalDocs:
-#       description: Find out more
-#       url: http://swagger.io
   - name: households
     description: Endpoints to manage data about a household
   - name: familymembers
@@ -46,11 +44,10 @@ paths:
       responses:
         "201":
           description: A project was successfully saved to the database
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
-
+        "405":
+          description: Invalid input
   /interviews:
     post:
       tags:
@@ -65,11 +62,10 @@ paths:
       responses:
         "201":
           description: A project was successfully saved to the database
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
-
+        "405":
+          description: Invalid input
   /persons:
     get:
       tags:
@@ -108,10 +104,10 @@ paths:
       responses:
         "201":
           description: A person was successfully saved to the database
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
+        "405":
+          description: Invalid input
     put:
       tags:
         - persons
@@ -127,13 +123,12 @@ paths:
           description: The person was updated
         "400":
           description: Invalid ID supplied
+        "401":
+          description: Unauthorized
         "404":
           description: Person not found
         "405":
           description: Validation exception
-        "401":
-          description: Unauthorized
-
   "/persons/{personId}":
     get:
       tags:
@@ -162,10 +157,10 @@ paths:
                 $ref: "#/components/schemas/Person"
         "400":
           description: Invalid ID supplied
-        "404":
-          description: Person not found
         "401":
           description: Unauthorized
+        "404":
+          description: Person not found
     delete:
       tags:
         - persons
@@ -186,11 +181,10 @@ paths:
           description: The person was deleted
         "400":
           description: Invalid ID supplied
-        "404":
-          description: Person not found
         "401":
           description: Unauthorized
-
+        "404":
+          description: Person not found
   "/persons/{personId}/household":
     get:
       tags:
@@ -219,17 +213,16 @@ paths:
                 $ref: "#/components/schemas/Household"
         "400":
           description: Invalid ID supplied
-        "404":
-          description: Person not found
         "401":
           description: Unauthorized
-
+        "404":
+          description: Person not found
   "/persons/{personId}/family":
     get:
       tags:
         - persons
       summary: Returns family members
-      description:
+      description: null
       operationId: getFamilyByPersonId
       security:
         - bearerAuth: []
@@ -256,11 +249,10 @@ paths:
                   $ref: "#/components/schemas/FamilyMember"
         "400":
           description: Invalid ID supplied
-        "404":
-          description: Person not found
         "401":
           description: Unauthorized
-
+        "404":
+          description: Person not found
   /households:
     get:
       tags:
@@ -306,10 +298,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Household"
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
+        "405":
+          description: Invalid input
   /familymembers:
     get:
       tags:
@@ -350,10 +342,10 @@ paths:
       responses:
         "201":
           description: A family member was successfully saved to the database
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
+        "405":
+          description: Invalid input
   /addresses:
     get:
       tags:
@@ -399,11 +391,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Address"
-        "405":
-          description: Invalid input
         "401":
           description: Unauthorized
-  /addresses/{personId}:
+        "405":
+          description: Invalid input
+  "/addresses/{personId}":
     get:
       tags:
         - addresses
@@ -431,10 +423,10 @@ paths:
                 $ref: "#/components/schemas/Address"
         "400":
           description: Invalid ID supplied
-        "404":
-          description: Person not found
         "401":
           description: Unauthorized
+        "404":
+          description: Person not found
   /users:
     get:
       tags:
@@ -493,12 +485,12 @@ paths:
           description: The user was updated
         "400":
           description: Invalid ID supplied
+        "401":
+          description: Unauthorized
         "404":
           description: User not found
         "405":
           description: Validation exception
-        "401":
-          description: Unauthorized
   /users/avatar:
     patch:
       tags:
@@ -522,7 +514,6 @@ paths:
           description: The user was successfully created
         "400":
           description: Invalid user data
-
   "/users/{userId}":
     get:
       tags:
@@ -551,12 +542,10 @@ paths:
                 $ref: "#/components/schemas/Person"
         "400":
           description: Invalid ID supplied
-        "404":
-          description: User not found
         "401":
           description: Unauthorized
-
-
+        "404":
+          description: User not found
   /sessions:
     post:
       tags:
@@ -569,17 +558,6 @@ paths:
       responses:
         "200":
           description: login successful
-#           headers:
-#             X-Rate-Limit:
-#               description: calls per hour allowed by the user
-#               schema:
-#                 type: integer
-#                 format: int32
-#             X-Expires-After:
-#               description: date in UTC when token expires
-#               schema:
-#                 type: string
-#                 format: date-time
           content:
             application/xml:
               schema:
@@ -589,7 +567,6 @@ paths:
                 $ref: "#/components/schemas/Auth"
         "400":
           description: Invalid username/password supplied
-
   /password/forgot:
     post:
       tags:
@@ -602,17 +579,6 @@ paths:
       responses:
         "200":
           description: login successful
-  #           headers:
-  #             X-Rate-Limit:
-  #               description: calls per hour allowed by the user
-  #               schema:
-  #                 type: integer
-  #                 format: int32
-  #             X-Expires-After:
-  #               description: date in UTC when token expires
-  #               schema:
-  #                 type: string
-  #                 format: date-time
           content:
             application/xml:
               schema:
@@ -634,28 +600,48 @@ paths:
       responses:
         "200":
           description: Password modified successfully
-  #           headers:
-  #             X-Rate-Limit:
-  #               description: calls per hour allowed by the user
-  #               schema:
-  #                 type: integer
-  #                 format: int32
-  #             X-Expires-After:
-  #               description: date in UTC when token expires
-  #               schema:
-  #                 type: string
-  #                 format: date-time
         "400":
           description: Invalid username/password supplied
-
-
+  /indigeanous-interviews:
+    post:
+      summary: ""
+      operationId: post-indigeanous-interviews
+      responses:
+        "201":
+          description: Created
+        "403":
+          description: Interviewer does not have access to project
+        "404":
+          description: Project/Interviewer not found
+      description: Create a new indigeanous interview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city:
+                  type: string
+                comunity:
+                  type: string
+                land:
+                  type: string
+                area:
+                  type: number
+                campName:
+                  type: string
+                interviewerId:
+                  type: string
+                projectNumber:
+                  type: number
+                date:
+                  type: string
+                  format: date-time
 externalDocs:
   description: Find out more about this API here
-  url: http://swagger.io
+  url: "http://swagger.io"
 servers:
-#   - url: https://safety.developerme.xyz/
-    - url: http://localhost:3333/
-
+  - url: "http://localhost:3333/"
 components:
   securitySchemes:
     bearerAuth:
@@ -748,7 +734,6 @@ components:
             $ref: "#/components/schemas/FamilyMember"
       description: Data format to add a family member
       required: true
-
     Address:
       content:
         application/json:
@@ -820,8 +805,6 @@ components:
           type: string
         address_id:
           type: string
- #       familymember_id:
- #         type: string
         is_complete:
           type: boolean
         is_complete_with_errors:
@@ -1064,7 +1047,6 @@ components:
           type: string
         gastos_alimentacao:
           type: string
-#  Household diet start
         feijao:
           type: boolean
         arroz:
@@ -1085,7 +1067,6 @@ components:
           type: boolean
         biscoito_recheado_doces_guloseimas:
           type: boolean
-#  Household diet end
       xml:
         name: Household
     FamilyMember:
