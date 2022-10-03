@@ -9,54 +9,57 @@ import {
 } from 'typeorm';
 import { uuid } from 'uuidv4';
 
-import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 import { IndigeanousDemography } from './IndiagenousDemography';
 
-@Entity('indigeanous_interviews')
+@Entity('entrevistas_indigenas')
 export class IndigeanousInterview {
   @PrimaryColumn()
   id: string;
 
   @Column()
-  city: string;
+  municipio: string;
 
   @Column()
-  comunity: string;
+  aldeia_comunidade: string;
 
   @Column()
-  land: string;
+  terra_indigena: string;
 
   @Column()
-  area: number;
-
-  @Column({ name: 'camp_name' })
-  campName: string;
-
-  @Column({ name: 'interviewer_id' })
-  interviewerId: string;
-
-  @Column({ name: 'project_id' })
-  projectId: string;
+  area_retomada: number;
 
   @Column()
-  date: Date;
+  acampamento: string;
+
+  @Column()
+  entrevistador_id: string;
+
+  @Column()
+  projeto_id: string;
+
+  @Column()
+  data_entrevista: Date;
+
+  @Column()
+  primeiro_contato_responsavel: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
+  updated_at: Date;
 
-  @ManyToOne(() => Interview)
-  interview: Interview;
+  @ManyToOne(() => User)
+  entrevistador: User;
 
   @ManyToOne(() => Project)
-  project: Project;
+  projeto: Project;
 
   @OneToOne(() => IndigeanousDemography)
-  indigeanousDemography: IndigeanousDemography;
+  entrevista_indigena: IndigeanousDemography;
 
   constructor() {
     if (!this.id) this.id = uuid();

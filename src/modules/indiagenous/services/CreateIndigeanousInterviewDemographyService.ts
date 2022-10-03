@@ -20,7 +20,7 @@ export class CreateIndigeanousInterviewDemographyService {
     data: ICreateIndigeanousInterviewDemographyDTO,
   ): Promise<IndigeanousDemography> {
     const indigeanousInterview = await this.indigeanousInterviewRepository.findById(
-      data.indigeanousInterviewId,
+      data.entrevista_indigena_id,
     );
 
     if (!indigeanousInterview) {

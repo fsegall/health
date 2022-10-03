@@ -5,7 +5,7 @@ export class CreateIndigeanousInterview1664316540939
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'indigeanous_interviews',
+        name: 'entrevistas_indigenas',
         columns: [
           {
             name: 'id',
@@ -13,36 +13,40 @@ export class CreateIndigeanousInterview1664316540939
             isPrimary: true,
           },
           {
-            name: 'city',
+            name: 'municipio',
             type: 'varchar',
           },
           {
-            name: 'comunity',
+            name: 'aldeia_comunidade',
             type: 'varchar',
           },
           {
-            name: 'land',
+            name: 'terra_indigena',
             type: 'varchar',
           },
           {
-            name: 'area',
-            type: 'integer',
-          },
-          {
-            name: 'camp_name',
+            name: 'area_retomada',
             type: 'varchar',
           },
           {
-            name: 'interviewer_id',
+            name: 'acampamento',
+            type: 'varchar',
+          },
+          {
+            name: 'entrevistador_id',
             type: 'uuid',
           },
           {
-            name: 'project_id',
+            name: 'projeto_id',
             type: 'uuid',
           },
           {
-            name: 'date',
+            name: 'data_entrevista',
             type: 'timestamp',
+          },
+          {
+            name: 'primeiro_contato_responsavel',
+            type: 'boolean',
           },
           {
             name: 'created_at',
@@ -58,7 +62,7 @@ export class CreateIndigeanousInterview1664316540939
         foreignKeys: [
           {
             name: 'FKIndigeanousInterviewProject',
-            columnNames: ['project_id'],
+            columnNames: ['projeto_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'projects',
             onDelete: 'SET NULL',
@@ -66,7 +70,7 @@ export class CreateIndigeanousInterview1664316540939
           },
           {
             name: 'FKIndigeanousInterviewInterviewer',
-            columnNames: ['interviewer_id'],
+            columnNames: ['entrevistador_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'users',
             onDelete: 'SET NULL',

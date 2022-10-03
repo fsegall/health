@@ -1,4 +1,4 @@
-import { IndigeanousInterview } from '../infra/typeorm/entities/IndiagenousInterview';
+import { IndigeanousInterview } from '../infra/typeorm/entities/IndigeanousInterview';
 import { ICreateIndigeanousInterview } from './interfaces/ICreateIndigeanousInterview';
 
 export interface IIndigeanousInterviewRepository {

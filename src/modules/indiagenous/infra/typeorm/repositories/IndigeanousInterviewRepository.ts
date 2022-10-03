@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
 import { ICreateIndigeanousInterview } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterview';
 
-import { IndigeanousInterview } from '../entities/IndiagenousInterview';
+import { IndigeanousInterview } from '../entities/IndigeanousInterview';
 
 export class IndigeanousInterviewRepository
   implements IIndigeanousInterviewRepository {

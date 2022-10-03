@@ -1,17 +1,21 @@
 export interface ICreateIndigeanousInterviewDTO {
-  city: string;
+  municipio: string;
 
-  comunity: string;
+  aldeia_comunidade: string;
 
-  land: string;
+  terra_indigena: string;
 
-  area: number;
+  area_retomada: number;
 
-  campName: string;
+  acampamento: string;
 
-  interviewerId: string;
+  entrevistador_id: string;
 
-  projectNumber: number;
+  projeto_id: string;
 
-  date: Date;
+  data_entrevista: Date;
+
+  primeiro_contato_responsavel: boolean;
+
+  numero_projeto: number;
 }

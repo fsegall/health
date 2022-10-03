@@ -9,7 +9,7 @@ export class CreateIndigeanousInterviewDemography1664318058700
 
     await queryRunner.createTable(
       new Table({
-        name: 'indigeanous_demography',
+        name: 'demografia_indigena',
         columns: [
           {
             name: 'id',
@@ -17,20 +17,21 @@ export class CreateIndigeanousInterviewDemography1664318058700
             isPrimary: true,
           },
           {
-            name: 'indigeanous_interview_id',
+            name: 'entrevistador_id',
             type: 'uuid',
           },
           {
-            name: 'total_residents',
+            name: 'total_moradores',
             type: 'integer',
           },
           {
-            name: 'residents',
+            name: 'moradores',
             type: 'jsonb',
           },
           {
-            name: 'worked_harvest',
+            name: 'trabalho_colheita_maca',
             type: 'basic_answers',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -46,9 +47,9 @@ export class CreateIndigeanousInterviewDemography1664318058700
         foreignKeys: [
           {
             name: 'FKIndigeanousDemographyInterview',
-            columnNames: ['indigeanous_interview_id'],
+            columnNames: ['entrevistador_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'indigeanous_interviews',
+            referencedTableName: 'entrevistas_indigenas',
             onDelete: 'SET NULL',
             onUpdate: 'CASCADE',
           },
@@ -58,7 +59,7 @@ export class CreateIndigeanousInterviewDemography1664318058700
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('indigeanous_demography');
+    await queryRunner.dropTable('demografia_indigena');
     await queryRunner.query('drop type basic_answers');
   }
 }

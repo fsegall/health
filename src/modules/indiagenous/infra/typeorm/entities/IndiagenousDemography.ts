@@ -8,30 +8,30 @@ import {
 import { uuid } from 'uuidv4';
 
 import { BasicAnswers } from '@modules/indiagenous/enums';
-import { IResidents } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
+import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
 
 @Entity('indigeanous_demography')
 export class IndigeanousDemography {
   @PrimaryColumn()
   id: string;
 
-  @Column({ name: 'indigeanous_interview_id' })
-  indigeanousInterviewId: string;
-
-  @Column({ name: 'total_residents' })
-  totalResidents: number;
+  @Column()
+  entrevista_indigena_id: string;
 
   @Column()
-  residents: IResidents[];
+  total_moradores: number;
 
-  @Column({ name: 'worked_harvest' })
-  workedHarvest: BasicAnswers;
+  @Column({ type: 'jsonb' })
+  moradores: IMoradores[];
 
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  @Column()
+  trabalho_colheita_maca?: BasicAnswers;
 
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date;
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   constructor() {
     if (!this.id) this.id = uuid();

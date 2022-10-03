@@ -5,7 +5,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigeanousInterviewDTO } from '../dtos/ICreateIndigeanousInterviewDTO';
-import { IndigeanousInterview } from '../infra/typeorm/entities/IndiagenousInterview';
+import { IndigeanousInterview } from '../infra/typeorm/entities/IndigeanousInterview';
 import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
 
 @injectable()
@@ -25,10 +25,12 @@ export class CreateIndigeanousInterviewService {
     data: ICreateIndigeanousInterviewDTO,
   ): Promise<IndigeanousInterview> {
     const project = await this.projectsRepository.findByNumber(
-      data.projectNumber,
+      data.numero_projeto,
     );
 
-    const interviewer = await this.usersRepository.findById(data.interviewerId);
+    const interviewer = await this.usersRepository.findById(
+      data.entrevistador_id,
+    );
 
     if (!interviewer) {
       throw new AppError('Interviewer not found', 404);
@@ -44,7 +46,7 @@ export class CreateIndigeanousInterviewService {
 
     return this.indigeanousInterviewRepository.create({
       ...data,
-      projectId: project.id,
+      projeto_id: project.id,
     });
   }
 }
