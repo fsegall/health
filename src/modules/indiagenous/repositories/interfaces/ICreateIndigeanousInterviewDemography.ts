@@ -1,12 +1,10 @@
-import { BasicAnswers } from '@modules/indiagenous/enums';
-
 export interface IMoradores {
   id: string;
   nome: string;
   relacao_com_chefe: string;
   idade: number;
   sexo: string;
-  povo_etnia: boolean;
+  povo_etnia: string;
   raca: string;
   lingua_indigena: string;
   // speakPortuguese: boolean;
@@ -23,5 +21,5 @@ export interface ICreateIndigeanousInterviewDemography {
   entrevista_indigena_id: string;
   total_moradores: number;
   moradores: IMoradores[];
-  trabalho_colheita_maca?: BasicAnswers;
+  trabalho_colheita_maca?: string;
 }

@@ -5,11 +5,11 @@ info:
   description: This is an API for managing data about people and their households to conduct food security analysis during the COVID-19 pandemic
   version: 1
   title: Health API
-  termsOfService: 'http://swagger.io/terms/'
-  contact: 'email:segall.felipe@gmail.com'
+  termsOfService: "http://swagger.io/terms/"
+  contact: "email:segall.felipe@gmail.com"
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 tags:
   - name: persons
     description: Endpoint to manage data about the person that was interviewed
@@ -35,101 +35,101 @@ paths:
       tags:
         - projects
       summary: Adds a new project to the research
-      description: ''
+      description: ""
       operationId: addProject
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Project'
+        $ref: "#/components/requestBodies/Project"
       responses:
-        '201':
+        "201":
           description: A project was successfully saved to the database
-        '401':
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
   /interviews:
     post:
       tags:
         - interviews
       summary: Adds a new interview to the project
-      description: ''
+      description: ""
       operationId: addInterview
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Interview'
+        $ref: "#/components/requestBodies/Interview"
       responses:
-        '201':
+        "201":
           description: A project was successfully saved to the database
-        '401':
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
   /persons:
     get:
       tags:
         - persons
       summary: Lists all persons that were interviewed
-      description: ''
+      description: ""
       operationId: listPersons
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Person'
+                  $ref: "#/components/schemas/Person"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Person'
-        '401':
+                  $ref: "#/components/schemas/Person"
+        "401":
           description: Unauthorized
     post:
       tags:
         - persons
       summary: Add a person that was interviewed
-      description: ''
+      description: ""
       operationId: addPerson
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Person'
+        $ref: "#/components/requestBodies/Person"
       responses:
-        '201':
+        "201":
           description: A person was successfully saved to the database
-        '401':
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
     put:
       tags:
         - persons
       summary: Update an existing person
-      description: ''
+      description: ""
       operationId: updatePerson
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/PersonUpdate'
+        $ref: "#/components/requestBodies/PersonUpdate"
       responses:
-        '200':
+        "200":
           description: The person was updated
-        '400':
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
-        '405':
+        "405":
           description: Validation exception
-  '/persons/{personId}':
+  "/persons/{personId}":
     get:
       tags:
         - persons
@@ -146,26 +146,26 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successfully returned a person profile
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: "#/components/schemas/Person"
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
-        '400':
+                $ref: "#/components/schemas/Person"
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
     delete:
       tags:
         - persons
       summary: Deletes a person
-      description: ''
+      description: ""
       operationId: deletePerson
       security:
         - bearerAuth: []
@@ -177,20 +177,20 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: The person was deleted
-        '400':
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
-  '/persons/{personId}/household':
+  "/persons/{personId}/household":
     get:
       tags:
         - persons
       summary: Returns a household
-      description: ''
+      description: ""
       operationId: getHouseholdByPersonId
       security:
         - bearerAuth: []
@@ -202,22 +202,22 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Household'
+                $ref: "#/components/schemas/Household"
             application/json:
               schema:
-                $ref: '#/components/schemas/Household'
-        '400':
+                $ref: "#/components/schemas/Household"
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
-  '/persons/{personId}/family':
+  "/persons/{personId}/family":
     get:
       tags:
         - persons
@@ -234,168 +234,168 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successfully returned family members
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FamilyMember'
+                  $ref: "#/components/schemas/FamilyMember"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FamilyMember'
-        '400':
+                  $ref: "#/components/schemas/FamilyMember"
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
   /households:
     get:
       tags:
         - households
       summary: Lists all households
-      description: ''
+      description: ""
       operationId: listHouseholds
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Household'
+                  $ref: "#/components/schemas/Household"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Household'
-        '401':
+                  $ref: "#/components/schemas/Household"
+        "401":
           description: Unauthorized
     post:
       tags:
         - households
       summary: Add a household of an interviewed person
-      description: ''
+      description: ""
       operationId: addHousehold
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Household'
+        $ref: "#/components/requestBodies/Household"
       responses:
-        '201':
+        "201":
           description: A household was successfully saved to the database
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Household'
+                $ref: "#/components/schemas/Household"
             application/json:
               schema:
-                $ref: '#/components/schemas/Household'
-        '401':
+                $ref: "#/components/schemas/Household"
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
   /familymembers:
     get:
       tags:
         - familymembers
       summary: Lists all family members
-      description: ''
+      description: ""
       operationId: listFamilyMembers
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/FamilyMember'
+        $ref: "#/components/requestBodies/FamilyMember"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FamilyMember'
+                  $ref: "#/components/schemas/FamilyMember"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FamilyMember'
-        '401':
+                  $ref: "#/components/schemas/FamilyMember"
+        "401":
           description: Unauthorized
     post:
       tags:
         - familymembers
       summary: Add a family member of an interviewed person
-      description: ''
+      description: ""
       operationId: addFamilyMember
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/FamilyMember'
+        $ref: "#/components/requestBodies/FamilyMember"
       responses:
-        '201':
+        "201":
           description: A family member was successfully saved to the database
-        '401':
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
   /addresses:
     get:
       tags:
         - addresses
       summary: Lists all addresses
-      description: ''
+      description: ""
       operationId: listAddresses
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address'
+                  $ref: "#/components/schemas/Address"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Address'
-        '401':
+                  $ref: "#/components/schemas/Address"
+        "401":
           description: Unauthorized
     post:
       tags:
         - addresses
       summary: Add a household address
-      description: ''
+      description: ""
       operationId: addAddress
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/Address'
+        $ref: "#/components/requestBodies/Address"
       responses:
-        '201':
+        "201":
           description: An address was successfully saved to the database
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Address'
+                $ref: "#/components/schemas/Address"
             application/json:
               schema:
-                $ref: '#/components/schemas/Address'
-        '401':
+                $ref: "#/components/schemas/Address"
+        "401":
           description: Unauthorized
-        '405':
+        "405":
           description: Invalid input
-  '/addresses/{personId}':
+  "/addresses/{personId}":
     get:
       tags:
         - addresses
@@ -412,45 +412,45 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Address'
+                $ref: "#/components/schemas/Address"
             application/json:
               schema:
-                $ref: '#/components/schemas/Address'
-        '400':
+                $ref: "#/components/schemas/Address"
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: Person not found
   /users:
     get:
       tags:
         - users
       summary: Lists all users
-      description: ''
+      description: ""
       operationId: listUsers
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: "#/components/schemas/User"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
-        '401':
+                  $ref: "#/components/schemas/User"
+        "401":
           description: Unauthorized
     post:
       tags:
@@ -462,41 +462,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         description: Created user object
         required: true
       responses:
-        '201':
+        "201":
           description: The user was successfully created
-        '400':
+        "400":
           description: Invalid user data
     put:
       tags:
         - users
       summary: Update an existing user - Interviewer profile
-      description: ''
+      description: ""
       operationId: updateUser
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/UserUpdate'
+        $ref: "#/components/requestBodies/UserUpdate"
       responses:
-        '200':
+        "200":
           description: The user was updated
-        '400':
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: User not found
-        '405':
+        "405":
           description: Validation exception
   /users/avatar:
     patch:
       tags:
         - users
       summary: Uploads an user avatar file
-      description: ''
+      description: ""
       operationId: uploadAvatar
       security:
         - bearerAuth: []
@@ -510,11 +510,11 @@ paths:
                   type: string
                   format: binary
       responses:
-        '201':
+        "201":
           description: The user was successfully created
-        '400':
+        "400":
           description: Invalid user data
-  '/users/{userId}':
+  "/users/{userId}":
     get:
       tags:
         - users
@@ -531,91 +531,91 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: successfully returned a user profile
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: "#/components/schemas/Person"
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
-        '400':
+                $ref: "#/components/schemas/Person"
+        "400":
           description: Invalid ID supplied
-        '401':
+        "401":
           description: Unauthorized
-        '404':
+        "404":
           description: User not found
   /sessions:
     post:
       tags:
         - sessions
       summary: Logs user into the system
-      description: ''
+      description: ""
       operationId: loginUser
       requestBody:
-        $ref: '#/components/requestBodies/Auth'
+        $ref: "#/components/requestBodies/Auth"
       responses:
-        '200':
+        "200":
           description: login successful
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Auth'
+                $ref: "#/components/schemas/Auth"
             application/json:
               schema:
-                $ref: '#/components/schemas/Auth'
-        '400':
+                $ref: "#/components/schemas/Auth"
+        "400":
           description: Invalid username/password supplied
   /password/forgot:
     post:
       tags:
         - password
       summary: Allows user to ask for new password
-      description: ''
+      description: ""
       operationId: newPassword
       requestBody:
-        $ref: '#/components/requestBodies/Pass'
+        $ref: "#/components/requestBodies/Pass"
       responses:
-        '200':
+        "200":
           description: login successful
           content:
             application/xml:
               schema:
-                $ref: '#/components/schemas/Pass'
+                $ref: "#/components/schemas/Pass"
             application/json:
               schema:
-                $ref: '#/components/schemas/Pass'
-        '400':
+                $ref: "#/components/schemas/Pass"
+        "400":
           description: Invalid email supplied
   /password/reset:
     post:
       tags:
         - password
       summary: Allows user to change password
-      description: ''
+      description: ""
       operationId: newPassword
       requestBody:
-        $ref: '#/components/requestBodies/NewPass'
+        $ref: "#/components/requestBodies/NewPass"
       responses:
-        '200':
+        "200":
           description: Password modified successfully
-        '400':
+        "400":
           description: Invalid username/password supplied
   /indigeanous-interviews:
     post:
-      summary: ''
+      summary: ""
       operationId: post-indigeanous-interviews
       responses:
-        '201':
+        "201":
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IndigeanousInterview'
-        '403':
+                $ref: "#/components/schemas/IndigeanousInterview"
+        "403":
           description: Interviewer does not have access to project
-        '404':
+        "404":
           description: Project/Interviewer not found
       description: Create a new indigeanous interview
       requestBody:
@@ -650,18 +650,20 @@ paths:
                 - entrevistador_id
                 - numero_projeto
                 - data_entrevista
+      security:
+        - bearerAuth: []
   /indigeanous-interviews/demography:
     post:
-      summary: ''
+      summary: ""
       operationId: post-indigeanous-interviews-demography
       responses:
-        '201':
+        "201":
           description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IndigeanousDemography'
-        '404':
+                $ref: "#/components/schemas/IndigeanousDemography"
+        "404":
           description: Indigeanous interview not found
       description: Create demography data of indigeanous interview
       requestBody:
@@ -721,11 +723,214 @@ paths:
                 - total_moradores
                 - moradores
                 - trabalho_colheita_maca
+      security:
+        - bearerAuth: []
+  /indigeanous-interviews/residence:
+    post:
+      summary: ""
+      operationId: post-indigeanous-interview-residence
+      responses:
+        "201":
+          description: Created
+        "404":
+          description: Not Found
+      description: Create new indigeanous interview residence info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  entrevista_indigena_id: string
+                  ultima_moradia: string
+                  piso: string
+                  material_paredes: string
+                  material_telhado: string
+                  quantidade_comodos: number
+                  utensilios_casa: string
+                  acesso_agua: string
+                  origem_agua: string
+                  qualidade_agua_para_beber_e_cozinhar: string
+                  forma_acesso_agua: string
+                  possui_banheiro: string
+                  forma_coleta_esgoto: string
+                  destino_lixo_da_residencia: string
+                  veiculos: string
+                  renda_total_30_dias: string
+              properties:
+                entrevista_indigena_id:
+                  type: string
+                ultima_moradia:
+                  type: string
+                piso:
+                  type: string
+                material_paredes:
+                  type: string
+                material_telhado:
+                  type: string
+                quantidade_comodos:
+                  type: string
+                utensilios_casa:
+                  type: string
+                acesso_agua:
+                  type: string
+                origem_agua:
+                  type: string
+                qualidade_agua_para_beber_e_cozinhar:
+                  type: string
+                forma_acesso_agua:
+                  type: string
+                possui_banheiro:
+                  type: string
+                forma_coleta_esgoto:
+                  type: string
+                destino_lixo_da_residencia:
+                  type: string
+                veiculos:
+                  type: string
+                renda_total_30_dias:
+                  type: string
+              required:
+                - entrevista_indigena_id
+                - ultima_moradia
+                - piso
+                - material_paredes
+                - material_telhado
+                - quantidade_comodos
+                - utensilios_casa
+                - acesso_agua
+                - origem_agua
+                - qualidade_agua_para_beber_e_cozinhar
+                - forma_acesso_agua
+                - possui_banheiro
+                - forma_coleta_esgoto
+                - destino_lixo_da_residencia
+                - veiculos
+                - renda_total_30_dias
+      security:
+        - bearerAuth: []
+    parameters: []
+  /indigeanous-interviews/health-desease:
+    post:
+      summary: ""
+      operationId: post-indigeanous-interviews-health-desease
+      responses:
+        "201":
+          description: Created
+        "404":
+          description: Not Found
+      description: Create indigeanous interview health desease info
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  entrevista_indigena_id: string
+                  tomou_vacina_covid: string
+                  motivo_nao_tomar_vacina_covid: string
+                  condicao_de_saude: string
+                  tekoha_mudou_condicao_de_saude: string
+                  morador_exposto_veneno_lavoura: string
+                  doencas_contato_veneno_lavoura: string
+                  motivo_doencas_contato_veneno_lavoura: string
+                  acidentes: string
+                  acidentes_ocorridos: string
+                  ocorrencia_de_ameacas: string
+                  ocorrencia_violencia_fisica: string
+                  local_ocorrencia_violencia_fisica: string
+                  lista_tratamentos: string
+                  tratamento_com_paje_ou_similar: string
+                  tratamento_igreja: string
+                  medicacao_uso_continuo: string
+                  doenca_medicacao_uso_continuo: string
+                  primeiro_recurso_ao_notar_doenca: string
+                  morador_internado: string
+                  morador_problemas_bebidas_alcoolicas: string
+                  morador_problemas_uso_drogas: string
+                  familiar_morte_covid: string
+                  familiar_morte_covid_contribuia_renda_familiar: string
+                  familiares_morte_outras_causas: string
+                  motivo_familiares_morte_outras_causas: string
+                  familiares_morte_outras_causas_contribuia_renda_familiar: string
+              properties:
+                entrevista_indigena_id:
+                  type: string
+                tomou_vacina_covid:
+                  type: string
+                motivo_nao_tomar_vacina_covid:
+                  type: string
+                condicao_de_saude:
+                  type: string
+                tekoha_mudou_condicao_de_saude:
+                  type: string
+                morador_exposto_veneno_lavoura:
+                  type: string
+                doencas_contato_veneno_lavoura:
+                  type: string
+                motivo_doencas_contato_veneno_lavoura:
+                  type: string
+                acidentes:
+                  type: string
+                acidentes_ocorridos:
+                  type: string
+                ocorrencia_de_ameacas:
+                  type: string
+                ocorrencia_violencia_fisica:
+                  type: string
+                local_ocorrencia_violencia_fisica:
+                  type: string
+                lista_tratamentos:
+                  type: string
+                tratamento_com_paje_ou_similar:
+                  type: string
+                tratamento_igreja:
+                  type: string
+                medicacao_uso_continuo:
+                  type: string
+                doenca_medicacao_uso_continuo:
+                  type: string
+                primeiro_recurso_ao_notar_doenca:
+                  type: string
+                morador_internado:
+                  type: string
+                morador_problemas_bebidas_alcoolicas:
+                  type: string
+                morador_problemas_uso_drogas:
+                  type: string
+                familiar_morte_covid:
+                  type: string
+                familiar_morte_covid_contribuia_renda_familiar:
+                  type: string
+                familiares_morte_outras_causas:
+                  type: string
+                motivo_familiares_morte_outras_causas:
+                  type: string
+                familiares_morte_outras_causas_contribuia_renda_familiar:
+                  type: string
+              required:
+                - entrevista_indigena_id
+                - tomou_vacina_covid
+                - morador_exposto_veneno_lavoura
+                - acidentes
+                - ocorrencia_de_ameacas
+                - ocorrencia_violencia_fisica
+                - tratamento_com_paje_ou_similar
+                - tratamento_igreja
+                - medicacao_uso_continuo
+                - primeiro_recurso_ao_notar_doenca
+                - morador_internado
+                - morador_problemas_bebidas_alcoolicas
+                - morador_problemas_uso_drogas
 externalDocs:
   description: Find out more about this API here
-  url: 'http://swagger.io'
+  url: "http://swagger.io"
 servers:
-  - url: 'http://localhost:3333/'
+  - url: "http://localhost:3333/"
 components:
   securitySchemes:
     bearerAuth:
@@ -738,10 +943,10 @@ components:
         application/json:
           schema:
             type: object
-            $ref: '#/components/schemas/Project'
+            $ref: "#/components/schemas/Project"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Project'
+            $ref: "#/components/schemas/Project"
       description: Data format to create a project
       required: true
     Interview:
@@ -749,10 +954,10 @@ components:
         application/json:
           schema:
             type: object
-            $ref: '#/components/schemas/Interview'
+            $ref: "#/components/schemas/Interview"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Interview'
+            $ref: "#/components/schemas/Interview"
       description: Data format to create an interview
       required: true
     Person:
@@ -760,10 +965,10 @@ components:
         application/json:
           schema:
             type: object
-            $ref: '#/components/schemas/Person'
+            $ref: "#/components/schemas/Person"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Person'
+            $ref: "#/components/schemas/Person"
       description: Data format to create a person
       required: true
     PersonUpdate:
@@ -771,20 +976,20 @@ components:
         application/json:
           schema:
             type: object
-            $ref: '#/components/schemas/PersonUpdate'
+            $ref: "#/components/schemas/PersonUpdate"
         application/xml:
           schema:
-            $ref: '#/components/schemas/PersonUpdate'
+            $ref: "#/components/schemas/PersonUpdate"
       description: Data format to create a person
       required: true
     User:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/User'
+            $ref: "#/components/schemas/User"
         application/xml:
           schema:
-            $ref: '#/components/schemas/User'
+            $ref: "#/components/schemas/User"
       description: Data format to add an user
       required: true
     UserUpdate:
@@ -792,70 +997,70 @@ components:
         application/json:
           schema:
             type: object
-            $ref: '#/components/schemas/UserUpdate'
+            $ref: "#/components/schemas/UserUpdate"
         application/xml:
           schema:
-            $ref: '#/components/schemas/UserUpdate'
+            $ref: "#/components/schemas/UserUpdate"
       description: Data format to create a person
       required: true
     Household:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Household'
+            $ref: "#/components/schemas/Household"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Household'
+            $ref: "#/components/schemas/Household"
       description: Data format to add a Household
       required: true
     FamilyMember:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/FamilyMember'
+            $ref: "#/components/schemas/FamilyMember"
         application/xml:
           schema:
-            $ref: '#/components/schemas/FamilyMember'
+            $ref: "#/components/schemas/FamilyMember"
       description: Data format to add a family member
       required: true
     Address:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Address'
+            $ref: "#/components/schemas/Address"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Address'
+            $ref: "#/components/schemas/Address"
       description: Data format to add a address
       required: true
     Auth:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Auth'
+            $ref: "#/components/schemas/Auth"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Auth'
+            $ref: "#/components/schemas/Auth"
       description: Data format to authenticate an user
       required: true
     Pass:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Pass'
+            $ref: "#/components/schemas/Pass"
         application/xml:
           schema:
-            $ref: '#/components/schemas/Pass'
+            $ref: "#/components/schemas/Pass"
       description: Data format to reset password for the user
       required: true
     NewPass:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NewPass'
+            $ref: "#/components/schemas/NewPass"
         application/xml:
           schema:
-            $ref: '#/components/schemas/NewPass'
+            $ref: "#/components/schemas/NewPass"
       description: Data format to reset password for the user
       required: true
   schemas:

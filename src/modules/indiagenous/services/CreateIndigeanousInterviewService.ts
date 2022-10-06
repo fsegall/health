@@ -5,7 +5,6 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigeanousInterviewDTO } from '../dtos/ICreateIndigeanousInterviewDTO';
-import { IndigeanousInterview } from '../infra/typeorm/entities/IndigeanousInterview';
 import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
 
 @injectable()
@@ -21,9 +20,7 @@ export class CreateIndigeanousInterviewService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  async execute(
-    data: ICreateIndigeanousInterviewDTO,
-  ): Promise<IndigeanousInterview> {
+  async execute(data: ICreateIndigeanousInterviewDTO): Promise<void> {
     const project = await this.projectsRepository.findByNumber(
       data.numero_projeto,
     );
@@ -44,7 +41,7 @@ export class CreateIndigeanousInterviewService {
       throw new AppError('Interviewer does not have access to project', 403);
     }
 
-    return this.indigeanousInterviewRepository.create({
+    await this.indigeanousInterviewRepository.create({
       ...data,
       projeto_id: project.id,
     });

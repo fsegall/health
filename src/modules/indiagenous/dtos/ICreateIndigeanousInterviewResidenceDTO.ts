@@ -1,6 +1,4 @@
 export interface ICreateIndigeanousInterviewResidenceDTO {
-  id: string;
-
   entrevista_indigena_id: string;
 
   ultima_moradia: string;

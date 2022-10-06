@@ -3,10 +3,6 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 export class CreateIndigeanousInterviewDemography1664318058700
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      "create type basic_answers as enum ('sim', 'não', 'não_sei/não_respondeu')",
-    );
-
     await queryRunner.createTable(
       new Table({
         name: 'demografia_indigena',
@@ -30,7 +26,7 @@ export class CreateIndigeanousInterviewDemography1664318058700
           },
           {
             name: 'trabalho_colheita_maca',
-            type: 'basic_answers',
+            type: 'varchar',
             isNullable: true,
           },
           {
@@ -60,6 +56,5 @@ export class CreateIndigeanousInterviewDemography1664318058700
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('demografia_indigena');
-    await queryRunner.query('drop type basic_answers');
   }
 }

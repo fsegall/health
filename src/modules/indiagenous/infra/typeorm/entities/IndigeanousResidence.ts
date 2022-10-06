@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { uuid } from 'uuidv4';
 
 @Entity('domicilio_indigena')
 export class IndigeanousResidence {
@@ -52,4 +53,8 @@ export class IndigeanousResidence {
 
   @Column()
   renda_total_30_dias: string;
+
+  constructor() {
+    if (!this.id) this.id = uuid();
+  }
 }

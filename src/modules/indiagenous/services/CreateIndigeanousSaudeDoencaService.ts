@@ -2,21 +2,21 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import { ICreateIndigeanousInterviewResidenceDTO } from '../dtos/ICreateIndigeanousInterviewResidenceDTO';
+import { ICreateIndigeanousSaudeDoencaDTO } from '../dtos/ICreateIndigeanousSaudeDoencaDTO';
 import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
-import { IIndigeanousInterviewResidenceRepository } from '../repositories/IIndigeanousInterviewResidenceRepository';
+import { IIndigeanousSaudeDoencaRepository } from '../repositories/IIndigeanousSaudeDoencaRepository';
 
 @injectable()
-export class CreateIndigeanousInterviewResidenceService {
+export class CreateIndigeanousSaudeDoencaService {
   constructor(
-    @inject('IndigeanousInterviewResidenceRepository')
-    private indigeanousInterviewResidenceRepository: IIndigeanousInterviewResidenceRepository,
+    @inject('IndigeanousSaudeDoencaRepository')
+    private indigeanousSaudeDoencaRepository: IIndigeanousSaudeDoencaRepository,
 
     @inject('IndigeanousInterviewRepository')
     private indigeanousInterviewRepository: IIndigeanousInterviewRepository,
   ) {}
 
-  async execute(data: ICreateIndigeanousInterviewResidenceDTO): Promise<void> {
+  async execute(data: ICreateIndigeanousSaudeDoencaDTO): Promise<void> {
     const indigeanousInterview = await this.indigeanousInterviewRepository.findById(
       data.entrevista_indigena_id,
     );
@@ -25,6 +25,6 @@ export class CreateIndigeanousInterviewResidenceService {
       throw new AppError('Indigeanous interview not found', 404);
     }
 
-    await this.indigeanousInterviewResidenceRepository.create(data);
+    await this.indigeanousSaudeDoencaRepository.create(data);
   }
 }

@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { uuid } from 'uuidv4';
 
-import { BasicAnswers } from '@modules/indiagenous/enums';
 import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
 
 @Entity('indigeanous_demography')

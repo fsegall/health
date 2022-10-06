@@ -82,6 +82,6 @@ export class CreateIndigeanousInterview1664316540939
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('indigeanous_interviews');
+    await queryRunner.dropTable('entrevistas_indigenas');
   }
 }

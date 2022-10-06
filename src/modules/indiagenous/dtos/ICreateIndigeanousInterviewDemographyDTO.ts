@@ -1,5 +1,3 @@
-import { BasicAnswers } from '@modules/indiagenous/enums';
-
 export interface IMoradores {
   id: string;
   nome: string;
@@ -23,5 +21,5 @@ export interface ICreateIndigeanousInterviewDemographyDTO {
   entrevista_indigena_id: string;
   total_moradores: number;
   moradores: IMoradores[];
-  trabalho_colheita_maca?: BasicAnswers;
+  trabalho_colheita_maca?: string;
 }
