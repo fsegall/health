@@ -13,6 +13,7 @@ import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 import { IndigeanousDemography } from './IndiagenousDemography';
+import { IndigeanousResidence } from './IndigeanousResidence';
 
 @Entity('entrevistas_indigenas')
 export class IndigeanousInterview {
@@ -59,7 +60,10 @@ export class IndigeanousInterview {
   projeto: Project;
 
   @OneToOne(() => IndigeanousDemography)
-  entrevista_indigena: IndigeanousDemography;
+  entrevista_indigena_demografico: IndigeanousDemography;
+
+  @OneToOne(() => IndigeanousResidence)
+  entrevista_indigena_domicilio: IndigeanousResidence;
 
   constructor() {
     if (!this.id) this.id = uuid();

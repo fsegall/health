@@ -25,7 +25,7 @@ export class IndigeanousDemography {
   moradores: IMoradores[];
 
   @Column()
-  trabalho_colheita_maca?: BasicAnswers;
+  trabalho_colheita_maca?: string;
 
   @CreateDateColumn()
   created_at: Date;

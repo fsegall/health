@@ -6,8 +6,10 @@ import HouseholdsRepository from '@modules/households/infra/typeorm/repositories
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import { IndigeanousInterviewDemographyRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewDemographyRepository';
 import { IndigeanousInterviewRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewRepository';
+import { IndigeanousInterviewResidenceRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewResidenceRepository';
 import { IIndigeanousInterviewDemographyRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewDemographyRepository';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
+import { IIndigeanousInterviewResidenceRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewResidenceRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
@@ -64,4 +66,9 @@ container.registerSingleton<IIndigeanousInterviewRepository>(
 container.registerSingleton<IIndigeanousInterviewDemographyRepository>(
   'IndigeanousInterviewDemographyRepository',
   IndigeanousInterviewDemographyRepository,
+);
+
+container.registerSingleton<IIndigeanousInterviewResidenceRepository>(
+  'IndigeanousInterviewResidenceRepository',
+  IndigeanousInterviewResidenceRepository,
 );

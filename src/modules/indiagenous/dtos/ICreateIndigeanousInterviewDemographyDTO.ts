@@ -6,7 +6,7 @@ export interface IMoradores {
   relacao_com_chefe: string;
   idade: number;
   sexo: string;
-  povo_etnia: boolean;
+  povo_etnia: string;
   raca: string;
   lingua_indigena: string;
   // speakPortuguese: boolean;

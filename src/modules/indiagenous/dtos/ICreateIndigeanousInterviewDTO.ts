@@ -11,8 +11,6 @@ export interface ICreateIndigeanousInterviewDTO {
 
   entrevistador_id: string;
 
-  projeto_id: string;
-
   data_entrevista: Date;
 
   primeiro_contato_responsavel: boolean;

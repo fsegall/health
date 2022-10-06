@@ -7,10 +7,10 @@ import { CreateIndigeanousInterviewDemographyService } from '@modules/indiagenou
 export class CreateIndigeanousInterviewDemographyController {
   async handle(request: Request, response: Response): Promise<Response> {
     const {
-      indigeanousInterviewId,
-      residents,
-      totalResidents,
-      workedHarvest,
+      entrevista_indigena_id,
+      moradores,
+      total_moradores,
+      trabalho_colheita_maca,
     }: ICreateIndigeanousInterviewDemographyDTO = request.body;
 
     const createIndigeanousInterviewDemographyService = container.resolve(
@@ -18,7 +18,12 @@ export class CreateIndigeanousInterviewDemographyController {
     );
 
     const indigeanousInterviewDemography = await createIndigeanousInterviewDemographyService.execute(
-      { indigeanousInterviewId, residents, totalResidents, workedHarvest },
+      {
+        entrevista_indigena_id,
+        moradores,
+        total_moradores,
+        trabalho_colheita_maca,
+      },
     );
 
     return response.status(201).json(indigeanousInterviewDemography);
