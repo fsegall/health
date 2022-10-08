@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
+import { CreateIndigeanousApoioFinanceiroController } from '../controllers/CreateIndigeanousApoioFinanceiroController';
 import { CreateIndigeanousInterviewController } from '../controllers/CreateIndigeanousInterviewController';
 import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigeanousInterviewDemographyController';
 import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigeanousInterviewResidenceController';
@@ -13,6 +14,7 @@ const createIndigeanousInterviewController = new CreateIndigeanousInterviewContr
 const createIndigeanousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
 const createIndigeanousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
 const createIndigeanousSaudeDoencaController = new CreateIndigeanousSaudeDoencaController();
+const createIndigeanousApoioFinanceiroController = new CreateIndigeanousApoioFinanceiroController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(
@@ -32,6 +34,11 @@ indigeanousInterviewRouter.post(
 indigeanousInterviewRouter.post(
   '/health-desease',
   createIndigeanousSaudeDoencaController.handle,
+);
+
+indigeanousInterviewRouter.post(
+  '/financial-support',
+  createIndigeanousApoioFinanceiroController.handle,
 );
 
 export { indigeanousInterviewRouter };

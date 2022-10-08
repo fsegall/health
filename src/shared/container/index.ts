@@ -4,10 +4,12 @@ import './providers';
 
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import { IndigeanousApoioFinanceiroRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousApoioFinanceiroRepository';
 import { IndigeanousInterviewDemographyRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewDemographyRepository';
 import { IndigeanousInterviewRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewRepository';
 import { IndigeanousInterviewResidenceRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewResidenceRepository';
 import { IndigeanousSaudeDoencaRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousSaudeDoencaRepository';
+import { IIndigeanousApoioFinanceiroRepository } from '@modules/indiagenous/repositories/IIndigeanousApoioFinanceiroRepository';
 import { IIndigeanousInterviewDemographyRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewDemographyRepository';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
 import { IIndigeanousInterviewResidenceRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewResidenceRepository';
@@ -78,4 +80,9 @@ container.registerSingleton<IIndigeanousInterviewResidenceRepository>(
 container.registerSingleton<IIndigeanousSaudeDoencaRepository>(
   'IndigeanousSaudeDoencaRepository',
   IndigeanousSaudeDoencaRepository,
+);
+
+container.registerSingleton<IIndigeanousApoioFinanceiroRepository>(
+  'IndigeanousApoioFinanceiroRepository',
+  IndigeanousApoioFinanceiroRepository,
 );
