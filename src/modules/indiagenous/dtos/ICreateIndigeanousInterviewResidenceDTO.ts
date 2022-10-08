@@ -11,7 +11,7 @@ export interface ICreateIndigeanousInterviewResidenceDTO {
 
   quantidade_comodos: number;
 
-  utensilios_casa: string;
+  utensilios_casa: string[];
 
   acesso_agua: string;
 
@@ -25,9 +25,9 @@ export interface ICreateIndigeanousInterviewResidenceDTO {
 
   forma_coleta_esgoto: string;
 
-  destino_lixo_da_residencia: string;
+  destino_lixo_da_residencia: string[];
 
-  veiculos: string;
+  veiculos: string[];
 
   renda_total_30_dias: string;
 }

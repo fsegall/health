@@ -23,9 +23,9 @@ export interface ICreateIndigeanousSaudeDoencaDTO {
 
   ocorrencia_violencia_fisica: string;
 
-  local_ocorrencia_violencia_fisica?: string;
+  local_ocorrencia_violencia_fisica?: string[];
 
-  lista_tratamentos?: string;
+  lista_tratamentos?: string[];
 
   tratamento_com_paje_ou_similar: string;
 

@@ -1,6 +1,4 @@
 export interface ICreateIndigeanousSaudeDoenca {
-  id: string;
-
   entrevista_indigena_id: string;
 
   tomou_vacina_covid: string;
