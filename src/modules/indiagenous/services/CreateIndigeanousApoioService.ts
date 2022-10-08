@@ -3,14 +3,14 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigeanousApoioFinanceiroDTO } from '../dtos/ICreateIndigeanousApoioFinanceiroDTO';
-import { IIndigeanousApoioFinanceiroRepository } from '../repositories/IIndigeanousApoioFinanceiroRepository';
+import { IIndigeanousApoioRepository } from '../repositories/IIndigeanousApoioRepository';
 import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
 
 @injectable()
-export class CreateIndigeanousApoioFinanceiroService {
+export class CreateIndigeanousApoioService {
   constructor(
     @inject('IndigeanousApoioFinanceiroRepository')
-    private indigeanousApoioFinanceiroRepository: IIndigeanousApoioFinanceiroRepository,
+    private indigeanousApoioFinanceiroRepository: IIndigeanousApoioRepository,
 
     @inject('IndigeanousInterviewRepository')
     private indigeanousInterviewRepository: IIndigeanousInterviewRepository,

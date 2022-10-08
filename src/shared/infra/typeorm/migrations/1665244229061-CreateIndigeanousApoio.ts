@@ -5,7 +5,7 @@ export class CreateIndigeanousApoioFinanceiro1665244229061
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'apoio_financeiro_indigena',
+        name: 'apoio_indigena',
         columns: [
           {
             name: 'id',
@@ -171,6 +171,6 @@ export class CreateIndigeanousApoioFinanceiro1665244229061
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('apoio_financeiro_indigena');
+    await queryRunner.dropTable('apoio_indigena');
   }
 }

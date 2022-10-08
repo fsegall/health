@@ -4,12 +4,14 @@ import './providers';
 
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
-import { IndigeanousApoioFinanceiroRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousApoioFinanceiroRepository';
+import { IndigeanousAlimentacaoNutricaoRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousAlimentacaoNutricaoRepository';
+import { IndigeanousApoioRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousApoioRepository';
 import { IndigeanousInterviewDemographyRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewDemographyRepository';
 import { IndigeanousInterviewRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewRepository';
 import { IndigeanousInterviewResidenceRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousInterviewResidenceRepository';
 import { IndigeanousSaudeDoencaRepository } from '@modules/indiagenous/infra/typeorm/repositories/IndigeanousSaudeDoencaRepository';
-import { IIndigeanousApoioFinanceiroRepository } from '@modules/indiagenous/repositories/IIndigeanousApoioFinanceiroRepository';
+import { IIndigeanousAlimentacaoNutricaoRepository } from '@modules/indiagenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
+import { IIndigeanousApoioRepository } from '@modules/indiagenous/repositories/IIndigeanousApoioRepository';
 import { IIndigeanousInterviewDemographyRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewDemographyRepository';
 import { IIndigeanousInterviewRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewRepository';
 import { IIndigeanousInterviewResidenceRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewResidenceRepository';
@@ -82,7 +84,12 @@ container.registerSingleton<IIndigeanousSaudeDoencaRepository>(
   IndigeanousSaudeDoencaRepository,
 );
 
-container.registerSingleton<IIndigeanousApoioFinanceiroRepository>(
+container.registerSingleton<IIndigeanousApoioRepository>(
   'IndigeanousApoioFinanceiroRepository',
-  IndigeanousApoioFinanceiroRepository,
+  IndigeanousApoioRepository,
+);
+
+container.registerSingleton<IIndigeanousAlimentacaoNutricaoRepository>(
+  'IndigeanousAlimentacaoNutricaoRepository',
+  IndigeanousAlimentacaoNutricaoRepository,
 );
