@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+
 import InterviewsController from '@modules/interviews/infra/http/controllers/InterviewsController';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const interviewsController = new InterviewsController();
 
@@ -25,7 +26,5 @@ interviewsRouter.post('/handle-offline-data', interviewsController.handleOffline
 /* interviewsRouter.put('/', interviewsController.update);
 
 interviewsRouter.delete('/:id', interviewsController.delete); */
-
-
 
 export default interviewsRouter;
