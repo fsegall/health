@@ -8,14 +8,14 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Household from './Household';
+import Household from './Household'
 
 @Entity('addresses')
 class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   household_id: string;
 
   @OneToOne(() => Household)
