@@ -12,8 +12,9 @@ export class CreateIndigeanousSaudeDoencaController {
       CreateIndigeanousSaudeDoencaService,
     );
 
-    await createIndigeanousSaudeDoencaService.execute(data);
+    const indigenousSaudeDoenca =
+      await createIndigeanousSaudeDoencaService.execute(data);
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousSaudeDoenca);
   }
 }

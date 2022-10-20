@@ -9,7 +9,7 @@ import { uuid } from 'uuidv4';
 
 import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
 
-@Entity('indigeanous_demography')
+@Entity('demografia_indigena')
 export class IndigeanousDemography {
   @PrimaryColumn()
   id: string;

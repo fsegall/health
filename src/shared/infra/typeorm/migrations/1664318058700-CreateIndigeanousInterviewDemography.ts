@@ -1,7 +1,8 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateIndigeanousInterviewDemography1664318058700
-  implements MigrationInterface {
+  implements MigrationInterface
+{
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -13,7 +14,7 @@ export class CreateIndigeanousInterviewDemography1664318058700
             isPrimary: true,
           },
           {
-            name: 'entrevistador_id',
+            name: 'entrevista_indigena_id',
             type: 'uuid',
           },
           {
@@ -43,7 +44,7 @@ export class CreateIndigeanousInterviewDemography1664318058700
         foreignKeys: [
           {
             name: 'FKIndigeanousDemographyInterview',
-            columnNames: ['entrevistador_id'],
+            columnNames: ['entrevista_indigena_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'entrevistas_indigenas',
             onDelete: 'SET NULL',

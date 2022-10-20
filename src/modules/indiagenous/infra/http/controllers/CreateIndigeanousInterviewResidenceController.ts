@@ -12,8 +12,9 @@ export class CreateIndigeanousInterviewResidenceController {
       CreateIndigeanousInterviewResidenceService,
     );
 
-    await createIndigeanousInterviewResidenceService.execute(data);
+    const indigenousResidence =
+      await createIndigeanousInterviewResidenceService.execute(data);
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousResidence);
   }
 }

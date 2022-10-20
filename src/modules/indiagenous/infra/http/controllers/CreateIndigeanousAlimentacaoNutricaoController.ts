@@ -12,8 +12,9 @@ export class CreateIndigeanousAlimentacaoNutricaoController {
       CreateIndigeanousAlimentacaoNutricaoService,
     );
 
-    await createIndigeanousAlimentacaoNutricaoService.execute(data);
+    const indigenousNutrition =
+      await createIndigeanousAlimentacaoNutricaoService.execute(data);
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousNutrition);
   }
 }

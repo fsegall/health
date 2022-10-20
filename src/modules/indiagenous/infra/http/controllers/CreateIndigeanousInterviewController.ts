@@ -21,18 +21,20 @@ export class CreateIndigeanousInterviewController {
       CreateIndigeanousInterviewService,
     );
 
-    await createIndigeanousInterviewService.execute({
-      acampamento,
-      aldeia_comunidade,
-      area_retomada,
-      data_entrevista,
-      entrevistador_id,
-      municipio,
-      numero_projeto,
-      primeiro_contato_responsavel,
-      terra_indigena,
-    });
+    const indigenousInterview = await createIndigeanousInterviewService.execute(
+      {
+        acampamento,
+        aldeia_comunidade,
+        area_retomada,
+        data_entrevista,
+        entrevistador_id,
+        municipio,
+        numero_projeto,
+        primeiro_contato_responsavel,
+        terra_indigena,
+      },
+    );
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousInterview);
   }
 }

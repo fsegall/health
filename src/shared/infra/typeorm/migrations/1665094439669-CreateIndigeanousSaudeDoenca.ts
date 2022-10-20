@@ -1,7 +1,8 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateIndigeanousSaudeDoenca1665094439669
-  implements MigrationInterface {
+  implements MigrationInterface
+{
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -19,6 +20,11 @@ export class CreateIndigeanousSaudeDoenca1665094439669
           {
             name: 'tomou_vacina_covid',
             type: 'varchar',
+          },
+          {
+            name: 'motivo_nao_tomar_vacina_covid',
+            type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'condicao_de_saude',

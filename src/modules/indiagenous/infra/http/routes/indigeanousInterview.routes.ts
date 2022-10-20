@@ -11,12 +11,18 @@ import { CreateIndigeanousSaudeDoencaController } from '../controllers/CreateInd
 
 const indigeanousInterviewRouter = Router();
 
-const createIndigeanousInterviewController = new CreateIndigeanousInterviewController();
-const createIndigeanousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
-const createIndigeanousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
-const createIndigeanousSaudeDoencaController = new CreateIndigeanousSaudeDoencaController();
-const createIndigeanousApoioFinanceiroController = new CreateIndigeanousApoioFinanceiroController();
-const createIndigeanousAlimentacaoNutricaoController = new CreateIndigeanousAlimentacaoNutricaoController();
+const createIndigeanousInterviewController =
+  new CreateIndigeanousInterviewController();
+const createIndigeanousInterviewDemographyController =
+  new CreateIndigeanousInterviewDemographyController();
+const createIndigeanousInterviewResidenceController =
+  new CreateIndigeanousInterviewResidenceController();
+const createIndigeanousSaudeDoencaController =
+  new CreateIndigeanousSaudeDoencaController();
+const createIndigeanousApoioFinanceiroController =
+  new CreateIndigeanousApoioFinanceiroController();
+const createIndigeanousAlimentacaoNutricaoController =
+  new CreateIndigeanousAlimentacaoNutricaoController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(

@@ -1,32 +1,29 @@
 {
   "env": {
-    "es6": true,
+    "commonjs": true,
+    "es2020": true,
     "node": true,
     "jest": true
   },
   "extends": [
     "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    "ecmaVersion": 2018
   },
   "plugins": [
-    "@typescript-eslint",
     "prettier",
     "eslint-plugin-import-helpers"
   ],
   "rules": {
     "prettier/prettier": "error",
-    "@typescript-eslint/camelcase": "off",
+    "camelcase": "off",
     "import/no-unresolved": "error",
     "@typescript-eslint/naming-convention": [
       "error",
@@ -81,8 +78,7 @@
           "**/*.spec.js"
         ]
       }
-    ],
-    "@typescript-eslint/interface-name-prefix": "off"
+    ]
   },
   "settings": {
     "import/resolver": {
