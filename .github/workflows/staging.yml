@@ -30,7 +30,7 @@ jobs:
 
       uses: actions/setup-node@v2.1.1
       with:
-        node-version: 14.x
+        node-version: 16.x
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           
     - name: Install dependencies
@@ -60,7 +60,7 @@ jobs:
           cd ~/app/health
           yarn
           ./node_modules/.bin/typeorm migration:run
-          /home/deploy/.nvm/versions/node/v12.18.2/bin/pm2 restart safety-api
+          pm2 restart safety-api
 
 
       
