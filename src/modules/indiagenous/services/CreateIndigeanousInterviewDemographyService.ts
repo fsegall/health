@@ -19,17 +19,17 @@ export class CreateIndigeanousInterviewDemographyService {
   async execute(
     data: ICreateIndigeanousInterviewDemographyDTO,
   ): Promise<IndigeanousDemography> {
-    const indigeanousInterview = await this.indigeanousInterviewRepository.findById(
-      data.entrevista_indigena_id,
-    );
+    const indigeanousInterview =
+      await this.indigeanousInterviewRepository.findById(
+        data.entrevista_indigena_id,
+      );
 
     if (!indigeanousInterview) {
       throw new AppError('Indigeanous interview not found', 404);
     }
 
-    const indigeanousInterviewDemography = await this.indigeanousInterviewDemographyRepository.create(
-      data,
-    );
+    const indigeanousInterviewDemography =
+      await this.indigeanousInterviewDemographyRepository.create(data);
 
     return indigeanousInterviewDemography;
   }

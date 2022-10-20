@@ -17,13 +17,14 @@ export class CreateIndigeanousInterviewDemographyController {
       CreateIndigeanousInterviewDemographyService,
     );
 
-    await createIndigeanousInterviewDemographyService.execute({
-      entrevista_indigena_id,
-      moradores,
-      total_moradores,
-      trabalho_colheita_maca,
-    });
+    const indigenousDemography =
+      await createIndigeanousInterviewDemographyService.execute({
+        entrevista_indigena_id,
+        moradores,
+        total_moradores,
+        trabalho_colheita_maca,
+      });
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousDemography);
   }
 }

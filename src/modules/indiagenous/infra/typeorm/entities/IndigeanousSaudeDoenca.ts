@@ -7,6 +7,9 @@ export class IndigeanousSaudeDoenca {
   id: string;
 
   @Column()
+  entrevista_indigena_id: string;
+
+  @Column()
   tomou_vacina_covid: string;
 
   @Column()

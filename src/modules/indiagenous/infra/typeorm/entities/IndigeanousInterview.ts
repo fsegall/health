@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryColumn,
@@ -55,9 +56,11 @@ export class IndigeanousInterview {
   updated_at: Date;
 
   @ManyToOne(() => User)
+  @JoinColumn({ name: 'entrevistador_id' })
   entrevistador: User;
 
   @ManyToOne(() => Project)
+  @JoinColumn({ name: 'projeto_id' })
   projeto: Project;
 
   @OneToOne(() => IndigeanousDemography)

@@ -12,8 +12,9 @@ export class CreateIndigeanousApoioFinanceiroController {
       CreateIndigeanousApoioService,
     );
 
-    await createIndigeanousApoioFinanceiroService.execute(data);
+    const indigenousSupport =
+      await createIndigeanousApoioFinanceiroService.execute(data);
 
-    return response.status(201).send();
+    return response.status(201).json(indigenousSupport);
   }
 }

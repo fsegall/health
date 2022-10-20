@@ -12,9 +12,11 @@ export class IndigeanousApoioRepository implements IIndigeanousApoioRepository {
     this.repository = getRepository(IndigeanousApoio);
   }
 
-  async create(data: ICreateIndigeanousApoio): Promise<void> {
+  async create(data: ICreateIndigeanousApoio): Promise<IndigeanousApoio> {
     const indigeanousApoioFinanceiro = this.repository.create(data);
 
     await this.repository.save(indigeanousApoioFinanceiro);
+
+    return indigeanousApoioFinanceiro;
   }
 }

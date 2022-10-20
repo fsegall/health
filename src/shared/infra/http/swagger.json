@@ -1512,7 +1512,7 @@
                     "type": "string"
                   },
                   "quantidade_morador_matriculado_na_educacao_basica_publica": {
-                    "type": "string"
+                    "type": "integer"
                   },
                   "criancas_comem_na_escola": {
                     "type": "string"
@@ -1557,7 +1557,7 @@
                     "type": "string"
                   },
                   "quantidade_cesta_de_alimentos_3m": {
-                    "type": "string"
+                    "type": "integer"
                   },
                   "origem_cesta_de_alimentos_3m": {
                     "type": "array",
