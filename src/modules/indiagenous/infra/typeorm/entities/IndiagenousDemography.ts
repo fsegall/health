@@ -2,12 +2,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { uuid } from 'uuidv4';
 
 import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
+
+import { IndigeanousInterview } from './IndigeanousInterview';
 
 @Entity('demografia_indigena')
 export class IndigeanousDemography {
@@ -31,6 +35,10 @@ export class IndigeanousDemography {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToOne(() => IndigeanousInterview)
+  @JoinColumn({ name: 'entrevista_indigena_id' })
+  entrevista_indigena: IndigeanousInterview;
 
   constructor() {
     if (!this.id) this.id = uuid();
