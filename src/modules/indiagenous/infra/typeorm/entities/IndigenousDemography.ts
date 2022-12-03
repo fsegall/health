@@ -7,10 +7,10 @@ import {
 } from 'typeorm';
 import { uuid } from 'uuidv4';
 
-import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewDemography';
+import { IMoradores } from '@modules/indiagenous/repositories/interfaces/ICreateIndigenousInterviewDemography';
 
 @Entity('demografia_indigena')
-export class IndigeanousDemography {
+export class IndigenousDemography {
   @PrimaryColumn()
   id: string;
 
@@ -24,7 +24,10 @@ export class IndigeanousDemography {
   moradores: IMoradores[];
 
   @Column()
-  trabalho_colheita_maca?: string;
+  morador_trabalhou_fazendas: string;
+
+  @Column()
+  morador_trabalhou_catacao: string;
 
   @CreateDateColumn()
   created_at: Date;

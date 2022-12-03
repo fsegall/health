@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+
 import HouseholdsController from '@modules/households/infra/http/controllers/HouseholdsController';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const householdsController = new HouseholdsController();
 

@@ -13,12 +13,12 @@ import { uuid } from 'uuidv4';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
-import { IndigeanousDemography } from './IndiagenousDemography';
 import { IndigeanousApoio } from './IndigeanousApoio';
 import { IndigeanousResidence } from './IndigeanousResidence';
+import { IndigenousDemography } from './IndigenousDemography';
 
 @Entity('entrevistas_indigenas')
-export class IndigeanousInterview {
+export class IndigenousInterview {
   @PrimaryColumn()
   id: string;
 
@@ -29,13 +29,7 @@ export class IndigeanousInterview {
   aldeia_comunidade: string;
 
   @Column()
-  terra_indigena: string;
-
-  @Column()
-  area_retomada: number;
-
-  @Column()
-  acampamento: string;
+  tipo_comunidade: string;
 
   @Column()
   entrevistador_id: string;
@@ -47,7 +41,7 @@ export class IndigeanousInterview {
   data_entrevista: Date;
 
   @Column()
-  primeiro_contato_responsavel: boolean;
+  responsavel_domicilio: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;
@@ -63,8 +57,8 @@ export class IndigeanousInterview {
   @JoinColumn({ name: 'projeto_id' })
   projeto: Project;
 
-  @OneToOne(() => IndigeanousDemography)
-  entrevista_indigena_demografico: IndigeanousDemography;
+  @OneToOne(() => IndigenousDemography)
+  entrevista_indigena_demografico: IndigenousDemography;
 
   @OneToOne(() => IndigeanousResidence)
   entrevista_indigena_domicilio: IndigeanousResidence;

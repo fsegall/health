@@ -4,25 +4,19 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 
 import { CreateIndigeanousAlimentacaoNutricaoController } from '../controllers/CreateIndigeanousAlimentacaoNutricaoController';
 import { CreateIndigeanousApoioFinanceiroController } from '../controllers/CreateIndigeanousApoioFinanceiroController';
-import { CreateIndigeanousInterviewController } from '../controllers/CreateIndigeanousInterviewController';
-import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigeanousInterviewDemographyController';
 import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigeanousInterviewResidenceController';
 import { CreateIndigeanousSaudeDoencaController } from '../controllers/CreateIndigeanousSaudeDoencaController';
+import { CreateIndigeanousInterviewController } from '../controllers/CreateIndigenousInterviewController';
+import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigenousInterviewDemographyController';
 
 const indigeanousInterviewRouter = Router();
 
-const createIndigeanousInterviewController =
-  new CreateIndigeanousInterviewController();
-const createIndigeanousInterviewDemographyController =
-  new CreateIndigeanousInterviewDemographyController();
-const createIndigeanousInterviewResidenceController =
-  new CreateIndigeanousInterviewResidenceController();
-const createIndigeanousSaudeDoencaController =
-  new CreateIndigeanousSaudeDoencaController();
-const createIndigeanousApoioFinanceiroController =
-  new CreateIndigeanousApoioFinanceiroController();
-const createIndigeanousAlimentacaoNutricaoController =
-  new CreateIndigeanousAlimentacaoNutricaoController();
+const createIndigeanousInterviewController = new CreateIndigeanousInterviewController();
+const createIndigeanousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
+const createIndigeanousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
+const createIndigeanousSaudeDoencaController = new CreateIndigeanousSaudeDoencaController();
+const createIndigeanousApoioFinanceiroController = new CreateIndigeanousApoioFinanceiroController();
+const createIndigeanousAlimentacaoNutricaoController = new CreateIndigeanousAlimentacaoNutricaoController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(

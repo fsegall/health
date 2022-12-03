@@ -1,8 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateIndigeanousInterviewDemography1664318058700
-  implements MigrationInterface
-{
+export class CreateIndigenousInterviewDemography1664318058700
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -26,9 +25,12 @@ export class CreateIndigeanousInterviewDemography1664318058700
             type: 'jsonb',
           },
           {
-            name: 'trabalho_colheita_maca',
+            name: 'morador_trabalhou_fazendas',
             type: 'varchar',
-            isNullable: true,
+          },
+          {
+            name: 'morador_trabalhou_catacao',
+            type: 'varchar',
           },
           {
             name: 'created_at',

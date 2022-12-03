@@ -5,7 +5,7 @@ import AppError from '@shared/errors/AppError';
 import { ICreateIndigeanousApoioFinanceiroDTO } from '../dtos/ICreateIndigeanousApoioFinanceiroDTO';
 import { IndigeanousApoio } from '../infra/typeorm/entities/IndigeanousApoio';
 import { IIndigeanousApoioRepository } from '../repositories/IIndigeanousApoioRepository';
-import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
+import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 
 @injectable()
 export class CreateIndigeanousApoioService {
@@ -14,7 +14,7 @@ export class CreateIndigeanousApoioService {
     private indigeanousApoioFinanceiroRepository: IIndigeanousApoioRepository,
 
     @inject('IndigeanousInterviewRepository')
-    private indigeanousInterviewRepository: IIndigeanousInterviewRepository,
+    private indigeanousInterviewRepository: IIndigenousInterviewRepository,
   ) {}
 
   async execute({
