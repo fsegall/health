@@ -4,17 +4,17 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 
 import { CreateIndigeanousAlimentacaoNutricaoController } from '../controllers/CreateIndigeanousAlimentacaoNutricaoController';
 import { CreateIndigeanousApoioFinanceiroController } from '../controllers/CreateIndigeanousApoioFinanceiroController';
-import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigeanousInterviewResidenceController';
-import { CreateIndigeanousSaudeDoencaController } from '../controllers/CreateIndigeanousSaudeDoencaController';
 import { CreateIndigeanousInterviewController } from '../controllers/CreateIndigenousInterviewController';
 import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigenousInterviewDemographyController';
+import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigenousInterviewResidenceController';
+import { CreateIndigenousSaudeDoencaController } from '../controllers/CreateIndigenousSaudeDoencaController';
 
 const indigeanousInterviewRouter = Router();
 
 const createIndigeanousInterviewController = new CreateIndigeanousInterviewController();
 const createIndigeanousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
 const createIndigeanousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
-const createIndigeanousSaudeDoencaController = new CreateIndigeanousSaudeDoencaController();
+const createIndigeanousSaudeDoencaController = new CreateIndigenousSaudeDoencaController();
 const createIndigeanousApoioFinanceiroController = new CreateIndigeanousApoioFinanceiroController();
 const createIndigeanousAlimentacaoNutricaoController = new CreateIndigeanousAlimentacaoNutricaoController();
 

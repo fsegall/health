@@ -1,4 +1,4 @@
-export interface ICreateIndigenousSaudeDoenca {
+export interface ICreateIndigenousSaudeDoencaDTO {
   entrevista_indigena_id: string;
 
   tomou_vacina_covid: string;

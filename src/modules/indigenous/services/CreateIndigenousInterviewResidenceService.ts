@@ -2,13 +2,13 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import { ICreateIndigeanousInterviewResidenceDTO } from '../dtos/ICreateIndigeanousInterviewResidenceDTO';
-import { IndigeanousResidence } from '../infra/typeorm/entities/IndigeanousResidence';
+import { ICreateIndigenousInterviewResidenceDTO } from '../dtos/ICreateIndigenousInterviewResidenceDTO';
+import { IndigenousResidence } from '../infra/typeorm/entities/IndigenousResidence';
 import { IIndigeanousInterviewResidenceRepository } from '../repositories/IIndigeanousInterviewResidenceRepository';
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 
 @injectable()
-export class CreateIndigeanousInterviewResidenceService {
+export class CreateIndigenousInterviewResidenceService {
   constructor(
     @inject('IndigeanousInterviewResidenceRepository')
     private indigeanousInterviewResidenceRepository: IIndigeanousInterviewResidenceRepository,
@@ -18,8 +18,8 @@ export class CreateIndigeanousInterviewResidenceService {
   ) {}
 
   async execute(
-    data: ICreateIndigeanousInterviewResidenceDTO,
-  ): Promise<IndigeanousResidence> {
+    data: ICreateIndigenousInterviewResidenceDTO,
+  ): Promise<IndigenousResidence> {
     const indigeanousInterview = await this.indigeanousInterviewRepository.findById(
       data.entrevista_indigena_id,
     );

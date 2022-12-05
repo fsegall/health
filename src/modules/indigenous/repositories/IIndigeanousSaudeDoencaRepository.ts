@@ -1,6 +1,6 @@
-import { IndigeanousSaudeDoenca } from '../infra/typeorm/entities/IndigeanousSaudeDoenca';
-import { ICreateIndigeanousSaudeDoenca } from './interfaces/ICreateIndigenousSaudeDoenca';
+import { IndigeanousSaudeDoenca } from '../infra/typeorm/entities/IndigenousSaudeDoenca';
+import { ICreateIndigenousSaudeDoenca } from './interfaces/ICreateIndigenousSaudeDoenca';
 
-export interface IIndigeanousSaudeDoencaRepository {
-  create(data: ICreateIndigeanousSaudeDoenca): Promise<IndigeanousSaudeDoenca>;
+export interface IIndigenousSaudeDoencaRepository {
+  create(data: ICreateIndigenousSaudeDoenca): Promise<IndigeanousSaudeDoenca>;
 }

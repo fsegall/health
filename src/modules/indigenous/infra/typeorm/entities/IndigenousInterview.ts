@@ -14,7 +14,7 @@ import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 import { IndigeanousApoio } from './IndigeanousApoio';
-import { IndigeanousResidence } from './IndigeanousResidence';
+import { IndigenousResidence } from './IndigenousResidence';
 import { IndigenousDemography } from './IndigenousDemography';
 
 @Entity('entrevistas_indigenas')
@@ -60,8 +60,8 @@ export class IndigenousInterview {
   @OneToOne(() => IndigenousDemography)
   entrevista_indigena_demografico: IndigenousDemography;
 
-  @OneToOne(() => IndigeanousResidence)
-  entrevista_indigena_domicilio: IndigeanousResidence;
+  @OneToOne(() => IndigenousResidence)
+  entrevista_indigena_domicilio: IndigenousResidence;
 
   @OneToOne(() => IndigeanousApoio)
   entrevista_indigena_apoio_financeiro: IndigeanousApoio;

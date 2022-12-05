@@ -13,28 +13,34 @@ export class IndigeanousSaudeDoenca {
   tomou_vacina_covid: string;
 
   @Column()
-  motivo_nao_tomar_vacina_covid?: string;
+  motivo_nao_tomar_vacina_covid: string;
 
   @Column()
-  condicao_de_saude?: string;
+  familiar_morte_covid: string;
 
   @Column()
-  tekoha_mudou_condicao_de_saude?: string;
+  familiar_morte_covid_contribuia_renda_familiar: string;
+
+  @Column()
+  condicao_de_saude: string;
+
+  @Column()
+  tekoha_mudou_condicao_de_saude: string;
 
   @Column()
   morador_exposto_veneno_lavoura: string;
 
   @Column()
-  doencas_contato_veneno_lavoura?: string;
+  doencas_contato_veneno_lavoura: string;
 
   @Column()
-  motivo_doencas_contato_veneno_lavoura?: string;
+  motivo_doencas_contato_veneno_lavoura: string;
 
   @Column()
   acidentes: string;
 
   @Column()
-  acidentes_ocorridos?: string;
+  acidentes_ocorridos: string;
 
   @Column()
   ocorrencia_de_ameacas: string;
@@ -43,10 +49,10 @@ export class IndigeanousSaudeDoenca {
   ocorrencia_violencia_fisica: string;
 
   @Column()
-  local_ocorrencia_violencia_fisica?: string;
+  local_ocorrencia_violencia_fisica: string;
 
   @Column()
-  lista_tratamentos?: string;
+  lista_tratamentos: string;
 
   @Column()
   tratamento_com_paje_ou_similar: string;
@@ -58,7 +64,7 @@ export class IndigeanousSaudeDoenca {
   medicacao_uso_continuo: string;
 
   @Column()
-  doenca_medicacao_uso_continuo?: string;
+  doenca_medicacao_uso_continuo: string;
 
   @Column()
   primeiro_recurso_ao_notar_doenca: string;
@@ -70,22 +76,10 @@ export class IndigeanousSaudeDoenca {
   morador_problemas_bebidas_alcoolicas: string;
 
   @Column()
+  fuma_cigarro: string;
+
+  @Column()
   morador_problemas_uso_drogas: string;
-
-  @Column()
-  familiar_morte_covid?: string;
-
-  @Column()
-  familiar_morte_covid_contribuia_renda_familiar?: string;
-
-  @Column()
-  familiares_morte_outras_causas?: string;
-
-  @Column()
-  motivo_familiares_morte_outras_causas?: string;
-
-  @Column()
-  familiares_morte_outras_causas_contribuia_renda_familiar?: string;
 
   constructor() {
     if (!this.id) this.id = uuid();

@@ -5,7 +5,7 @@ import { ICreateIndigenousInterviewDemography } from '@modules/indigenous/reposi
 
 import { IndigenousDemography } from '../entities/IndigenousDemography';
 
-export class IndigeanousInterviewDemographyRepository
+export class IndigenousInterviewDemographyRepository
   implements IIndigenousInterviewDemographyRepository {
   private repository: Repository<IndigenousDemography>;
 
