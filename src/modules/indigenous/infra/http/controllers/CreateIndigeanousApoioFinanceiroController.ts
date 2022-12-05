@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ICreateIndigeanousApoioFinanceiroDTO } from '@modules/indiagenous/dtos/ICreateIndigeanousApoioFinanceiroDTO';
-import { CreateIndigeanousApoioService } from '@modules/indiagenous/services/CreateIndigeanousApoioService';
+import { ICreateIndigeanousApoioFinanceiroDTO } from '@modules/indigenous/dtos/ICreateIndigeanousApoioFinanceiroDTO';
+import { CreateIndigeanousApoioService } from '@modules/indigenous/services/CreateIndigeanousApoioService';
 
 export class CreateIndigeanousApoioFinanceiroController {
   async handle(request: Request, response: Response): Promise<Response> {

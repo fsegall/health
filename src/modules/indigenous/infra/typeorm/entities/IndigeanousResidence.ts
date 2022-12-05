@@ -1,6 +1,8 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { uuid } from 'uuidv4';
 
+import { IUtensiliosCasa } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
+
 @Entity('domicilio_indigena')
 export class IndigeanousResidence {
   @PrimaryColumn()
@@ -11,6 +13,9 @@ export class IndigeanousResidence {
 
   @Column()
   ultima_moradia: string;
+
+  @Column()
+  tipo_moradia: string;
 
   @Column()
   piso: string;
@@ -24,8 +29,8 @@ export class IndigeanousResidence {
   @Column()
   quantidade_comodos: number;
 
-  @Column()
-  utensilios_casa: string;
+  @Column({ type: 'json' })
+  utensilios_casa: IUtensiliosCasa;
 
   @Column()
   acesso_agua: string;

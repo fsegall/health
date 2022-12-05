@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigenousInterviewRepository } from '@modules/indiagenous/repositories/IIndigenousInterviewRepository';
-import { ICreateIndigenousInterview } from '@modules/indiagenous/repositories/interfaces/ICreateIndigenousInterview';
+import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
+import { ICreateIndigenousInterview } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousInterview';
 
 import { IndigenousInterview } from '../entities/IndigenousInterview';
 

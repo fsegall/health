@@ -21,6 +21,10 @@ export class CreateIndigeanousResidence1664836512384
             type: 'varchar',
           },
           {
+            name: 'tipo_moradia',
+            type: 'varchar',
+          },
+          {
             name: 'piso',
             type: 'varchar',
           },
@@ -38,7 +42,7 @@ export class CreateIndigeanousResidence1664836512384
           },
           {
             name: 'utensilios_casa',
-            type: 'text',
+            type: 'json',
           },
           {
             name: 'acesso_agua',
