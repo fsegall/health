@@ -4,13 +4,13 @@ import './providers';
 
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
-import { IndigeanousAlimentacaoNutricaoRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousAlimentacaoNutricaoRepository';
 import { IndigeanousApoioRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousApoioRepository';
+import { IndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousAlimentacaoNutricaoRepository';
 import { IndigenousInterviewDemographyRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewDemographyRepository';
 import { IndigenousInterviewRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewRepository';
 import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewResidenceRepository';
 import { IndigenousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousSaudeDoencaRepository';
-import { IIndigeanousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
+import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
 import { IIndigeanousApoioRepository } from '@modules/indigenous/repositories/IIndigeanousApoioRepository';
 import { IIndigeanousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigeanousInterviewResidenceRepository';
 import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigeanousSaudeDoencaRepository';
@@ -89,7 +89,7 @@ container.registerSingleton<IIndigeanousApoioRepository>(
   IndigeanousApoioRepository,
 );
 
-container.registerSingleton<IIndigeanousAlimentacaoNutricaoRepository>(
+container.registerSingleton<IIndigenousAlimentacaoNutricaoRepository>(
   'IndigeanousAlimentacaoNutricaoRepository',
-  IndigeanousAlimentacaoNutricaoRepository,
+  IndigenousAlimentacaoNutricaoRepository,
 );
