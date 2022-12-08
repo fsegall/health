@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigeanousInterviewResidenceDTO } from '../dtos/ICreateIndigeanousInterviewResidenceDTO';
 import { IndigeanousResidence } from '../infra/typeorm/entities/IndigeanousResidence';
-import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
+import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 import { IIndigeanousInterviewResidenceRepository } from '../repositories/IIndigeanousInterviewResidenceRepository';
 
 @injectable()
@@ -14,7 +14,7 @@ export class CreateIndigeanousInterviewResidenceService {
     private indigeanousInterviewResidenceRepository: IIndigeanousInterviewResidenceRepository,
 
     @inject('IndigeanousInterviewRepository')
-    private indigeanousInterviewRepository: IIndigeanousInterviewRepository,
+    private indigeanousInterviewRepository: IIndigenousInterviewRepository,
   ) {}
 
   async execute({

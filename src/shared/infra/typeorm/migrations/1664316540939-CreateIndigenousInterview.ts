@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateIndigeanousInterview1664316540939
+export class CreateIndigenousInterview1664316540939
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -21,15 +21,7 @@ export class CreateIndigeanousInterview1664316540939
             type: 'varchar',
           },
           {
-            name: 'terra_indigena',
-            type: 'varchar',
-          },
-          {
-            name: 'area_retomada',
-            type: 'varchar',
-          },
-          {
-            name: 'acampamento',
+            name: 'tipo_comunidade',
             type: 'varchar',
           },
           {
@@ -45,7 +37,7 @@ export class CreateIndigeanousInterview1664316540939
             type: 'timestamp',
           },
           {
-            name: 'primeiro_contato_responsavel',
+            name: 'responsavel_domicilio',
             type: 'boolean',
           },
           {

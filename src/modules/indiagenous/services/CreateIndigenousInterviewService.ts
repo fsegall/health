@@ -4,15 +4,15 @@ import IProjectsRepository from '@modules/projects/repositories/IProjectsReposit
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
-import { ICreateIndigeanousInterviewDTO } from '../dtos/ICreateIndigeanousInterviewDTO';
-import { IndigeanousInterview } from '../infra/typeorm/entities/IndigeanousInterview';
-import { IIndigeanousInterviewRepository } from '../repositories/IIndigeanousInterviewRepository';
+import { ICreateIndigenousInterviewDTO } from '../dtos/ICreateIndigenousInterviewDTO';
+import { IndigenousInterview } from '../infra/typeorm/entities/IndigenousInterview';
+import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 
 @injectable()
-export class CreateIndigeanousInterviewService {
+export class CreateIndigenousInterviewService {
   constructor(
     @inject('IndigeanousInterviewRepository')
-    private indigeanousInterviewRepository: IIndigeanousInterviewRepository,
+    private indigenousInterviewRepository: IIndigenousInterviewRepository,
 
     @inject('ProjectsRepository')
     private projectsRepository: IProjectsRepository,
@@ -22,8 +22,8 @@ export class CreateIndigeanousInterviewService {
   ) {}
 
   async execute(
-    data: ICreateIndigeanousInterviewDTO,
-  ): Promise<IndigeanousInterview> {
+    data: ICreateIndigenousInterviewDTO,
+  ): Promise<IndigenousInterview> {
     const project = await this.projectsRepository.findByNumber(
       data.numero_projeto,
     );
@@ -44,11 +44,12 @@ export class CreateIndigeanousInterviewService {
       throw new AppError('Interviewer does not have access to project', 403);
     }
 
-    const indigenousInterview =
-      await this.indigeanousInterviewRepository.create({
+    const indigenousInterview = await this.indigenousInterviewRepository.create(
+      {
         ...data,
         projeto_id: project.id,
-      });
+      },
+    );
 
     return indigenousInterview;
   }
