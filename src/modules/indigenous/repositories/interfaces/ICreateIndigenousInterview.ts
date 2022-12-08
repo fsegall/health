@@ -1,4 +1,4 @@
-import { IndigenousComunityType } from '@modules/indiagenous/enums/IndigenousComunityType';
+import { IndigenousComunityType } from '@modules/indigenous/enums/IndigenousComunityType';
 
 export interface ICreateIndigenousInterview {
   municipio: string;

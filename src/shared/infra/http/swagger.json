@@ -1089,10 +1089,13 @@
                     "items": {
                       "type": "object",
                       "properties": {
+                        "id": {
+                          "type": "string"
+                        },
                         "nome": {
                           "type": "string"
                         },
-                        "relacao_com_chefe": {
+                        "relacao_com_lider": {
                           "type": "string"
                         },
                         "idade": {
@@ -1101,28 +1104,19 @@
                         "sexo": {
                           "type": "string"
                         },
+                        "indigena": {
+                          "type": "string"
+                        },
                         "povo_etnia": {
                           "type": "string"
                         },
-                        "raca": {
-                          "type": "string"
-                        },
-                        "lingua_indigena": {
+                        "serie_frequentada_escola": {
                           "type": "string"
                         },
                         "crenca_religiao": {
                           "type": "string"
                         },
-                        "frequenta_escola": {
-                          "type": "boolean"
-                        },
-                        "grau_escolaridade": {
-                          "type": "string"
-                        },
-                        "situacao_no_trabalho": {
-                          "type": "string"
-                        },
-                        "ocupacao_profissao": {
+                        "ocupacao_principal": {
                           "type": "string"
                         },
                         "funcao_na_comunidade": {
@@ -1130,18 +1124,24 @@
                         }
                       },
                       "required": [
+                        "id",
                         "nome",
-                        "relacao_com_chefe",
+                        "relacao_com_lider",
                         "idade",
                         "sexo",
+                        "indigena",
                         "povo_etnia",
-                        "lingua_indigena",
-                        "frequenta_escola",
-                        "grau_escolaridade"
+                        "serie_frequentada_escola",
+                        "crenca_religiao",
+                        "ocupacao_principal",
+                        "funcao_na_comunidade"
                       ]
                     }
                   },
-                  "trabalho_colheita_maca": {
+                  "morador_trabalhou_fazendas": {
+                    "type": "string"
+                  },
+                  "morador_trabalhou_catacao": {
                     "type": "string"
                   }
                 },
@@ -1149,7 +1149,8 @@
                   "entrevista_indigena_id",
                   "total_moradores",
                   "moradores",
-                  "trabalho_colheita_maca"
+                  "morador_trabalhou_fazendas",
+                  "morador_trabalhou_catacao"
                 ]
               }
             }
@@ -1210,6 +1211,9 @@
                   "ultima_moradia": {
                     "type": "string"
                   },
+                  "tipo_moradia": {
+                    "type": "string"
+                  },
                   "piso": {
                     "type": "string"
                   },
@@ -1223,7 +1227,52 @@
                     "type": "string"
                   },
                   "utensilios_casa": {
-                    "type": "string"
+                    "type": "object",
+                    "required": [
+                      "energia_eletrica",
+                      "televisao",
+                      "geladeira",
+                      "fogao_a_gas",
+                      "maquina_de_lavar_ou_tanquinho",
+                      "computador_ou_tablet_ou_laptop",
+                      "celular_com_internet",
+                      "celular_sem_internet",
+                      "trator_ou_rocadeira_para_lavoura",
+                      "radio"
+                    ],
+                    "minProperties": 0,
+                    "properties": {
+                      "energia_eletrica": {
+                        "type": "boolean"
+                      },
+                      "televisao": {
+                        "type": "boolean"
+                      },
+                      "geladeira": {
+                        "type": "boolean"
+                      },
+                      "fogao_a_gas": {
+                        "type": "boolean"
+                      },
+                      "maquina_de_lavar_ou_tanquinho": {
+                        "type": "boolean"
+                      },
+                      "computador_ou_tablet_ou_laptop": {
+                        "type": "boolean"
+                      },
+                      "celular_com_internet": {
+                        "type": "boolean"
+                      },
+                      "celular_sem_internet": {
+                        "type": "boolean"
+                      },
+                      "trator_ou_rocadeira_para_lavoura": {
+                        "type": "boolean"
+                      },
+                      "radio": {
+                        "type": "boolean"
+                      }
+                    }
                   },
                   "acesso_agua": {
                     "type": "string"
@@ -1256,6 +1305,7 @@
                 "required": [
                   "entrevista_indigena_id",
                   "ultima_moradia",
+                  "tipo_moradia",
                   "piso",
                   "material_paredes",
                   "material_telhado",

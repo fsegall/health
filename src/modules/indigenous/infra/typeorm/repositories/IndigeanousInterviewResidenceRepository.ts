@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigeanousInterviewResidenceRepository } from '@modules/indiagenous/repositories/IIndigeanousInterviewResidenceRepository';
-import { ICreateIndigeanousInterviewResidence } from '@modules/indiagenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
+import { IIndigeanousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigeanousInterviewResidenceRepository';
+import { ICreateIndigeanousInterviewResidence } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
 
 import { IndigeanousResidence } from '../entities/IndigeanousResidence';
 

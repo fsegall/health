@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import addressesRouter from '@modules/households/infra/http/routes/addresses.routes';
 import householdsRouter from '@modules/households/infra/http/routes/households.routes';
-import { indigeanousInterviewRouter } from '@modules/indiagenous/infra/http/routes/indigeanousInterview.routes';
+import { indigeanousInterviewRouter } from '@modules/indigenous/infra/http/routes/indigeanousInterview.routes';
 import interviewsRouter from '@modules/interviews/infra/http/routes/interviews.routes';
 import familyMembersRouter from '@modules/persons/infra/http/routes/familyMembers.routes';
 import personsRouter from '@modules/persons/infra/http/routes/persons.routes';

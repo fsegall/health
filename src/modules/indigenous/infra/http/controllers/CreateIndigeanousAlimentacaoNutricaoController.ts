@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ICreateIndigeanousAlimentacaoNutricaoDTO } from '@modules/indiagenous/dtos/ICreateIndigeanousAlimentacaoNutricaoDTO';
-import { CreateIndigeanousAlimentacaoNutricaoService } from '@modules/indiagenous/services/CreateIndigeanousAlimentacaoNutricaoService';
+import { ICreateIndigeanousAlimentacaoNutricaoDTO } from '@modules/indigenous/dtos/ICreateIndigeanousAlimentacaoNutricaoDTO';
+import { CreateIndigeanousAlimentacaoNutricaoService } from '@modules/indigenous/services/CreateIndigeanousAlimentacaoNutricaoService';
 
 export class CreateIndigeanousAlimentacaoNutricaoController {
   async handle(request: Request, response: Response): Promise<Response> {

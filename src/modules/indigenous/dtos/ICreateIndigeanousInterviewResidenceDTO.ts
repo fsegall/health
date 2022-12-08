@@ -1,7 +1,11 @@
+import { IUtensiliosCasa } from '../repositories/interfaces/ICreateIndigeanousInterviewResidence';
+
 export interface ICreateIndigeanousInterviewResidenceDTO {
   entrevista_indigena_id: string;
 
   ultima_moradia: string;
+
+  tipo_moradia: string;
 
   piso: string;
 
@@ -11,7 +15,7 @@ export interface ICreateIndigeanousInterviewResidenceDTO {
 
   quantidade_comodos: number;
 
-  utensilios_casa: string[];
+  utensilios_casa: IUtensiliosCasa;
 
   acesso_agua: string;
 
