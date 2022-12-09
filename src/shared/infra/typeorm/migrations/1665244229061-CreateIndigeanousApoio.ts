@@ -5,7 +5,7 @@ export class CreateIndigeanousApoioFinanceiro1665244229061
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'apoio_indigena',
+        name: 'apoio_protecao_indigena',
         columns: [
           {
             name: 'id',
@@ -17,20 +17,11 @@ export class CreateIndigeanousApoioFinanceiro1665244229061
             type: 'uuid',
           },
           {
-            name: 'morador_matriculado_na_educacao_basica_publica',
+            name: 'criancas_comem_escola',
             type: 'varchar',
           },
           {
-            name: 'quantidade_morador_matriculado_na_educacao_basica_publica',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'criancas_comem_na_escola',
-            type: 'varchar',
-          },
-          {
-            name: 'escola_inclui_alimentos_da_cultura',
+            name: 'alimentacao_escolar_inclui_cultura',
             type: 'varchar',
           },
           {
@@ -38,122 +29,33 @@ export class CreateIndigeanousApoioFinanceiro1665244229061
             type: 'varchar',
           },
           {
-            name: 'bolsa_familia_auxilio_brasil',
+            name: 'morador_recebe_programa_social',
+            type: 'json',
+          },
+          {
+            name: 'recebeu_cesta_alimentos',
+            type: 'varchar',
+          },
+          {
+            name: 'recebeu_cesta_alimentos_que_alimentos_deveriam_ter',
+            type: 'varchar',
+          },
+          {
+            name: 'motivo_nao_recebe_cesta_alimentos',
+            type: 'varchar',
+          },
+          {
+            name: 'recebeu_ajuda_3m',
+            type: 'varchar',
+          },
+          {
+            name: 'o_que_recebeu_ajuda_3m',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'bpc',
+            name: 'constrangimento_pedir_ajuda_alimentos_3m',
             type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'beneficio_deficientes_ou_idosos',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'auxilio_maternidade',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'auxilio_doenca',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'auxilio_reclusao',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'aposentadoria',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'pensao_morte_conjuge',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'pronaf',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'auxilio_estadual_ou_municipal',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'cesta_de_alimentos',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'quantidade_cesta_de_alimentos_3m',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'origem_cesta_de_alimentos_3m',
-            type: 'text',
-            isNullable: true,
-          },
-          {
-            name: 'alimentos_deveriam_estar_na_cesta_e_nao_estao',
-            type: 'text',
-            isNullable: true,
-          },
-          {
-            name: 'alimentos_que_nao_deveriam_estar_na_cesta',
-            type: 'text',
-            isNullable: true,
-          },
-          {
-            name: 'descricao_adicionar_outro',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'descricao_remover_outro',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'motivo_nao_recebe_cesta_de_alimentos',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'quem_pega_dinheiro_bolsa_familia',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'auxilio_emergencial_na_pandemia',
-            type: 'varchar',
-          },
-          {
-            name: 'quantidade_vezes_auxilio_emergencial_na_pandemia',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'ajuda_estado_prefeitura_outros_3m',
-            type: 'varchar',
-          },
-          {
-            name: 'itens_recebidos_ajuda_estado_prefeitura_outros_3m',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'vergonha_constrangimento_para_conseguir_alimentos_3m',
-            type: 'varchar',
-            isNullable: true,
           },
         ],
         foreignKeys: [

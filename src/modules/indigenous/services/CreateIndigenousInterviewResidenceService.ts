@@ -4,14 +4,14 @@ import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigenousInterviewResidenceDTO } from '../dtos/ICreateIndigenousInterviewResidenceDTO';
 import { IndigenousResidence } from '../infra/typeorm/entities/IndigenousResidence';
-import { IIndigeanousInterviewResidenceRepository } from '../repositories/IIndigeanousInterviewResidenceRepository';
+import { IIndigenousInterviewResidenceRepository } from '../repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 
 @injectable()
 export class CreateIndigenousInterviewResidenceService {
   constructor(
     @inject('IndigeanousInterviewResidenceRepository')
-    private indigeanousInterviewResidenceRepository: IIndigeanousInterviewResidenceRepository,
+    private indigeanousInterviewResidenceRepository: IIndigenousInterviewResidenceRepository,
 
     @inject('IndigeanousInterviewRepository')
     private indigeanousInterviewRepository: IIndigenousInterviewRepository,

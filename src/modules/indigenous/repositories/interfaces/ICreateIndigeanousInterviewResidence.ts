@@ -11,7 +11,7 @@ export interface IUtensiliosCasa {
   radio: boolean;
 }
 
-export interface ICreateIndigeanousInterviewResidence {
+export interface ICreateIndigenousInterviewResidence {
   entrevista_indigena_id: string;
 
   ultima_moradia: string;

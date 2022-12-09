@@ -2,8 +2,8 @@ import { Router } from 'express';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
-import { CreateIndigeanousApoioFinanceiroController } from '../controllers/CreateIndigeanousApoioFinanceiroController';
 import { CreateIndigenousAlimentacaoNutricaoController } from '../controllers/CreateIndigenousAlimentacaoNutricaoController';
+import { CreateIndigenousApoioEProtecaoController } from '../controllers/CreateIndigenousApoioEProtecaoController';
 import { CreateIndigeanousInterviewController } from '../controllers/CreateIndigenousInterviewController';
 import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigenousInterviewDemographyController';
 import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigenousInterviewResidenceController';
@@ -11,41 +11,41 @@ import { CreateIndigenousSaudeDoencaController } from '../controllers/CreateIndi
 
 const indigeanousInterviewRouter = Router();
 
-const createIndigeanousInterviewController = new CreateIndigeanousInterviewController();
-const createIndigeanousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
-const createIndigeanousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
-const createIndigeanousSaudeDoencaController = new CreateIndigenousSaudeDoencaController();
-const createIndigeanousApoioFinanceiroController = new CreateIndigeanousApoioFinanceiroController();
-const createIndigeanousAlimentacaoNutricaoController = new CreateIndigenousAlimentacaoNutricaoController();
+const createIndigenousInterviewController = new CreateIndigeanousInterviewController();
+const createIndigenousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
+const createIndigenousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
+const createIndigenousSaudeDoencaController = new CreateIndigenousSaudeDoencaController();
+const createIndigenousApoioFinanceiroController = new CreateIndigenousApoioEProtecaoController();
+const createIndigenousAlimentacaoNutricaoController = new CreateIndigenousAlimentacaoNutricaoController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(
   '/',
-  createIndigeanousInterviewController.handle,
+  createIndigenousInterviewController.handle,
 );
 indigeanousInterviewRouter.post(
   '/demography',
-  createIndigeanousInterviewDemographyController.handle,
+  createIndigenousInterviewDemographyController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/residence',
-  createIndigeanousInterviewResidenceController.handle,
+  createIndigenousInterviewResidenceController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/health-desease',
-  createIndigeanousSaudeDoencaController.handle,
+  createIndigenousSaudeDoencaController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/support',
-  createIndigeanousApoioFinanceiroController.handle,
+  createIndigenousApoioFinanceiroController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/nutrition',
-  createIndigeanousAlimentacaoNutricaoController.handle,
+  createIndigenousAlimentacaoNutricaoController.handle,
 );
 
 export { indigeanousInterviewRouter };
