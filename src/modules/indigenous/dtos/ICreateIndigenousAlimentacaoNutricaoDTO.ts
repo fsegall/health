@@ -1,4 +1,4 @@
-export class ICreateIndigenousAlimentacaoNutricao {
+export interface ICreateIndigenousAlimentacaoNutricaoDTO {
   entrevista_indigena_id: string;
 
   morar_retomada_mudou_alimentacao: string;

@@ -1,8 +1,8 @@
-import { IndigeanousAlimentacaoNutricao } from '../infra/typeorm/entities/IndigeanousAlimentacaoNutricao';
-import { ICreateIndigeanousAlimentacaoNutricao } from './interfaces/ICreateIndigeanousAlimentacaoNutricao';
+import { IndigenousAlimentacaoNutricao } from '../infra/typeorm/entities/IndigenousAlimentacaoNutricao';
+import { ICreateIndigenousAlimentacaoNutricao } from './interfaces/ICreateIndigeanousAlimentacaoNutricao';
 
-export interface IIndigeanousAlimentacaoNutricaoRepository {
+export interface IIndigenousAlimentacaoNutricaoRepository {
   create(
-    data: ICreateIndigeanousAlimentacaoNutricao,
-  ): Promise<IndigeanousAlimentacaoNutricao>;
+    data: ICreateIndigenousAlimentacaoNutricao,
+  ): Promise<IndigenousAlimentacaoNutricao>;
 }

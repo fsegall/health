@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateIndigeanousAlimentacaoNutricao1665247041586
+export class CreateIndigenousAlimentacaoNutricao1665247041586
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -19,21 +19,14 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'morar_retomada_mudou_alimentacao',
             type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'luta_por_terra',
-            type: 'varchar',
           },
           {
             name: 'sem_alimentacao_por_conflito_com_terras',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'motivo_sem_alimentacao_por_conflito_com_terras',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'origem_comida',
@@ -46,22 +39,15 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'alimentacao_saudavel_diariamente_30d',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'comida_disponivel_todos_os_dias_30d',
             type: 'varchar',
-          },
-          {
-            name: 'dia_sem_alimentos_30d',
-            type: 'varchar',
-          },
-          {
-            name: 'preocupacao_em_conseguir_comida_30d',
-            type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'alimentacao_do_gosto_30d',
+            name: 'dia_sem_alimentos_30d',
             type: 'varchar',
             isNullable: true,
           },
@@ -78,16 +64,34 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'jovens_passaram_algum_dia_sem_alimentos_30d',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'consumiram_sempre_alimentos_da_cultura',
+            name: 'preocupacao_em_conseguir_comida_30d',
+            type: 'varchar',
+          },
+          {
+            name: 'alimentacao_do_gosto_30d',
+            type: 'varchar',
+          },
+          {
+            name: 'consumiram_alimentos_saudaveis_30d',
+            type: 'varchar',
+          },
+          {
+            name: 'teve_comida_todos_os_dias_30d',
+            type: 'varchar',
+          },
+          {
+            name: 'ficou_sem_comer_nada_30d',
+            type: 'varchar',
+          },
+          {
+            name: 'sem_consumo_alimentos_cultura_30d',
             type: 'varchar',
           },
           {
             name: 'acao_quando_falta_comida',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'morador_faz_horta',
@@ -101,32 +105,30 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'alimentos_da_horta',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'frutiferas_nas_proximidades',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'producao_de_comida_ano_todo',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'origem_semente_plantio',
             type: 'text',
-            isNullable: true,
+          },
+          {
+            name: 'armazenamento_semente_plantio',
+            type: 'text',
           },
           {
             name: 'adiciona_veneno_na_plantacao',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'dificuldade_com_horta',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'lista_dificuldades_com_horta',
@@ -136,7 +138,6 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'finalidade_horta',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'animais_de_criacao_alimentacao_ou_venda',
@@ -150,7 +151,6 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'domicilio_possui_agua_para_animais',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'domicilio_possui_agua_para_producao_alimentos',
@@ -163,37 +163,23 @@ export class CreateIndigeanousAlimentacaoNutricao1665247041586
           {
             name: 'lugar_precisou_comprar_alimentos_3m',
             type: 'text',
+            isNullable: true,
           },
           {
             name: 'possui_cultivo_plantas_medicinais',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'faz_remedios_com_plantas',
             type: 'varchar',
           },
           {
-            name: 'moradia_possui_fogao',
+            name: 'moradia_possui_fogao_ou_lenha',
             type: 'text',
-          },
-          {
-            name: 'material_utilizado_para_fazer_fogo',
-            type: 'varchar',
           },
           {
             name: 'alimentos_consumidos_dia_anterior',
             type: 'text',
-          },
-          {
-            name: 'primeiros_a_se_alimentar',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'ultimos_a_se_alimentar',
-            type: 'varchar',
-            isNullable: true,
           },
         ],
         foreignKeys: [

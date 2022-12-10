@@ -1678,12 +1678,22 @@
                   "Example 1": {
                     "entrevista_indigena_id": "string",
                     "morar_retomada_mudou_alimentacao": "string",
-                    "luta_por_terra": "string",
                     "sem_alimentacao_por_conflito_com_terras": "string",
                     "motivo_sem_alimentacao_por_conflito_com_terras": "string",
                     "origem_comida": "string",
                     "possui_moradores_menores_de_16": "string",
-                    "consumiram_sempre_alimentos_da_cultura": "string",
+                    "alimentacao_saudavel_diariamente_30d": "string",
+                    "comida_disponivel_todos_os_dias_30d": "string",
+                    "dia_sem_alimentos_30d": "string",
+                    "comeu_menos_para_alimentar_os_jovens_30d": "string",
+                    "jovens_comeram_menos_do_necessario_30d": "string",
+                    "jovens_passaram_algum_dia_sem_alimentos_30d": "string",
+                    "preocupacao_em_conseguir_comida_30d": "string",
+                    "alimentacao_do_gosto_30d": "string",
+                    "consumiram_alimentos_saudaveis_30d": "string",
+                    "teve_comida_todos_os_dias_30d": "string",
+                    "ficou_sem_comer_nada_30d": "string",
+                    "sem_consumo_alimentos_cultura_30d": "string",
                     "acao_quando_falta_comida": "string",
                     "morador_faz_horta": "string",
                     "motivo_morador_nao_faz_horta": "string",
@@ -1691,6 +1701,7 @@
                     "frutiferas_nas_proximidades": "string",
                     "producao_de_comida_ano_todo": "string",
                     "origem_semente_plantio": "string",
+                    "armazenamento_semente_plantio": "string",
                     "adiciona_veneno_na_plantacao": "string",
                     "dificuldade_com_horta": "string",
                     "lista_dificuldades_com_horta": "string",
@@ -1703,19 +1714,8 @@
                     "lugar_precisou_comprar_alimentos_3m": "string",
                     "possui_cultivo_plantas_medicinais": "string",
                     "faz_remedios_com_plantas": "string",
-                    "moradia_possui_fogao": "string",
-                    "material_utilizado_para_fazer_fogo": "string",
-                    "alimentos_consumidos_dia_anterior": "string",
-                    "primeiros_a_se_alimentar": "string",
-                    "ultimos_a_se_alimentar": "string",
-                    "alimentacao_saudavel_diariamente_30d": "string",
-                    "comida_disponivel_todos_os_dias_30d": "string",
-                    "dia_sem_alimentos_30d": "string",
-                    "preocupacao_em_conseguir_comida_30d": "string",
-                    "alimentacao_do_gosto_30d": "string",
-                    "comeu_menos_para_alimentar_os_jovens_30d": "string",
-                    "jovens_comeram_menos_do_necessario_30d": "string",
-                    "jovens_passaram_algum_dia_sem_alimentos_30d": "string"
+                    "moradia_possui_fogao_ou_lenha": "string",
+                    "alimentos_consumidos_dia_anterior": "string"
                   }
                 },
                 "properties": {
@@ -1723,9 +1723,6 @@
                     "type": "string"
                   },
                   "morar_retomada_mudou_alimentacao": {
-                    "type": "string"
-                  },
-                  "luta_por_terra": {
                     "type": "string"
                   },
                   "sem_alimentacao_por_conflito_com_terras": {
@@ -1740,44 +1737,65 @@
                   "possui_moradores_menores_de_16": {
                     "type": "string"
                   },
-                  "consumiram_sempre_alimentos_da_cultura": {
+                  "alimentacao_saudavel_diariamente_30d": {
+                    "type": "string"
+                  },
+                  "comida_disponivel_todos_os_dias_30d": {
+                    "type": "string"
+                  },
+                  "dia_sem_alimentos_30d": {
+                    "type": "string"
+                  },
+                  "comeu_menos_para_alimentar_os_jovens_30d": {
+                    "type": "string"
+                  },
+                  "jovens_comeram_menos_do_necessario_30d": {
+                    "type": "string"
+                  },
+                  "jovens_passaram_algum_dia_sem_alimentos_30d": {
+                    "type": "string"
+                  },
+                  "preocupacao_em_conseguir_comida_30d": {
+                    "type": "string"
+                  },
+                  "alimentacao_do_gosto_30d": {
+                    "type": "string"
+                  },
+                  "consumiram_alimentos_saudaveis_30d": {
+                    "type": "string"
+                  },
+                  "teve_comida_todos_os_dias_30d": {
+                    "type": "string"
+                  },
+                  "ficou_sem_comer_nada_30d": {
+                    "type": "string"
+                  },
+                  "sem_consumo_alimentos_cultura_30d": {
                     "type": "string"
                   },
                   "acao_quando_falta_comida": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "morador_faz_horta": {
                     "type": "string"
                   },
                   "motivo_morador_nao_faz_horta": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "alimentos_da_horta": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "frutiferas_nas_proximidades": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "producao_de_comida_ano_todo": {
                     "type": "string"
                   },
                   "origem_semente_plantio": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
+                  },
+                  "armazenamento_semente_plantio": {
+                    "type": "string"
                   },
                   "adiciona_veneno_na_plantacao": {
                     "type": "string"
@@ -1786,10 +1804,7 @@
                     "type": "string"
                   },
                   "lista_dificuldades_com_horta": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "finalidade_horta": {
                     "type": "string"
@@ -1798,10 +1813,7 @@
                     "type": "string"
                   },
                   "lista_animais_de_criacao_alimentacao_ou_venda": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "domicilio_possui_agua_para_animais": {
                     "type": "string"
@@ -1813,10 +1825,7 @@
                     "type": "string"
                   },
                   "lugar_precisou_comprar_alimentos_3m": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "type": "string"
                   },
                   "possui_cultivo_plantas_medicinais": {
                     "type": "string"
@@ -1824,70 +1833,44 @@
                   "faz_remedios_com_plantas": {
                     "type": "string"
                   },
-                  "moradia_possui_fogao": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "material_utilizado_para_fazer_fogo": {
+                  "moradia_possui_fogao_ou_lenha": {
                     "type": "string"
                   },
                   "alimentos_consumidos_dia_anterior": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "primeiros_a_se_alimentar": {
-                    "type": "string"
-                  },
-                  "ultimos_a_se_alimentar": {
-                    "type": "string"
-                  },
-                  "alimentacao_saudavel_diariamente_30d": {
-                    "type": "string"
-                  },
-                  "comida_disponivel_todos_os_dias_30d": {
-                    "type": "string"
-                  },
-                  "dia_sem_alimentos_30d": {
-                    "type": "string"
-                  },
-                  "preocupacao_em_conseguir_comida_30d": {
-                    "type": "string"
-                  },
-                  "alimentacao_do_gosto_30d": {
-                    "type": "string"
-                  },
-                  "comeu_menos_para_alimentar_os_jovens_30d": {
-                    "type": "string"
-                  },
-                  "jovens_comeram_menos_do_necessario_30d": {
-                    "type": "string"
-                  },
-                  "jovens_passaram_algum_dia_sem_alimentos_30d": {
                     "type": "string"
                   }
                 },
                 "required": [
                   "entrevista_indigena_id",
-                  "luta_por_terra",
+                  "morar_retomada_mudou_alimentacao",
+                  "sem_alimentacao_por_conflito_com_terras",
+                  "motivo_sem_alimentacao_por_conflito_com_terras",
                   "origem_comida",
                   "possui_moradores_menores_de_16",
-                  "consumiram_sempre_alimentos_da_cultura",
+                  "preocupacao_em_conseguir_comida_30d",
+                  "alimentacao_do_gosto_30d",
+                  "consumiram_alimentos_saudaveis_30d",
+                  "teve_comida_todos_os_dias_30d",
+                  "ficou_sem_comer_nada_30d",
+                  "sem_consumo_alimentos_cultura_30d",
+                  "acao_quando_falta_comida",
                   "morador_faz_horta",
+                  "alimentos_da_horta",
+                  "frutiferas_nas_proximidades",
+                  "producao_de_comida_ano_todo",
+                  "origem_semente_plantio",
+                  "armazenamento_semente_plantio",
+                  "adiciona_veneno_na_plantacao",
+                  "dificuldade_com_horta",
+                  "finalidade_horta",
                   "animais_de_criacao_alimentacao_ou_venda",
+                  "domicilio_possui_agua_para_animais",
                   "domicilio_possui_agua_para_producao_alimentos",
                   "precisou_comprar_alimentos_3m",
-                  "lugar_precisou_comprar_alimentos_3m",
+                  "possui_cultivo_plantas_medicinais",
                   "faz_remedios_com_plantas",
-                  "moradia_possui_fogao",
-                  "material_utilizado_para_fazer_fogo",
-                  "alimentos_consumidos_dia_anterior",
-                  "alimentacao_saudavel_diariamente_30d",
-                  "comida_disponivel_todos_os_dias_30d",
-                  "dia_sem_alimentos_30d"
+                  "moradia_possui_fogao_ou_lenha",
+                  "alimentos_consumidos_dia_anterior"
                 ]
               }
             }
