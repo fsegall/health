@@ -1,12 +1,12 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigeanousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigeanousInterviewResidenceRepository';
-import { ICreateIndigeanousInterviewResidence } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
+import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
+import { ICreateIndigenousInterviewResidence } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
 
 import { IndigenousResidence } from '../entities/IndigenousResidence';
 
 export class IndigeanousInterviewResidenceRepository
-  implements IIndigeanousInterviewResidenceRepository {
+  implements IIndigenousInterviewResidenceRepository {
   private repository: Repository<IndigenousResidence>;
 
   constructor() {
@@ -14,7 +14,7 @@ export class IndigeanousInterviewResidenceRepository
   }
 
   async create(
-    data: ICreateIndigeanousInterviewResidence,
+    data: ICreateIndigenousInterviewResidence,
   ): Promise<IndigenousResidence> {
     const indigeanousInterviewResidence = this.repository.create(data);
 

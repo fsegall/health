@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigenousAlimentacaoNutricaoDTO } from '../dtos/ICreateIndigenousAlimentacaoNutricaoDTO';
 import { IndigenousAlimentacaoNutricao } from '../infra/typeorm/entities/IndigenousAlimentacaoNutricao';
-import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigeanousAlimentacaoNutricaoRepository';
+import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigenousAlimentacaoNutricaoRepository';
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 
 @injectable()

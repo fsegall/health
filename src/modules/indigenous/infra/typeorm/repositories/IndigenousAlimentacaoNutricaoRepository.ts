@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
+import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigenousAlimentacaoNutricaoRepository';
 import { ICreateIndigenousAlimentacaoNutricao } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousAlimentacaoNutricao';
 
 import { IndigenousAlimentacaoNutricao } from '../entities/IndigenousAlimentacaoNutricao';

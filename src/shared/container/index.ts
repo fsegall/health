@@ -10,10 +10,10 @@ import { IndigenousInterviewDemographyRepository } from '@modules/indigenous/inf
 import { IndigenousInterviewRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewRepository';
 import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewResidenceRepository';
 import { IndigenousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousSaudeDoencaRepository';
-import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
-import { IIndigeanousApoioRepository } from '@modules/indigenous/repositories/IIndigeanousApoioRepository';
-import { IIndigeanousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigeanousInterviewResidenceRepository';
-import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigeanousSaudeDoencaRepository';
+import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigenousAlimentacaoNutricaoRepository';
+import { IIndigenousApoioEProtecaoRepository } from '@modules/indigenous/repositories/IIndigenousApoioEProtecaoRepository';
+import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
+import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
 import { IIndigenousInterviewDemographyRepository } from '@modules/indigenous/repositories/IIndigenousInterviewDemographyRepository';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
@@ -74,7 +74,7 @@ container.registerSingleton<IIndigenousInterviewDemographyRepository>(
   IndigenousInterviewDemographyRepository,
 );
 
-container.registerSingleton<IIndigeanousInterviewResidenceRepository>(
+container.registerSingleton<IIndigenousInterviewResidenceRepository>(
   'IndigeanousInterviewResidenceRepository',
   IndigeanousInterviewResidenceRepository,
 );
@@ -84,7 +84,7 @@ container.registerSingleton<IIndigenousSaudeDoencaRepository>(
   IndigenousSaudeDoencaRepository,
 );
 
-container.registerSingleton<IIndigeanousApoioRepository>(
+container.registerSingleton<IIndigenousApoioEProtecaoRepository>(
   'IndigeanousApoioFinanceiroRepository',
   IndigeanousApoioRepository,
 );

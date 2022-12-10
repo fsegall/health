@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigeanousSaudeDoencaRepository';
+import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
 import { ICreateIndigenousSaudeDoenca } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousSaudeDoenca';
 
 import { IndigeanousSaudeDoenca } from '../entities/IndigenousSaudeDoenca';

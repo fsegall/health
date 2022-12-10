@@ -1,18 +1,18 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { IIndigeanousApoioRepository } from '@modules/indigenous/repositories/IIndigeanousApoioRepository';
-import { ICreateIndigeanousApoio } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousApoio';
+import { IIndigenousApoioEProtecaoRepository } from '@modules/indigenous/repositories/IIndigenousApoioEProtecaoRepository';
+import { ICreateIndigenousApoioEProtecao } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousApoioEProtecao';
 
-import { IndigeanousApoio } from '../entities/IndigeanousApoio';
+import { IndigenousApoioEProtecao } from '../entities/IndigenousApoioEProtecao';
 
-export class IndigeanousApoioRepository implements IIndigeanousApoioRepository {
-  private repository: Repository<IndigeanousApoio>;
+export class IndigeanousApoioRepository implements IIndigenousApoioEProtecaoRepository {
+  private repository: Repository<IndigenousApoioEProtecao>;
 
   constructor() {
-    this.repository = getRepository(IndigeanousApoio);
+    this.repository = getRepository(IndigenousApoioEProtecao);
   }
 
-  async create(data: ICreateIndigeanousApoio): Promise<IndigeanousApoio> {
+  async create(data: ICreateIndigenousApoioEProtecao): Promise<IndigenousApoioEProtecao> {
     const indigeanousApoioFinanceiro = this.repository.create(data);
 
     await this.repository.save(indigeanousApoioFinanceiro);
