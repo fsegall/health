@@ -4,7 +4,7 @@ import { uuid } from 'uuidv4';
 import { IUtensiliosCasa } from '@modules/indigenous/repositories/interfaces/ICreateIndigeanousInterviewResidence';
 
 @Entity('domicilio_indigena')
-export class IndigeanousResidence {
+export class IndigenousResidence {
   @PrimaryColumn()
   id: string;
 

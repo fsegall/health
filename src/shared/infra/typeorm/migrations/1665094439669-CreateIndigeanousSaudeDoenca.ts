@@ -1,8 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateIndigeanousSaudeDoenca1665094439669
-  implements MigrationInterface
-{
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -24,17 +23,22 @@ export class CreateIndigeanousSaudeDoenca1665094439669
           {
             name: 'motivo_nao_tomar_vacina_covid',
             type: 'varchar',
-            isNullable: true,
+          },
+          {
+            name: 'familiar_morte_covid',
+            type: 'varchar',
+          },
+          {
+            name: 'familiar_morte_covid_contribuia_renda_familiar',
+            type: 'varchar',
           },
           {
             name: 'condicao_de_saude',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'tekoha_mudou_condicao_de_saude',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'morador_exposto_veneno_lavoura',
@@ -43,12 +47,10 @@ export class CreateIndigeanousSaudeDoenca1665094439669
           {
             name: 'doencas_contato_veneno_lavoura',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'motivo_doencas_contato_veneno_lavoura',
             type: 'varchar',
-            isNullable: true,
           },
           {
             name: 'acidentes',
@@ -69,12 +71,10 @@ export class CreateIndigeanousSaudeDoenca1665094439669
           {
             name: 'local_ocorrencia_violencia_fisica',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'lista_tratamentos',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'tratamento_com_paje_ou_similar',
@@ -91,7 +91,6 @@ export class CreateIndigeanousSaudeDoenca1665094439669
           {
             name: 'doenca_medicacao_uso_continuo',
             type: 'text',
-            isNullable: true,
           },
           {
             name: 'primeiro_recurso_ao_notar_doenca',
@@ -106,33 +105,12 @@ export class CreateIndigeanousSaudeDoenca1665094439669
             type: 'varchar',
           },
           {
+            name: 'fuma_cigarro',
+            type: 'varchar',
+          },
+          {
             name: 'morador_problemas_uso_drogas',
             type: 'varchar',
-          },
-          {
-            name: 'familiar_morte_covid',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'familiar_morte_covid_contribuia_renda_familiar',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'familiares_morte_outras_causas',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'motivo_familiares_morte_outras_causas',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'familiares_morte_outras_causas_contribuia_renda_familiar',
-            type: 'varchar',
-            isNullable: true,
           },
         ],
         foreignKeys: [

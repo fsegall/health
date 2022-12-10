@@ -1,6 +1,6 @@
 import { IUtensiliosCasa } from '../repositories/interfaces/ICreateIndigeanousInterviewResidence';
 
-export interface ICreateIndigeanousInterviewResidenceDTO {
+export interface ICreateIndigenousInterviewResidenceDTO {
   entrevista_indigena_id: string;
 
   ultima_moradia: string;

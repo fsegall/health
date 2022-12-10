@@ -6,14 +6,14 @@ import HouseholdsRepository from '@modules/households/infra/typeorm/repositories
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import { IndigeanousAlimentacaoNutricaoRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousAlimentacaoNutricaoRepository';
 import { IndigeanousApoioRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousApoioRepository';
-import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousInterviewResidenceRepository';
-import { IndigeanousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousSaudeDoencaRepository';
-import { IndigeanousInterviewDemographyRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewDemographyRepository';
+import { IndigenousInterviewDemographyRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewDemographyRepository';
 import { IndigenousInterviewRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewRepository';
+import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewResidenceRepository';
+import { IndigenousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousSaudeDoencaRepository';
 import { IIndigeanousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigeanousAlimentacaoNutricaoRepository';
 import { IIndigeanousApoioRepository } from '@modules/indigenous/repositories/IIndigeanousApoioRepository';
 import { IIndigeanousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigeanousInterviewResidenceRepository';
-import { IIndigeanousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigeanousSaudeDoencaRepository';
+import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigeanousSaudeDoencaRepository';
 import { IIndigenousInterviewDemographyRepository } from '@modules/indigenous/repositories/IIndigenousInterviewDemographyRepository';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
@@ -71,7 +71,7 @@ container.registerSingleton<IIndigenousInterviewRepository>(
 
 container.registerSingleton<IIndigenousInterviewDemographyRepository>(
   'IndigeanousInterviewDemographyRepository',
-  IndigeanousInterviewDemographyRepository,
+  IndigenousInterviewDemographyRepository,
 );
 
 container.registerSingleton<IIndigeanousInterviewResidenceRepository>(
@@ -79,9 +79,9 @@ container.registerSingleton<IIndigeanousInterviewResidenceRepository>(
   IndigeanousInterviewResidenceRepository,
 );
 
-container.registerSingleton<IIndigeanousSaudeDoencaRepository>(
+container.registerSingleton<IIndigenousSaudeDoencaRepository>(
   'IndigeanousSaudeDoencaRepository',
-  IndigeanousSaudeDoencaRepository,
+  IndigenousSaudeDoencaRepository,
 );
 
 container.registerSingleton<IIndigeanousApoioRepository>(
