@@ -74,18 +74,6 @@ export class CreateIndigenousAlimentacaoNutricao1665247041586
             type: 'varchar',
           },
           {
-            name: 'consumiram_alimentos_saudaveis_30d',
-            type: 'varchar',
-          },
-          {
-            name: 'teve_comida_todos_os_dias_30d',
-            type: 'varchar',
-          },
-          {
-            name: 'ficou_sem_comer_nada_30d',
-            type: 'varchar',
-          },
-          {
             name: 'sem_consumo_alimentos_cultura_30d',
             type: 'varchar',
           },

@@ -49,15 +49,6 @@ export class IndigenousAlimentacaoNutricao {
   alimentacao_do_gosto_30d: string;
 
   @Column()
-  consumiram_alimentos_saudaveis_30d: string;
-
-  @Column()
-  teve_comida_todos_os_dias_30d: string;
-
-  @Column()
-  ficou_sem_comer_nada_30d: string;
-
-  @Column()
   sem_consumo_alimentos_cultura_30d: string;
 
   @Column()

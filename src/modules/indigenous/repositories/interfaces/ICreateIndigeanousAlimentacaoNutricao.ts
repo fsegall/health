@@ -27,12 +27,6 @@ export class ICreateIndigenousAlimentacaoNutricao {
 
   alimentacao_do_gosto_30d: string;
 
-  consumiram_alimentos_saudaveis_30d: string;
-
-  teve_comida_todos_os_dias_30d: string;
-
-  ficou_sem_comer_nada_30d: string;
-
   sem_consumo_alimentos_cultura_30d: string;
 
   acao_quando_falta_comida: string;
