@@ -52,5 +52,4 @@ export class UpdateInterviewRelations1656715314063 implements MigrationInterface
 
     public async down(queryRunner: QueryRunner): Promise<void> {
     }
-
 }
