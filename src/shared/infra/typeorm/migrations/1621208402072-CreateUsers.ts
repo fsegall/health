@@ -64,3 +64,4 @@ export default class CreateUsers1621208402072 implements MigrationInterface {
   }
 
 }
+
