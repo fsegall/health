@@ -73,3 +73,4 @@ export interface ICreateIndigenousAlimentacaoNutricaoDTO {
 
   alimentos_consumidos_dia_anterior: string;
 }
+
