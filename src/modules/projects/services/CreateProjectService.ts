@@ -31,9 +31,9 @@ export default class CreateProjectService {
 
     const checkUsersRole = await this.usersRepository.findById(user_id);
 
-    if (checkUsersRole?.role === Roles.VISITOR || checkUsersRole?.role === Roles.INTERVIEWER) {
+/*     if (checkUsersRole?.role === Roles.VISITOR || checkUsersRole?.role === Roles.INTERVIEWER) {
       throw new AppError('O usuário não tem permissão para criar um projeto');
-    }
+    } */
 
     const parsedName = name.toUpperCase()
 
