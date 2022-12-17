@@ -8,6 +8,7 @@ import { CreateIndigeanousInterviewController } from '../controllers/CreateIndig
 import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigenousInterviewDemographyController';
 import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigenousInterviewResidenceController';
 import { CreateIndigenousSaudeDoencaController } from '../controllers/CreateIndigenousSaudeDoencaController';
+import { ListIndigenousInterviewController } from '../controllers/ListIndigenousInterviewController';
 
 const indigeanousInterviewRouter = Router();
 
@@ -17,12 +18,14 @@ const createIndigenousInterviewResidenceController = new CreateIndigeanousInterv
 const createIndigenousSaudeDoencaController = new CreateIndigenousSaudeDoencaController();
 const createIndigenousApoioFinanceiroController = new CreateIndigenousApoioEProtecaoController();
 const createIndigenousAlimentacaoNutricaoController = new CreateIndigenousAlimentacaoNutricaoController();
+const listIndigenousInterviewController = new ListIndigenousInterviewController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(
   '/',
   createIndigenousInterviewController.handle,
 );
+indigeanousInterviewRouter.get('/', listIndigenousInterviewController.handle);
 indigeanousInterviewRouter.post(
   '/demography',
   createIndigenousInterviewDemographyController.handle,

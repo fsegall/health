@@ -973,7 +973,7 @@
         }
       }
     },
-    "/indigeanous-interviews": {
+    "/indigenous-interviews": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interviews",
@@ -1050,9 +1050,10 @@
         "tags": [
           "indigeanous-interviews"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/indigeanous-interviews/demography": {
+    "/indigenous-interviews/demography": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interviews-demography",
@@ -1164,9 +1165,10 @@
         "tags": [
           "indigeanous-interviews"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/indigeanous-interviews/residence": {
+    "/indigenous-interviews/residence": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interview-residence",
@@ -1336,7 +1338,7 @@
       },
       "parameters": []
     },
-    "/indigeanous-interviews/health-desease": {
+    "/indigenous-interviews/health-desease": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interviews-health-desease",
@@ -1472,9 +1474,10 @@
         "tags": [
           "indigeanous-interviews"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/indigeanous-interview/support": {
+    "/indigenous-interview/support": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interview-support",
@@ -1626,9 +1629,10 @@
         "tags": [
           "indigeanous-interviews"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/indigeanous-interviews/nutrition": {
+    "/indigenous-interviews/nutrition": {
       "post": {
         "summary": "",
         "operationId": "post-indigeanous-interviews-nutrition",
@@ -1855,6 +1859,83 @@
         },
         "tags": [
           "indigeanous-interviews"
+        ]
+      },
+      "parameters": []
+    },
+    "/indigenous-interview": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "municipio": {
+                        "type": "string"
+                      },
+                      "aldeia_comunidade": {
+                        "type": "string"
+                      },
+                      "tipo_comunidade": {
+                        "type": "string"
+                      },
+                      "entrevistador_id": {
+                        "type": "string"
+                      },
+                      "projeto_id": {
+                        "type": "string"
+                      },
+                      "data_entrevista": {
+                        "type": "string"
+                      },
+                      "responsavel_domicilio": {
+                        "type": "boolean"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": [
+                      {
+                        "id": "82d50898-7912-4987-ab7f-85d626a4462e",
+                        "municipio": "Presidente Prudente",
+                        "aldeia_comunidade": "Tupi",
+                        "tipo_comunidade": "reserva",
+                        "entrevistador_id": "cd0e1d98-737f-4335-bf98-bd359ae2fb9e",
+                        "projeto_id": "6bfcb629-dbb1-47c7-88bf-4c7854415238",
+                        "data_entrevista": "2022-12-17T16:25:23.286Z",
+                        "responsavel_domicilio": true,
+                        "created_at": "2022-12-17T19:25:23.381Z",
+                        "updated_at": "2022-12-17T19:25:23.381Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-indigenous-interview",
+        "description": "List all indigenous interviews",
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ]
       }
     }

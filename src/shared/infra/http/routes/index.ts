@@ -25,6 +25,6 @@ routes.use('/interviews', interviewsRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/offline', offlineRouter);
-routes.use('/indigeanous-interviews', indigeanousInterviewRouter);
+routes.use('/indigenous-interviews', indigeanousInterviewRouter);
 
 export default routes;

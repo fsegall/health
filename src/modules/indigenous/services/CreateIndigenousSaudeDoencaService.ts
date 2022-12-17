@@ -4,8 +4,8 @@ import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigenousSaudeDoencaDTO } from '../dtos/ICreateIndigenousSaudeDoencaDTO';
 import { IndigeanousSaudeDoenca } from '../infra/typeorm/entities/IndigenousSaudeDoenca';
-import { IIndigenousSaudeDoencaRepository } from '../repositories/IIndigenousSaudeDoencaRepository';
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
+import { IIndigenousSaudeDoencaRepository } from '../repositories/IIndigenousSaudeDoencaRepository';
 
 @injectable()
 export class CreateIndigeanousSaudeDoencaService {
