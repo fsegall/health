@@ -5,9 +5,9 @@ export interface ICreateIndigenousSaudeDoencaDTO {
 
   motivo_nao_tomar_vacina_covid: string;
 
-  familiar_morte_covid: string;
+  familiar_morte: string;
 
-  familiar_morte_covid_contribuia_renda_familiar: string;
+  familiar_morte_contribuia_renda_familiar: string;
 
   condicao_de_saude: string;
 
