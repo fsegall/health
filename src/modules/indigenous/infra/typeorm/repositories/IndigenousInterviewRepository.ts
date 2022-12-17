@@ -24,4 +24,8 @@ export class IndigenousInterviewRepository
   async findById(id: string): Promise<IndigenousInterview | undefined> {
     return this.repository.findOne(id);
   }
+
+  async list(): Promise<IndigenousInterview[]> {
+    return this.repository.find();
+  }
 }
