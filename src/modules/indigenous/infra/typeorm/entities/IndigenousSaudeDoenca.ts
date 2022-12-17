@@ -16,10 +16,10 @@ export class IndigeanousSaudeDoenca {
   motivo_nao_tomar_vacina_covid: string;
 
   @Column()
-  familiar_morte_covid: string;
+  familiar_morte: string;
 
   @Column()
-  familiar_morte_covid_contribuia_renda_familiar: string;
+  familiar_morte_contribuia_renda_familiar: string;
 
   @Column()
   condicao_de_saude: string;
