@@ -13,7 +13,10 @@ interviewsRouter.get('/', interviewsController.list);
 
 interviewsRouter.get('/:id', interviewsController.listByInterviewer);
 
-interviewsRouter.get('/get-one/:interviewId', interviewsController.getInterviewById);
+interviewsRouter.get(
+  '/get-one/:interviewId',
+  interviewsController.getInterviewById,
+);
 
 /* interviewsRouter.get('/:id', interviewsController.show);
 
@@ -21,7 +24,10 @@ interviewsRouter.get('/', interviewsController.list); */
 
 interviewsRouter.post('/', interviewsController.create);
 
-interviewsRouter.post('/handle-offline-data', interviewsController.handleOfflineInterviews);
+interviewsRouter.post(
+  '/handle-offline-data',
+  interviewsController.handleOfflineInterviews,
+);
 
 /* interviewsRouter.put('/', interviewsController.update);
 
