@@ -1938,6 +1938,583 @@
           }
         ]
       }
+    },
+    "/indigenous-interviews/handle-offline-data": {
+      "post": {
+        "summary": "",
+        "operationId": "post-indigenous-interviews-handle-offline-data",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "description": "Handle offline interviews data",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "interview": {
+                      "type": "object",
+                      "required": [
+                        "municipio",
+                        "aldeia_comunidade",
+                        "tipo_comunidade",
+                        "entrevistador_id",
+                        "projeto_id",
+                        "data_entrevista",
+                        "responsavel_domicilio",
+                        "numero_projeto"
+                      ],
+                      "properties": {
+                        "municipio": {
+                          "type": "string"
+                        },
+                        "aldeia_comunidade": {
+                          "type": "string"
+                        },
+                        "tipo_comunidade": {
+                          "type": "string"
+                        },
+                        "entrevistador_id": {
+                          "type": "string"
+                        },
+                        "projeto_id": {
+                          "type": "string"
+                        },
+                        "data_entrevista": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "responsavel_domicilio": {
+                          "type": "boolean"
+                        },
+                        "numero_projeto": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "demography": {
+                      "type": "object",
+                      "required": [
+                        "entrevista_indigena_id",
+                        "total_moradores",
+                        "moradores"
+                      ],
+                      "properties": {
+                        "entrevista_indigena_id": {
+                          "type": "string"
+                        },
+                        "total_moradores": {
+                          "type": "number"
+                        },
+                        "moradores": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "nome": {
+                                "type": "string"
+                              },
+                              "relacao_com_lider": {
+                                "type": "string"
+                              },
+                              "idade": {
+                                "type": "string"
+                              },
+                              "sexo": {
+                                "type": "string"
+                              },
+                              "indigena": {
+                                "type": "string"
+                              },
+                              "povo_etnia": {
+                                "type": "string"
+                              },
+                              "serie_frequentada_escola": {
+                                "type": "string"
+                              },
+                              "crenca_religiao": {
+                                "type": "string"
+                              },
+                              "ocupacao_principal": {
+                                "type": "string"
+                              },
+                              "funcao_comunidade": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "nome",
+                              "relacao_com_lider",
+                              "idade",
+                              "sexo",
+                              "indigena",
+                              "povo_etnia",
+                              "serie_frequentada_escola",
+                              "crenca_religiao",
+                              "ocupacao_principal",
+                              "funcao_comunidade"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "residence": {
+                      "type": "object",
+                      "required": [
+                        "entrevista_indigena_id",
+                        "ultima_moradia",
+                        "tipo_moradia",
+                        "piso",
+                        "material_paredes",
+                        "material_telhado",
+                        "quantidade_comodos",
+                        "utensilios_casa",
+                        "acesso_agua",
+                        "origem_agua",
+                        "qualidade_agua_para_beber_e_cozinhar",
+                        "forma_acesso_agua",
+                        "possui_banheiro",
+                        "forma_coleta_esgoto",
+                        "destino_lixo_da_residencia",
+                        "veiculos",
+                        "renda_total_30_dias"
+                      ],
+                      "properties": {
+                        "entrevista_indigena_id": {
+                          "type": "string"
+                        },
+                        "ultima_moradia": {
+                          "type": "string"
+                        },
+                        "tipo_moradia": {
+                          "type": "string"
+                        },
+                        "piso": {
+                          "type": "string"
+                        },
+                        "material_paredes": {
+                          "type": "string"
+                        },
+                        "material_telhado": {
+                          "type": "string"
+                        },
+                        "quantidade_comodos": {
+                          "type": "string"
+                        },
+                        "utensilios_casa": {
+                          "type": "string"
+                        },
+                        "acesso_agua": {
+                          "type": "string"
+                        },
+                        "origem_agua": {
+                          "type": "string"
+                        },
+                        "qualidade_agua_para_beber_e_cozinhar": {
+                          "type": "string"
+                        },
+                        "forma_acesso_agua": {
+                          "type": "string"
+                        },
+                        "possui_banheiro": {
+                          "type": "string"
+                        },
+                        "forma_coleta_esgoto": {
+                          "type": "string"
+                        },
+                        "destino_lixo_da_residencia": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "veiculos": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "renda_total_30_dias": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "saude_doenca": {
+                      "type": "object",
+                      "required": [
+                        "entrevista_indigena_id",
+                        "tomou_vacina_covid",
+                        "motivo_nao_tomar_vacina_covid",
+                        "familiar_morte",
+                        "familiar_morte_contribuia_renda_familiar",
+                        "condicao_de_saude",
+                        "tekoha_mudou_condicao_de_saude",
+                        "morador_exposto_veneno_lavoura",
+                        "doencas_contato_veneno_lavoura",
+                        "motivo_doencas_contato_veneno_lavoura",
+                        "acidentes",
+                        "acidentes_ocorridos",
+                        "ocorrencia_de_ameacas",
+                        "ocorrencia_violencia_fisica",
+                        "local_ocorrencia_violencia_fisica",
+                        "lista_tratamentos",
+                        "tratamento_com_paje_ou_similar",
+                        "tratamento_igreja",
+                        "medicacao_uso_continuo",
+                        "doenca_medicacao_uso_continuo",
+                        "primeiro_recurso_ao_notar_doenca",
+                        "morador_internado",
+                        "morador_problemas_bebidas_alcoolicas",
+                        "fuma_cigarro",
+                        "morador_problemas_uso_drogas"
+                      ],
+                      "properties": {
+                        "entrevista_indigena_id": {
+                          "type": "string"
+                        },
+                        "tomou_vacina_covid": {
+                          "type": "string"
+                        },
+                        "motivo_nao_tomar_vacina_covid": {
+                          "type": "string"
+                        },
+                        "familiar_morte": {
+                          "type": "string"
+                        },
+                        "familiar_morte_contribuia_renda_familiar": {
+                          "type": "string"
+                        },
+                        "condicao_de_saude": {
+                          "type": "string"
+                        },
+                        "tekoha_mudou_condicao_de_saude": {
+                          "type": "string"
+                        },
+                        "morador_exposto_veneno_lavoura": {
+                          "type": "string"
+                        },
+                        "doencas_contato_veneno_lavoura": {
+                          "type": "string"
+                        },
+                        "motivo_doencas_contato_veneno_lavoura": {
+                          "type": "string"
+                        },
+                        "acidentes": {
+                          "type": "string"
+                        },
+                        "acidentes_ocorridos": {
+                          "type": "string"
+                        },
+                        "ocorrencia_de_ameacas": {
+                          "type": "string"
+                        },
+                        "ocorrencia_violencia_fisica": {
+                          "type": "string"
+                        },
+                        "local_ocorrencia_violencia_fisica": {
+                          "type": "string"
+                        },
+                        "lista_tratamentos": {
+                          "type": "string"
+                        },
+                        "tratamento_com_paje_ou_similar": {
+                          "type": "string"
+                        },
+                        "tratamento_igreja": {
+                          "type": "string"
+                        },
+                        "medicacao_uso_continuo": {
+                          "type": "string"
+                        },
+                        "doenca_medicacao_uso_continuo": {
+                          "type": "string"
+                        },
+                        "primeiro_recurso_ao_notar_doenca": {
+                          "type": "string"
+                        },
+                        "morador_internado": {
+                          "type": "string"
+                        },
+                        "morador_problemas_bebidas_alcoolicas": {
+                          "type": "string"
+                        },
+                        "fuma_cigarro": {
+                          "type": "string"
+                        },
+                        "morador_problemas_uso_drogas": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "alimentacao_nutricao": {
+                      "type": "object",
+                      "required": [
+                        "entrevista_indigena_id",
+                        "morar_retomada_mudou_alimentacao",
+                        "sem_alimentacao_por_conflito_com_terras",
+                        "motivo_sem_alimentacao_por_conflito_com_terras",
+                        "origem_comida",
+                        "possui_moradores_menores_de_16",
+                        "preocupacao_em_conseguir_comida_30d",
+                        "alimentacao_do_gosto_30d",
+                        "sem_consumo_alimentos_cultura_30d",
+                        "acao_quando_falta_comida",
+                        "morador_faz_horta",
+                        "alimentos_da_horta",
+                        "frutiferas_nas_proximidades",
+                        "producao_de_comida_ano_todo",
+                        "origem_semente_plantio",
+                        "armazenamento_semente_plantio",
+                        "dificuldade_com_horta",
+                        "finalidade_horta",
+                        "animais_de_criacao_alimentacao_ou_venda",
+                        "domicilio_possui_agua_para_animais",
+                        "domicilio_possui_agua_para_producao_alimentos",
+                        "precisou_comprar_alimentos_3m",
+                        "possui_cultivo_plantas_medicinais",
+                        "faz_remedios_com_plantas",
+                        "moradia_possui_fogao_ou_lenha",
+                        "alimentos_consumidos_dia_anterior"
+                      ],
+                      "properties": {
+                        "entrevista_indigena_id": {
+                          "type": "string"
+                        },
+                        "morar_retomada_mudou_alimentacao": {
+                          "type": "string"
+                        },
+                        "sem_alimentacao_por_conflito_com_terras": {
+                          "type": "string"
+                        },
+                        "motivo_sem_alimentacao_por_conflito_com_terras": {
+                          "type": "string"
+                        },
+                        "origem_comida": {
+                          "type": "string"
+                        },
+                        "possui_moradores_menores_de_16": {
+                          "type": "string"
+                        },
+                        "alimentacao_saudavel_diariamente_30d": {
+                          "type": "string"
+                        },
+                        "comida_disponivel_todos_os_dias_30d": {
+                          "type": "string"
+                        },
+                        "dia_sem_alimentos_30d": {
+                          "type": "string"
+                        },
+                        "comeu_menos_para_alimentar_os_jovens_30d": {
+                          "type": "string"
+                        },
+                        "jovens_comeram_menos_do_necessario_30d": {
+                          "type": "string"
+                        },
+                        "jovens_passaram_algum_dia_sem_alimentos_30d": {
+                          "type": "string"
+                        },
+                        "preocupacao_em_conseguir_comida_30d": {
+                          "type": "string"
+                        },
+                        "alimentacao_do_gosto_30d": {
+                          "type": "string"
+                        },
+                        "sem_consumo_alimentos_cultura_30d": {
+                          "type": "string"
+                        },
+                        "acao_quando_falta_comida": {
+                          "type": "string"
+                        },
+                        "morador_faz_horta": {
+                          "type": "string"
+                        },
+                        "motivo_morador_nao_faz_horta": {
+                          "type": "string"
+                        },
+                        "alimentos_da_horta": {
+                          "type": "string"
+                        },
+                        "frutiferas_nas_proximidades": {
+                          "type": "string"
+                        },
+                        "producao_de_comida_ano_todo": {
+                          "type": "string"
+                        },
+                        "origem_semente_plantio": {
+                          "type": "string"
+                        },
+                        "armazenamento_semente_plantio": {
+                          "type": "string"
+                        },
+                        "dificuldade_com_horta": {
+                          "type": "string"
+                        },
+                        "lista_dificuldades_com_horta": {
+                          "type": "string"
+                        },
+                        "finalidade_horta": {
+                          "type": "string"
+                        },
+                        "animais_de_criacao_alimentacao_ou_venda": {
+                          "type": "string"
+                        },
+                        "lista_animais_de_criacao_alimentacao_ou_venda": {
+                          "type": "string"
+                        },
+                        "domicilio_possui_agua_para_animais": {
+                          "type": "string"
+                        },
+                        "domicilio_possui_agua_para_producao_alimentos": {
+                          "type": "string"
+                        },
+                        "precisou_comprar_alimentos_3m": {
+                          "type": "string"
+                        },
+                        "lugar_precisou_comprar_alimentos_3m": {
+                          "type": "string"
+                        },
+                        "possui_cultivo_plantas_medicinais": {
+                          "type": "string"
+                        },
+                        "faz_remedios_com_plantas": {
+                          "type": "string"
+                        },
+                        "moradia_possui_fogao_ou_lenha": {
+                          "type": "string"
+                        },
+                        "alimentos_consumidos_dia_anterior": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "apoio_e_protecao": {
+                      "type": "object",
+                      "required": [
+                        "entrevista_indigena_id",
+                        "criancas_comem_escola",
+                        "alimentacao_escolar_inclui_cultura",
+                        "morador_recebe_ajuda_financeira",
+                        "morador_recebe_programa_social",
+                        "recebeu_cesta_alimentos",
+                        "recebeu_cesta_alimentos_que_alimentos_deveriam_ter",
+                        "motivo_nao_recebe_cesta_alimentos",
+                        "recebeu_ajuda_3m",
+                        "constrangimento_pedir_ajuda_alimentos_3m"
+                      ],
+                      "properties": {
+                        "entrevista_indigena_id": {
+                          "type": "string"
+                        },
+                        "criancas_comem_escola": {
+                          "type": "string"
+                        },
+                        "alimentacao_escolar_inclui_cultura": {
+                          "type": "string"
+                        },
+                        "morador_recebe_ajuda_financeira": {
+                          "type": "string"
+                        },
+                        "morador_recebe_programa_social": {
+                          "type": "object",
+                          "required": [
+                            "bolsa_familia_auxilio_brasil",
+                            "bpc",
+                            "beneficio_deficientes_idosos",
+                            "auxilio_maternidade",
+                            "auxilio_doenca",
+                            "auxilio_reclusao",
+                            "aposentadoria",
+                            "pensao_morte",
+                            "pronaf",
+                            "programa_auxilio_estadual_municipal",
+                            "cesta_alimentos"
+                          ],
+                          "properties": {
+                            "bolsa_familia_auxilio_brasil": {
+                              "type": "string"
+                            },
+                            "bpc": {
+                              "type": "string"
+                            },
+                            "beneficio_deficientes_idosos": {
+                              "type": "string"
+                            },
+                            "auxilio_maternidade": {
+                              "type": "string"
+                            },
+                            "auxilio_doenca": {
+                              "type": "string"
+                            },
+                            "auxilio_reclusao": {
+                              "type": "string"
+                            },
+                            "aposentadoria": {
+                              "type": "string"
+                            },
+                            "pensao_morte": {
+                              "type": "string"
+                            },
+                            "pronaf": {
+                              "type": "string"
+                            },
+                            "programa_auxilio_estadual_municipal": {
+                              "type": "string"
+                            },
+                            "cesta_alimentos": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "recebeu_cesta_alimentos": {
+                          "type": "string"
+                        },
+                        "recebeu_cesta_alimentos_que_alimentos_deveriam_ter": {
+                          "type": "string"
+                        },
+                        "motivo_nao_recebe_cesta_alimentos": {
+                          "type": "string"
+                        },
+                        "recebeu_ajuda_3m": {
+                          "type": "string"
+                        },
+                        "o_que_recebeu_ajuda_3m": {
+                          "type": "string"
+                        },
+                        "constrangimento_pedir_ajuda_alimentos_3m": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "interview",
+                    "demography",
+                    "residence",
+                    "saude_doenca",
+                    "alimentacao_nutricao",
+                    "apoio_e_protecao"
+                  ]
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "externalDocs": {
