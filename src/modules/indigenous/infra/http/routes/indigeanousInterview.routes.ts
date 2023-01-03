@@ -8,6 +8,7 @@ import { CreateIndigeanousInterviewController } from '../controllers/CreateIndig
 import { CreateIndigeanousInterviewDemographyController } from '../controllers/CreateIndigenousInterviewDemographyController';
 import { CreateIndigeanousInterviewResidenceController } from '../controllers/CreateIndigenousInterviewResidenceController';
 import { CreateIndigenousSaudeDoencaController } from '../controllers/CreateIndigenousSaudeDoencaController';
+import { HandleOfflinetInterviewsController } from '../controllers/HandleOfflineInterviewsController';
 import { ListIndigenousInterviewController } from '../controllers/ListIndigenousInterviewController';
 
 const indigeanousInterviewRouter = Router();
@@ -19,6 +20,7 @@ const createIndigenousSaudeDoencaController = new CreateIndigenousSaudeDoencaCon
 const createIndigenousApoioFinanceiroController = new CreateIndigenousApoioEProtecaoController();
 const createIndigenousAlimentacaoNutricaoController = new CreateIndigenousAlimentacaoNutricaoController();
 const listIndigenousInterviewController = new ListIndigenousInterviewController();
+const handleOfflineInterviewsController = new HandleOfflinetInterviewsController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(
@@ -49,6 +51,11 @@ indigeanousInterviewRouter.post(
 indigeanousInterviewRouter.post(
   '/nutrition',
   createIndigenousAlimentacaoNutricaoController.handle,
+);
+
+indigeanousInterviewRouter.post(
+  '/handle-offline-data',
+  handleOfflineInterviewsController.handle,
 );
 
 export { indigeanousInterviewRouter };
