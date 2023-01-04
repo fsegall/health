@@ -2,26 +2,32 @@ import { container } from 'tsyringe';
 import '@modules/users/providers';
 import './providers';
 
-import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
-import PersonsRepository from '@modules/persons/infra/typeorm/repositories/PersonsRepository';
-
-import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
-import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
-
-import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
-
-import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
+import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+import { IndigeanousApoioRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousApoioRepository';
+import { IndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousAlimentacaoNutricaoRepository';
+import { IndigenousInterviewDemographyRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewDemographyRepository';
+import { IndigenousInterviewRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewRepository';
+import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousInterviewResidenceRepository';
+import { IndigenousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousSaudeDoencaRepository';
+import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigenousAlimentacaoNutricaoRepository';
+import { IIndigenousApoioEProtecaoRepository } from '@modules/indigenous/repositories/IIndigenousApoioEProtecaoRepository';
+import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
+import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
+import { IIndigenousInterviewDemographyRepository } from '@modules/indigenous/repositories/IIndigenousInterviewDemographyRepository';
+import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
-
-import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
+import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
+import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
+import PersonsRepository from '@modules/persons/infra/typeorm/repositories/PersonsRepository';
+import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
+import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
 import ProjectsRepository from '@modules/projects/infra/typeorm/repositories/ProjectsRepository';
-
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
-
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 
 container.registerSingleton<IPersonsRepository>(
   'PersonsRepository',
@@ -56,4 +62,34 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUserTokensRepository>(
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<IIndigenousInterviewRepository>(
+  'IndigeanousInterviewRepository',
+  IndigenousInterviewRepository,
+);
+
+container.registerSingleton<IIndigenousInterviewDemographyRepository>(
+  'IndigeanousInterviewDemographyRepository',
+  IndigenousInterviewDemographyRepository,
+);
+
+container.registerSingleton<IIndigenousInterviewResidenceRepository>(
+  'IndigeanousInterviewResidenceRepository',
+  IndigeanousInterviewResidenceRepository,
+);
+
+container.registerSingleton<IIndigenousSaudeDoencaRepository>(
+  'IndigeanousSaudeDoencaRepository',
+  IndigenousSaudeDoencaRepository,
+);
+
+container.registerSingleton<IIndigenousApoioEProtecaoRepository>(
+  'IndigeanousApoioFinanceiroRepository',
+  IndigeanousApoioRepository,
+);
+
+container.registerSingleton<IIndigenousAlimentacaoNutricaoRepository>(
+  'IndigeanousAlimentacaoNutricaoRepository',
+  IndigenousAlimentacaoNutricaoRepository,
 );

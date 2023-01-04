@@ -1,0 +1,12 @@
+services:
+  database:
+    container_name: pensan_database
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: pensan
+    volumes:
+      - /var/postgres/data
