@@ -1,8 +1,9 @@
+import { Exception } from 'handlebars';
 import { getRepository, Repository } from 'typeorm';
-import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
+
 import ICreateInterviewDTO from '@modules/interviews/dtos/ICreateInterviewDTO';
 import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
-import { Exception } from 'handlebars';
+import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 /* import AppError from '@shared/errors/AppError'; */
 
 class InterviewsRepository implements IInterviewsRepository {
@@ -45,19 +46,19 @@ class InterviewsRepository implements IInterviewsRepository {
   public findByPersonId(person_id: string): Promise<Interview | undefined> {
     return this.ormRepository.findOne({
       where: {
-        person_id
-      }
+        person_id,
+      },
     });
   }
 
   public async findOne(interviewId: string): Promise<Interview> {
     const foundInterview = await this.ormRepository.findOne(interviewId, {
-      relations: ['interviewer', 'person', 'project', 'address', 'household']
-    })
+      relations: ['interviewer', 'person', 'project', 'address', 'household'],
+    });
     if (!foundInterview) {
-      throw new Exception('INTERVIEW_NOT_FOUND')
+      throw new Exception('INTERVIEW_NOT_FOUND');
     }
-    return foundInterview
+    return foundInterview;
   }
 
   public async save(interview: Interview): Promise<Interview> {
@@ -72,32 +73,40 @@ class InterviewsRepository implements IInterviewsRepository {
   public async listByInterviewer(interviewer_id: string): Promise<Interview[]> {
     const interviews = await this.ormRepository.find({
       where: {
-        interviewer_id
-      }
+        interviewer_id,
+      },
     });
     return interviews;
   }
 
   public async findAlreadyRegistered({
-    person_nome, person_idade, project_number, interviewer_id
+    person_nome,
+    person_idade,
+    project_number,
+    interviewer_id,
   }: {
-    person_nome: string, person_idade: number, project_number: number, interviewer_id: string
-  }): Promise<Boolean> {
-    const foundInterview: Interview | undefined = await this.ormRepository.findOne({
-      join: { alias: 'interview', innerJoin: { person: 'interview.person' }},
+    person_nome: string;
+    person_idade: number;
+    project_number: number;
+    interviewer_id: string;
+  }): Promise<boolean> {
+    const foundInterview:
+      | Interview
+      | undefined = await this.ormRepository.findOne({
+      join: { alias: 'interview', innerJoin: { person: 'interview.person' } },
       where: (qb: any) => {
         qb.where({
           project_number,
           interviewer_id,
-        }).andWhere('person.nome = :person_nome' , { person_nome })
-        .andWhere('person.idade = :person_idade' , { person_idade })
-      }
-    })
+        })
+          .andWhere('person.nome = :person_nome', { person_nome })
+          .andWhere('person.idade = :person_idade', { person_idade });
+      },
+    });
     if (foundInterview) {
-      return true
-    } else {
-      return false
+      return true;
     }
+    return false;
   }
 
   /*   public async findById(interview_id: string): Promise<Interview | undefined> {
@@ -118,7 +127,6 @@ class InterviewsRepository implements IInterviewsRepository {
       }
       await this.ormRepository.remove(interview);
     } */
-
 }
 
 export default InterviewsRepository;

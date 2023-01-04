@@ -4,8 +4,8 @@ import AppError from '@shared/errors/AppError';
 
 import { ICreateIndigenousInterviewResidenceDTO } from '../dtos/ICreateIndigenousInterviewResidenceDTO';
 import { IndigenousResidence } from '../infra/typeorm/entities/IndigenousResidence';
-import { IIndigenousInterviewResidenceRepository } from '../repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
+import { IIndigenousInterviewResidenceRepository } from '../repositories/IIndigenousInterviewResidenceRepository';
 
 @injectable()
 export class CreateIndigenousInterviewResidenceService {

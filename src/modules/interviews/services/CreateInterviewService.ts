@@ -1,10 +1,12 @@
-import Interview from '../infra/typeorm/entities/Interview';
 import { injectable, inject } from 'tsyringe';
+
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Roles } from '@modules/users/authorization/constants';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
+
+import Interview from '../infra/typeorm/entities/Interview';
 /* import AppError from '@shared/errors/AppError'; */
 
 interface IRequest {
@@ -29,7 +31,7 @@ export default class CreateInterviewService {
     private projectsRepository: IProjectsRepository,
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-  ) { }
+  ) {}
   public async execute({
     interviewer_id,
     project_name,
@@ -42,29 +44,34 @@ export default class CreateInterviewService {
     interview_type,
     comments,
   }: IRequest): Promise<Interview> {
-
     const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
 
     if (checkIsVisitor?.role === Roles.VISITOR) {
       throw new AppError('O usuário não tem permissão para criar entrevistas.');
     }
 
-    const projectExists = await this.projectsRepository.findByName(project_name.toUpperCase());
+    const projectExists = await this.projectsRepository.findByName(
+      project_name.toUpperCase(),
+    );
 
     if (!projectExists) {
-      throw new AppError("Este projeto não foi cadastrado ainda")
+      throw new AppError('Este projeto não foi cadastrado ainda');
     }
 
-    const projectNumberExists = await this.projectsRepository.findByNumber(project_number);
+    const projectNumberExists = await this.projectsRepository.findByNumber(
+      project_number,
+    );
 
     if (!projectNumberExists) {
-      throw new AppError("Este número de projeto não foi cadastrado ainda")
+      throw new AppError('Este número de projeto não foi cadastrado ainda');
     }
 
-    const personAlreadyInterviewed = await this.interviewsRepository.findByPersonId(person_id);
+    const personAlreadyInterviewed = await this.interviewsRepository.findByPersonId(
+      person_id,
+    );
 
     if (personAlreadyInterviewed) {
-      throw new AppError("Esta pessoa já tem uma entrevista cadastrada");
+      throw new AppError('Esta pessoa já tem uma entrevista cadastrada');
     }
 
     const interview: Interview = await this.interviewsRepository.create({

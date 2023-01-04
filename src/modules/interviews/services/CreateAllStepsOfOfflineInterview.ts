@@ -1,15 +1,13 @@
-import Interview from '../infra/typeorm/entities/Interview';
 import { injectable, inject } from 'tsyringe';
-import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
-import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import { Roles } from '@modules/users/authorization/constants';
-import AppError from '@shared/errors/AppError';
-import IPersonsRepository from '@modules/persons/repositories/IFamilyMembersRepository';
-import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
-import CreatePersonService from '@modules/persons/services/CreatePersonService';
-import CreateHouseholdService from '@modules/households/services/CreateHouseholdService';
+
 import CreateAddressService from '@modules/households/services/CreateAddressService';
+import CreateHouseholdService from '@modules/households/services/CreateHouseholdService';
+import CreatePersonService from '@modules/persons/services/CreatePersonService';
+import { Roles } from '@modules/users/authorization/constants';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import AppError from '@shared/errors/AppError';
+
+import Interview from '../infra/typeorm/entities/Interview';
 import CreateInterviewService from './CreateInterviewService';
 /* import AppError from '@shared/errors/AppError'; */
 
@@ -35,15 +33,14 @@ export default class CreateAllStepsOfOfflineInterview {
     private createAddress: CreateAddressService,
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-  ) { }
+  ) {}
 
   public async createAll({
     person,
     household,
     address,
-    interviewData
+    interviewData,
   }: any): Promise<Interview> {
-
     const {
       interviewer_id,
       nome,
@@ -58,7 +55,7 @@ export default class CreateAllStepsOfOfflineInterview {
       diagnostico_covid,
       vacina,
       nao_tomou_vacina,
-    } = person
+    } = person;
 
     const {
       local_do_domicilio,
@@ -147,7 +144,7 @@ export default class CreateAllStepsOfOfflineInterview {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-    } = household
+    } = household;
 
     const {
       state,
@@ -157,7 +154,7 @@ export default class CreateAllStepsOfOfflineInterview {
       street_or_location,
       house_number,
       telephone_number,
-    } = address
+    } = address;
 
     const {
       comments,
@@ -165,8 +162,8 @@ export default class CreateAllStepsOfOfflineInterview {
       is_complete,
       project_number,
       project_name,
-      is_complete_with_errors
-    } = interviewData
+      is_complete_with_errors,
+    } = interviewData;
 
     const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
 
@@ -188,7 +185,7 @@ export default class CreateAllStepsOfOfflineInterview {
       diagnostico_covid,
       vacina,
       nao_tomou_vacina,
-    })
+    });
 
     const createHouseHold = await this.createHouseHold.execute({
       person_id: createPerson?.id,
@@ -278,7 +275,7 @@ export default class CreateAllStepsOfOfflineInterview {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
-    })
+    });
 
     const createAddress = await this.createAddress.execute({
       household_id: createHouseHold.id,
@@ -289,7 +286,7 @@ export default class CreateAllStepsOfOfflineInterview {
       street_or_location,
       house_number,
       telephone_number,
-    })
+    });
 
     const interview: Interview = await this.createInterviewService.execute({
       interviewer_id,
@@ -297,7 +294,7 @@ export default class CreateAllStepsOfOfflineInterview {
       project_number,
       person_id: createPerson?.id,
       household_id: createHouseHold?.id,
-      address_id:createAddress?.id,
+      address_id: createAddress?.id,
       is_complete,
       is_complete_with_errors,
       interview_type,

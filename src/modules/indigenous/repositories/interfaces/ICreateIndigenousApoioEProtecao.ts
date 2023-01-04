@@ -13,6 +13,8 @@ export interface IProgramasSociais {
 }
 
 export interface ICreateIndigenousApoioEProtecao {
+  entrevista_indigena_id: string;
+
   criancas_comem_escola: string;
 
   alimentacao_escolar_inclui_cultura: string;

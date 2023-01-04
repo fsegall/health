@@ -5,14 +5,17 @@ import { ICreateIndigenousApoioEProtecao } from '@modules/indigenous/repositorie
 
 import { IndigenousApoioEProtecao } from '../entities/IndigenousApoioEProtecao';
 
-export class IndigeanousApoioRepository implements IIndigenousApoioEProtecaoRepository {
+export class IndigeanousApoioRepository
+  implements IIndigenousApoioEProtecaoRepository {
   private repository: Repository<IndigenousApoioEProtecao>;
 
   constructor() {
     this.repository = getRepository(IndigenousApoioEProtecao);
   }
 
-  async create(data: ICreateIndigenousApoioEProtecao): Promise<IndigenousApoioEProtecao> {
+  async create(
+    data: ICreateIndigenousApoioEProtecao,
+  ): Promise<IndigenousApoioEProtecao> {
     const indigeanousApoioFinanceiro = this.repository.create(data);
 
     await this.repository.save(indigeanousApoioFinanceiro);
