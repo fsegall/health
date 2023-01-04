@@ -31,6 +31,7 @@ jobs:
       uses: actions/setup-node@v2.1.1
       with:
         node-version: 16.x
+        node-version: 16.x
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           
     - name: Install dependencies
