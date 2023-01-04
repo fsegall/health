@@ -59,9 +59,10 @@ jobs:
         script: |
           cd ~/app/health
           yarn
+          yarn global add pm2
           ./node_modules/.bin/typeorm migration:run
           pm2 restart safety-api
-          
+
 
 
       
