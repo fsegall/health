@@ -43,7 +43,7 @@ export class HandleOfflineInterviewsService {
 
   async execute(data: IHandleOfflineInterviewsDTO[]) {
     this.createOfflineRequestBackup(data);
-
+    console.log("data", data)
     const interviewsToSave = data.map(async interview => {
       console.log("Município: ", interview?.interview?.municipio)
       console.log("Entrevista: ", interview.interview)
