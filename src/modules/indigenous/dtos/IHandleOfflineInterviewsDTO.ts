@@ -6,10 +6,10 @@ import { ICreateIndigenousInterviewResidenceDTO } from './ICreateIndigenousInter
 import { ICreateIndigenousSaudeDoencaDTO } from './ICreateIndigenousSaudeDoencaDTO';
 
 export interface IHandleOfflineInterviewsDTO {
-  interview: ICreateIndigenousInterviewDTO;
-  demography: ICreateIndigenousInterviewDemographyDTO;
-  residence: ICreateIndigenousInterviewResidenceDTO;
-  saude_doenca: ICreateIndigenousSaudeDoencaDTO;
-  alimentacao_nutricao: ICreateIndigenousAlimentacaoNutricaoDTO;
-  apoio_e_protecao: ICreateIndigenousApoioEProtecaoDTO;
+  indigenous_informacoes_basicas: ICreateIndigenousInterviewDTO;
+  indigenous_demografico: ICreateIndigenousInterviewDemographyDTO;
+  indigenous_domicilio: ICreateIndigenousInterviewResidenceDTO;
+  indigenous_saude_doenca: ICreateIndigenousSaudeDoencaDTO;
+  indigenous_alimentacao_nutricao: ICreateIndigenousAlimentacaoNutricaoDTO;
+  indigenous_apoio_protecao_social: ICreateIndigenousApoioEProtecaoDTO;
 }
