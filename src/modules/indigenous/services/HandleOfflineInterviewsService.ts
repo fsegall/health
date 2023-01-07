@@ -45,36 +45,34 @@ export class HandleOfflineInterviewsService {
     this.createOfflineRequestBackup(data);
     console.log("data", data)
     const interviewsToSave = data.map(async interview => {
-      console.log("Município: ", interview?.interview?.municipio)
-      console.log("Entrevista: ", interview.interview)
       const indigenousInterview = await this.indigenousInterviewRepository.create(
-        interview.interview,
+        interview.indigenous_informacoes_basicas,
       );
 
       await this.indigenousInterviewDemographyRepository.create({
-        ...interview.demography,
+        ...interview.indigenous_demografico,
         entrevista_indigena_id: indigenousInterview.id,
       });
 
       await this.indigeanousInterviewResidenceRepository.create({
-        ...interview.residence,
-        veiculos: interview.residence.veiculos.toString(),
-        destino_lixo_da_residencia: interview.residence.destino_lixo_da_residencia.toString(),
+        ...interview.indigenous_domicilio,
+        veiculos: interview.indigenous_domicilio.veiculos.toString(),
+        destino_lixo_da_residencia: interview.indigenous_domicilio.destino_lixo_da_residencia.toString(),
         entrevista_indigena_id: indigenousInterview.id,
       });
 
       await this.indigeanousSaudeDoencaRepository.create({
-        ...interview.saude_doenca,
+        ...interview.indigenous_saude_doenca,
         entrevista_indigena_id: indigenousInterview.id,
       });
 
       await this.indigenousAlimentacaoNutricaoRepository.create({
-        ...interview.alimentacao_nutricao,
+        ...interview.indigenous_alimentacao_nutricao,
         entrevista_indigena_id: indigenousInterview.id,
       });
 
       await this.indigenousApoioEProtecaoRepository.create({
-        ...interview.apoio_e_protecao,
+        ...interview.indigenous_apoio_protecao_social,
         entrevista_indigena_id: indigenousInterview.id,
       });
     });
