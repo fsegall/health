@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { inject, injectable } from 'tsyringe';
 
@@ -42,8 +42,12 @@ export class HandleOfflineInterviewsService {
 
   private createOfflineRequestBackup(data: IHandleOfflineInterviewsDTO[]) {
     const backupFileName = `backup-indigenousInterview-${new Date().getTime()}`;
+    const dirPath = `src/backups`
+    if (!existsSync(dirPath)) {
+      mkdirSync(dirPath, { recursive: true })
+    }
     writeFileSync(
-      join(process.cwd(), `src/backups/${backupFileName}.json`),
+      join(process.cwd(), `${dirPath}/${backupFileName}.json`),
       JSON.stringify(data),
       'utf-8',
     );
@@ -51,22 +55,20 @@ export class HandleOfflineInterviewsService {
 
   async execute(data: IHandleOfflineInterviewsDTO[]) {
     this.createOfflineRequestBackup(data);
-    console.log("data", data);
     const interviewsToSave = Object.values(data[0]).map(async interview => {
-      console.log("indigenous_informacoes_basicas", interview.indigenous_informacoes_basicas)
 
       const project = await this.projectsRepository.findByNumber(interview.indigenous_informacoes_basicas.numero_projeto)
 
       if(project === undefined) {
         return new AppError("Esse projeto não existe.")
       }
- 
+
       const indigenousInterview = await this.indigenousInterviewRepository.create(
       {projeto_id: project.id,
       ...interview.indigenous_informacoes_basicas
       }
       );
-      
+
       await this.indigenousInterviewDemographyRepository.create({
         ...interview.indigenous_demografico,
         entrevista_indigena_id: indigenousInterview.id,
