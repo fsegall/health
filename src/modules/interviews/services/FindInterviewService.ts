@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { join } from 'path';
 import { injectable, inject } from 'tsyringe';
 
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
@@ -14,10 +15,13 @@ class FindInterviewsService {
   ) {}
 
   public async createOfflineRequestBackup(data: any): Promise<void> {
-    const path = require('path');
     const backUpName = String(`backup-${new Date().getTime()}`);
+    const dirPath = `src/backups`
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true })
+    }
     fs.writeFileSync(
-      path.join(process.cwd(), `src/backups/${backUpName}.json`),
+      join(process.cwd(), `${dirPath}/${backUpName}.json`),
       JSON.stringify(data),
       'utf8',
     );

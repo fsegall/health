@@ -12,8 +12,10 @@ export class HandleOfflinetInterviewsController {
       HandleOfflineInterviewsService,
     );
 
-    await handleOfflineInterviewsService.execute(data);
+    const notSavedInterviews = await handleOfflineInterviewsService.execute(
+      data,
+    );
 
-    return response.status(201).json();
+    return response.status(201).json(notSavedInterviews);
   }
 }
