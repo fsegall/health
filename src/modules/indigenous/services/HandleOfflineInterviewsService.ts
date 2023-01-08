@@ -63,7 +63,7 @@ export class HandleOfflineInterviewsService {
  
       const indigenousInterview = await this.indigenousInterviewRepository.create(
       {projeto_id: project.id,
-      ...interview.indigenous_informacoes_basicas,
+      ...interview.indigenous_informacoes_basicas.delete.numero_projeto,
       }
       );
       
