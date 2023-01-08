@@ -2,6 +2,8 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { inject, injectable } from 'tsyringe';
 
+import Project from '../../projects/infra/typeorm/entities/Project';
+
 import { IHandleOfflineInterviewsDTO } from '../dtos/IHandleOfflineInterviewsDTO';
 import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigenousAlimentacaoNutricaoRepository';
 import { IIndigenousApoioEProtecaoRepository } from '../repositories/IIndigenousApoioEProtecaoRepository';
@@ -9,6 +11,9 @@ import { IIndigenousInterviewDemographyRepository } from '../repositories/IIndig
 import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
 import { IIndigenousInterviewResidenceRepository } from '../repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousSaudeDoencaRepository } from '../repositories/IIndigenousSaudeDoencaRepository';
+
+import ProjectsRepository from '../../projects/infra/typeorm/repositories/ProjectsRepository'
+import AppError from '@shared/errors/AppError';
 
 @injectable()
 export class HandleOfflineInterviewsService {
@@ -30,6 +35,9 @@ export class HandleOfflineInterviewsService {
 
     @inject('IndigeanousApoioFinanceiroRepository')
     private indigenousApoioEProtecaoRepository: IIndigenousApoioEProtecaoRepository,
+
+    @inject('ProjectsRepository')
+    private projectsRepository: ProjectsRepository,
   ) {}
 
   private createOfflineRequestBackup(data: IHandleOfflineInterviewsDTO[]) {
@@ -46,10 +54,19 @@ export class HandleOfflineInterviewsService {
     console.log("data", data);
     const interviewsToSave = Object.values(data[0]).map(async interview => {
       console.log("indigenous_informacoes_basicas", interview.indigenous_informacoes_basicas)
-      const indigenousInterview = await this.indigenousInterviewRepository.create(
-        interview.indigenous_informacoes_basicas,
-      );
 
+      const project = await this.projectsRepository.findByNumber(interview.indigenous_informacoes_basicas.numero_projeto)
+
+      if(project === undefined) {
+        return new AppError("Esse projeto não existe.")
+      }
+ 
+      const indigenousInterview = await this.indigenousInterviewRepository.create(
+      {projeto_id: project.id,
+      ...interview.indigenous_informacoes_basicas,
+      }
+      );
+      
       await this.indigenousInterviewDemographyRepository.create({
         ...interview.indigenous_demografico,
         entrevista_indigena_id: indigenousInterview.id,
