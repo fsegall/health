@@ -28,4 +28,13 @@ export class IndigenousInterviewRepository
   async list(): Promise<IndigenousInterview[]> {
     return this.repository.find();
   }
+
+  async findByInterviewDateAndInterviewer(
+    date: Date,
+    interviewerId: string,
+  ): Promise<IndigenousInterview | undefined> {
+    return this.repository.findOne({
+      where: { data_entrevista: date, entrevistador_id: interviewerId },
+    });
+  }
 }
