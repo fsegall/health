@@ -76,6 +76,16 @@ export class HandleOfflineInterviewsService {
                 return;
               }
 
+              const existentIndigenousInterview = await this.indigenousInterviewRepository.findByInterviewDateAndInterviewer(
+                interview.indigenous_informacoes_basicas.data_entrevista,
+                interview.indigenous_informacoes_basicas.entrevistador_id,
+              );
+
+              if (existentIndigenousInterview) {
+                console.error('Interview already registered');
+                return;
+              }
+
               const indigenousInterview = await this.indigenousInterviewRepository.create(
                 {
                   projeto_id: project.id,

@@ -4,5 +4,9 @@ import { ICreateIndigenousInterview } from './interfaces/ICreateIndigenousInterv
 export interface IIndigenousInterviewRepository {
   create(data: ICreateIndigenousInterview): Promise<IndigenousInterview>;
   findById(id: string): Promise<IndigenousInterview | undefined>;
+  findByInterviewDateAndInterviewer(
+    date: Date,
+    interviewerId: string,
+  ): Promise<IndigenousInterview | undefined>;
   list(): Promise<IndigenousInterview[]>;
 }
