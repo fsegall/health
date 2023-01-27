@@ -2,9 +2,6 @@ import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { inject, injectable } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
-
-import Project from '../../projects/infra/typeorm/entities/Project';
 import ProjectsRepository from '../../projects/infra/typeorm/repositories/ProjectsRepository';
 import { IHandleOfflineInterviewsDTO } from '../dtos/IHandleOfflineInterviewsDTO';
 import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigenousAlimentacaoNutricaoRepository';
@@ -90,6 +87,7 @@ export class HandleOfflineInterviewsService {
                 {
                   projeto_id: project.id,
                   ...interview.indigenous_informacoes_basicas,
+                  is_offline: true,
                 },
               );
 

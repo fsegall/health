@@ -14,4 +14,6 @@ export interface ICreateIndigenousInterview {
   data_entrevista: Date;
 
   responsavel_domicilio: boolean;
+
+  is_offline?: boolean;
 }
