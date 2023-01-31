@@ -1,7 +1,9 @@
-import Household from '../infra/typeorm/entities/Household';
 import { injectable, inject } from 'tsyringe';
+
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import AppError from '@shared/errors/AppError';
+
+import Household from '../infra/typeorm/entities/Household';
 
 interface IRequest {
   person_id: string;
@@ -98,7 +100,7 @@ export default class CreateHouseholdService {
   constructor(
     @inject('HouseholdsRepository')
     private householdsRepository: IHouseholdsRepository,
-  ) { }
+  ) {}
   public async execute({
     person_id,
     local_do_domicilio,

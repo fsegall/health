@@ -2,12 +2,13 @@ import { Router } from 'express';
 
 import InterviewsController from '@modules/interviews/infra/http/controllers/InterviewsController';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import ensurePermission from '@modules/users/infra/http/middlewares/ensurePermission';
 
 const interviewsController = new InterviewsController();
 
 const interviewsRouter = Router();
 
-interviewsRouter.use(ensureAuthenticated);
+interviewsRouter.use(ensureAuthenticated, ensurePermission);
 
 interviewsRouter.get('/', interviewsController.list);
 

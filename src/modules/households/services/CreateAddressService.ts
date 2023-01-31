@@ -1,8 +1,8 @@
-import Address from '@modules/households/infra/typeorm/entities/Address';
 import { getRepository } from 'typeorm';
-// import AppError from '../errors/AppError';
-// The Service has no access to Request and Response
-interface Request {
+
+import Address from '@modules/households/infra/typeorm/entities/Address';
+
+interface IRequest {
   household_id: string;
   state: string;
   city: string;
@@ -23,7 +23,7 @@ export default class CreateAddressService {
     street_or_location,
     house_number,
     telephone_number,
-  }: Request): Promise<Address> {
+  }: IRequest): Promise<Address> {
     const addressesRepository = getRepository(Address);
 
     const address: Address = addressesRepository.create({

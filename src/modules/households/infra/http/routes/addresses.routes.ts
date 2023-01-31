@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
-import Addresses from '@modules/households/infra/typeorm/entities/Address';
 import { getRepository } from 'typeorm';
+
+import Addresses from '@modules/households/infra/typeorm/entities/Address';
 import CreateAddressService from '@modules/households/services/CreateAddressService';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 

@@ -16,9 +16,9 @@ class FindInterviewsService {
 
   public async createOfflineRequestBackup(data: any): Promise<void> {
     const backUpName = String(`backup-${new Date().getTime()}`);
-    const dirPath = `src/backups`
+    const dirPath = `src/backups`;
     if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true })
+      fs.mkdirSync(dirPath, { recursive: true });
     }
     fs.writeFileSync(
       join(process.cwd(), `${dirPath}/${backUpName}.json`),

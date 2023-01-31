@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import ensurePermission from '@modules/users/infra/http/middlewares/ensurePermission';
 
 import { CreateIndigenousAlimentacaoNutricaoController } from '../controllers/CreateIndigenousAlimentacaoNutricaoController';
 import { CreateIndigenousApoioEProtecaoController } from '../controllers/CreateIndigenousApoioEProtecaoController';
@@ -22,7 +23,7 @@ const createIndigenousAlimentacaoNutricaoController = new CreateIndigenousAlimen
 const listIndigenousInterviewController = new ListIndigenousInterviewController();
 const handleOfflineInterviewsController = new HandleOfflinetInterviewsController();
 
-indigeanousInterviewRouter.use(ensureAuthenticated);
+indigeanousInterviewRouter.use(ensureAuthenticated, ensurePermission);
 indigeanousInterviewRouter.post(
   '/',
   createIndigenousInterviewController.handle,
