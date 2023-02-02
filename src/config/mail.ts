@@ -1,5 +1,3 @@
-import { isTemplateMiddle } from 'typescript';
-
 interface IMailConfig {
   driver: 'ethereal' | 'ses';
 
@@ -7,8 +5,8 @@ interface IMailConfig {
     from: {
       email: string;
       name: string;
-    }
-  }
+    };
+  };
 }
 
 export default {
@@ -18,6 +16,6 @@ export default {
     from: {
       email: 'safety@fsegall.com',
       name: 'Felipe da safety',
-    }
-  }
+    },
+  },
 } as IMailConfig;

@@ -5,21 +5,23 @@ import AppError from '@shared/errors/AppError';
 
 import UsersRepository from '../../typeorm/repositories/UsersRepository';
 
-export default async function ensurePermission(
-  request: Request,
-  _response: Response,
-  next: NextFunction,
-) {
-  const usersRepository = new UsersRepository();
+export default function Role(roles: Roles[]) {
+  return async (request: Request, response: Response, next: NextFunction) => {
+    const usersRepository = new UsersRepository();
 
-  const user = await usersRepository.findById(request.user.id);
+    const user = await usersRepository.findById(request.user.id);
 
-  if (user?.role === Roles.VISITOR) {
-    throw new AppError(
-      'O usuário não tem permissão para realizar esta operação',
-      403,
-    );
-  }
+    if (!user) {
+      throw new AppError('O usuário informado não existe', 404);
+    }
 
-  return next();
+    if (!Object.values(roles).includes(user.role)) {
+      throw new AppError(
+        'O usuário não tem permissão para realizar esta operação',
+        403,
+      );
+    }
+
+    return next();
+  };
 }
