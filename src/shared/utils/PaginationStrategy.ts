@@ -19,7 +19,7 @@ export class PaginationStrategy {
     const currentLimit = currentStart + this.limit;
 
     const hasNextPage = currentLimit < total;
-    const hasPreviousPage = currentStart <= this.limit && this.skip > 0;
+    const hasPreviousPage = this.skip > 0;
 
     return {
       hasNextPage,
