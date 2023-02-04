@@ -1,7 +1,9 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, IsNull, Not, Repository } from 'typeorm';
 
+import { IListAndCountIndigenousInterviewsDTO } from '@modules/indigenous/dtos/IListAndCountIndigenousInterviewsDTO';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import { ICreateIndigenousInterview } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousInterview';
+import { PaginationStrategy } from '@shared/utils/PaginationStrategy';
 
 import { IndigenousInterview } from '../entities/IndigenousInterview';
 
@@ -25,8 +27,30 @@ export class IndigenousInterviewRepository
     return this.repository.findOne(id);
   }
 
-  async list(): Promise<IndigenousInterview[]> {
-    return this.repository.find();
+  async listAndCount({
+    page,
+    limit,
+  }: {
+    page: number;
+    limit: number;
+  }): Promise<IListAndCountIndigenousInterviewsDTO> {
+    const paging = new PaginationStrategy({
+      limit,
+      page,
+    });
+
+    const [result, total] = await this.repository.findAndCount({
+      take: limit,
+      skip: paging.skip,
+    });
+
+    const pagination = paging.handlePagination(total);
+
+    return {
+      indigenous_interviews: result,
+      pagination,
+      totalCount: total,
+    };
   }
 
   async findByInterviewDateAndInterviewer(

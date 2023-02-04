@@ -9,7 +9,15 @@ export class ListIndigenousInterviewController {
       ListIndigenousInterviewService,
     );
 
-    const indigenousInterviews = await listIndigenousInterviewService.execute();
+    const { params } = request;
+
+    const page = Number(params?.page);
+    const limit = Number(params?.limit);
+
+    const indigenousInterviews = await listIndigenousInterviewService.execute({
+      page,
+      limit,
+    });
 
     return response.json(indigenousInterviews);
   }

@@ -31,7 +31,7 @@ indigeanousInterviewRouter.post(
   createIndigenousInterviewController.handle,
 );
 indigeanousInterviewRouter.get(
-  '/',
+  '/page/:page/limit/:limit',
   Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   listIndigenousInterviewController.handle,
 );
