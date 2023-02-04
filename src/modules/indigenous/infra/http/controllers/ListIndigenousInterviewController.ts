@@ -13,10 +13,12 @@ export class ListIndigenousInterviewController {
 
     const page = Number(params?.page);
     const limit = Number(params?.limit);
+    const loggedUserId = request?.user?.id;
 
     const indigenousInterviews = await listIndigenousInterviewService.execute({
       page,
       limit,
+      loggedUserId,
     });
 
     return response.json(indigenousInterviews);

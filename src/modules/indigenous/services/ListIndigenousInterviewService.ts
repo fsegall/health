@@ -9,10 +9,11 @@ export class ListIndigenousInterviewService {
     private readonly indigenousInterviewRepository: IIndigenousInterviewRepository,
   ) {}
 
-  async execute(pagination: { page: number; limit: number }) {
+  async execute(data: { page: number; limit: number; loggedUserId: string }) {
     return this.indigenousInterviewRepository.listAndCount({
-      page: pagination.page,
-      limit: pagination.limit,
+      page: data.page,
+      limit: data.limit,
+      loggedUserId: data.loggedUserId,
     });
   }
 }

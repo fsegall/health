@@ -9,8 +9,9 @@ export interface IIndigenousInterviewRepository {
     date: Date,
     interviewerId: string,
   ): Promise<IndigenousInterview | undefined>;
-  listAndCount(pagination: {
+  listAndCount(data: {
     page: number;
     limit: number;
+    loggedUserId: string;
   }): Promise<IListAndCountIndigenousInterviewsDTO>;
 }
