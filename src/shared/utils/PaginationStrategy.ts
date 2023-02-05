@@ -15,10 +15,10 @@ export class PaginationStrategy {
     hasNextPage: boolean;
     hasPreviousPage: boolean;
   } {
-    const currentStart = this.limit * this.skip;
+    const currentStart = this.skip;
     const currentLimit = currentStart + this.limit;
 
-    const hasNextPage = currentLimit < total;
+    const hasNextPage = total > currentLimit;
     const hasPreviousPage = this.skip > 0;
 
     return {
