@@ -1,6 +1,7 @@
 import { IListAndCountIndigenousInterviewsDTO } from '../dtos/IListAndCountIndigenousInterviewsDTO';
 import { IndigenousInterview } from '../infra/typeorm/entities/IndigenousInterview';
 import { ICreateIndigenousInterview } from './interfaces/ICreateIndigenousInterview';
+import { ListIndigenousInterviewParams } from './interfaces/IListAndCountIndigenousInterviewParams';
 
 export interface IIndigenousInterviewRepository {
   create(data: ICreateIndigenousInterview): Promise<IndigenousInterview>;
@@ -9,9 +10,7 @@ export interface IIndigenousInterviewRepository {
     date: Date,
     interviewerId: string,
   ): Promise<IndigenousInterview | undefined>;
-  listAndCount(data: {
-    page: number;
-    limit: number;
-    loggedUserId: string;
-  }): Promise<IListAndCountIndigenousInterviewsDTO>;
+  listAndCount(
+    data: ListIndigenousInterviewParams,
+  ): Promise<IListAndCountIndigenousInterviewsDTO>;
 }
