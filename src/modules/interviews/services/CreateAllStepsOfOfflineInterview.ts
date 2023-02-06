@@ -1,28 +1,11 @@
-import { injectable, inject } from 'tsyringe';
+import { injectable } from 'tsyringe';
 
 import CreateAddressService from '@modules/households/services/CreateAddressService';
 import CreateHouseholdService from '@modules/households/services/CreateHouseholdService';
 import CreatePersonService from '@modules/persons/services/CreatePersonService';
-import { Roles } from '@modules/users/authorization/constants';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import AppError from '@shared/errors/AppError';
 
 import Interview from '../infra/typeorm/entities/Interview';
 import CreateInterviewService from './CreateInterviewService';
-/* import AppError from '@shared/errors/AppError'; */
-
-interface IRequest {
-  interviewer_id: string;
-  project_name: string;
-  project_number: number;
-  person_id: string;
-  household_id: string;
-  address_id: string;
-  is_complete: boolean;
-  is_complete_with_errors: boolean;
-  interview_type: string;
-  comments: string;
-}
 
 @injectable()
 export default class CreateAllStepsOfOfflineInterview {
@@ -31,8 +14,6 @@ export default class CreateAllStepsOfOfflineInterview {
     private createPersonService: CreatePersonService,
     private createHouseHold: CreateHouseholdService,
     private createAddress: CreateAddressService,
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
   ) {}
 
   public async createAll({
@@ -164,12 +145,6 @@ export default class CreateAllStepsOfOfflineInterview {
       project_name,
       is_complete_with_errors,
     } = interviewData;
-
-    const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
-
-    if (checkIsVisitor?.role === Roles.VISITOR) {
-      throw new AppError('O usuário não tem permissão para criar entrevistas.');
-    }
 
     const createPerson = await this.createPersonService.execute({
       interviewer_id,

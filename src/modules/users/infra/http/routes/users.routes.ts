@@ -1,13 +1,15 @@
-import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
+import { Router } from 'express';
 import multer from 'multer';
+
 import uploadConfig from '@config/upload';
+import { Roles } from '@modules/users/authorization/constants';
 
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-
-import UserController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
 import UserRoleController from '../controllers/UserRoleController';
+import UserController from '../controllers/UsersController';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import Role from '../middlewares/ensurePermission';
 
 const userController = new UserController();
 const userAvatarController = new UserAvatarController();
@@ -35,7 +37,6 @@ usersRouter.post(
 
 usersRouter.put('/', userController.update);
 
-// Atualização de uma propriedade apenas
 usersRouter.patch(
   '/avatar',
   ensureAuthenticated,
@@ -46,6 +47,7 @@ usersRouter.patch(
 usersRouter.patch(
   '/role',
   ensureAuthenticated,
+  Role([Roles.COORDINATOR, Roles.ADMIN]),
   userRoleController.update,
 );
 

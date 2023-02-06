@@ -26,7 +26,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(errors());
 
 app.use(
-  (err: Error, request: Request, response: Response, next: NextFunction) => {
+  (err: Error, request: Request, response: Response, _next: NextFunction) => {
     if (err instanceof AppError) {
       console.log(err.message);
       return response.status(err.statusCode).json({

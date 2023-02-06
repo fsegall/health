@@ -1,10 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
-import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
+
 import ICreateProjectDTO from '@modules/projects/dtos/ICreateProjectDTO';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
-/* import Interview from '@modules/interviews/infra/typeorm/entities/Interview'; */
-/* import AppError from '@shared/errors/AppError'; */
-/* import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository'; */
+import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
 
 class ProjectsRepository implements IProjectsRepository {
   private ormRepository: Repository<Project>;
@@ -19,11 +17,9 @@ class ProjectsRepository implements IProjectsRepository {
     project_number,
     organizations,
   }: ICreateProjectDTO): Promise<Project> {
-
-
     const organizationsArray: string[] = organizations
       .split(',')
-      .map(org => org.trim())
+      .map(org => org.trim());
 
     const project = this.ormRepository.create({
       user_id,
@@ -42,15 +38,17 @@ class ProjectsRepository implements IProjectsRepository {
 
   public async findByName(project_name: string): Promise<Project | undefined> {
     const project = await this.ormRepository.findOne({
-      where: { name: project_name }
+      where: { name: project_name },
     });
 
     return project;
   }
 
-  public async findByNumber(project_number: number): Promise<Project | undefined> {
+  public async findByNumber(
+    project_number: number,
+  ): Promise<Project | undefined> {
     const project = await this.ormRepository.findOne({
-      where: { project_number }
+      where: { project_number },
     });
 
     return project;

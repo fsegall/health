@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
+import { Roles } from '@modules/users/authorization/constants';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 
 import { CreateIndigenousAlimentacaoNutricaoController } from '../controllers/CreateIndigenousAlimentacaoNutricaoController';
 import { CreateIndigenousApoioEProtecaoController } from '../controllers/CreateIndigenousApoioEProtecaoController';
@@ -25,36 +27,47 @@ const handleOfflineInterviewsController = new HandleOfflinetInterviewsController
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(
   '/',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousInterviewController.handle,
 );
-indigeanousInterviewRouter.get('/', listIndigenousInterviewController.handle);
+indigeanousInterviewRouter.get(
+  '/',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  listIndigenousInterviewController.handle,
+);
 indigeanousInterviewRouter.post(
   '/demography',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousInterviewDemographyController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/residence',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousInterviewResidenceController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/health-desease',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousSaudeDoencaController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/support',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousApoioFinanceiroController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/nutrition',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   createIndigenousAlimentacaoNutricaoController.handle,
 );
 
 indigeanousInterviewRouter.post(
   '/handle-offline-data',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   handleOfflineInterviewsController.handle,
 );
 

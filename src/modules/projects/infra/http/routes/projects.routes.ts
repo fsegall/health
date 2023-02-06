@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+
 import ProjectsController from '@modules/projects/infra/http/controllers/ProjectsController';
+import { Roles } from '@modules/users/authorization/constants';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 
 const projectsController = new ProjectsController();
 
@@ -8,16 +11,10 @@ const projectsRouter = Router();
 
 projectsRouter.use(ensureAuthenticated);
 
-/* projectsRouter.get('/:id', projectsController.show);
-
-projectsRouter.get('/', projectsController.list); */
-
-projectsRouter.post('/', projectsController.create);
-
-/* projectsRouter.put('/', projectsController.update);
-
-projectsRouter.delete('/:id', projectsController.delete); */
-
-
+projectsRouter.post(
+  '/',
+  Role([Roles.COORDINATOR, Roles.ADMIN]),
+  projectsController.create,
+);
 
 export default projectsRouter;

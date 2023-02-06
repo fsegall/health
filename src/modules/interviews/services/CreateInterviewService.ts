@@ -2,12 +2,9 @@ import { injectable, inject } from 'tsyringe';
 
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
-import { Roles } from '@modules/users/authorization/constants';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
 import Interview from '../infra/typeorm/entities/Interview';
-/* import AppError from '@shared/errors/AppError'; */
 
 interface IRequest {
   interviewer_id: string;
@@ -29,8 +26,6 @@ export default class CreateInterviewService {
     private interviewsRepository: IInterviewsRepository,
     @inject('ProjectsRepository')
     private projectsRepository: IProjectsRepository,
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
   ) {}
   public async execute({
     interviewer_id,
@@ -44,12 +39,6 @@ export default class CreateInterviewService {
     interview_type,
     comments,
   }: IRequest): Promise<Interview> {
-    const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
-
-    if (checkIsVisitor?.role === Roles.VISITOR) {
-      throw new AppError('O usuário não tem permissão para criar entrevistas.');
-    }
-
     const projectExists = await this.projectsRepository.findByName(
       project_name.toUpperCase(),
     );

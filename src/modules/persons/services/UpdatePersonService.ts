@@ -1,8 +1,10 @@
-import Person from '../infra/typeorm/entities/Person';
 import { injectable, inject } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+
 import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import AppError from '@shared/errors/AppError';
+
+import Person from '../infra/typeorm/entities/Person';
 
 interface IRequest {
   interviewer_id: string;
@@ -29,7 +31,7 @@ class UpdatePersonService {
     private usersRepository: IUsersRepository,
     @inject('PersonsRepository')
     private personsRepository: IPersonsRepository,
-  ) { }
+  ) {}
   public async execute({
     interviewer_id,
     person_id,

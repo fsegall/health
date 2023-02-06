@@ -1,8 +1,9 @@
-import Person from '@modules/persons/infra/typeorm/entities/Person';
 import { injectable, inject } from 'tsyringe';
+
+import Person from '@modules/persons/infra/typeorm/entities/Person';
 import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Roles } from '@modules/users/authorization/constants';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
@@ -28,7 +29,7 @@ export default class CreatePersonService {
     private personsRepository: IPersonsRepository,
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-  ) { }
+  ) {}
   public async execute({
     interviewer_id,
     nome,
@@ -44,7 +45,6 @@ export default class CreatePersonService {
     vacina,
     nao_tomou_vacina,
   }: IRequest): Promise<Person> {
-
     const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
 
     if (checkIsVisitor?.role === Roles.VISITOR) {
