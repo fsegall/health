@@ -4,6 +4,7 @@ import { FindManyOptions, getRepository, Repository } from 'typeorm';
 import { IListAndCountIndigenousInterviewsDTO } from '@modules/indigenous/dtos/IListAndCountIndigenousInterviewsDTO';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import { ICreateIndigenousInterview } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousInterview';
+import { ListIndigenousInterviewParams } from '@modules/indigenous/repositories/interfaces/IListAndCountIndigenousInterviewParams';
 import { Roles } from '@modules/users/authorization/constants';
 import User from '@modules/users/infra/typeorm/entities/User';
 import UsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
@@ -36,11 +37,11 @@ export class IndigenousInterviewRepository
     page,
     limit,
     loggedUserId,
-  }: {
-    page: number;
-    limit: number;
-    loggedUserId: string;
-  }): Promise<IListAndCountIndigenousInterviewsDTO> {
+    entrevistador_id,
+    projeto_id,
+  }: ListIndigenousInterviewParams): Promise<
+    IListAndCountIndigenousInterviewsDTO
+  > {
     const user = await this.userRepository.findOneOrFail({
       where: {
         id: loggedUserId,
@@ -49,13 +50,34 @@ export class IndigenousInterviewRepository
 
     const userIsInterviewer = user?.role === Roles.INTERVIEWER;
 
+    let filter = {};
+
+    if (entrevistador_id) {
+      filter = {
+        ...filter,
+        entrevistador_id,
+      };
+    }
+
+    if (projeto_id) {
+      filter = {
+        ...filter,
+        projeto_id,
+      };
+    }
+
     const filterOptions: FindManyOptions<IndigenousInterview> = userIsInterviewer
       ? {
           where: {
+            ...filter,
             entrevistador_id: user?.id,
           },
         }
-      : {};
+      : {
+          where: {
+            ...filter,
+          },
+        };
 
     const paging = new PaginationStrategy({
       limit,

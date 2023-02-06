@@ -9,16 +9,20 @@ export class ListIndigenousInterviewController {
       ListIndigenousInterviewService,
     );
 
-    const { params } = request;
+    const { params, body } = request;
 
     const page = Number(params?.page);
     const limit = Number(params?.limit);
     const loggedUserId = request?.user?.id;
 
+    const { projeto_id, entrevistador_id } = body;
+
     const indigenousInterviews = await listIndigenousInterviewService.execute({
       page,
       limit,
       loggedUserId,
+      projeto_id,
+      entrevistador_id,
     });
 
     return response.json(indigenousInterviews);
