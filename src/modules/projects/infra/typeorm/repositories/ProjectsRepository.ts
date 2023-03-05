@@ -11,6 +11,11 @@ class ProjectsRepository implements IProjectsRepository {
     this.ormRepository = getRepository(Project);
   }
 
+  public async list(): Promise<Project[]> {
+    const projects = await this.ormRepository.find();
+    return projects;
+  }
+
   public async create({
     user_id,
     name,
