@@ -6,4 +6,5 @@ export default interface IProjectsRepository {
   findByName(project_name: string): Promise<Project | undefined>;
   findByNumber(project_number: number): Promise<Project | undefined>;
   save(project: Project): Promise<Project>;
+  list(): Promise<Project[]>;
 }

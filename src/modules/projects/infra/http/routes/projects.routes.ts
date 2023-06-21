@@ -11,6 +11,12 @@ const projectsRouter = Router();
 
 projectsRouter.use(ensureAuthenticated);
 
+projectsRouter.get(
+  '/',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  projectsController.list,
+);
+
 projectsRouter.post(
   '/',
   Role([Roles.COORDINATOR, Roles.ADMIN]),
