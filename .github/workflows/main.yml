@@ -30,8 +30,7 @@ jobs:
 
       uses: actions/setup-node@v2.1.1
       with:
-        node-version: 16.x
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        node-version: 18.x
           
     - name: Install dependencies
       run: yarn install
