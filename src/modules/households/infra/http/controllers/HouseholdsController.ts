@@ -2,6 +2,7 @@
 
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
 import CreateHouseholdService from '@modules/households/services/CreateHouseholdService';
 import ListHouseholdsService from '@modules/households/services/ListHouseholdsService';
 import PersonsHouseholdService from '@modules/households/services/PersonsHouseholdService';
@@ -26,10 +27,11 @@ export default class HouseholdsController {
       situacao_de_trabalho,
       ocupacao_profissional,
       local_de_trabalho,
-      covid_2020,
-      covid_2021,
-      covid_2022,
-      covid_perda,
+      diagnostico_covid_positivo,
+      sequelas_covid,
+      morte_ultimos_12_meses,
+      causa_morte_ultimos_12_meses,
+      contribuicao_morte_ultimos_12m,
       tipo_de_residencia,
       numero_de_comodos,
       material_de_construcao,
@@ -56,8 +58,8 @@ export default class HouseholdsController {
       corte_de_gastos_nao_essenciais,
       ns_nr_trabalho,
       //
-      educacao_basica_publica,
-      pnae,
+      menores_6_anos,
+      frequentam_creche,
       cadastro_unico,
       bolsa_familia,
       bpc,
@@ -118,10 +120,6 @@ export default class HouseholdsController {
       situacao_de_trabalho,
       ocupacao_profissional,
       local_de_trabalho,
-      covid_2020,
-      covid_2021,
-      covid_2022,
-      covid_perda,
       tipo_de_residencia,
       numero_de_comodos,
       material_de_construcao,
@@ -148,8 +146,8 @@ export default class HouseholdsController {
       corte_de_gastos_nao_essenciais,
       ns_nr_trabalho,
       //
-      educacao_basica_publica,
-      pnae,
+      menores_6_anos,
+      frequentam_creche,
       cadastro_unico,
       bolsa_familia,
       bpc,
@@ -191,6 +189,11 @@ export default class HouseholdsController {
       bebidas_adocadas,
       macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados,
       biscoito_recheado_doces_guloseimas,
+      causa_morte_ultimos_12_meses,
+      contribuicao_morte_ultimos_12m,
+      diagnostico_covid_positivo,
+      morte_ultimos_12_meses,
+      sequelas_covid,
     });
 
     return response.status(201).json(household);

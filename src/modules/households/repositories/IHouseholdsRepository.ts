@@ -1,5 +1,6 @@
-import Household from '@modules/households/infra/typeorm/entities/Household';
 import ICreateHouseholdDTO from '@modules/households/dtos/ICreateHouseholdDTO';
+import Household from '@modules/households/infra/typeorm/entities/Household';
+
 export default interface IHouseholdsRepository {
   create(data: ICreateHouseholdDTO): Promise<Household>;
   findById(household_id: string): Promise<Household | undefined>;
