@@ -62,16 +62,19 @@ class Household {
   local_de_trabalho: string;
 
   @Column()
-  covid_2020: string;
+  diagnostico_covid_positivo: string;
 
   @Column()
-  covid_2021: string;
+  sequelas_covid: string;
 
   @Column()
-  covid_2022: string;
+  morte_ultimos_12_meses: string;
 
   @Column()
-  covid_perda: string;
+  causa_morte_ultimos_12_meses: string;
+
+  @Column()
+  contribuicao_morte_ultimos_12m: string;
 
   @Column()
   tipo_de_residencia: string;
@@ -146,10 +149,10 @@ class Household {
   ns_nr_trabalho: boolean;
 
   @Column()
-  educacao_basica_publica: string;
+  menores_6_anos: string;
 
   @Column()
-  pnae: string;
+  frequentam_creche: string;
 
   @Column()
   cadastro_unico: string;
@@ -276,7 +279,6 @@ class Household {
 
   @UpdateDateColumn()
   updated_at: Date;
-
 }
 
 export default Household;
