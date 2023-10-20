@@ -55,9 +55,7 @@
   "paths": {
     "/projects": {
       "post": {
-        "tags": [
-          "projects"
-        ],
+        "tags": ["projects"],
         "summary": "Adds a new project to the research",
         "description": "",
         "operationId": "addProject",
@@ -84,9 +82,7 @@
     },
     "/interviews": {
       "post": {
-        "tags": [
-          "interviews"
-        ],
+        "tags": ["interviews"],
         "summary": "Adds a new interview to the project",
         "description": "",
         "operationId": "addInterview",
@@ -113,9 +109,7 @@
     },
     "/persons": {
       "get": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Lists all persons that were interviewed",
         "description": "",
         "operationId": "listPersons",
@@ -152,9 +146,7 @@
         }
       },
       "post": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Add a person that was interviewed",
         "description": "",
         "operationId": "addPerson",
@@ -179,9 +171,7 @@
         }
       },
       "put": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Update an existing person",
         "description": "",
         "operationId": "updatePerson",
@@ -214,9 +204,7 @@
     },
     "/persons/{personId}": {
       "get": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Find person by ID",
         "description": "Returns a single person",
         "operationId": "getPersonById",
@@ -264,9 +252,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Deletes a person",
         "description": "",
         "operationId": "deletePerson",
@@ -304,9 +290,7 @@
     },
     "/persons/{personId}/household": {
       "get": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Returns a household",
         "description": "",
         "operationId": "getHouseholdByPersonId",
@@ -356,9 +340,7 @@
     },
     "/persons/{personId}/family": {
       "get": {
-        "tags": [
-          "persons"
-        ],
+        "tags": ["persons"],
         "summary": "Returns family members",
         "description": null,
         "operationId": "getFamilyByPersonId",
@@ -414,9 +396,7 @@
     },
     "/households": {
       "get": {
-        "tags": [
-          "households"
-        ],
+        "tags": ["households"],
         "summary": "Lists all households",
         "description": "",
         "operationId": "listHouseholds",
@@ -453,9 +433,7 @@
         }
       },
       "post": {
-        "tags": [
-          "households"
-        ],
+        "tags": ["households"],
         "summary": "Add a household of an interviewed person",
         "description": "",
         "operationId": "addHousehold",
@@ -494,9 +472,7 @@
     },
     "/familymembers": {
       "get": {
-        "tags": [
-          "familymembers"
-        ],
+        "tags": ["familymembers"],
         "summary": "Lists all family members",
         "description": "",
         "operationId": "listFamilyMembers",
@@ -536,9 +512,7 @@
         }
       },
       "post": {
-        "tags": [
-          "familymembers"
-        ],
+        "tags": ["familymembers"],
         "summary": "Add a family member of an interviewed person",
         "description": "",
         "operationId": "addFamilyMember",
@@ -565,9 +539,7 @@
     },
     "/addresses": {
       "get": {
-        "tags": [
-          "addresses"
-        ],
+        "tags": ["addresses"],
         "summary": "Lists all addresses",
         "description": "",
         "operationId": "listAddresses",
@@ -604,9 +576,7 @@
         }
       },
       "post": {
-        "tags": [
-          "addresses"
-        ],
+        "tags": ["addresses"],
         "summary": "Add a household address",
         "description": "",
         "operationId": "addAddress",
@@ -645,9 +615,7 @@
     },
     "/addresses/{personId}": {
       "get": {
-        "tags": [
-          "addresses"
-        ],
+        "tags": ["addresses"],
         "summary": "Returns an address",
         "description": "Address of the interviewed person",
         "operationId": "getAddressByPersonId",
@@ -697,9 +665,7 @@
     },
     "/users": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Lists all users",
         "description": "",
         "operationId": "listUsers",
@@ -736,9 +702,7 @@
         }
       },
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Create user",
         "description": "This creates an interviewer profile as an user",
         "operationId": "createUser",
@@ -763,9 +727,7 @@
         }
       },
       "put": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Update an existing user - Interviewer profile",
         "description": "",
         "operationId": "updateUser",
@@ -798,9 +760,7 @@
     },
     "/users/avatar": {
       "patch": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Uploads an user avatar file",
         "description": "",
         "operationId": "uploadAvatar",
@@ -836,9 +796,7 @@
     },
     "/users/{userId}": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Find user by ID",
         "description": "Returns a single user",
         "operationId": "getUserById",
@@ -888,9 +846,7 @@
     },
     "/sessions": {
       "post": {
-        "tags": [
-          "sessions"
-        ],
+        "tags": ["sessions"],
         "summary": "Logs user into the system",
         "description": "",
         "operationId": "loginUser",
@@ -921,9 +877,7 @@
     },
     "/password/forgot": {
       "post": {
-        "tags": [
-          "password"
-        ],
+        "tags": ["password"],
         "summary": "Allows user to ask for new password",
         "description": "",
         "operationId": "newPassword",
@@ -954,9 +908,7 @@
     },
     "/password/reset": {
       "post": {
-        "tags": [
-          "password"
-        ],
+        "tags": ["password"],
         "summary": "Allows user to change password",
         "description": "",
         "operationId": "newPassword",
@@ -1047,9 +999,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -1162,9 +1112,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -1332,9 +1280,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -1471,9 +1417,7 @@
             }
           }
         },
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -1626,9 +1570,7 @@
             }
           }
         },
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -1857,9 +1799,7 @@
             }
           }
         },
-        "tags": [
-          "indigeanous-interviews"
-        ]
+        "tags": ["indigeanous-interviews"]
       },
       "parameters": []
     },
@@ -2515,6 +2455,110 @@
           "description": ""
         }
       }
+    },
+    "/interviews/discriminations": {
+      "post": {
+        "summary": "",
+        "operationId": "post-interviews-discriminations",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "x-stoplight": {
+          "id": "y0wv6ay34su1j"
+        },
+        "description": "Create a new discrimination interview",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "person_id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "6s8kffzjuadd4"
+                    }
+                  },
+                  "razao_discriminacao": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "pstw3cx2sa2li"
+                    }
+                  },
+                  "seguido_ou_observado": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "r50agfgpu9ox8"
+                    }
+                  },
+                  "ameacado_ou_assediado": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "12lzfgepdizg2"
+                    }
+                  },
+                  "xingamentos": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "g2ecjhbmjbp3q"
+                    }
+                  },
+                  "agir_como_se_fossem_melhor_que_voce": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "8ugfwub9oxdsh"
+                    }
+                  },
+                  "honestidade": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "y2y0ym96tlmco"
+                    }
+                  },
+                  "medo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "zcuri7w3wio5x"
+                    }
+                  },
+                  "inteligencia": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "fuznj7almzrhl"
+                    }
+                  },
+                  "atendimento": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "nl524w6fj6tu2"
+                    }
+                  },
+                  "respeito": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "33ygklk3evhai"
+                    }
+                  },
+                  "gentileza": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "9w49lti5lujq7"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["interviews"]
+      }
     }
   },
   "externalDocs": {
@@ -2757,6 +2801,9 @@
       },
       "Interview": {
         "type": "object",
+        "xml": {
+          "name": "Interview"
+        },
         "properties": {
           "interviewer_id": {
             "type": "string"
@@ -2788,10 +2835,13 @@
           },
           "comments": {
             "type": "string"
+          },
+          "discrimination_id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "079sxpm82cp3i"
+            }
           }
-        },
-        "xml": {
-          "name": "Interview"
         }
       },
       "Person": {
@@ -2810,11 +2860,7 @@
           "sexo": {
             "type": "string",
             "description": "Person gender",
-            "enum": [
-              "masculino",
-              "feminino",
-              "outro"
-            ]
+            "enum": ["masculino", "feminino", "outro"]
           },
           "raca_cor": {
             "type": "string"
@@ -2861,11 +2907,7 @@
           "sexo": {
             "type": "string",
             "description": "Person gender",
-            "enum": [
-              "masculino",
-              "feminino",
-              "outro"
-            ]
+            "enum": ["masculino", "feminino", "outro"]
           },
           "raca_cor": {
             "type": "string"
@@ -2921,11 +2963,7 @@
           "sexo_pessoa_de_referencia": {
             "type": "string",
             "description": "Person gender",
-            "enum": [
-              "masculino",
-              "feminino",
-              "outro"
-            ]
+            "enum": ["masculino", "feminino", "outro"]
           },
           "raca_cor": {
             "type": "string"
@@ -3176,11 +3214,7 @@
           "gender": {
             "type": "string",
             "description": "Person gender",
-            "enum": [
-              "masculino",
-              "feminino",
-              "outro"
-            ]
+            "enum": ["masculino", "feminino", "outro"]
           },
           "age": {
             "type": "integer",

@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Entity,
   Column,
@@ -6,17 +7,16 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-  OneToMany,
   OneToOne,
 } from 'typeorm';
 
-import { Exclude } from 'class-transformer';
-
-import User from '@modules/users/infra/typeorm/entities/User';
-import Project from '@modules/projects/infra/typeorm/entities/Project';
-import Person from '@modules/persons/infra/typeorm/entities/Person';
-import Address from '../../../../households/infra/typeorm/entities/Address';
+import { Discrimination } from '@modules/discriminations/infra/typeorm/entities/Discrimination';
 import Household from '@modules/households/infra/typeorm/entities/Household';
+import Person from '@modules/persons/infra/typeorm/entities/Person';
+import Project from '@modules/projects/infra/typeorm/entities/Project';
+import User from '@modules/users/infra/typeorm/entities/User';
+
+import Address from '../../../../households/infra/typeorm/entities/Address';
 
 @Entity('interviews')
 class Interview {
@@ -45,7 +45,6 @@ class Interview {
   @JoinColumn({ name: 'project_id' })
   project: Project;
 
-
   @OneToOne(() => Person, { nullable: true })
   @JoinColumn({ name: 'person_id' })
   person: Person;
@@ -54,16 +53,13 @@ class Interview {
   @Exclude()
   person_id: string;
 
-
   @OneToOne(() => Household, { nullable: true })
   @JoinColumn({ name: 'household_id' })
   household: Household;
 
-
   @Column()
   @Exclude()
   household_id: string;
-
 
   @OneToOne(() => Address, { nullable: true })
   @JoinColumn({ name: 'address_id' })
@@ -85,8 +81,14 @@ class Interview {
   @Column()
   interview_type: string;
 
+  @Column()
+  discrimination_id: string;
+
   @Column({ nullable: true })
   comments: string;
+
+  @OneToOne(() => Discrimination, { nullable: true, eager: true })
+  discrimination: Discrimination;
 
   @CreateDateColumn()
   created_at: Date;

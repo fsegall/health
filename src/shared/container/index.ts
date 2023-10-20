@@ -2,6 +2,8 @@ import { container } from 'tsyringe';
 import '@modules/users/providers';
 import './providers';
 
+import { DiscriminationRepository } from '@modules/discriminations/infra/typeorm/repositories/DiscriminationRepository';
+import { IDiscriminationRepository } from '@modules/discriminations/repositories/IDiscriminationRepository';
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import { IndigeanousApoioRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousApoioRepository';
@@ -12,10 +14,10 @@ import { IndigeanousInterviewResidenceRepository } from '@modules/indigenous/inf
 import { IndigenousSaudeDoencaRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousSaudeDoencaRepository';
 import { IIndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/repositories/IIndigenousAlimentacaoNutricaoRepository';
 import { IIndigenousApoioEProtecaoRepository } from '@modules/indigenous/repositories/IIndigenousApoioEProtecaoRepository';
-import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
-import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
 import { IIndigenousInterviewDemographyRepository } from '@modules/indigenous/repositories/IIndigenousInterviewDemographyRepository';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
+import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
+import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
@@ -92,4 +94,9 @@ container.registerSingleton<IIndigenousApoioEProtecaoRepository>(
 container.registerSingleton<IIndigenousAlimentacaoNutricaoRepository>(
   'IndigeanousAlimentacaoNutricaoRepository',
   IndigenousAlimentacaoNutricaoRepository,
+);
+
+container.registerSingleton<IDiscriminationRepository>(
+  'DiscriminationRepository',
+  DiscriminationRepository,
 );

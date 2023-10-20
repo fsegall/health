@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { discriminationRouter } from '@modules/discriminations/infra/http/routes/discrimination.routes';
 import addressesRouter from '@modules/households/infra/http/routes/addresses.routes';
 import householdsRouter from '@modules/households/infra/http/routes/households.routes';
 import { indigeanousInterviewRouter } from '@modules/indigenous/infra/http/routes/indigeanousInterview.routes';
@@ -26,5 +27,6 @@ routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/offline', offlineRouter);
 routes.use('/indigenous-interviews', indigeanousInterviewRouter);
+routes.use('/interviews/discrimination', discriminationRouter);
 
 export default routes;
