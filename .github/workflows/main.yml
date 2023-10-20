@@ -30,8 +30,7 @@ jobs:
 
       uses: actions/setup-node@v2.1.1
       with:
-        node-version: 16.x
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        node-version: 18.x
           
     - name: Install dependencies
       run: yarn install
@@ -46,7 +45,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         port: ${{ secrets.SSH_PORT }}
         key:  ${{ secrets.SSH_KEY }}
-        source: ".,!node_modules"
+        source: "./node_modules"
         target: "~/app/health"
         
     - name: Run production scripts

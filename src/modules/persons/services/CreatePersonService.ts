@@ -18,7 +18,7 @@ interface IRequest {
   ocupacao: string;
   local_de_trabalho: string;
   diagnostico_covid: string;
-  vacina: string;
+  vacina?: string;
   nao_tomou_vacina?: string;
 }
 
