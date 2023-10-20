@@ -1,7 +1,8 @@
-import Person from '../infra/typeorm/entities/Person';
-import AppError from '@shared/errors/AppError';
-import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
 import { injectable, inject } from 'tsyringe';
+
+import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
+
+import Person from '../infra/typeorm/entities/Person';
 
 @injectable()
 class ListPersonsService {

@@ -16,4 +16,6 @@ export interface ICreateIndigenousInterviewDTO {
   responsavel_domicilio: boolean;
 
   numero_projeto: number;
+
+  is_offline?: boolean;
 }

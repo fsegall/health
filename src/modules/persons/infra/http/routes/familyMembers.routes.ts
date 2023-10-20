@@ -1,24 +1,20 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 
-import CreateFamilyMemberService from '@modules/persons/services/CreateFamilyMemberService';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import FamilyMembersController from '@modules/persons/infra/http/controllers/FamilyMembersController';
+import { Roles } from '@modules/users/authorization/constants';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 
 const familyMembersRouter = Router();
 
 familyMembersRouter.use(ensureAuthenticated);
 
-/* familyMembersRouter.get('/', async (request: Request, response: Response) => {
-
-  const familyMembersRepository = getCustomRepository(FamilyMembersRepository);
-  const familyMember = await familyMembersRepository.find();
-  return response.json(familyMember);
-}); */
-
 const familyMembersController = new FamilyMembersController();
 
-/* familyMembersRouter.get('/:id', familyMembersController.list); */
-
-familyMembersRouter.post('/', familyMembersController.create);
+familyMembersRouter.post(
+  '/',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  familyMembersController.create,
+);
 
 export default familyMembersRouter;

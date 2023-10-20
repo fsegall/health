@@ -1,7 +1,8 @@
-import Household from '../infra/typeorm/entities/Household';
-// import AppError from '@shared/errors/AppError';
-import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import { injectable, inject } from 'tsyringe';
+
+import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+
+import Household from '../infra/typeorm/entities/Household';
 
 @injectable()
 class ListHouseholdsService {

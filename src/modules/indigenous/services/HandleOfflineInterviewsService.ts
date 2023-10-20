@@ -2,9 +2,6 @@ import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { inject, injectable } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
-
-import Project from '../../projects/infra/typeorm/entities/Project';
 import ProjectsRepository from '../../projects/infra/typeorm/repositories/ProjectsRepository';
 import { IHandleOfflineInterviewsDTO } from '../dtos/IHandleOfflineInterviewsDTO';
 import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigenousAlimentacaoNutricaoRepository';
@@ -52,6 +49,23 @@ export class HandleOfflineInterviewsService {
     );
   }
 
+  validateIfInterviewHasAllSteps(data: IHandleOfflineInterviewsDTO): boolean {
+    type IndigenousDTOKeys = Array<keyof IHandleOfflineInterviewsDTO>;
+
+    const keysArray: IndigenousDTOKeys = [
+      'indigenous_informacoes_basicas',
+      'indigenous_demografico',
+      'indigenous_domicilio',
+      'indigenous_saude_doenca',
+      'indigenous_alimentacao_nutricao',
+      'indigenous_apoio_protecao_social',
+    ];
+
+    const isValid = keysArray?.every((key: string) => key in data);
+
+    return isValid;
+  }
+
   async execute(data: IHandleOfflineInterviewsDTO[]): Promise<any> {
     this.createOfflineRequestBackup(data);
     let notSavedInterviews: any = {};
@@ -61,18 +75,20 @@ export class HandleOfflineInterviewsService {
           // eslint-disable-next-line no-return-await
           await Promise.all(
             Object.entries(i).map(async ([key, interview]) => {
+              const interviewIsComplete = this.validateIfInterviewHasAllSteps(
+                interview,
+              );
+
               const project = await this.projectsRepository.findByNumber(
                 interview.indigenous_informacoes_basicas.numero_projeto,
               );
 
-              if (project === undefined) {
+              if (project === undefined || !interviewIsComplete) {
                 notSavedInterviews = {
                   ...notSavedInterviews,
                   [key]: interview,
                 };
-                console.log(
-                  `Projeto nº ${interview.indigenous_informacoes_basicas.numero_projeto.toString()} não existe.`,
-                );
+                console.log(`Entrevista não foi criada ${key}`);
                 return;
               }
 
@@ -90,6 +106,7 @@ export class HandleOfflineInterviewsService {
                 {
                   projeto_id: project.id,
                   ...interview.indigenous_informacoes_basicas,
+                  is_offline: true,
                 },
               );
 

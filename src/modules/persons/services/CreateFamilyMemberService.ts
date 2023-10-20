@@ -1,5 +1,6 @@
-import FamilyMember from '@modules/persons/infra/typeorm/entities/FamilyMember';
 import { injectable, inject } from 'tsyringe';
+
+import FamilyMember from '@modules/persons/infra/typeorm/entities/FamilyMember';
 import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
 // import AppError from '../errors/AppError';
 

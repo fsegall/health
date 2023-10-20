@@ -2,19 +2,18 @@
 
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
 import CreateProjectService from '@modules/projects/services/CreateProjectService';
-/* import ListProjectsService from '@modules/projects/services/ListProjectsService';
-import UpdateProjectService from '@modules/projects/services/UpdateProjectService';
-import ShowProjectservice from '@modules/projects/services/ShowProjectService';
-import DeleteProjectservice from '@modules/projects/services/DeleteProjectService'; */
+import ListProjectsService from '@modules/projects/services/ListProjectsService';
+
 export default class ProjectsController {
+  public async list(request: Request, response: Response): Promise<Response> {
+    const listProjects = container.resolve(ListProjectsService);
+    const projects = await listProjects.execute();
+    return response.status(200).json(projects);
+  }
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      user_id,
-      name,
-      project_number,
-      organizations,
-    } = request.body;
+    const { user_id, name, project_number, organizations } = request.body;
 
     const createProject = container.resolve(CreateProjectService);
 
@@ -27,43 +26,4 @@ export default class ProjectsController {
 
     return response.status(201).json(project);
   }
-
-  /* public async list(request: Request, response: Response): Promise<Response> {
-    const listProjects = container.resolve(ListProjectsService);
-    const projects = await listProjects.execute();
-
-    return response.json(projects);
-  }
-  public async update(request: Request, response: Response): Promise<Response> {
-    const {
-
-
-    } = request.body;
-    const updateProject = container.resolve(UpdateProjectService);
-    const project = await updateProject.execute({
-
-    });
-
-    return response.json(project);
-  }
-
-  public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
-    const showProject = container.resolve(ShowProjectService);
-
-    const project = await showProject.execute({ person_id: id });
-
-    return response.json(project);
-  }
-
-  public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
-    const deleteProject = container.resolve(DeleteProjectService);
-
-    const project = await deleteProject.execute({ person_id: id });
-
-    return response.json(project);
-  } */
 }

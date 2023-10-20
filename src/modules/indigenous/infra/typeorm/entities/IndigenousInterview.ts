@@ -14,8 +14,8 @@ import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 import { IndigenousApoioEProtecao } from './IndigenousApoioEProtecao';
-import { IndigenousResidence } from './IndigenousResidence';
 import { IndigenousDemography } from './IndigenousDemography';
+import { IndigenousResidence } from './IndigenousResidence';
 
 @Entity('entrevistas_indigenas')
 export class IndigenousInterview {
@@ -42,6 +42,9 @@ export class IndigenousInterview {
 
   @Column()
   responsavel_domicilio: boolean;
+
+  @Column()
+  is_offline?: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;

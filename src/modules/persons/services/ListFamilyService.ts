@@ -1,7 +1,9 @@
-import FamilyMember from '../infra/typeorm/entities/FamilyMember';
-import AppError from '@shared/errors/AppError';
-import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
 import { injectable, inject } from 'tsyringe';
+
+import IFamilyMembersRepository from '@modules/persons/repositories/IFamilyMembersRepository';
+
+import FamilyMember from '../infra/typeorm/entities/FamilyMember';
+
 interface IRequest {
   person_id: string;
 }
