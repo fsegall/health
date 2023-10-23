@@ -10,7 +10,7 @@ export default interface ICreatePersonDTO {
   ocupacao: string;
   local_de_trabalho: string;
   diagnostico_covid: string;
-  vacina: string;
+  vacina?: string;
   nao_tomou_vacina?: string;
   estado_de_saude?: string;
   local_de_procura_do_servico_de_saude?: string;
