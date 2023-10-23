@@ -4,20 +4,8 @@ import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsR
 import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
 import AppError from '@shared/errors/AppError';
 
+import ICreateInterviewDTO from '../dtos/ICreateInterviewDTO';
 import Interview from '../infra/typeorm/entities/Interview';
-
-interface IRequest {
-  interviewer_id: string;
-  project_name: string;
-  project_number: number;
-  person_id: string;
-  household_id: string;
-  address_id: string;
-  is_complete: boolean;
-  is_complete_with_errors: boolean;
-  interview_type: string;
-  comments: string;
-}
 
 @injectable()
 export default class CreateInterviewService {
@@ -38,7 +26,7 @@ export default class CreateInterviewService {
     is_complete_with_errors,
     interview_type,
     comments,
-  }: IRequest): Promise<Interview> {
+  }: ICreateInterviewDTO): Promise<Interview> {
     const projectExists = await this.projectsRepository.findByName(
       project_name.toUpperCase(),
     );

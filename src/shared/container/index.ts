@@ -4,7 +4,9 @@ import './providers';
 
 import { DiscriminationRepository } from '@modules/discriminations/infra/typeorm/repositories/DiscriminationRepository';
 import { IDiscriminationRepository } from '@modules/discriminations/repositories/IDiscriminationRepository';
+import { AddressesRepository } from '@modules/households/infra/typeorm/repositories/AddressesRepository';
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
+import { IAddressesRepository } from '@modules/households/repositories/IAddressesRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
 import { IndigeanousApoioRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigeanousApoioRepository';
 import { IndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/infra/typeorm/repositories/IndigenousAlimentacaoNutricaoRepository';
@@ -54,6 +56,11 @@ container.registerSingleton<IInterviewsRepository>(
 container.registerSingleton<IProjectsRepository>(
   'ProjectsRepository',
   ProjectsRepository,
+);
+
+container.registerSingleton<IAddressesRepository>(
+  'AddressesRepository',
+  AddressesRepository,
 );
 
 container.registerSingleton<IUsersRepository>(
