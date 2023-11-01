@@ -1,19 +1,17 @@
-import { getRepository } from 'typeorm';
+import { inject, injectable } from 'tsyringe';
 
 import Address from '@modules/households/infra/typeorm/entities/Address';
 
-interface IRequest {
-  household_id: string;
-  state: string;
-  city: string;
-  post_code?: string;
-  neighborhood: string;
-  street_or_location: string;
-  house_number: number;
-  telephone_number: string;
-}
+import ICreateAddressDTO from '../dtos/ICreateAddressDTO';
+import { IAddressesRepository } from '../repositories/IAddressesRepository';
 
+@injectable()
 export default class CreateAddressService {
+  constructor(
+    @inject('AddressesRepository')
+    private readonly addressesRepository: IAddressesRepository,
+  ) {}
+
   public async execute({
     household_id,
     state,
@@ -23,10 +21,8 @@ export default class CreateAddressService {
     street_or_location,
     house_number,
     telephone_number,
-  }: IRequest): Promise<Address> {
-    const addressesRepository = getRepository(Address);
-
-    const address: Address = addressesRepository.create({
+  }: ICreateAddressDTO): Promise<Address> {
+    const address = await this.addressesRepository.create({
       household_id,
       state,
       city,
@@ -37,10 +33,6 @@ export default class CreateAddressService {
       telephone_number,
     });
 
-    // Save to db
-    await addressesRepository.save(address);
-
-    // returns to http request
     return address;
   }
 }
