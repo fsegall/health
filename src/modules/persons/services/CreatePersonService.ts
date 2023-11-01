@@ -6,21 +6,7 @@ import { Roles } from '@modules/users/authorization/constants';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 
-interface IRequest {
-  interviewer_id: string;
-  nome: string;
-  idade: number;
-  sexo: string;
-  raca_cor: string;
-  ler_escrever: string;
-  escolaridade: string;
-  situacao_de_trabalho: string;
-  ocupacao: string;
-  local_de_trabalho: string;
-  diagnostico_covid: string;
-  vacina?: string;
-  nao_tomou_vacina?: string;
-}
+import ICreatePersonDTO from '../dtos/ICreatePersonDTO';
 
 @injectable()
 export default class CreatePersonService {
@@ -44,7 +30,7 @@ export default class CreatePersonService {
     diagnostico_covid,
     vacina,
     nao_tomou_vacina,
-  }: IRequest): Promise<Person> {
+  }: ICreatePersonDTO): Promise<Person> {
     const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
 
     if (checkIsVisitor?.role === Roles.VISITOR) {
