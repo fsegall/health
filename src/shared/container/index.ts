@@ -21,10 +21,9 @@ import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories
 import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
 import { InterviewLifeQualityMentalHealthRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewLifeQualityMentalHealthRepository';
-import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
-import { IInterviewLifeQualityMentalHealthRepository } from '@modules/interviews/repositories/IInterviewLifeQualityMentalHealthRepository';
 import { InterviewsLifeQualityViolenceRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewsLifeQualityViolenceRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
+import { IInterviewLifeQualityMentalHealthRepository } from '@modules/interviews/repositories/IInterviewLifeQualityMentalHealthRepository';
 import { IInterviewsLifeQualityViolenceRepository } from '@modules/interviews/repositories/IInterviewsQualityLifeViolenceRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
@@ -121,4 +120,9 @@ container.registerSingleton<IInterviewLifeQualityMentalHealthRepository>(
 container.registerSingleton<IInterviewsLifeQualityViolenceRepository>(
   'InterviewLifeQualityRepository',
   InterviewsLifeQualityViolenceRepository,
+);
+
+container.registerSingleton<IInterviewLifeQualityMentalHealthRepository>(
+  'InterviewLifeQualityMentalHealthRepository',
+  InterviewLifeQualityMentalHealthRepository,
 );
