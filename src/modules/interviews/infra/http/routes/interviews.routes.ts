@@ -5,7 +5,11 @@ import { Roles } from '@modules/users/authorization/constants';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 
+import { InterviewLifeQualityMentalHealthController } from '../controllers/InterviewLifeQualityMentalHealthController';
+
 const interviewsController = new InterviewsController();
+const interviewLifeQualityMentalHealthController =
+  new InterviewLifeQualityMentalHealthController();
 
 const interviewsRouter = Router();
 
@@ -33,6 +37,12 @@ interviewsRouter.post(
   '/',
   Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   interviewsController.create,
+);
+
+interviewsRouter.post(
+  '/life-quality/mental-health',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  interviewLifeQualityMentalHealthController.handle,
 );
 
 interviewsRouter.post(
