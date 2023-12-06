@@ -8,8 +8,6 @@ import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 import { CreateInterviewLifeQualityViolenceController } from '../controllers/CreateInterviewLifeQualityViolenceController';
 import { InterviewLifeQualityMentalHealthController } from '../controllers/InterviewLifeQualityMentalHealthController';
 
-const interviewsController = new InterviewsController();
-
 const interviewLifeQualityMentalHealthController =
   new InterviewLifeQualityMentalHealthController();
 
