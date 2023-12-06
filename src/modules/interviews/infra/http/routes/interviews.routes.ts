@@ -5,11 +5,16 @@ import { Roles } from '@modules/users/authorization/constants';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import Role from '@modules/users/infra/http/middlewares/ensurePermission';
 
+import { CreateInterviewLifeQualityViolenceController } from '../controllers/CreateInterviewLifeQualityViolenceController';
 import { InterviewLifeQualityMentalHealthController } from '../controllers/InterviewLifeQualityMentalHealthController';
 
 const interviewsController = new InterviewsController();
+
 const interviewLifeQualityMentalHealthController =
   new InterviewLifeQualityMentalHealthController();
+
+const createInterviewLifeQualityViolenceController =
+  new CreateInterviewLifeQualityViolenceController();
 
 const interviewsRouter = Router();
 
@@ -43,6 +48,12 @@ interviewsRouter.post(
   '/life-quality/mental-health',
   Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   interviewLifeQualityMentalHealthController.handle,
+);
+
+interviewsRouter.post(
+  '/life-quality/violence',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  createInterviewLifeQualityViolenceController.handle,
 );
 
 interviewsRouter.post(
