@@ -36,7 +36,7 @@ export default class CreatePersonService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
   ) {}
-  
+
   public async execute(data: IRequest): Promise<Person> {
     const checkIsVisitor = await this.usersRepository.findById(
       data.interviewer_id,
