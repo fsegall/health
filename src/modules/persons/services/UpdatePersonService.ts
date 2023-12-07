@@ -22,6 +22,12 @@ interface IRequest {
   diagnostico_covid: string;
   vacina: string;
   nao_tomou_vacina?: string;
+  estado_de_saude?: string;
+  local_de_procura_do_servico_de_saude?: string;
+  motivo_procura_servico_saude?: string;
+  motivo_nao_atendimento_servico_saude?: string;
+  doenca_ultimos_12_meses?: string;
+  diagnostico_doenca_ultimos_12_meses?: string;
 }
 
 @injectable()
@@ -32,61 +38,30 @@ class UpdatePersonService {
     @inject('PersonsRepository')
     private personsRepository: IPersonsRepository,
   ) {}
-  public async execute({
-    interviewer_id,
-    person_id,
-    logged_id,
-    nome,
-    idade,
-    sexo,
-    raca_cor,
-    ler_escrever,
-    escolaridade,
-    situacao_de_trabalho,
-    ocupacao,
-    local_de_trabalho,
-    diagnostico_covid,
-    vacina,
-    nao_tomou_vacina,
-  }: IRequest): Promise<Person | undefined> {
+  public async execute(data: IRequest): Promise<Person | undefined> {
     const personsInterviewedByUser = await this.personsRepository.findByUser(
-      interviewer_id,
+      data.interviewer_id,
     );
 
     const personWasInterviewedByUser = personsInterviewedByUser.find(
-      person => person.id === person_id,
+      person => person.id === data.person_id,
     );
 
     if (personsInterviewedByUser.length === 0) {
       throw new AppError('No person was interviewed by this user');
     }
 
-    if (personWasInterviewedByUser?.interviewer_id !== logged_id) {
+    if (personWasInterviewedByUser?.interviewer_id !== data.logged_id) {
       throw new AppError(
         'You can only update a person interviewed by yourself.',
       );
     }
 
-    if (personWasInterviewedByUser) {
-      const updatedUser = Object.assign(personWasInterviewedByUser, {
-        nome,
-        idade,
-        sexo,
-        raca_cor,
-        ler_escrever,
-        escolaridade,
-        situacao_de_trabalho,
-        ocupacao,
-        local_de_trabalho,
-        diagnostico_covid,
-        vacina,
-        nao_tomou_vacina,
-      });
+    const updatedUser = Object.assign(personWasInterviewedByUser, data);
 
-      this.personsRepository.save(updatedUser);
+    this.personsRepository.save(updatedUser);
 
-      return updatedUser;
-    }
+    return updatedUser;
   }
 }
 

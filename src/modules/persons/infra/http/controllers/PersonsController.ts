@@ -2,46 +2,20 @@
 
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
 import CreatePersonService from '@modules/persons/services/CreatePersonService';
-import ListPersonsService from '@modules/persons/services/ListPersonsService';
-import UpdatePersonService from '@modules/persons/services/UpdatePersonService';
-import ShowPersonService from '@modules/persons/services/ShowPersonService';
 import DeletePersonService from '@modules/persons/services/DeletePersonService';
+import ListPersonsService from '@modules/persons/services/ListPersonsService';
+import ShowPersonService from '@modules/persons/services/ShowPersonService';
+import UpdatePersonService from '@modules/persons/services/UpdatePersonService';
+
 export default class PersonsController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      interviewer_id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    } = request.body;
+    const data = request.body;
 
     const createPerson = container.resolve(CreatePersonService);
 
-    const person = await createPerson.execute({
-      interviewer_id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    });
+    const person = await createPerson.execute(data);
 
     return response.status(201).json(person);
   }
@@ -53,40 +27,9 @@ export default class PersonsController {
     return response.json(persons);
   }
   public async update(request: Request, response: Response): Promise<Response> {
-    const {
-      person_id,
-      interviewer_id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    } = request.body;
+    const data = request.body;
     const updatePerson = container.resolve(UpdatePersonService);
-    const person = await updatePerson.execute({
-      interviewer_id,
-      person_id,
-      logged_id: request.user.id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    });
+    const person = await updatePerson.execute(data);
 
     return response.json(person);
   }

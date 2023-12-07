@@ -18,8 +18,14 @@ interface IRequest {
   ocupacao: string;
   local_de_trabalho: string;
   diagnostico_covid: string;
-  vacina?: string;
+  vacina: string;
   nao_tomou_vacina?: string;
+  estado_de_saude?: string;
+  local_de_procura_do_servico_de_saude?: string;
+  motivo_procura_servico_saude?: string;
+  motivo_nao_atendimento_servico_saude?: string;
+  doenca_ultimos_12_meses?: string;
+  diagnostico_doenca_ultimos_12_meses?: string;
 }
 
 @injectable()
@@ -30,42 +36,16 @@ export default class CreatePersonService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
   ) {}
-  public async execute({
-    interviewer_id,
-    nome,
-    idade,
-    sexo,
-    raca_cor,
-    ler_escrever,
-    escolaridade,
-    situacao_de_trabalho,
-    ocupacao,
-    local_de_trabalho,
-    diagnostico_covid,
-    vacina,
-    nao_tomou_vacina,
-  }: IRequest): Promise<Person> {
-    const checkIsVisitor = await this.usersRepository.findById(interviewer_id);
+  public async execute(data: IRequest): Promise<Person> {
+    const checkIsVisitor = await this.usersRepository.findById(
+      data.interviewer_id,
+    );
 
     if (checkIsVisitor?.role === Roles.VISITOR) {
       throw new AppError('O usuário não tem permissão para criar entrevistas.');
     }
 
-    const person: Person = await this.personsRepository.create({
-      interviewer_id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    });
+    const person: Person = await this.personsRepository.create(data);
 
     return person;
   }
