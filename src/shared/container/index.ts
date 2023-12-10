@@ -32,9 +32,9 @@ import { IIndigenousInterviewDemographyRepository as IIndigenousInterviewDemogra
 import { IIndigenousInterviewRepository as IIndigenousInterviewRepositoryV2 } from '@modules/indigenous/v2/repositories/IIndigenousInterviewRepository';
 import { IIndigenousInterviewResidenceRepository as IIndigenousInterviewResidenceRepositoryV2 } from '@modules/indigenous/v2/repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousSaudeDoencaRepository as IIndigenousSaudeDoencaRepositoryV2 } from '@modules/indigenous/v2/repositories/IIndigenousSaudeDoencaRepository';
+import { InterviewLifeQualityMentalHealthRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewLifeQualityMentalHealthRepository';
 import { InterviewsLifeQualityViolenceRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewsLifeQualityViolenceRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
-import { IInterviewLifeQualityMentalHealthRepository } from '@modules/interviews/repositories/IInterviewLifeQualityMentalHealthRepository';
 import { IInterviewsLifeQualityViolenceRepository } from '@modules/interviews/repositories/IInterviewsQualityLifeViolenceRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
