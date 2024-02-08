@@ -20,9 +20,6 @@ import { IIndigenousInterviewDemographyRepository } from '@modules/indigenous/re
 import { IIndigenousInterviewRepository } from '@modules/indigenous/repositories/IIndigenousInterviewRepository';
 import { IIndigenousInterviewResidenceRepository } from '@modules/indigenous/repositories/IIndigenousInterviewResidenceRepository';
 import { IIndigenousSaudeDoencaRepository } from '@modules/indigenous/repositories/IIndigenousSaudeDoencaRepository';
-import { InterviewLifeQualityMentalHealthRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewLifeQualityMentalHealthRepository';
-import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
-import { IInterviewLifeQualityMentalHealthRepository } from '@modules/interviews/repositories/IInterviewLifeQualityMentalHealthRepository';
 import { InterviewsLifeQualityViolenceRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewsLifeQualityViolenceRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
 import { IInterviewsLifeQualityViolenceRepository } from '@modules/interviews/repositories/IInterviewsQualityLifeViolenceRepository';
@@ -111,11 +108,6 @@ container.registerSingleton<IIndigenousAlimentacaoNutricaoRepository>(
 container.registerSingleton<IDiscriminationRepository>(
   'DiscriminationRepository',
   DiscriminationRepository,
-);
-
-container.registerSingleton<IInterviewLifeQualityMentalHealthRepository>(
-  'InterviewLifeQualityMentalHealthRepository',
-  InterviewLifeQualityMentalHealthRepository,
 );
 
 container.registerSingleton<IInterviewsLifeQualityViolenceRepository>(
