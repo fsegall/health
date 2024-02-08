@@ -10,6 +10,11 @@ import { InterviewLifeQualityMentalHealthController } from '../controllers/Inter
 const interviewsController = new InterviewsController();
 const interviewLifeQualityMentalHealthController =
   new InterviewLifeQualityMentalHealthController();
+import { CreateInterviewLifeQualityViolenceController } from '../controllers/CreateInterviewLifeQualityViolenceController';
+
+const interviewsController = new InterviewsController();
+const createInterviewLifeQualityViolenceController =
+  new CreateInterviewLifeQualityViolenceController();
 
 const interviewsRouter = Router();
 
@@ -44,6 +49,12 @@ interviewsRouter.post(
   Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   interviewLifeQualityMentalHealthController.handle,
 );
+
+interviewsRouter.post(
+    '/life-quality/violence',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  createInterviewLifeQualityViolenceController.handle,
+ );
 
 interviewsRouter.post(
   '/handle-offline-data',
