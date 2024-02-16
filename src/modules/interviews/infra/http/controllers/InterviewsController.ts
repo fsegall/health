@@ -4,8 +4,8 @@ import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import HandleOfflineInterviewService from '@modules/interviews/services/CreateAllStepsOfOfflineInterview';
 import CreateInterviewService from '@modules/interviews/services/CreateInterviewService';
-import FindInterviewsService from '@modules/interviews/services/FindInterviewService';
 import ListInterviewsByInterviewerService from '@modules/interviews/services/ListInterviewsByInterviewerService';
 import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
 
@@ -83,21 +83,17 @@ export default class interviewsController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const offlineInterviews = request.body;
+    const offlineInterviewData = request.body;
 
-    const handleFindInterviews = container.resolve(FindInterviewsService);
-
-    handleFindInterviews.createOfflineRequestBackup(offlineInterviews);
-
-    const notSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(
-      offlineInterviews,
+    const handleFindInterviews = container.resolve(
+      HandleOfflineInterviewService,
     );
 
-    const stillNotSavedInterviews = await handleFindInterviews.handleAllOfflineInterviews(
-      notSavedInterviews,
+    const unsavedInterviews = handleFindInterviews.execute(
+      offlineInterviewData,
     );
 
-    return response.status(201).json(stillNotSavedInterviews);
+    return response.status(201).json(unsavedInterviews);
   }
 
   /* public async list(request: Request, response: Response): Promise<Response> {
