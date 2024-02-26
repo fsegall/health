@@ -4,14 +4,14 @@ import { injectable, inject } from 'tsyringe';
 
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 
-import CreateAllStepsOfOfflineInterview from './CreateAllStepsOfOfflineInterview';
+import HandleOfflineInterviewService from './CreateAllStepsOfOfflineInterview';
 
 @injectable()
 class FindInterviewsService {
   constructor(
     @inject('InterviewsRepository')
     private interviewsRepository: IInterviewsRepository,
-    private createAllStepsOfOfflineInterviewService: CreateAllStepsOfOfflineInterview,
+    private createAllStepsOfOfflineInterviewService: HandleOfflineInterviewService,
   ) {}
 
   public async createOfflineRequestBackup(data: any): Promise<void> {
