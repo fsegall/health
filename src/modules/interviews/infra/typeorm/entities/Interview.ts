@@ -17,7 +17,6 @@ import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
 import Address from '../../../../households/infra/typeorm/entities/Address';
-import { InterviewLifeQualityMentalHealth } from './InterviewLifeQualityMentalHealth';
 
 @Entity('interviews')
 class Interview {
@@ -90,9 +89,6 @@ class Interview {
 
   @OneToOne(() => Discrimination, { nullable: true, eager: true })
   discrimination: Discrimination;
-
-  @OneToOne(() => InterviewLifeQualityMentalHealth, { eager: true })
-  mentalHealth: InterviewLifeQualityMentalHealth;
 
   @CreateDateColumn()
   created_at: Date;

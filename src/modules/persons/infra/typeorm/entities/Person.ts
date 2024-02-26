@@ -58,6 +58,24 @@ class Person {
   @Column()
   nao_tomou_vacina: string;
 
+  @Column()
+  estado_de_saude: string;
+
+  @Column()
+  local_de_procura_do_servico_de_saude: string;
+
+  @Column()
+  motivo_procura_servico_saude: string;
+
+  @Column()
+  motivo_nao_atendimento_servico_saude: string;
+
+  @Column()
+  doenca_ultimos_12_meses: string;
+
+  @Column()
+  diagnostico_doenca_ultimos_12_meses: string;
+
   @CreateDateColumn()
   created_at: Date;
 
