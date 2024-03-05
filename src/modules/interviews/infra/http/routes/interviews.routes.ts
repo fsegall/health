@@ -11,6 +11,8 @@ import { InterviewLifeQualityMentalHealthController } from '../controllers/Inter
 const interviewLifeQualityMentalHealthController =
   new InterviewLifeQualityMentalHealthController();
 
+const interviewsController = new InterviewsController();
+
 const createInterviewLifeQualityViolenceController =
   new CreateInterviewLifeQualityViolenceController();
 

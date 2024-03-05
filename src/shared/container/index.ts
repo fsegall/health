@@ -8,6 +8,7 @@ import { AddressesRepository } from '@modules/households/infra/typeorm/repositor
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
 import { IAddressesRepository } from '@modules/households/repositories/IAddressesRepository';
 import IHouseholdsRepository from '@modules/households/repositories/IHouseholdsRepository';
+
 import { IndigeanousApoioRepository } from '@modules/indigenous/v1/infra/typeorm/repositories/IndigeanousApoioRepository';
 import { IndigenousAlimentacaoNutricaoRepository } from '@modules/indigenous/v1/infra/typeorm/repositories/IndigenousAlimentacaoNutricaoRepository';
 import { IndigenousInterviewDemographyRepository } from '@modules/indigenous/v1/infra/typeorm/repositories/IndigenousInterviewDemographyRepository';
@@ -35,6 +36,7 @@ import { IIndigenousSaudeDoencaRepository as IIndigenousSaudeDoencaRepositoryV2 
 import { InterviewLifeQualityMentalHealthRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewLifeQualityMentalHealthRepository';
 import { InterviewsLifeQualityViolenceRepository } from '@modules/interviews/infra/typeorm/repositories/InterviewsLifeQualityViolenceRepository';
 import InterviewsRepository from '@modules/interviews/infra/typeorm/repositories/InterviewsRepository';
+
 import { IInterviewsLifeQualityViolenceRepository } from '@modules/interviews/repositories/IInterviewsQualityLifeViolenceRepository';
 import IInterviewsRepository from '@modules/interviews/repositories/IInterviewsRepository';
 import FamilyMembersRepository from '@modules/persons/infra/typeorm/repositories/FamilyMembersRepository';
