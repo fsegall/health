@@ -4,7 +4,6 @@ import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typ
 export class ImprovingInterviewRelations1657485392957 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-      const currentData = await queryRunner.manager.getRepository(Interview).find()
 
       await queryRunner.changeColumn("interviews", "address_id", new TableColumn({
         name: 'address_id',
@@ -42,13 +41,6 @@ export class ImprovingInterviewRelations1657485392957 implements MigrationInterf
         }),
       );
 
-      await Promise.all(
-        currentData?.map(async oldData => {
-          await queryRunner.manager.getRepository(Interview).save({
-            ...oldData
-          })
-        })
-      )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
