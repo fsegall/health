@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ICreateIndigenousInterviewDTO } from '@modules/indigenous/dtos/ICreateIndigenousInterviewDTO';
-import { CreateIndigenousInterviewService } from '@modules/indigenous/services/CreateIndigenousInterviewService';
+import { ICreateIndigenousInterviewDTO } from '@modules/indigenous/v1/dtos/ICreateIndigenousInterviewDTO';
+import { CreateIndigenousInterviewService } from '@modules/indigenous/v1/services/CreateIndigenousInterviewService';
 
 export class CreateIndigeanousInterviewController {
   async handle(request: Request, response: Response): Promise<Response> {
