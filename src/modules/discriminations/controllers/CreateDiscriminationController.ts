@@ -11,8 +11,8 @@ export class CreateDiscriminationController {
       CreateDiscriminationService,
     );
 
-    await createDiscriminationService.execute(data);
+    const created = await createDiscriminationService.execute(data);
 
-    return response.status(201);
+    return response.status(201).json(created);
   }
 }

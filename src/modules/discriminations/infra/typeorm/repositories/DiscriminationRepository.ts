@@ -12,9 +12,11 @@ export class DiscriminationRepository implements IDiscriminationRepository {
     this.repository = getRepository(Discrimination);
   }
 
-  async create(data: ICreateDiscriminationDTO): Promise<void> {
+  async create(data: ICreateDiscriminationDTO): Promise<Discrimination> {
     const discrimination = this.repository.create(data);
 
-    await this.repository.save(discrimination);
+    const response = await this.repository.save(discrimination);
+
+    return response;
   }
 }

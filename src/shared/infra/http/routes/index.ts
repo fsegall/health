@@ -20,6 +20,7 @@ const routes = Router();
 routes.use('/password', passwordRouter);
 routes.use('/persons', personsRouter);
 routes.use('/households', householdsRouter);
+routes.use('/discrimination', discriminationRouter);
 routes.use('/addresses', addressesRouter);
 routes.use('/familymembers', familyMembersRouter);
 routes.use('/projects', projectsRouter);
@@ -29,6 +30,5 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/offline', offlineRouter);
 routes.use('/indigenous-interviews', indigeanousInterviewRouter);
 routes.use('/indigenous-interviews/v2', indigeanousInterviewRouterV2);
-routes.use('/interviews/discrimination', discriminationRouter);
 
 export default routes;
