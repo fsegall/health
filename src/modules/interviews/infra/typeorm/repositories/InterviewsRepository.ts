@@ -13,34 +13,10 @@ class InterviewsRepository implements IInterviewsRepository {
     this.ormRepository = getRepository(Interview);
   }
 
-  public async create({
-    interviewer_id,
-    project_name,
-    project_number,
-    project_id,
-    person_id,
-    household_id,
-    address_id,
-    is_complete,
-    is_complete_with_errors,
-    interview_type,
-    comments,
-  }: ICreateInterviewDTO): Promise<Interview> {
-    const interview = this.ormRepository.create({
-      interviewer_id,
-      project_name,
-      project_number,
-      project_id,
-      person_id,
-      household_id,
-      address_id,
-      is_complete,
-      is_complete_with_errors,
-      interview_type,
-      comments,
-    });
-    await this.ormRepository.save(interview);
-    return interview;
+  public async create(data: ICreateInterviewDTO): Promise<Interview> {
+    const interview = this.ormRepository.create(data);
+    const created = await this.ormRepository.save(interview);
+    return created;
   }
 
   public findByPersonId(person_id: string): Promise<Interview | undefined> {
@@ -59,10 +35,6 @@ class InterviewsRepository implements IInterviewsRepository {
       throw new Exception('INTERVIEW_NOT_FOUND');
     }
     return foundInterview;
-  }
-
-  public async save(interview: Interview): Promise<Interview> {
-    return await this.ormRepository.save(interview);
   }
 
   public async list(): Promise<Interview[]> {
@@ -90,19 +62,18 @@ class InterviewsRepository implements IInterviewsRepository {
     project_number: number;
     interviewer_id: string;
   }): Promise<boolean> {
-    const foundInterview:
-      | Interview
-      | undefined = await this.ormRepository.findOne({
-      join: { alias: 'interview', innerJoin: { person: 'interview.person' } },
-      where: (qb: any) => {
-        qb.where({
-          project_number,
-          interviewer_id,
-        })
-          .andWhere('person.nome = :person_nome', { person_nome })
-          .andWhere('person.idade = :person_idade', { person_idade });
-      },
-    });
+    const foundInterview: Interview | undefined =
+      await this.ormRepository.findOne({
+        join: { alias: 'interview', innerJoin: { person: 'interview.person' } },
+        where: (qb: any) => {
+          qb.where({
+            project_number,
+            interviewer_id,
+          })
+            .andWhere('person.nome = :person_nome', { person_nome })
+            .andWhere('person.idade = :person_idade', { person_idade });
+        },
+      });
     if (foundInterview) {
       return true;
     }

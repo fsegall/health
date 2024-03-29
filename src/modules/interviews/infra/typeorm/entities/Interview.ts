@@ -11,6 +11,8 @@ import {
 } from 'typeorm';
 
 import { Discrimination } from '@modules/discriminations/infra/typeorm/entities/Discrimination';
+import { MentalHealth } from '@modules/discriminations/infra/typeorm/entities/MentalHealth';
+import { Violence } from '@modules/discriminations/infra/typeorm/entities/Violence';
 import Household from '@modules/households/infra/typeorm/entities/Household';
 import Person from '@modules/persons/infra/typeorm/entities/Person';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
@@ -61,9 +63,27 @@ class Interview {
   @Exclude()
   household_id: string;
 
+  @Column()
+  violence_id: string;
+
+  @Column()
+  mental_health_id: string;
+
   @OneToOne(() => Address, { nullable: true })
   @JoinColumn({ name: 'address_id' })
   address: Address;
+
+  @OneToOne(() => Discrimination, { nullable: true })
+  @JoinColumn({ name: 'discrimination_id' })
+  discrimination: Discrimination;
+
+  @OneToOne(() => Violence, { nullable: true })
+  @JoinColumn({ name: 'violence_id' })
+  violence: Violence;
+
+  @OneToOne(() => MentalHealth, { nullable: true })
+  @JoinColumn({ name: 'mental_health_id' })
+  mental_health: MentalHealth;
 
   @Column()
   @Exclude()
@@ -86,9 +106,6 @@ class Interview {
 
   @Column({ nullable: true })
   comments: string;
-
-  @OneToOne(() => Discrimination, { nullable: true, eager: true })
-  discrimination: Discrimination;
 
   @CreateDateColumn()
   created_at: Date;

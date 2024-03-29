@@ -9,40 +9,13 @@ import CreateInterviewService from '@modules/interviews/services/CreateInterview
 import ListInterviewsByInterviewerService from '@modules/interviews/services/ListInterviewsByInterviewerService';
 import ListInterviewsService from '@modules/interviews/services/ListInterviewsService';
 
-import Interview from '../../typeorm/entities/Interview';
-/* import ListinterviewsService from '@modules/interviews/services/ListinterviewsService';
-import UpdateinterviewService from '@modules/interviews/services/UpdateinterviewService';
-import Showinterviewservice from '@modules/interviews/services/ShowinterviewService';
-import Deleteinterviewservice from '@modules/interviews/services/DeleteinterviewService'; */
 export default class interviewsController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      interviewer_id,
-      project_name,
-      project_number,
-      person_id,
-      household_id,
-      address_id,
-      is_complete,
-      is_complete_with_errors,
-      interview_type,
-      comments,
-    } = request.body;
+    const data = request.body;
 
     const createInterview = container.resolve(CreateInterviewService);
 
-    const interview = await createInterview.execute({
-      interviewer_id,
-      project_name,
-      project_number,
-      person_id,
-      household_id,
-      address_id,
-      is_complete,
-      is_complete_with_errors,
-      interview_type,
-      comments,
-    });
+    const interview = await createInterview.execute(data);
 
     return response.status(201).json(classToClass(interview));
   }
@@ -89,9 +62,8 @@ export default class interviewsController {
       HandleOfflineInterviewService,
     );
 
-    const unsavedInterviews = handleFindInterviews.execute(
-      offlineInterviewData,
-    );
+    const unsavedInterviews =
+      handleFindInterviews.execute(offlineInterviewData);
 
     return response.status(201).json(unsavedInterviews);
   }

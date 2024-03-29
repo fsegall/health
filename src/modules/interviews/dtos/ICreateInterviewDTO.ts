@@ -9,4 +9,7 @@ export default interface ICreateInterviewDTO {
   is_complete_with_errors: boolean;
   interview_type: string;
   comments: string;
+  discrimination_id?: string;
+  violence_id?: string;
+  mental_health_id?: string;
 }
