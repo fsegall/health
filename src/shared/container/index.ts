@@ -3,6 +3,8 @@ import '@modules/users/providers';
 import './providers';
 
 import { DiscriminationRepository } from '@modules/discriminations/infra/typeorm/repositories/DiscriminationRepository';
+import { ViolenceRepository } from '@modules/discriminations/infra/typeorm/repositories/ViolenceRepository';
+import { IViolenceRepository } from '@modules/discriminations/repositories/ICreateViolenceRepository';
 import { IDiscriminationRepository } from '@modules/discriminations/repositories/IDiscriminationRepository';
 import { AddressesRepository } from '@modules/households/infra/typeorm/repositories/AddressesRepository';
 import HouseholdsRepository from '@modules/households/infra/typeorm/repositories/HouseholdsRepository';
@@ -150,6 +152,11 @@ container.registerSingleton<IIndigenousAlimentacaoNutricaoRepositoryV2>(
 container.registerSingleton<IDiscriminationRepository>(
   'DiscriminationRepository',
   DiscriminationRepository,
+);
+
+container.registerSingleton<IViolenceRepository>(
+  'ViolenceRepository',
+  ViolenceRepository,
 );
 
 container.registerSingleton<IInterviewsLifeQualityViolenceRepository>(
