@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { discriminationRouter } from '@modules/discriminations/infra/http/routes/discrimination.routes';
+import { mentalHealthRouter } from '@modules/discriminations/infra/http/routes/mentalHealth.routes';
 import { violenceRouter } from '@modules/discriminations/infra/http/routes/violence.routes';
 import addressesRouter from '@modules/households/infra/http/routes/addresses.routes';
 import householdsRouter from '@modules/households/infra/http/routes/households.routes';
@@ -23,6 +24,7 @@ routes.use('/persons', personsRouter);
 routes.use('/households', householdsRouter);
 routes.use('/discrimination', discriminationRouter);
 routes.use('/violence', violenceRouter);
+routes.use('/mental_health', mentalHealthRouter);
 routes.use('/addresses', addressesRouter);
 routes.use('/familymembers', familyMembersRouter);
 routes.use('/projects', projectsRouter);
