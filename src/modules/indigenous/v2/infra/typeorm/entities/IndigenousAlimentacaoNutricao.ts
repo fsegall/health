@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { uuid } from 'uuidv4';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('alimentacao_nutricao_indigena')
+@Entity('alimentacao_nutricao_indigena_v2')
 export class IndigenousAlimentacaoNutricao {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -42,23 +41,26 @@ export class IndigenousAlimentacaoNutricao {
   @Column()
   morador_faz_horta: string;
 
-  @Column()
-  motivo_morador_nao_faz_horta?: string;
+  @Column('text', { array: true })
+  motivo_morador_nao_faz_horta?: string[];
+
+  @Column('text', { array: true })
+  alimentos_da_horta?: string[];
 
   @Column()
-  alimentos_da_horta?: string;
+  alimentos_da_horta_outros: string;
 
   @Column()
   frutiferas_nas_proximidades: string;
 
-  @Column()
-  coleta_castanhas_cocos_frutas: string;
+  @Column('text', { array: true })
+  coleta_castanhas_cocos_frutas: string[];
 
-  @Column()
-  funcao_cultivo_horta?: string;
+  @Column('text', { array: true })
+  funcao_cultivo_horta?: string[];
 
-  @Column()
-  origem_semente_plantio?: string;
+  @Column('text', { array: true })
+  origem_semente_plantio?: string[];
 
   @Column()
   adiciona_veneno_na_plantacao?: string;
@@ -66,14 +68,14 @@ export class IndigenousAlimentacaoNutricao {
   @Column()
   dificuldade_com_horta?: string;
 
-  @Column()
-  lista_dificuldades_com_horta?: string;
+  @Column('text', { array: true })
+  lista_dificuldades_com_horta?: string[];
 
   @Column()
   animais_de_criacao_alimentacao_ou_venda: string;
 
-  @Column()
-  lista_animais_de_criacao_alimentacao_ou_venda?: string;
+  @Column('text', { array: true })
+  lista_animais_de_criacao_alimentacao_ou_venda?: string[];
 
   @Column()
   realizam_caca: string;
@@ -84,10 +86,6 @@ export class IndigenousAlimentacaoNutricao {
   @Column()
   possui_cultivo_plantas_medicinais: string;
 
-  @Column()
-  alimentos_consumidos_dia_anterior: string;
-
-  constructor() {
-    if (!this.id) this.id = uuid();
-  }
+  @Column('text', { array: true })
+  alimentos_consumidos_dia_anterior: string[];
 }

@@ -19,8 +19,8 @@ export class IndigenousAlimentacaoNutricaoRepository
   ): Promise<IndigenousAlimentacaoNutricao> {
     const indigeanousAlimentacao = this.repository.create(data);
 
-    await this.repository.save(indigeanousAlimentacao);
+    const created = await this.repository.save(indigeanousAlimentacao);
 
-    return indigeanousAlimentacao;
+    return created;
   }
 }
