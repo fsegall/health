@@ -30,11 +30,7 @@ export class CreateIndigenousInterviewResidenceService {
     }
 
     const indigenousResidence =
-      await this.indigeanousInterviewResidenceRepository.create({
-        ...data,
-        veiculos: data.veiculos.toString(),
-        destino_lixo_da_residencia: data.destino_lixo_da_residencia.toString(),
-      });
+      await this.indigeanousInterviewResidenceRepository.create(data);
 
     return indigenousResidence;
   }
