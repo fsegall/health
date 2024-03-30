@@ -80,7 +80,7 @@ export class HandleOfflineInterviewsService {
                 this.validateIfInterviewHasAllSteps(interview);
 
               const project = await this.projectsRepository.findByNumber(
-                interview.indigenous_informacoes_basicas.numero_projeto,
+                interview.indigenous_informacoes_basicas.projeto_numero,
               );
 
               if (project === undefined || !interviewIsComplete) {
