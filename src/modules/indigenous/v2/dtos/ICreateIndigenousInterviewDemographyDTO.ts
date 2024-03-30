@@ -2,8 +2,8 @@ export interface IMoradores {
   id: string;
   nome: string;
   relacao_com_lider: string;
-  idade: number;
-  idade_em_meses: number;
+  idade: number | string;
+  idade_em_meses: number | string;
   maior_de_um_ano: string;
   sexo: string;
 }
@@ -17,7 +17,7 @@ export interface ICreateIndigenousInterviewDemographyDTO {
 
   morador_nao_indigena: string;
 
-  quantidade_morador_nao_indigena: number;
+  quantidade_morador_nao_indigena: number | string;
 
   povo_etnia?: string[];
 
