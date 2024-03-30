@@ -9,8 +9,9 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/User';
+import { IndigenousInterview } from '@modules/indigenous/v2/infra/typeorm/entities/IndigenousInterview';
 import Interview from '@modules/interviews/infra/typeorm/entities/Interview';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('projects')
 class Project {
@@ -27,13 +28,16 @@ class Project {
   @OneToMany(() => Interview, interview => interview.project)
   interviews: Interview[];
 
+  @OneToMany(() => IndigenousInterview, interview => interview.project)
+  indigenous_interviews: IndigenousInterview[];
+
   @Column()
   name: string;
 
   @Column()
   project_number: number;
 
-  @Column("text", { array: true, nullable: true })
+  @Column('text', { array: true, nullable: true })
   organizations: string[];
 
   @CreateDateColumn()

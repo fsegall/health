@@ -6,7 +6,7 @@ import { ListIndigenousInterviewParams } from '../repositories/interfaces/IListA
 @injectable()
 export class ListIndigenousInterviewService {
   constructor(
-    @inject('IndigeanousInterviewRepository')
+    @inject('IndigeanousInterviewV2Repository')
     private readonly indigenousInterviewRepository: IIndigenousInterviewRepository,
   ) {}
 

@@ -40,6 +40,8 @@ export class UpdateInterviewTable1711746918987 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('interviews', 'FKInterviewsViolence');
+    await queryRunner.dropForeignKey('interviews', 'FKInterviewsMentalHealth');
     await queryRunner.dropColumn('interviews', 'violence_id');
     await queryRunner.dropColumn('interviews', 'mental_health_id');
   }

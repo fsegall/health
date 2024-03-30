@@ -15,22 +15,22 @@ import { IIndigenousSaudeDoencaRepository } from '../repositories/IIndigenousSau
 @injectable()
 export class HandleOfflineInterviewsService {
   constructor(
-    @inject('IndigeanousInterviewRepository')
+    @inject('IndigeanousInterviewV2Repository')
     private indigenousInterviewRepository: IIndigenousInterviewRepository,
 
-    @inject('IndigeanousInterviewDemographyRepository')
+    @inject('IndigeanousInterviewDemographyV2Repository')
     private indigenousInterviewDemographyRepository: IIndigenousInterviewDemographyRepository,
 
-    @inject('IndigeanousInterviewResidenceRepository')
+    @inject('IndigeanousInterviewResidenceV2Repository')
     private indigeanousInterviewResidenceRepository: IIndigenousInterviewResidenceRepository,
 
-    @inject('IndigeanousSaudeDoencaRepository')
+    @inject('IndigeanousSaudeDoencaV2Repository')
     private indigeanousSaudeDoencaRepository: IIndigenousSaudeDoencaRepository,
 
-    @inject('IndigeanousAlimentacaoNutricaoRepository')
+    @inject('IndigeanousAlimentacaoNutricaoV2Repository')
     private indigenousAlimentacaoNutricaoRepository: IIndigenousAlimentacaoNutricaoRepository,
 
-    @inject('IndigeanousApoioFinanceiroRepository')
+    @inject('IndigeanousApoioFinanceiroV2Repository')
     private indigenousApoioEProtecaoRepository: IIndigenousApoioEProtecaoRepository,
 
     @inject('ProjectsRepository')
