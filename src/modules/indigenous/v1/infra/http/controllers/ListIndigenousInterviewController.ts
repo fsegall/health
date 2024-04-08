@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ListIndigenousInterviewService } from '@modules/indigenous/services/ListIndigenousInterviewService';
+import { ListIndigenousInterviewService } from '@modules/indigenous/v1/services/ListIndigenousInterviewService';
 
 export class ListIndigenousInterviewController {
   async handle(request: Request, response: Response): Promise<Response> {

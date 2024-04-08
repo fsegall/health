@@ -61,20 +61,20 @@ class Person {
   @Column()
   estado_de_saude: string;
 
-  @Column()
-  local_de_procura_do_servico_de_saude: string;
+  @Column('text', { array: true })
+  local_de_procura_do_servico_de_saude: string[];
 
-  @Column()
-  motivo_procura_servico_saude: string;
+  @Column('text', { array: true })
+  motivo_procura_servico_saude: string[];
 
-  @Column()
-  motivo_nao_atendimento_servico_saude: string;
+  @Column('text', { array: true })
+  motivo_nao_atendimento_servico_saude: string[];
 
-  @Column()
-  doenca_ultimos_12_meses: string;
+  @Column('text', { array: true })
+  doenca_ultimos_12_meses: string[];
 
-  @Column()
-  diagnostico_doenca_ultimos_12_meses: string;
+  @Column('text', { array: true })
+  diagnostico_doenca_ultimos_12_meses: string[];
 
   @CreateDateColumn()
   created_at: Date;

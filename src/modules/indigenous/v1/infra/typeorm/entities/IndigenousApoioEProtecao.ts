@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { uuid } from 'uuidv4';
 
-import { IProgramasSociais } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousApoioEProtecao';
+import { IProgramasSociais } from '@modules/indigenous/v1/repositories/interfaces/ICreateIndigenousApoioEProtecao';
 
 @Entity('apoio_protecao_indigena')
 export class IndigenousApoioEProtecao {

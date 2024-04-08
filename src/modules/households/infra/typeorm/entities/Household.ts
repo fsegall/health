@@ -26,9 +26,6 @@ class Household {
   local_do_domicilio: string;
 
   @Column()
-  morador_de_rua: string;
-
-  @Column()
   povos_tradicionais: string;
 
   @Column()
@@ -74,7 +71,7 @@ class Household {
   causa_morte_ultimos_12_meses: string;
 
   @Column()
-  contribuicao_morte_ultimos_12m: string;
+  contribuicao_morte_ultimos_12_meses: string;
 
   @Column()
   tipo_de_residencia: string;
@@ -145,8 +142,8 @@ class Household {
   @Column()
   corte_de_gastos_nao_essenciais: boolean;
 
-  @Column()
-  ns_nr_trabalho: boolean;
+  @Column('text', { array: true })
+  ns_nr_trabalho: string[];
 
   @Column()
   menores_6_anos: string;

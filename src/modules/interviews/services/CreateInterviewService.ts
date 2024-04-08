@@ -15,20 +15,9 @@ export default class CreateInterviewService {
     @inject('ProjectsRepository')
     private projectsRepository: IProjectsRepository,
   ) {}
-  public async execute({
-    interviewer_id,
-    project_name,
-    project_number,
-    person_id,
-    household_id,
-    address_id,
-    is_complete,
-    is_complete_with_errors,
-    interview_type,
-    comments,
-  }: ICreateInterviewDTO): Promise<Interview> {
+  public async execute(data: ICreateInterviewDTO): Promise<Interview> {
     const projectExists = await this.projectsRepository.findByName(
-      project_name.toUpperCase(),
+      data.project_name.toUpperCase(),
     );
 
     if (!projectExists) {
@@ -36,36 +25,29 @@ export default class CreateInterviewService {
     }
 
     const projectNumberExists = await this.projectsRepository.findByNumber(
-      project_number,
+      data.project_number,
     );
 
     if (!projectNumberExists) {
       throw new AppError('Este número de projeto não foi cadastrado ainda');
     }
 
-    const personAlreadyInterviewed = await this.interviewsRepository.findByPersonId(
-      person_id,
-    );
+    const personAlreadyInterviewed =
+      await this.interviewsRepository.findByPersonId(data.person_id);
 
     if (personAlreadyInterviewed) {
       throw new AppError('Esta pessoa já tem uma entrevista cadastrada');
     }
 
-    const interview: Interview = await this.interviewsRepository.create({
-      interviewer_id,
+    const sanitizedData = {
+      ...data,
       project_id: projectExists.id,
-      project_name: project_name.toUpperCase(),
-      project_number,
-      person_id,
-      household_id,
-      address_id,
-      is_complete,
-      is_complete_with_errors,
-      interview_type,
-      comments,
-    });
+      project_name: data.project_name.toUpperCase(),
+    };
 
-    await this.interviewsRepository.save(interview);
+    const interview: Interview = await this.interviewsRepository.create(
+      sanitizedData,
+    );
 
     return interview;
   }

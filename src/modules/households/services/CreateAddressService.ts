@@ -12,26 +12,8 @@ export default class CreateAddressService {
     private readonly addressesRepository: IAddressesRepository,
   ) {}
 
-  public async execute({
-    household_id,
-    state,
-    city,
-    post_code,
-    neighborhood,
-    street_or_location,
-    house_number,
-    telephone_number,
-  }: ICreateAddressDTO): Promise<Address> {
-    const address = await this.addressesRepository.create({
-      household_id,
-      state,
-      city,
-      post_code,
-      neighborhood,
-      street_or_location,
-      house_number,
-      telephone_number,
-    });
+  public async execute(data: ICreateAddressDTO): Promise<Address> {
+    const address = await this.addressesRepository.create(data);
 
     return address;
   }

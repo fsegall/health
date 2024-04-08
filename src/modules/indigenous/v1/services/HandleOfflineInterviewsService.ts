@@ -2,7 +2,8 @@ import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { inject, injectable } from 'tsyringe';
 
-import ProjectsRepository from '../../projects/infra/typeorm/repositories/ProjectsRepository';
+import ProjectsRepository from '@modules/projects/infra/typeorm/repositories/ProjectsRepository';
+
 import { IHandleOfflineInterviewsDTO } from '../dtos/IHandleOfflineInterviewsDTO';
 import { IIndigenousAlimentacaoNutricaoRepository } from '../repositories/IIndigenousAlimentacaoNutricaoRepository';
 import { IIndigenousApoioEProtecaoRepository } from '../repositories/IIndigenousApoioEProtecaoRepository';
@@ -75,9 +76,8 @@ export class HandleOfflineInterviewsService {
           // eslint-disable-next-line no-return-await
           await Promise.all(
             Object.entries(i).map(async ([key, interview]) => {
-              const interviewIsComplete = this.validateIfInterviewHasAllSteps(
-                interview,
-              );
+              const interviewIsComplete =
+                this.validateIfInterviewHasAllSteps(interview);
 
               const project = await this.projectsRepository.findByNumber(
                 interview.indigenous_informacoes_basicas.numero_projeto,
@@ -92,23 +92,23 @@ export class HandleOfflineInterviewsService {
                 return;
               }
 
-              const existentIndigenousInterview = await this.indigenousInterviewRepository.findByInterviewDateAndInterviewer(
-                interview.indigenous_informacoes_basicas.data_entrevista,
-                interview.indigenous_informacoes_basicas.entrevistador_id,
-              );
+              const existentIndigenousInterview =
+                await this.indigenousInterviewRepository.findByInterviewDateAndInterviewer(
+                  interview.indigenous_informacoes_basicas.data_entrevista,
+                  interview.indigenous_informacoes_basicas.entrevistador_id,
+                );
 
               if (existentIndigenousInterview) {
                 console.error('Interview already registered');
                 return;
               }
 
-              const indigenousInterview = await this.indigenousInterviewRepository.create(
-                {
+              const indigenousInterview =
+                await this.indigenousInterviewRepository.create({
                   projeto_id: project.id,
                   ...interview.indigenous_informacoes_basicas,
                   is_offline: true,
-                },
-              );
+                });
 
               await this.indigenousInterviewDemographyRepository.create({
                 ...interview.indigenous_demografico,
@@ -118,7 +118,8 @@ export class HandleOfflineInterviewsService {
               await this.indigeanousInterviewResidenceRepository.create({
                 ...interview.indigenous_domicilio,
                 veiculos: interview.indigenous_domicilio.veiculos.toString(),
-                destino_lixo_da_residencia: interview.indigenous_domicilio.destino_lixo_da_residencia.toString(),
+                destino_lixo_da_residencia:
+                  interview.indigenous_domicilio.destino_lixo_da_residencia.toString(),
                 entrevista_indigena_id: indigenousInterview.id,
               });
 

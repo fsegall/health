@@ -19,8 +19,8 @@ export class IndigenousInterviewDemographyRepository
   ): Promise<IndigenousDemography> {
     const indigeanousInterviewDemography = this.repository.create(data);
 
-    await this.repository.save(indigeanousInterviewDemography);
+    const created = await this.repository.save(indigeanousInterviewDemography);
 
-    return indigeanousInterviewDemography;
+    return created;
   }
 }

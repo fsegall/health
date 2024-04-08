@@ -17,7 +17,7 @@ import { IndigenousApoioEProtecao } from './IndigenousApoioEProtecao';
 import { IndigenousDemography } from './IndigenousDemography';
 import { IndigenousResidence } from './IndigenousResidence';
 
-@Entity('entrevistas_indigenas')
+@Entity('entrevistas_indigenas_v2')
 export class IndigenousInterview {
   @PrimaryColumn()
   id: string;
@@ -53,9 +53,12 @@ export class IndigenousInterview {
   @JoinColumn({ name: 'entrevistador_id' })
   entrevistador: User;
 
+  @Column()
+  project_id: string;
+
   @ManyToOne(() => Project)
-  @JoinColumn({ name: 'projeto_id' })
-  projeto: Project;
+  @JoinColumn({ name: 'project_id' })
+  project: Project;
 
   @OneToOne(() => IndigenousDemography)
   entrevista_indigena_demografico: IndigenousDemography;

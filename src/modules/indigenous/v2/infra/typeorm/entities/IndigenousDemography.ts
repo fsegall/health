@@ -2,16 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { uuid } from 'uuidv4';
 
 import { IMoradores } from '@modules/indigenous/v2/dtos/ICreateIndigenousInterviewDemographyDTO';
 
-@Entity('demografia_indigena')
+@Entity('demografia_indigena_v2')
 export class IndigenousDemography {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -29,8 +28,8 @@ export class IndigenousDemography {
   @Column()
   quantidade_morador_nao_indigena: number;
 
-  @Column()
-  povo_etnia?: string;
+  @Column('text', { array: true })
+  povo_etnia?: string[];
 
   @Column()
   serie_frequentada_escola: string;
@@ -67,8 +66,4 @@ export class IndigenousDemography {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  constructor() {
-    if (!this.id) this.id = uuid();
-  }
 }

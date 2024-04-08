@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ICreateIndigenousInterviewResidenceDTO } from '@modules/indigenous/dtos/ICreateIndigenousInterviewResidenceDTO';
-import { CreateIndigenousInterviewResidenceService } from '@modules/indigenous/services/CreateIndigenousInterviewResidenceService';
+import { ICreateIndigenousInterviewResidenceDTO } from '@modules/indigenous/v2/dtos/ICreateIndigenousInterviewResidenceDTO';
+import { CreateIndigenousInterviewResidenceService } from '@modules/indigenous/v2/services/CreateIndigenousInterviewResidenceService';
 
 export class CreateIndigeanousInterviewResidenceController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -12,9 +12,8 @@ export class CreateIndigeanousInterviewResidenceController {
       CreateIndigenousInterviewResidenceService,
     );
 
-    const indigenousResidence = await createIndigeanousInterviewResidenceService.execute(
-      data,
-    );
+    const indigenousResidence =
+      await createIndigeanousInterviewResidenceService.execute(data);
 
     return response.status(201).json(indigenousResidence);
   }

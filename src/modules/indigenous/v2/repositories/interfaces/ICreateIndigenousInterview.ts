@@ -7,6 +7,8 @@ export interface ICreateIndigenousInterview {
 
   entrevistador_id: string;
 
+  project_id: string;
+
   projeto_numero: string;
 
   data_entrevista: Date;

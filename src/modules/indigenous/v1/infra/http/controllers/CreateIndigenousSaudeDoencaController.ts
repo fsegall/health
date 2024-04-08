@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ICreateIndigenousSaudeDoencaDTO } from '@modules/indigenous/dtos/ICreateIndigenousSaudeDoencaDTO';
-import { CreateIndigeanousSaudeDoencaService } from '@modules/indigenous/services/CreateIndigenousSaudeDoencaService';
+import { ICreateIndigenousSaudeDoencaDTO } from '@modules/indigenous/v1/dtos/ICreateIndigenousSaudeDoencaDTO';
+import { CreateIndigeanousSaudeDoencaService } from '@modules/indigenous/v1/services/CreateIndigenousSaudeDoencaService';
 
 export class CreateIndigenousSaudeDoencaController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -12,9 +12,8 @@ export class CreateIndigenousSaudeDoencaController {
       CreateIndigeanousSaudeDoencaService,
     );
 
-    const indigenousSaudeDoenca = await createIndigeanousSaudeDoencaService.execute(
-      data,
-    );
+    const indigenousSaudeDoenca =
+      await createIndigeanousSaudeDoencaService.execute(data);
 
     return response.status(201).json(indigenousSaudeDoenca);
   }

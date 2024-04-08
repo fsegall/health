@@ -1,11 +1,8 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { uuid } from 'uuidv4';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-import { IUtensiliosCasa } from '@modules/indigenous/v2/repositories/interfaces/ICreateIndigeanousInterviewResidence';
-
-@Entity('domicilio_indigena')
+@Entity('domicilio_indigena_v2')
 export class IndigenousResidence {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -30,16 +27,16 @@ export class IndigenousResidence {
   material_telhado: string;
 
   @Column()
-  possui_energia_eletrica: number;
+  possui_energia_eletrica: string;
 
-  @Column()
-  utensilios_de_trabalho: number;
+  @Column('text', { array: true })
+  utensilios_de_trabalho: string[];
 
-  @Column({ type: 'json' })
-  utensilios_casa: IUtensiliosCasa;
+  @Column('text', { array: true })
+  utensilios_casa: string[];
 
-  @Column()
-  veiculos: string;
+  @Column('text', { array: true })
+  veiculos: string[];
 
   @Column()
   origem_agua: string;
@@ -59,10 +56,6 @@ export class IndigenousResidence {
   @Column()
   forma_coleta_esgoto: string;
 
-  @Column()
-  destino_lixo_da_residencia: string;
-
-  constructor() {
-    if (!this.id) this.id = uuid();
-  }
+  @Column('text', { array: true })
+  destino_lixo_da_residencia: string[];
 }

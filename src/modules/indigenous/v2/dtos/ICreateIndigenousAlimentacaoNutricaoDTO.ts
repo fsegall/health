@@ -1,9 +1,9 @@
 export interface ICreateIndigenousAlimentacaoNutricaoDTO {
   entrevista_indigena_id: string;
 
-  possui_moradores_menores_de_16: string;
+  possui_moradores_menores_de_16?: string;
 
-  preocupação_nao_conseguir_comida: string;
+  preocupação_nao_conseguir_comida?: string;
 
   nao_comeu_comida_cultura?: string;
 
@@ -23,27 +23,29 @@ export interface ICreateIndigenousAlimentacaoNutricaoDTO {
 
   morador_faz_horta: string;
 
-  motivo_morador_nao_faz_horta?: string;
+  motivo_morador_nao_faz_horta?: string[];
 
-  alimentos_da_horta?: string;
+  alimentos_da_horta?: string[];
+
+  alimentos_da_horta_outros?: string;
 
   frutiferas_nas_proximidades: string;
 
-  coleta_castanhas_cocos_frutas: string;
+  coleta_castanhas_cocos_frutas: string[];
 
-  funcao_cultivo_horta?: string;
+  funcao_cultivo_horta?: string[];
 
-  origem_semente_plantio?: string;
+  origem_semente_plantio?: string[];
 
   adiciona_veneno_na_plantacao?: string;
 
   dificuldade_com_horta?: string;
 
-  lista_dificuldades_com_horta?: string;
+  lista_dificuldades_com_horta?: string[];
 
   animais_de_criacao_alimentacao_ou_venda: string;
 
-  lista_animais_de_criacao_alimentacao_ou_venda?: string;
+  lista_animais_de_criacao_alimentacao_ou_venda?: string[];
 
   realizam_caca: string;
 
@@ -51,5 +53,5 @@ export interface ICreateIndigenousAlimentacaoNutricaoDTO {
 
   possui_cultivo_plantas_medicinais: string;
 
-  alimentos_consumidos_dia_anterior: string;
+  alimentos_consumidos_dia_anterior: string[];
 }

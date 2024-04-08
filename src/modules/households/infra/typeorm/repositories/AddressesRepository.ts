@@ -6,17 +6,17 @@ import { IAddressesRepository } from '@modules/households/repositories/IAddresse
 import Address from '../entities/Address';
 
 export class AddressesRepository implements IAddressesRepository {
-  private ormRepository: Repository<Address>;
+  private repository: Repository<Address>;
 
   constructor() {
-    this.ormRepository = getRepository(Address);
+    this.repository = getRepository(Address);
   }
 
   async create(data: ICreateAddressDTO): Promise<Address> {
-    const address = this.ormRepository.create(data);
+    const add = this.repository.create(data);
 
-    await this.ormRepository.save(address);
+    const response = await this.repository.save(add);
 
-    return address;
+    return response;
   }
 }
