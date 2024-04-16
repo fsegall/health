@@ -57,7 +57,6 @@ jobs:
         key:  ${{ secrets.SSH_KEY }}
         script: |
           cd ~/app/health
-          su deploy
           npm install
           ./node_modules/.bin/typeorm migration:run
           /home/deploy/.nvm/versions/node/v16.18.0/bin/pm2 restart safety-api
