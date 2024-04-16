@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
 import { discriminationRouter } from '@modules/discriminations/infra/http/routes/discrimination.routes';
+import { mentalHealthRouter } from '@modules/discriminations/infra/http/routes/mentalHealth.routes';
+import { violenceRouter } from '@modules/discriminations/infra/http/routes/violence.routes';
 import addressesRouter from '@modules/households/infra/http/routes/addresses.routes';
 import householdsRouter from '@modules/households/infra/http/routes/households.routes';
 import { indigeanousInterviewRouter } from '@modules/indigenous/v1/infra/http/routes/indigeanousInterview.routes';
@@ -20,6 +22,9 @@ const routes = Router();
 routes.use('/password', passwordRouter);
 routes.use('/persons', personsRouter);
 routes.use('/households', householdsRouter);
+routes.use('/discrimination', discriminationRouter);
+routes.use('/violence', violenceRouter);
+routes.use('/mental_health', mentalHealthRouter);
 routes.use('/addresses', addressesRouter);
 routes.use('/familymembers', familyMembersRouter);
 routes.use('/projects', projectsRouter);
@@ -29,6 +34,5 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/offline', offlineRouter);
 routes.use('/indigenous-interviews', indigeanousInterviewRouter);
 routes.use('/indigenous-interviews/v2', indigeanousInterviewRouterV2);
-routes.use('/interviews/discrimination', discriminationRouter);
 
 export default routes;

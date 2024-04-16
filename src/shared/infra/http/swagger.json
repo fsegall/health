@@ -2944,9 +2944,6 @@
           "local_do_domicilio": {
             "type": "string"
           },
-          "morador_de_rua": {
-            "type": "string"
-          },
           "povos_tradicionais": {
             "type": "string"
           },
@@ -3072,7 +3069,7 @@
             "type": "boolean"
           },
           "ns_nr_trabalho": {
-            "type": "boolean"
+            "type": "text"
           },
           "educacao_basica_publica": {
             "type": "string"

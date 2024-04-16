@@ -2,14 +2,10 @@ export interface IMoradores {
   id: string;
   nome: string;
   relacao_com_lider: string;
-  idade: number;
+  idade: number | string;
+  idade_em_meses: number | string;
+  maior_de_um_ano: string;
   sexo: string;
-  indigena: string;
-  povo_etnia: string;
-  serie_frequentada_escola: string;
-  crenca_religiao: string;
-  ocupacao_principal: string;
-  funcao_comunidade: string;
 }
 
 export interface ICreateIndigenousInterviewDemographyDTO {
@@ -21,9 +17,9 @@ export interface ICreateIndigenousInterviewDemographyDTO {
 
   morador_nao_indigena: string;
 
-  quantidade_morador_nao_indigena: number;
+  quantidade_morador_nao_indigena: number | string;
 
-  povo_etnia?: string;
+  povo_etnia?: string[];
 
   serie_frequentada_escola: string;
 

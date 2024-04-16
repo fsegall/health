@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { uuid } from 'uuidv4';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('saude_doenca_indigena')
+@Entity('saude_doenca_indigena_v2')
 export class IndigeanousSaudeDoenca {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -24,11 +23,11 @@ export class IndigeanousSaudeDoenca {
   @Column()
   doencas_contato_veneno_lavoura: string;
 
-  @Column()
-  motivo_doencas_contato_veneno_lavoura?: string;
+  @Column('text', { array: true })
+  motivo_doencas_contato_veneno_lavoura?: string[];
 
-  @Column()
-  acidentes: string;
+  @Column('text', { array: true })
+  acidentes: string[];
 
   @Column()
   ocorrencia_de_ameacas: string;
@@ -36,23 +35,20 @@ export class IndigeanousSaudeDoenca {
   @Column()
   ocorrencia_violencia_fisica: string;
 
-  @Column()
-  local_ocorrencia_violencia_fisica?: string;
+  @Column('text', { array: true })
+  local_ocorrencia_violencia_fisica?: string[];
 
   @Column()
   locais_impedido_de_entrar: string;
 
-  @Column()
-  lista_diagnosticos: string;
+  @Column('text', { array: true })
+  lista_diagnosticos: string[];
 
   @Column()
   lista_diagnosticos_cronico_remedio?: string;
 
-  @Column()
-  lista_diagnosticos_outros: string;
-
-  @Column()
-  lista_tratamentos: string;
+  @Column('text', { array: true })
+  lista_diagnosticos_outros: string[];
 
   @Column()
   lista_diagnosticos_outros_remedio: string;
@@ -60,8 +56,8 @@ export class IndigeanousSaudeDoenca {
   @Column()
   moradora_entre_13_e_45_anos: string;
 
-  @Column()
-  mulheres_e_gestacao: string;
+  @Column('text', { array: true })
+  mulheres_e_gestacao: string[];
 
   @Column()
   crianca_ate_6_meses: string;
@@ -105,7 +101,12 @@ export class IndigeanousSaudeDoenca {
   @Column()
   morador_problemas_uso_drogas: string;
 
-  constructor() {
-    if (!this.id) this.id = uuid();
-  }
+  @Column()
+  possui_morador_menor_ou_igual_a_5_anos_desnutricao: string;
+
+  @Column()
+  possui_morador_crianca_diarreia: string;
+
+  @Column()
+  possui_morador_crianca_pneumonia: string;
 }

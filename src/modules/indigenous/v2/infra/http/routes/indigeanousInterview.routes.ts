@@ -15,14 +15,22 @@ import { ListIndigenousInterviewController } from '../controllers/ListIndigenous
 
 const indigeanousInterviewRouter = Router();
 
-const createIndigenousInterviewController = new CreateIndigeanousInterviewController();
-const createIndigenousInterviewDemographyController = new CreateIndigeanousInterviewDemographyController();
-const createIndigenousInterviewResidenceController = new CreateIndigeanousInterviewResidenceController();
-const createIndigenousSaudeDoencaController = new CreateIndigenousSaudeDoencaController();
-const createIndigenousApoioFinanceiroController = new CreateIndigenousApoioEProtecaoController();
-const createIndigenousAlimentacaoNutricaoController = new CreateIndigenousAlimentacaoNutricaoController();
-const listIndigenousInterviewController = new ListIndigenousInterviewController();
-const handleOfflineInterviewsController = new HandleOfflinetInterviewsController();
+const createIndigenousInterviewController =
+  new CreateIndigeanousInterviewController();
+const createIndigenousInterviewDemographyController =
+  new CreateIndigeanousInterviewDemographyController();
+const createIndigenousInterviewResidenceController =
+  new CreateIndigeanousInterviewResidenceController();
+const createIndigenousSaudeDoencaController =
+  new CreateIndigenousSaudeDoencaController();
+const createIndigenousApoioFinanceiroController =
+  new CreateIndigenousApoioEProtecaoController();
+const createIndigenousAlimentacaoNutricaoController =
+  new CreateIndigenousAlimentacaoNutricaoController();
+const listIndigenousInterviewController =
+  new ListIndigenousInterviewController();
+const handleOfflineInterviewsController =
+  new HandleOfflinetInterviewsController();
 
 indigeanousInterviewRouter.use(ensureAuthenticated);
 indigeanousInterviewRouter.post(

@@ -1,7 +1,6 @@
 export default interface ICreateHouseholdDTO {
   person_id: string;
   local_do_domicilio: string;
-  morador_de_rua: string;
   povos_tradicionais: string;
   qual_povo_tradicional?: string;
   pessoa_de_referencia: string;
@@ -32,16 +31,17 @@ export default interface ICreateHouseholdDTO {
   sessenta_anos_ou_mais?: number;
   pessoas_convidadas?: string;
   nao_sabe_renda: boolean;
+  frequentam_creche?: string;
   renda_familiar?: number;
   faixa_de_renda: string;
-
+  menores_6_anos?: string;
   perda_de_emprego?: boolean;
   reducao_de_salario?: boolean;
   ajuda_financeira?: boolean;
   divida?: boolean;
   corte_de_gastos?: boolean;
   corte_de_gastos_nao_essenciais?: boolean;
-  ns_nr_trabalho?: boolean;
+  ns_nr_trabalho?: string[];
 
   educacao_basica_publica: string;
   pnae?: string;

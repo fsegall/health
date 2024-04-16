@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { uuid } from 'uuidv4';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('apoio_protecao_indigena')
+@Entity('apoio_protecao_indigena_v2')
 export class IndigenousApoioEProtecao {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -24,8 +23,8 @@ export class IndigenousApoioEProtecao {
   @Column()
   opcoes_renda_total_30_dias?: string;
 
-  @Column()
-  recebeu_cesta_alimentos?: string;
+  @Column('text', { array: true })
+  recebeu_cesta_alimentos?: string[];
 
   @Column()
   motivo_nao_recebe_cesta_alimentos?: string;
@@ -34,48 +33,44 @@ export class IndigenousApoioEProtecao {
   bolsa_familia_auxilio_brasil: string;
 
   @Column()
-  valor_bolsa_familia_auxilio_brasil?: string;
+  valor_bolsa_familia_auxilio_brasil?: number;
 
   @Column()
   bpc: string;
 
   @Column()
-  valor_bpc?: string;
+  valor_bpc?: number;
 
   @Column()
   auxilio_maternidade: string;
 
   @Column()
-  valor_auxilio_maternidade?: string;
+  valor_auxilio_maternidade?: number;
 
   @Column()
   auxilio_doenca: string;
 
   @Column()
-  valor_auxilio_doenca?: string;
+  valor_auxilio_doenca?: number;
 
   @Column()
   aposentadoria: string;
 
   @Column()
-  valor_aposentadoria?: string;
+  valor_aposentadoria?: number;
 
   @Column()
   pensao_morte: string;
 
   @Column()
-  valor_pensao_morte?: string;
+  valor_pensao_morte?: number;
 
   @Column()
   programa_auxilio_estadual_municipal: string;
 
   @Column()
-  valor_programa_auxilio_estadual_municipal?: string;
+  valor_programa_auxilio_estadual_municipal?: number;
 
   @Column()
   cesta_alimentos: string;
-
-  constructor() {
-    if (!this.id) this.id = uuid();
-  }
 }

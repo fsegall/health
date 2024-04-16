@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { IHandleOfflineInterviewsDTO } from '@modules/indigenous/dtos/IHandleOfflineInterviewsDTO';
-import { HandleOfflineInterviewsService } from '@modules/indigenous/services/HandleOfflineInterviewsService';
+import { IHandleOfflineInterviewsDTO } from '@modules/indigenous/v2/dtos/IHandleOfflineInterviewsDTO';
+import { HandleOfflineInterviewsService } from '@modules/indigenous/v2/services/HandleOfflineInterviewsService';
 
 export class HandleOfflinetInterviewsController {
   async handle(request: Request, response: Response): Promise<Response> {

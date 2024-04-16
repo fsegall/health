@@ -1,7 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
-import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
+
 import ICreatePersonDTO from '@modules/persons/dtos/ICreatePersonDTO';
 import Person from '@modules/persons/infra/typeorm/entities/Person';
+import IPersonsRepository from '@modules/persons/repositories/IPersonsRepository';
 import AppError from '@shared/errors/AppError';
 
 class PersonsRepository implements IPersonsRepository {
@@ -11,36 +12,8 @@ class PersonsRepository implements IPersonsRepository {
     this.ormRepository = getRepository(Person);
   }
 
-  public async create({
-    interviewer_id,
-    nome,
-    idade,
-    sexo,
-    raca_cor,
-    ler_escrever,
-    escolaridade,
-    situacao_de_trabalho,
-    ocupacao,
-    local_de_trabalho,
-    diagnostico_covid,
-    vacina,
-    nao_tomou_vacina,
-  }: ICreatePersonDTO): Promise<Person> {
-    const person = this.ormRepository.create({
-      interviewer_id,
-      nome,
-      idade,
-      sexo,
-      raca_cor,
-      ler_escrever,
-      escolaridade,
-      situacao_de_trabalho,
-      ocupacao,
-      local_de_trabalho,
-      diagnostico_covid,
-      vacina,
-      nao_tomou_vacina,
-    });
+  public async create(data: ICreatePersonDTO): Promise<Person> {
+    const person = this.ormRepository.create(data);
     await this.ormRepository.save(person);
     return person;
   }

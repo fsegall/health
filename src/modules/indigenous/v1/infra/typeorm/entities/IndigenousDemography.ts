@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { uuid } from 'uuidv4';
 
-import { IMoradores } from '@modules/indigenous/repositories/interfaces/ICreateIndigenousInterviewDemography';
+import { IMoradores } from '@modules/indigenous/v1/repositories/interfaces/ICreateIndigenousInterviewDemography';
 
 @Entity('demografia_indigena')
 export class IndigenousDemography {

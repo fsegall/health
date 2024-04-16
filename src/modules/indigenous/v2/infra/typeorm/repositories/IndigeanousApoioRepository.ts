@@ -19,8 +19,8 @@ export class IndigeanousApoioRepository
   ): Promise<IndigenousApoioEProtecao> {
     const indigeanousApoioFinanceiro = this.repository.create(data);
 
-    await this.repository.save(indigeanousApoioFinanceiro);
+    const created = await this.repository.save(indigeanousApoioFinanceiro);
 
-    return indigeanousApoioFinanceiro;
+    return created;
   }
 }

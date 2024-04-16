@@ -1,10 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import Person from '@modules/persons/infra/typeorm/entities/Person';
 
 @Entity('discriminations')
 export class Discrimination {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
