@@ -1,5 +1,5 @@
-import { randomUUID } from 'crypto';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { uuid } from 'uuidv4';
 
 @Entity('qualidade_vida_violencia')
 export class InterviewLifeQualityViolence {
@@ -28,6 +28,6 @@ export class InterviewLifeQualityViolence {
   violencia_sexual_onde_ocorreu: string;
 
   constructor() {
-    if (!this.id) this.id = randomUUID();
+    if (!this.id) this.id = uuid();
   }
 }
