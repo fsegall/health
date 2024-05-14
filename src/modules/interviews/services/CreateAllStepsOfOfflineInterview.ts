@@ -192,6 +192,9 @@ export default class HandleOfflineInterviewService {
                 violence_id,
                 discrimination_id,
                 mental_health_id,
+                interviewer_id: interview.person.interviewer_id,
+                project_id: project?.id,
+                project_name: project?.name,
               });
             } catch (error) {
               console.error('Erro ao salvar entrevista da pessoa', error);
