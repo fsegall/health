@@ -5,11 +5,11 @@ export interface ICreateIndigenousAlimentacaoNutricaoDTO {
 
   preocupação_nao_conseguir_comida?: string;
 
-  nao_comeu_comida_cultura?: string;
+  comeu_sempre_comida_da_cultura?: string;
 
-  nao_comeu_comida_saudavel?: string;
+  comeram_sempre_comida_saudavel?: string;
 
-  faltou_comida?: string;
+  teve_comida_todos_os_dias?: string;
 
   dia_todo_sem_comer?: string;
 

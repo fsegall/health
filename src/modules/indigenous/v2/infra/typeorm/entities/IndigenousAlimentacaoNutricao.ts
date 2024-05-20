@@ -15,13 +15,13 @@ export class IndigenousAlimentacaoNutricao {
   preocupação_nao_conseguir_comida: string;
 
   @Column()
-  nao_comeu_comida_cultura?: string;
+  comreu_sempre_comida_da_cultura?: string;
 
   @Column()
-  nao_comeu_comida_saudavel?: string;
+  comeram_sempre_comida_saudavel?: string;
 
   @Column()
-  faltou_comida?: string;
+  teve_comida_todos_os_dias?: string;
 
   @Column()
   dia_todo_sem_comer?: string;
@@ -51,7 +51,7 @@ export class IndigenousAlimentacaoNutricao {
   alimentos_da_horta_outros: string;
 
   @Column()
-  frutiferas_nas_proximidades: string;
+  frutiferas_nas_proximidades_quais: string;
 
   @Column('text', { array: true })
   coleta_castanhas_cocos_frutas: string[];
