@@ -15,7 +15,7 @@ export class IndigenousAlimentacaoNutricao {
   preocupação_nao_conseguir_comida: string;
 
   @Column()
-  comreu_sempre_comida_da_cultura?: string;
+  comeu_sempre_comida_da_cultura?: string;
 
   @Column()
   comeram_sempre_comida_saudavel?: string;
