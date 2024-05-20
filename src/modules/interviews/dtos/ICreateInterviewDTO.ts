@@ -12,4 +12,5 @@ export default interface ICreateInterviewDTO {
   discrimination_id?: string;
   violence_id?: string;
   mental_health_id?: string;
+  project_id: string;
 }

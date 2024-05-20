@@ -109,4 +109,10 @@ export class IndigeanousSaudeDoenca {
 
   @Column()
   possui_morador_crianca_pneumonia: string;
+
+  @Column({ array: true })
+  lista_diagnosticos_doencas_infecciosas: string[];
+
+  @Column()
+  lista_diagnosticos_doencas_infecciosas_remedio?: string;
 }
