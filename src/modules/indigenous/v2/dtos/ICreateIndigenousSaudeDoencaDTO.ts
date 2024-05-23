@@ -64,4 +64,7 @@ export interface ICreateIndigenousSaudeDoencaDTO {
   fuma_cigarro: string;
 
   morador_problemas_uso_drogas: string;
+
+  lista_diagnosticos_doencas_infeciosas?: string[];
+  lista_diagnosticos_outros_doencas_infeciosas_remedio?: string;
 }
