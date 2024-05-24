@@ -7,7 +7,7 @@ export class AlterTableSaudeDoencaIndigena1716209250031
     await queryRunner.addColumns('saude_doenca_indigena_v2', [
       new TableColumn({
         name: 'lista_diagnosticos_doencas_infecciosas',
-        type: 'varchar',
+        type: 'text',
       }),
       new TableColumn({
         name: 'lista_diagnosticos_doencas_infecciosas_remedio',
