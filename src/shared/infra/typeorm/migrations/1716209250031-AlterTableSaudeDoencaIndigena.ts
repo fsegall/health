@@ -8,7 +8,6 @@ export class AlterTableSaudeDoencaIndigena1716209250031
       new TableColumn({
         name: 'lista_diagnosticos_doencas_infecciosas',
         type: 'varchar',
-        isArray: true,
       }),
       new TableColumn({
         name: 'lista_diagnosticos_doencas_infecciosas_remedio',
