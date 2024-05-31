@@ -35,13 +35,6 @@ export default interface ICreateHouseholdDTO {
   renda_familiar?: number;
   faixa_de_renda: string;
   menores_6_anos?: string;
-  perda_de_emprego?: boolean;
-  reducao_de_salario?: boolean;
-  ajuda_financeira?: boolean;
-  divida?: boolean;
-  corte_de_gastos?: boolean;
-  corte_de_gastos_nao_essenciais?: boolean;
-  ns_nr_trabalho?: string[];
 
   educacao_basica_publica: string;
   pnae?: string;
@@ -60,7 +53,6 @@ export default interface ICreateHouseholdDTO {
   produz_alimento: string;
   alimento_para_venda?: string;
   divisao_alimento?: string;
-  dificuldade_venda?: string;
   nao_vendeu?: string;
   preocupacao_alimentos: string;
   alimentos_acabaram: string;
@@ -86,4 +78,6 @@ export default interface ICreateHouseholdDTO {
   bebidas_adocadas?: boolean;
   macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados?: boolean;
   biscoito_recheado_doces_guloseimas?: boolean;
+  causa_morte_ultimos_12_meses: string[];
+  situacao_de_emprego_e_renda: string[];
 }
