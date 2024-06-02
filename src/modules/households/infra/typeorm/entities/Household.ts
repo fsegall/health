@@ -67,8 +67,11 @@ class Household {
   @Column()
   morte_ultimos_12_meses: string;
 
-  @Column()
+  @Column({ type: 'text', array: true })
   causa_morte_ultimos_12_meses: string;
+
+  @Column({ type: 'text', array: true })
+  situacao_de_emprego_e_renda: string;
 
   @Column()
   contribuicao_morte_ultimos_12_meses: string;
@@ -125,27 +128,6 @@ class Household {
   faixa_de_renda: string;
 
   @Column()
-  perda_de_emprego: boolean;
-
-  @Column()
-  reducao_de_salario: boolean;
-
-  @Column()
-  ajuda_financeira: boolean;
-
-  @Column()
-  divida: boolean;
-
-  @Column()
-  corte_de_gastos: boolean;
-
-  @Column()
-  corte_de_gastos_nao_essenciais: boolean;
-
-  @Column('text', { array: true })
-  ns_nr_trabalho: string[];
-
-  @Column()
   menores_6_anos: string;
 
   @Column()
@@ -195,9 +177,6 @@ class Household {
 
   @Column()
   divisao_alimento: string;
-
-  @Column()
-  dificuldade_venda: string;
 
   @Column()
   nao_vendeu: string;
