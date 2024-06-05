@@ -5,7 +5,7 @@ export class ChangeHouseHolds1717159056730 implements MigrationInterface {
     await queryRunner.dropColumns('households', [
       'causa_morte_ultimos_12_meses',
       'perda_de_emprego',
-      // 'reducao_salario',
+      'reducao_de_salario',
       'ajuda_financeira',
       'divida',
       'corte_de_gastos',
