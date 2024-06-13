@@ -41,7 +41,7 @@ class CreateUserService {
     const user = await this.usersRepository.create({
       name,
       organization_name,
-      email: email.toLowerCase(),
+      email: email.toLowerCase().trim(),
       telephone_number,
       password: hashedPassword,
       role: Roles.VISITOR,
