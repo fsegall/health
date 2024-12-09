@@ -11,14 +11,14 @@ export class IndigeanousSaudeDoenca {
   @Column()
   condicao_de_saude: string;
 
-  @Column()
-  morador_com_desabilidade: string;
+  @Column('text', { array: true })
+  morador_com_desabilidade: string[];
 
   @Column()
   local_permite_viver_com_saude: string;
 
-  @Column()
-  morador_exposto_veneno_lavoura: string;
+  @Column('text', { array: true })
+  morador_exposto_veneno_lavoura: string[];
 
   @Column()
   doencas_contato_veneno_lavoura: string;
@@ -29,14 +29,11 @@ export class IndigeanousSaudeDoenca {
   @Column('text', { array: true })
   acidentes: string[];
 
-  @Column()
-  ocorrencia_de_ameacas: string;
-
-  @Column()
-  ocorrencia_violencia_fisica: string;
+  @Column('text', { array: true })
+  ocorrencia_de_ameacas: string[];
 
   @Column('text', { array: true })
-  local_ocorrencia_violencia_fisica?: string[];
+  ocorrencia_violencia_fisica: string[];
 
   @Column()
   locais_impedido_de_entrar: string;
