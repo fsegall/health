@@ -2,7 +2,7 @@ export interface ICreateIndigenousInterviewResidence {
   entrevista_indigena_id: string;
   ultima_moradia: string;
   considera_moradia_adequada: string;
-  tipo_moradia: string;
+  tipo_moradia: string[];
   piso: string;
   material_paredes: string;
   material_telhado: string;

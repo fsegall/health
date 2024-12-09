@@ -16,7 +16,7 @@ export interface ICreateIndigenousInterviewResidence {
 
   ultima_moradia: string;
 
-  tipo_moradia: string;
+  tipo_moradia: string[];
 
   piso: string;
 

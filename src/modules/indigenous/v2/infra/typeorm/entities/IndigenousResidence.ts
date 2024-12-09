@@ -14,8 +14,8 @@ export class IndigenousResidence {
   @Column()
   considera_moradia_adequada: string;
 
-  @Column()
-  tipo_moradia: string;
+  @Column('text', { array: true })
+  tipo_moradia: string[];
 
   @Column()
   piso: string;
