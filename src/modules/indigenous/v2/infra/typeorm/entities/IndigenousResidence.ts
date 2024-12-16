@@ -53,7 +53,7 @@ export class IndigenousResidence {
   @Column()
   possui_banheiro: string;
 
-  @Column()
+  @Column('text', { array: true })
   forma_coleta_esgoto: string[];
 
   @Column('text', { array: true })
