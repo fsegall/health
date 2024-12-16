@@ -5,7 +5,7 @@ export interface ICreateIndigenousInterviewResidenceDTO {
 
   ultima_moradia: string;
 
-  tipo_moradia: string;
+  tipo_moradia: string[];
 
   piso: string;
 
@@ -27,7 +27,7 @@ export interface ICreateIndigenousInterviewResidenceDTO {
 
   possui_banheiro: string;
 
-  forma_coleta_esgoto: string;
+  forma_coleta_esgoto: string[];
 
   destino_lixo_da_residencia: string[];
 
