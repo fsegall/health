@@ -1,8 +1,10 @@
-import User from '../infra/typeorm/entities/User';
-import { Roles } from '../authorization/constants';
-import AppError from '@shared/errors/AppError';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
+
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import AppError from '@shared/errors/AppError';
+
+import { Roles } from '../authorization/constants';
+import User from '../infra/typeorm/entities/User';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
@@ -20,7 +22,7 @@ class CreateUserService {
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
     private hashProvider: IHashProvider,
-  ) { }
+  ) {}
   public async execute({
     name,
     organization_name,
@@ -39,10 +41,10 @@ class CreateUserService {
     const user = await this.usersRepository.create({
       name,
       organization_name,
-      email,
+      email: email.toLowerCase().trim(),
       telephone_number,
       password: hashedPassword,
-      role: Roles.VISITOR
+      role: Roles.VISITOR,
     });
 
     return user;
