@@ -119,7 +119,7 @@ export class HandleOfflineInterviewsService {
                 ...interview.indigenous_domicilio,
                 veiculos: interview.indigenous_domicilio.veiculos.toString(),
                 destino_lixo_da_residencia:
-                  interview.indigenous_domicilio.destino_lixo_da_residencia,
+                  interview.indigenous_domicilio.destino_lixo_da_residencia.toString(),
                 entrevista_indigena_id: indigenousInterview.id,
               });
 
