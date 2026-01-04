@@ -59,7 +59,7 @@ export class IndigenousInterviewRepository
     if (projeto_id) {
       filter = {
         ...filter,
-        projeto_id,
+        project_id: projeto_id, // O campo na entidade é 'project_id', não 'projeto_id'
       };
     }
 
