@@ -44,6 +44,11 @@ export class GetIndigenousInterviewByIdService {
 
     // Se o usuário é COORDINATOR, só pode ver entrevistas dos seus projetos
     if (loggedUserRole === Roles.COORDINATOR) {
+      // Verifica se a entrevista tem project_id
+      if (!interview.project_id) {
+        throw new AppError('Interview does not have an associated project', 400);
+      }
+
       const project = await this.projectsRepository.findById(interview.project_id);
       
       if (!project) {

@@ -29,7 +29,8 @@ export class IndigenousInterviewRepository
   }
 
   async findById(id: string): Promise<IndigenousInterview | undefined> {
-    return this.repository.findOne(id, {
+    return this.repository.findOne({
+      where: { id },
       relations: [
         'entrevistador',
         'project',
