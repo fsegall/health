@@ -24,5 +24,11 @@
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "tmp"
+  ]
 }
