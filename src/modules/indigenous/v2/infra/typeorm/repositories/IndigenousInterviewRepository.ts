@@ -1,4 +1,4 @@
-import { FindManyOptions, getRepository, Repository } from 'typeorm';
+import { FindManyOptions, getRepository, In, Repository } from 'typeorm';
 
 import { IListAndCountIndigenousInterviewsDTO } from '@modules/indigenous/v2/dtos/IListAndCountIndigenousInterviewsDTO';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/v2/repositories/IIndigenousInterviewRepository';
@@ -6,6 +6,7 @@ import { ICreateIndigenousInterview } from '@modules/indigenous/v2/repositories/
 import { ListIndigenousInterviewParams } from '@modules/indigenous/v2/repositories/interfaces/IListAndCountIndigenousInterviewParams';
 import { Roles } from '@modules/users/authorization/constants';
 import User from '@modules/users/infra/typeorm/entities/User';
+import Project from '@modules/projects/infra/typeorm/entities/Project';
 import { PaginationStrategy } from '@shared/utils/PaginationStrategy';
 
 import { IndigenousInterview } from '../entities/IndigenousInterview';
@@ -15,9 +16,11 @@ export class IndigenousInterviewRepository
 {
   private repository: Repository<IndigenousInterview>;
   private userRepository: Repository<User>;
+  private projectRepository: Repository<Project>;
   constructor() {
     this.repository = getRepository(IndigenousInterview);
     this.userRepository = getRepository(User);
+    this.projectRepository = getRepository(Project);
   }
 
   async create(data: ICreateIndigenousInterview): Promise<IndigenousInterview> {
@@ -55,10 +58,46 @@ export class IndigenousInterviewRepository
     });
 
     const userIsInterviewer = user?.role === Roles.INTERVIEWER;
+    const userIsCoordinator = user?.role === Roles.COORDINATOR;
 
     let filter = {};
 
-    if (entrevistador_id) {
+    // Se é INTERVIEWER, só mostra suas próprias entrevistas
+    if (userIsInterviewer) {
+      filter = {
+        ...filter,
+        entrevistador_id: user?.id,
+      };
+    }
+
+    // Se é COORDINATOR, filtra pelos projetos que ele criou
+    if (userIsCoordinator) {
+      // Busca todos os projetos do coordenador
+      const userProjects = await this.projectRepository.find({
+        where: { user_id: loggedUserId },
+        select: ['id'],
+      });
+      const projectIds = userProjects.map((p: any) => p.id);
+
+      if (projectIds.length > 0) {
+        // Usa o operador In do TypeORM para filtrar por múltiplos IDs
+        filter = {
+          ...filter,
+          project_id: projectIds.length === 1 ? projectIds[0] : In(projectIds),
+        } as any;
+      } else {
+        // Se não tem projetos, retorna array vazio
+        const emptyPagination = new PaginationStrategy({ limit, page });
+        return {
+          indigenous_interviews: [],
+          pagination: emptyPagination.handlePagination(0),
+          totalCount: 0,
+        };
+      }
+    }
+
+    // Filtros adicionais da query string
+    if (entrevistador_id && !userIsInterviewer) {
       filter = {
         ...filter,
         entrevistador_id,
@@ -72,19 +111,10 @@ export class IndigenousInterviewRepository
       };
     }
 
-    const filterOptions: FindManyOptions<IndigenousInterview> =
-      userIsInterviewer
-        ? {
-            where: {
-              ...filter,
-              entrevistador_id: user?.id,
-            },
-          }
-        : {
-            where: {
-              ...filter,
-            },
-          };
+    const filterOptions: FindManyOptions<IndigenousInterview> = {
+      where: filter,
+      relations: ['entrevistador', 'project'],
+    };
 
     const paging = new PaginationStrategy({
       limit,
