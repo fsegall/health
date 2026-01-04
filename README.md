@@ -1,152 +1,249 @@
+# API - Pesquisa Nacional Indígena
 
-# Montando o ambiente de desenvolvimento do servidor
+API REST desenvolvida em Node.js para gerenciamento de pesquisas nacionais, com foco em entrevistas indígenas e gerais. Sistema offline-first que permite coleta de dados mesmo sem conexão com internet.
 
-## Prerequisitos de software
+## 🚀 Stack Tecnológica
 
-### - Nodejs e Yarn
-No Linux você pode instalar ambos com o snap:
-https://snapcraft.io/node
+- **Node.js** com **TypeScript**
+- **Express** - Framework web
+- **TypeORM** - ORM para PostgreSQL
+- **PostgreSQL** - Banco de dados relacional
+- **JWT** - Autenticação
+- **AWS SDK** - Armazenamento de arquivos (S3)
+- **Nodemailer** - Envio de emails
+- **Celebrate** - Validação de dados
+- **Swagger** - Documentação da API
 
-Se preferir poder mudar a versão do Nodejs pode instalar via nvm:
-https://tecadmin.net/install-nodejs-with-nvm/ e depois o Yarn, seguindo as orientações da instalação no link:
-https://classic.yarnpkg.com/pt-BR/docs/install/#debian-stable
+## 📁 Estrutura do Projeto
 
-
-* Erro comum no Linux:
-Nota: O Ubuntu 17.04 vem com o cmdtest instalado por padrão. Se você está recebendo erros ao instalar o yarn, você pode querer executar sudo apt remove cmdtest primeiro. Consulte isso para obter mais informações.
-Fonte: https://classic.yarnpkg.com/pt-BR/docs/install/#debian-stable
-
-### - Instalar o docker para rodar um container com o banco de dados Postgresql
-https://docs.docker.com/get-docker/
-
-- Após a instalação do docker criar um container com o postgres rodando:
-```docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres```
-
-- Dar start no container:
-```docker start some-postgres```
-
-Erro comum no Linux de endereço em uso caso já exista um serviço postgresql rodando na sua máquina na porta 5432:
-Error response from daemon: driver failed programming external connectivity on endpoint gostack11_postgres (ec60f9a1bffb15bf8e9ade1ef64c12bdf19bad95bc4f24e09f01b745b461bbb5): Error starting userland proxy: listen tcp 0.0.0.0:5432: bind: address already in use
-Error: failed to start containers: gostack11_postgres
-
-- Solução (encerrar o postgres):
-```sudo systemctl stop postgresql```
-
-### Instalar o Dbeaver ou outro software com GUI para gerenciar o banco postgres (caso não queira fazer tudo pela cli):
-https://dbeaver.io/download/
-
-## Para rodar o projeto
-
-- Abrir o Dbeaver e criar uma conexão com o Postgres
-- Menu Superior - Database > New Database Connection
-- Escolher PostgreSQL e colocar a senha criada. **Ir para aba PostgreSQL e checar a opção "Show All Databases" antes de apertar o finish.**
-- Clicar com o botão direito do mouse na conexão criada e escolher a opção Create > Database
-- Dar um nome para o Banco de dados.
-
-### Colocar esse nome do Banco de dados e a senha criada anteriormente no comando docker run no arquivo ormconfig.json:
 ```
+src/
+├── modules/              # Módulos de domínio
+│   ├── users/           # Usuários e autenticação
+│   ├── projects/        # Projetos de pesquisa
+│   ├── persons/         # Pessoas entrevistadas
+│   ├── households/      # Domicílios
+│   ├── interviews/      # Entrevistas gerais
+│   ├── discriminations/ # Discriminação, violência e saúde mental
+│   └── indigenous/      # Entrevistas indígenas (v1 e v2)
+│       ├── v1/          # Versão 1 da API
+│       └── v2/          # Versão 2 da API (atual)
+├── shared/              # Código compartilhado
+│   ├── container/       # Injeção de dependências (TSyringe)
+│   ├── errors/          # Tratamento de erros
+│   ├── infra/           # Infraestrutura
+│   │   ├── http/        # Rotas e servidor
+│   │   └── typeorm/     # Configuração do TypeORM
+│   └── utils/           # Utilitários
+└── config/              # Configurações (auth, mail, upload)
+```
+
+## 🔧 Pré-requisitos
+
+- Node.js (versão 12 ou superior)
+- Yarn ou npm
+- PostgreSQL (local ou Docker)
+- Docker (opcional, para rodar PostgreSQL em container)
+
+## ⚙️ Configuração do Ambiente
+
+### 1. Instalar dependências
+
+```bash
+yarn install
+```
+
+### 2. Configurar banco de dados
+
+#### Opção A: Docker (Recomendado)
+
+```bash
+docker run --name postgres-health -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
+docker start postgres-health
+```
+
+#### Opção B: PostgreSQL local
+
+Certifique-se de que o PostgreSQL está instalado e rodando na porta 5432.
+
+### 3. Configurar TypeORM
+
+Copie o arquivo de exemplo e ajuste as credenciais:
+
+```bash
+cp ormconfig.example.json ormconfig.json
+```
+
+Edite `ormconfig.json` com suas credenciais do banco:
+
+```json
 {
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "aqui",
-  "database": "aqui",
+  "password": "sua-senha",
+  "database": "nome-do-banco",
   "entities": [
-    "./src/modules/**/infra/typeorm/entities/*.ts"
+    "./dist/modules/**/infra/typeorm/entities/*.js"
   ],
   "migrations": [
-    "./src/shared/infra/typeorm/migrations/*.ts"
+    "./dist/shared/infra/typeorm/migrations/*.js"
   ],
   "cli": {
-    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+    "migrationsDir": "./dist/shared/infra/typeorm/migrations"
   }
 }
 ```
 
-## Criar um arquivo com o nome .env na raiz do projeto com o seguinte conteúdo:
+### 4. Criar arquivo .env
 
-```
-APP_SECRET="Uma string qualquer"
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+APP_SECRET="sua-chave-secreta-para-jwt"
 APP_WEB_URL=http://localhost:3000
 APP_API_URL=http://localhost:3333
 
-MAIL_DRIVER=ethereal // para testar o envio de emails em ambiente de desenvolvimento
+# Email (desenvolvimento)
+MAIL_DRIVER=ethereal
 
-AWS_ACCESS_KEY_ID= // Só usado em ambiente de produção
-AWS_SECRET_ACCESS_KEY= // Só usado em ambiente de produção
+# AWS (produção)
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 
-STORAGE_DRIVER=disk // Para salvar arquivos no seu disco em ambiente de desenvolvimento (a imagem do avatar do usuário)
+# Storage (desenvolvimento: disk | produção: s3)
+STORAGE_DRIVER=disk
 ```
 
+### 5. Executar migrações
 
+```bash
+yarn typeorm migration:run
+```
 
-Comandos no diretório raiz (onde está o arquivo package.json):
+## 🏃 Executando o Projeto
 
-- ```yarn install``` para instalar as dependências do projeto
-- ```yarn typeorm migration:run``` para criar as tabelas no banco postgres usando o pacote Typeorm
-- ```yarn dev:server``` para rodar o servidor
+### Desenvolvimento
 
-Se tudo der certo você deverá ver a mensagem: **Server started on Port 3333!**
+```bash
+yarn dev:server
+```
 
-# To do List do App
+O servidor estará disponível em `http://localhost:3333`
 
-### Backend
+### Produção
 
-Recuperação de senha
-Atualização do perfil
-Atualização da Pessoa entrevistada
-Atualização do Household
-Atualização de endereço
-Rotas de recuperação de dados por id
-Incluir campo número de identidade para o entrevistador e entrevistado
+```bash
+yarn build
+yarn start
+```
 
-**RN**
+## 📚 Documentação da API
 
-- O entrevistador não poderá incluir dois entrevistados com o mesmo número de documento de identidade
-- O entrevistador não poderá entrevistar ele mesmo
+A documentação Swagger está disponível em:
 
-### Frontend
+```
+http://localhost:3333/docs
+```
 
-#### Criar UI do formulário na tela de pesquisa
+## 🔐 Autenticação
 
-**RF**
+A API utiliza JWT para autenticação. Todas as rotas (exceto login e recuperação de senha) requerem um token no header:
 
-- O entrevistador poderá preencher os dados de uma pessoa entrevistada
-- O entrevistador receberá um email de confirmação com os dados da pessoa entrevista
-- Os entrevistadores devem receber uma notificação sempre que um entrevistado for incluído na pesquisa.
-- O entrevistador poderá visualizar as notificações não lidas.
+```
+Authorization: Bearer <token>
+```
 
-**RNF**
+## 📋 Principais Endpoints
 
-- O localstorage deverá garantir que os campos do formulário não sejam deletados com a atualização da página
-- O localstorage deverá armazenar os dados dos entrevistados
-- As notificações serão armazenadas no MongoDB
-- As notificações usarão Socket.io para envio em tempo real
+### Autenticação
+- `POST /sessions` - Login
+- `POST /password/forgot` - Solicitar recuperação de senha
+- `POST /password/reset` - Redefinir senha
 
-**RN**
+### Entrevistas Indígenas (v2)
+- `POST /indigenous-interviews/v2` - Criar entrevista básica
+- `POST /indigenous-interviews/v2/demography` - Dados demográficos
+- `POST /indigenous-interviews/v2/residence` - Dados de residência
+- `POST /indigenous-interviews/v2/health-desease` - Saúde e doença
+- `POST /indigenous-interviews/v2/nutrition` - Alimentação e nutrição
+- `POST /indigenous-interviews/v2/support` - Apoio e proteção social
+- `POST /indigenous-interviews/v2/handle-offline-data` - Processar dados offline
+- `GET /indigenous-interviews/v2/page/:page/limit/:limit` - Listar entrevistas
 
-- A notificação deverá ter um status de lida ou não lida para controle do entrevistador.
+### Entrevistas Gerais
+- `POST /interviews` - Criar entrevista
+- `GET /interviews` - Listar entrevistas
+- `POST /interviews/handle-offline-data` - Processar dados offline
 
-#### Profile do Entrevistador
+### Pessoas
+- `POST /persons` - Criar pessoa
+- `GET /persons` - Listar pessoas
+- `PUT /persons/:id` - Atualizar pessoa
 
-**RF**
+### Projetos
+- `POST /projects` - Criar projeto
+- `GET /projects` - Listar projetos
 
-- O entrevistador poderá ver e atualizar os seus dados via formulário
+## 🏗️ Arquitetura
 
-#### Dashboard com recuperação de dados dos entrevistados
+O projeto segue os princípios de **Domain-Driven Design (DDD)** e **Clean Architecture**:
 
-**RF**
+- **Separação de responsabilidades**: Cada módulo é independente
+- **Injeção de dependências**: Utiliza TSyringe para DI
+- **Repositórios**: Abstração da camada de dados
+- **Services**: Lógica de negócio isolada
+- **DTOs**: Transferência de dados tipada
+- **Validação**: Celebrate para validação de rotas
 
-- Listar todos os entrevistados por ordem alfabética com paginação
-- Listar entrevistados por entrevistador
-- Listar entrevistados por data com datepicker para mostrar o dia selecionado
-- O entrevistador poderá atualizar os dados de uma pessoa entrevistada por ele
-- O usuário poderá fazer download de arquivos csv com os dados consolidados dos pesquisados
+## 🔄 Funcionalidade Offline
 
-**RN**
+A API suporta processamento de dados coletados offline:
 
-- Uma pessoa só poderá ser atualizada pela pessoa que a entrevistou.
-- A listagem dos entrevistados deverá ser armazenada em cache.
+1. O front-end armazena dados no localStorage quando offline
+2. Quando online, os dados são enviados em lote via `handle-offline-data`
+3. A API valida e persiste os dados no banco
+4. Retorna status de sucesso/erro para cada registro
 
-### yarn dev:server
+## 🧪 Testes
+
+```bash
+yarn test
+```
+
+## 📦 Deploy
+
+### Infraestrutura de Produção
+
+- **Back-end**: Digital Ocean
+- **Banco de dados**: PostgreSQL (Digital Ocean)
+- **Storage**: AWS S3 (avatares e arquivos)
+- **Email**: AWS SES (recuperação de senha)
+
+## 🔒 Segurança
+
+- Autenticação JWT
+- Validação de dados com Celebrate
+- Controle de acesso por roles (Admin, Coordinator, Interviewer)
+- Sanitização de inputs
+- CORS configurado
+
+## 📝 Scripts Disponíveis
+
+- `yarn dev:server` - Inicia servidor em modo desenvolvimento
+- `yarn build` - Compila TypeScript para JavaScript
+- `yarn start` - Inicia servidor em produção
+- `yarn typeorm` - Executa comandos do TypeORM
+- `yarn test` - Executa testes
+
+## 🤝 Contribuindo
+
+1. Crie uma branch para sua feature
+2. Faça commit das alterações
+3. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto é privado e de uso interno.
+
