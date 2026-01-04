@@ -12,6 +12,7 @@ import { CreateIndigeanousInterviewResidenceController } from '../controllers/Cr
 import { CreateIndigenousSaudeDoencaController } from '../controllers/CreateIndigenousSaudeDoencaController';
 import { HandleOfflinetInterviewsController } from '../controllers/HandleOfflineInterviewsController';
 import { ListIndigenousInterviewController } from '../controllers/ListIndigenousInterviewController';
+import { GetIndigenousInterviewByIdController } from '../controllers/GetIndigenousInterviewByIdController';
 
 const indigeanousInterviewRouter = Router();
 
@@ -29,6 +30,8 @@ const createIndigenousAlimentacaoNutricaoController =
   new CreateIndigenousAlimentacaoNutricaoController();
 const listIndigenousInterviewController =
   new ListIndigenousInterviewController();
+const getIndigenousInterviewByIdController =
+  new GetIndigenousInterviewByIdController();
 const handleOfflineInterviewsController =
   new HandleOfflinetInterviewsController();
 
@@ -99,6 +102,36 @@ indigeanousInterviewRouter.get(
   '/page/:page/limit/:limit',
   Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
   listIndigenousInterviewController.handle,
+);
+
+/**
+ * @swagger
+ * /indigenous-interviews/v2/:id:
+ *   get:
+ *     summary: Buscar entrevista indígena por ID
+ *     tags: [Entrevistas Indígenas v2]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Entrevista encontrada
+ *       403:
+ *         description: Sem permissão para visualizar esta entrevista
+ *       404:
+ *         description: Entrevista não encontrada
+ *       401:
+ *         description: Não autenticado
+ */
+indigeanousInterviewRouter.get(
+  '/:id',
+  Role([Roles.COORDINATOR, Roles.INTERVIEWER, Roles.ADMIN]),
+  getIndigenousInterviewByIdController.handle,
 );
 
 /**

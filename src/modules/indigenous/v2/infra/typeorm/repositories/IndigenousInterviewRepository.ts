@@ -29,7 +29,15 @@ export class IndigenousInterviewRepository
   }
 
   async findById(id: string): Promise<IndigenousInterview | undefined> {
-    return this.repository.findOne(id);
+    return this.repository.findOne(id, {
+      relations: [
+        'entrevistador',
+        'project',
+        'entrevista_indigena_demografico',
+        'entrevista_indigena_domicilio',
+        'entrevista_indigena_apoio_financeiro',
+      ],
+    });
   }
 
   async listAndCount({

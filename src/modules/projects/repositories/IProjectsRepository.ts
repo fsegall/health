@@ -3,6 +3,7 @@ import Project from '@modules/projects/infra/typeorm/entities/Project';
 
 export default interface IProjectsRepository {
   create(data: ICreateProjectDTO): Promise<Project>;
+  findById(project_id: string): Promise<Project | undefined>;
   findByName(project_name: string): Promise<Project | undefined>;
   findByNumber(project_number: number): Promise<Project | undefined>;
   save(project: Project): Promise<Project>;

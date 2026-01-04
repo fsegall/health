@@ -59,10 +59,14 @@ class ProjectsRepository implements IProjectsRepository {
     return project;
   }
 
-  /*   public async findById(project_id: string): Promise<Project | undefined> {
-      const project = await this.ormRepository.findOne(project_id);
-      return project;
-    }
+  public async findById(project_id: string): Promise<Project | undefined> {
+    const project = await this.ormRepository.findOne({
+      where: { id: project_id },
+    });
+    return project;
+  }
+
+  /*   
 
     public async findInterviews(): Promise<Project[] | undefined> {
       const projectWithInterviews = await this.ormRepository.find({ relations: ['interviews'] });
