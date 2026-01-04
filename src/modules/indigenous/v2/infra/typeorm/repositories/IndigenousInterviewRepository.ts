@@ -1,4 +1,4 @@
-import { FindManyOptions, getRepository, In, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import { IListAndCountIndigenousInterviewsDTO } from '@modules/indigenous/v2/dtos/IListAndCountIndigenousInterviewsDTO';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/v2/repositories/IIndigenousInterviewRepository';
@@ -60,13 +60,35 @@ export class IndigenousInterviewRepository
     const userIsInterviewer = user?.role === Roles.INTERVIEWER;
     const userIsCoordinator = user?.role === Roles.COORDINATOR;
 
-    let filter = {};
-
     // Se é INTERVIEWER, só mostra suas próprias entrevistas
     if (userIsInterviewer) {
-      filter = {
-        ...filter,
+      const filter: any = {
         entrevistador_id: user?.id,
+      };
+
+      // Filtro adicional de projeto_id se fornecido
+      if (projeto_id) {
+        filter.project_id = projeto_id;
+      }
+
+      const paging = new PaginationStrategy({
+        limit,
+        page,
+      });
+
+      const [result, total] = await this.repository.findAndCount({
+        where: filter,
+        relations: ['entrevistador', 'project'],
+        take: limit,
+        skip: paging.skip,
+      });
+
+      const pagination = paging.handlePagination(total);
+
+      return {
+        indigenous_interviews: result,
+        pagination,
+        totalCount: total,
       };
     }
 
@@ -79,13 +101,7 @@ export class IndigenousInterviewRepository
       });
       const projectIds = userProjects.map((p: any) => p.id);
 
-      if (projectIds.length > 0) {
-        // Usa o operador In do TypeORM para filtrar por múltiplos IDs
-        filter = {
-          ...filter,
-          project_id: projectIds.length === 1 ? projectIds[0] : In(projectIds),
-        } as any;
-      } else {
+      if (projectIds.length === 0) {
         // Se não tem projetos, retorna array vazio
         const emptyPagination = new PaginationStrategy({ limit, page });
         return {
@@ -94,27 +110,67 @@ export class IndigenousInterviewRepository
           totalCount: 0,
         };
       }
+
+      const filter: any = {};
+
+      // Se foi fornecido um projeto_id específico, verifica se está na lista do coordenador
+      if (projeto_id) {
+        if (!projectIds.includes(projeto_id)) {
+          // Projeto não pertence ao coordenador, retorna vazio
+          const emptyPagination = new PaginationStrategy({ limit, page });
+          return {
+            indigenous_interviews: [],
+            pagination: emptyPagination.handlePagination(0),
+            totalCount: 0,
+          };
+        }
+        filter.project_id = projeto_id;
+      } else {
+        // Usa o operador In do TypeORM para filtrar por múltiplos IDs
+        const [firstProjectId] = projectIds;
+        if (projectIds.length === 1) {
+          filter.project_id = firstProjectId;
+        } else {
+          filter.project_id = In(projectIds);
+        }
+      }
+
+      // Filtro adicional de entrevistador se fornecido
+      if (entrevistador_id) {
+        filter.entrevistador_id = entrevistador_id;
+      }
+
+      const paging = new PaginationStrategy({
+        limit,
+        page,
+      });
+
+      const [result, total] = await this.repository.findAndCount({
+        where: filter,
+        relations: ['entrevistador', 'project'],
+        take: limit,
+        skip: paging.skip,
+      });
+
+      const pagination = paging.handlePagination(total);
+
+      return {
+        indigenous_interviews: result,
+        pagination,
+        totalCount: total,
+      };
     }
 
-    // Filtros adicionais da query string
-    if (entrevistador_id && !userIsInterviewer) {
-      filter = {
-        ...filter,
-        entrevistador_id,
-      };
+    // Se é ADMIN ou outro role, pode ver todas as entrevistas
+    const filter: any = {};
+
+    if (entrevistador_id) {
+      filter.entrevistador_id = entrevistador_id;
     }
 
     if (projeto_id) {
-      filter = {
-        ...filter,
-        project_id: projeto_id, // O campo na entidade é 'project_id', não 'projeto_id'
-      };
+      filter.project_id = projeto_id;
     }
-
-    const filterOptions: FindManyOptions<IndigenousInterview> = {
-      where: filter,
-      relations: ['entrevistador', 'project'],
-    };
 
     const paging = new PaginationStrategy({
       limit,
@@ -122,7 +178,8 @@ export class IndigenousInterviewRepository
     });
 
     const [result, total] = await this.repository.findAndCount({
-      ...filterOptions,
+      where: Object.keys(filter).length > 0 ? filter : undefined,
+      relations: ['entrevistador', 'project'],
       take: limit,
       skip: paging.skip,
     });
