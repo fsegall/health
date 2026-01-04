@@ -60,6 +60,15 @@ export class IndigenousInterviewRepository
     const userIsInterviewer = user?.role === Roles.INTERVIEWER;
     const userIsCoordinator = user?.role === Roles.COORDINATOR;
 
+    console.log('[DEBUG listAndCount]', {
+      loggedUserId,
+      userRole: user?.role,
+      userIsInterviewer,
+      userIsCoordinator,
+      entrevistador_id,
+      projeto_id,
+    });
+
     // Se é INTERVIEWER, só mostra suas próprias entrevistas
     if (userIsInterviewer) {
       const filter: any = {
@@ -70,6 +79,8 @@ export class IndigenousInterviewRepository
       if (projeto_id) {
         filter.project_id = projeto_id;
       }
+
+      console.log('[DEBUG INTERVIEWER filter]', filter);
 
       const paging = new PaginationStrategy({
         limit,
@@ -82,6 +93,8 @@ export class IndigenousInterviewRepository
         take: limit,
         skip: paging.skip,
       });
+
+      console.log('[DEBUG INTERVIEWER result]', { count: result.length, total });
 
       const pagination = paging.handlePagination(total);
 
@@ -101,6 +114,11 @@ export class IndigenousInterviewRepository
       });
       const projectIds = userProjects.map((p: any) => p.id);
 
+      console.log('[DEBUG COORDINATOR]', {
+        userProjects: userProjects.length,
+        projectIds,
+      });
+
       if (projectIds.length === 0) {
         // Se não tem projetos, retorna array vazio
         const emptyPagination = new PaginationStrategy({ limit, page });
@@ -115,8 +133,14 @@ export class IndigenousInterviewRepository
 
       // Se foi fornecido um projeto_id específico, verifica se está na lista do coordenador
       if (projeto_id) {
+        console.log('[DEBUG COORDINATOR projeto_id]', {
+          projeto_id,
+          projectIds,
+          includes: projectIds.includes(projeto_id),
+        });
         if (!projectIds.includes(projeto_id)) {
           // Projeto não pertence ao coordenador, retorna vazio
+          console.log('[DEBUG COORDINATOR] Projeto não pertence ao coordenador');
           const emptyPagination = new PaginationStrategy({ limit, page });
           return {
             indigenous_interviews: [],
@@ -140,6 +164,8 @@ export class IndigenousInterviewRepository
         filter.entrevistador_id = entrevistador_id;
       }
 
+      console.log('[DEBUG COORDINATOR filter]', filter);
+
       const paging = new PaginationStrategy({
         limit,
         page,
@@ -150,6 +176,16 @@ export class IndigenousInterviewRepository
         relations: ['entrevistador', 'project'],
         take: limit,
         skip: paging.skip,
+      });
+
+      console.log('[DEBUG COORDINATOR result]', {
+        count: result.length,
+        total,
+        interviews: result.map((i: any) => ({
+          id: i.id,
+          project_id: i.project_id,
+          entrevistador_id: i.entrevistador_id,
+        })),
       });
 
       const pagination = paging.handlePagination(total);

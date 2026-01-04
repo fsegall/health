@@ -29,6 +29,11 @@
     "node_modules",
     "dist",
     "coverage",
-    "tmp"
+    "tmp",
+    "**/*.config.js",
+    "**/*.config.ts",
+    "prettier.config.js",
+    "jest.config.js",
+    "babel.config.json"
   ]
 }
