@@ -51,18 +51,16 @@ export class HandleOfflineInterviewsService {
   }
 
   validateIfInterviewHasAllSteps(data: IHandleOfflineInterviewsDTO): boolean {
-    type IndigenousDTOKeys = Array<keyof IHandleOfflineInterviewsDTO>;
-
-    const keysArray: IndigenousDTOKeys = [
+    // Módulos obrigatórios (indigenous_saude_doenca é opcional)
+    const requiredKeys = [
       'indigenous_informacoes_basicas',
       'indigenous_demografico',
       'indigenous_domicilio',
-      'indigenous_saude_doenca',
       'indigenous_alimentacao_nutricao',
       'indigenous_apoio_protecao_social',
     ];
 
-    const isValid = keysArray?.every((key: string) => key in data);
+    const isValid = requiredKeys?.every((key: string) => key in data);
 
     return isValid;
   }
@@ -123,10 +121,13 @@ export class HandleOfflineInterviewsService {
                 entrevista_indigena_id: indigenousInterview.id,
               });
 
-              await this.indigeanousSaudeDoencaRepository.create({
-                ...interview.indigenous_saude_doenca,
-                entrevista_indigena_id: indigenousInterview.id,
-              });
+              // Criar módulo de saúde e doença apenas se existir nos dados (opcional)
+              if (interview.indigenous_saude_doenca) {
+                await this.indigeanousSaudeDoencaRepository.create({
+                  ...interview.indigenous_saude_doenca,
+                  entrevista_indigena_id: indigenousInterview.id,
+                });
+              }
 
               await this.indigenousAlimentacaoNutricaoRepository.create({
                 ...interview.indigenous_alimentacao_nutricao,
