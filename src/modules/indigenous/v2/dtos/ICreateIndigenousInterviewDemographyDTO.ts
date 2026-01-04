@@ -1,10 +1,11 @@
 export interface IMoradores {
   id: string;
   nome: string;
-  relacao_com_lider: string;
+  relacao_com_lider?: string;
+  data_nascimento?: string;
   idade: number | string;
-  idade_em_meses: number | string;
-  maior_de_um_ano: string;
+  idade_em_meses?: number | string;
+  maior_de_um_ano?: string;
   sexo: string;
 }
 
