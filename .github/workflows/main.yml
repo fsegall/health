@@ -56,6 +56,10 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         key:  ${{ secrets.SSH_KEY }}
         script: |
+          # Carregar NVM e usar Node.js 16
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 16.18.0 || nvm use 16
           cd ~/app/health
           npm install
           # Verificar se ormconfig.js e ca-certificate.crt existem no servidor
