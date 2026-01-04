@@ -3,11 +3,11 @@ export interface ICreateIndigenousSaudeDoencaDTO {
 
   condicao_de_saude: string;
 
-  morador_com_desabilidade: string;
+  morador_com_desabilidade: string[];
 
   local_permite_viver_com_saude: string;
 
-  morador_exposto_veneno_lavoura: string;
+  morador_exposto_veneno_lavoura: string[];
 
   doencas_contato_veneno_lavoura?: string;
 
@@ -15,11 +15,9 @@ export interface ICreateIndigenousSaudeDoencaDTO {
 
   acidentes: string[];
 
-  ocorrencia_de_ameacas: string;
+  ocorrencia_de_ameacas: string[];
 
-  ocorrencia_violencia_fisica: string;
-
-  local_ocorrencia_violencia_fisica?: string[];
+  ocorrencia_violencia_fisica: string[];
 
   locais_impedido_de_entrar: string[];
 
