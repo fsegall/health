@@ -10,7 +10,7 @@ import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 
 import routes from './routes';
-import swaggerFile from './swagger.json';
+import swaggerSpec from './swagger';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(errors());
 
