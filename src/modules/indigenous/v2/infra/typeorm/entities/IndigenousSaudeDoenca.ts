@@ -26,8 +26,8 @@ export class IndigeanousSaudeDoenca {
   @Column('text', { array: true })
   morador_exposto_veneno_lavoura: string[];
 
-  @Column()
-  doencas_contato_veneno_lavoura: string;
+  @Column({ nullable: true })
+  doencas_contato_veneno_lavoura?: string;
 
   @Column('text', { array: true })
   motivo_doencas_contato_veneno_lavoura?: string[];
@@ -53,20 +53,20 @@ export class IndigeanousSaudeDoenca {
   @Column('text', { array: true })
   lista_diagnosticos_outros: string[];
 
-  @Column()
-  lista_diagnosticos_outros_remedio: string;
+  @Column({ nullable: true })
+  lista_diagnosticos_outros_remedio?: string;
 
   @Column()
   moradora_entre_13_e_45_anos: string;
 
-  @Column('text', { array: true })
-  mulheres_e_gestacao: string[];
+  @Column('text', { array: true, nullable: true })
+  mulheres_e_gestacao?: string[];
 
   @Column()
   crianca_ate_6_meses: string;
 
-  @Column()
-  crianca_ate_6_meses_leito_do_peito: string;
+  @Column({ nullable: true })
+  crianca_ate_6_meses_leito_do_peito?: string;
 
   @Column()
   crianca_ate_6_meses_outros_alimentos?: string;
@@ -74,19 +74,19 @@ export class IndigeanousSaudeDoenca {
   @Column()
   crianca_entre_6_meses_e_2_anos: string;
 
-  @Column()
+  @Column({ nullable: true })
   crianca_entre_6_meses_e_2_anos_leite_do_peito?: string;
 
   @Column()
   aldeia_possui_posto_de_saude: string;
 
-  @Column()
-  cuidadores_para_aldeia_sem_posto_de_saude: string;
+  @Column({ nullable: true })
+  cuidadores_para_aldeia_sem_posto_de_saude?: string;
 
   @Column()
   acesso_a_equipe_de_saude: string;
 
-  @Column()
+  @Column({ nullable: true })
   profissionais_acesso_a_equipe_de_saude?: string;
 
   @Column()
@@ -104,14 +104,14 @@ export class IndigeanousSaudeDoenca {
   @Column()
   morador_problemas_uso_drogas: string;
 
-  @Column()
-  possui_morador_menor_ou_igual_a_5_anos_desnutricao: string;
+  @Column({ nullable: true })
+  possui_morador_menor_ou_igual_a_5_anos_desnutricao?: string;
 
-  @Column()
-  possui_morador_crianca_diarreia: string;
+  @Column({ nullable: true })
+  possui_morador_crianca_diarreia?: string;
 
-  @Column()
-  possui_morador_crianca_pneumonia: string;
+  @Column({ nullable: true })
+  possui_morador_crianca_pneumonia?: string;
 
   @Column('text', { array: true })
   lista_diagnosticos_doencas_infecciosas: string[];
