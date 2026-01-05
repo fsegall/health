@@ -42,8 +42,8 @@ export class IndigenousInterview {
   @Column()
   data_entrevista: Date;
 
-  @Column()
-  responsavel_documentos: string;
+  @Column('text', { array: true })
+  responsavel_documentos: string[];
 
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;

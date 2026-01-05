@@ -13,5 +13,5 @@ export interface ICreateIndigenousInterviewDTO {
 
   data_entrevista: Date;
 
-  responsavel_documentos: string;
+  responsavel_documentos: string[];
 }
