@@ -20,8 +20,8 @@ export class IndigenousResidence {
   @Column()
   considera_moradia_adequada: string;
 
-  @Column()
-  tipo_moradia: string;
+  @Column('text', { array: true })
+  tipo_moradia: string[];
 
   @Column()
   piso: string;
@@ -59,8 +59,8 @@ export class IndigenousResidence {
   @Column()
   possui_banheiro: string;
 
-  @Column()
-  forma_coleta_esgoto: string;
+  @Column('text', { array: true })
+  forma_coleta_esgoto: string[];
 
   @Column('text', { array: true })
   destino_lixo_da_residencia: string[];

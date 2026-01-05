@@ -47,8 +47,8 @@ export class IndigenousDemography {
   @Column()
   crenca_religiao_igreja?: string;
 
-  @Column()
-  situacao_no_trabalho?: string;
+  @Column('text', { array: true })
+  situacao_no_trabalho?: string[];
 
   @Column()
   remuneracao_trabalho_na_aldeia?: string;

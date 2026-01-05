@@ -28,7 +28,7 @@ export interface ICreateIndigenousInterviewDemographyDTO {
 
   crenca_religiao_igreja?: string;
 
-  situacao_no_trabalho?: string;
+  situacao_no_trabalho?: string[];
 
   remuneracao_trabalho_na_aldeia?: string;
 

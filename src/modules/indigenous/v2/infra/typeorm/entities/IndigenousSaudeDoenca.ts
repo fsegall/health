@@ -41,8 +41,8 @@ export class IndigeanousSaudeDoenca {
   @Column('text', { array: true })
   ocorrencia_violencia_fisica: string[];
 
-  @Column()
-  locais_impedido_de_entrar: string;
+  @Column('text', { array: true })
+  locais_impedido_de_entrar: string[];
 
   @Column('text', { array: true })
   lista_diagnosticos: string[];
@@ -68,8 +68,8 @@ export class IndigeanousSaudeDoenca {
   @Column({ nullable: true })
   crianca_ate_6_meses_leito_do_peito?: string;
 
-  @Column({ nullable: true })
-  crianca_ate_6_meses_outros_alimentos?: string;
+  @Column('text', { array: true, nullable: true })
+  crianca_ate_6_meses_outros_alimentos?: string[];
 
   @Column()
   crianca_entre_6_meses_e_2_anos: string;
@@ -80,14 +80,14 @@ export class IndigeanousSaudeDoenca {
   @Column()
   aldeia_possui_posto_de_saude: string;
 
-  @Column({ nullable: true })
-  cuidadores_para_aldeia_sem_posto_de_saude?: string;
+  @Column('text', { array: true, nullable: true })
+  cuidadores_para_aldeia_sem_posto_de_saude?: string[];
 
   @Column()
   acesso_a_equipe_de_saude: string;
 
-  @Column({ nullable: true })
-  profissionais_acesso_a_equipe_de_saude?: string;
+  @Column('text', { array: true, nullable: true })
+  profissionais_acesso_a_equipe_de_saude?: string[];
 
   @Column()
   morador_internado: string;
