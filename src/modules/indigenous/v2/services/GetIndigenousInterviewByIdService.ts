@@ -28,7 +28,20 @@ export class GetIndigenousInterviewByIdService {
   ) {}
 
   async execute({ interviewId, loggedUserId, loggedUserRole }: IRequest): Promise<IndigenousInterview> {
+    console.log('[DEBUG GetIndigenousInterviewByIdService]', {
+      interviewId,
+      loggedUserId,
+      loggedUserRole,
+    });
+
     const interview = await this.indigenousInterviewRepository.findById(interviewId);
+
+    console.log('[DEBUG GetIndigenousInterviewByIdService] Interview found:', {
+      found: !!interview,
+      interviewId: interview?.id,
+      project_id: interview?.project_id,
+      entrevistador_id: interview?.entrevistador_id,
+    });
 
     if (!interview) {
       throw new AppError('Interview not found', 404);
@@ -36,6 +49,11 @@ export class GetIndigenousInterviewByIdService {
 
     // Se o usuário é INTERVIEWER, só pode ver suas próprias entrevistas
     if (loggedUserRole === Roles.INTERVIEWER) {
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Checking INTERVIEWER permission:', {
+        interviewEntrevistadorId: interview.entrevistador_id,
+        loggedUserId,
+        match: interview.entrevistador_id === loggedUserId,
+      });
       if (interview.entrevistador_id !== loggedUserId) {
         throw new AppError('You do not have permission to view this interview', 403);
       }
@@ -46,17 +64,27 @@ export class GetIndigenousInterviewByIdService {
     if (loggedUserRole === Roles.COORDINATOR) {
       // Verifica se a entrevista tem project_id
       if (!interview.project_id) {
+        console.log('[DEBUG GetIndigenousInterviewByIdService] Interview does not have project_id');
         throw new AppError('Interview does not have an associated project', 400);
       }
 
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Fetching project:', interview.project_id);
       const project = await this.projectsRepository.findById(interview.project_id);
       
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Project found:', {
+        found: !!project,
+        projectId: project?.id,
+        projectUserId: project?.user_id,
+        loggedUserId,
+      });
+
       if (!project) {
         throw new AppError('Project not found', 404);
       }
 
       // Coordinator só pode ver entrevistas de projetos que ele criou (project.user_id === loggedUserId)
       if (project.user_id !== loggedUserId) {
+        console.log('[DEBUG GetIndigenousInterviewByIdService] Project user_id does not match loggedUserId');
         throw new AppError('You do not have permission to view this interview', 403);
       }
       
