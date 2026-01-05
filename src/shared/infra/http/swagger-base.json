@@ -1,0 +1,1889 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "l1czuwlxslihl"
+  },
+  "info": {
+    "description": "This is an API for managing data about people and their households to conduct food security analysis during the COVID-19 pandemic",
+    "version": 1,
+    "title": "Health API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": "email:segall.felipe@gmail.com",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "persons",
+      "description": "Endpoint to manage data about the person that was interviewed"
+    },
+    {
+      "name": "households",
+      "description": "Endpoints to manage data about a household"
+    },
+    {
+      "name": "familymembers",
+      "description": "Endpoints to manage data about a family member"
+    },
+    {
+      "name": "addresses",
+      "description": "Endpoints to manage data about a household address"
+    },
+    {
+      "name": "projects",
+      "description": "Endpoints to manage data about projects"
+    },
+    {
+      "name": "interviews",
+      "description": "Endpoints to manage data about interviews"
+    },
+    {
+      "name": "sessions",
+      "description": "Endpoints to authenticate the user"
+    },
+    {
+      "name": "password",
+      "description": "Endpoints to make a new password"
+    },
+    {
+      "name": "users",
+      "description": "Endpoints to create an user and store data about the research interviewer"
+    }
+  ],
+  "paths": {
+    "/projects": {
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Adds a new project to the research",
+        "description": "",
+        "operationId": "addProject",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Project"
+        },
+        "responses": {
+          "201": {
+            "description": "A project was successfully saved to the database"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/interviews": {
+      "post": {
+        "tags": [
+          "interviews"
+        ],
+        "summary": "Adds a new interview to the project",
+        "description": "",
+        "operationId": "addInterview",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Interview"
+        },
+        "responses": {
+          "201": {
+            "description": "A project was successfully saved to the database"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/persons": {
+      "get": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Lists all persons that were interviewed",
+        "description": "",
+        "operationId": "listPersons",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Add a person that was interviewed",
+        "description": "",
+        "operationId": "addPerson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Person"
+        },
+        "responses": {
+          "201": {
+            "description": "A person was successfully saved to the database"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Update an existing person",
+        "description": "",
+        "operationId": "updatePerson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PersonUpdate"
+        },
+        "responses": {
+          "200": {
+            "description": "The person was updated"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/persons/{personId}": {
+      "get": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Find person by ID",
+        "description": "Returns a single person",
+        "operationId": "getPersonById",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully returned a person profile",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Deletes a person",
+        "description": "",
+        "operationId": "deletePerson",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "Get personId after creating or listing persons",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The person was deleted"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      }
+    },
+    "/persons/{personId}/household": {
+      "get": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Returns a household",
+        "description": "",
+        "operationId": "getHouseholdByPersonId",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "Get personId after creating or listing persons",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Household"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Household"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      }
+    },
+    "/persons/{personId}/family": {
+      "get": {
+        "tags": [
+          "persons"
+        ],
+        "summary": "Returns family members",
+        "description": null,
+        "operationId": "getFamilyByPersonId",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "Get personId after creating or listing persons",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully returned family members",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FamilyMember"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FamilyMember"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      }
+    },
+    "/households": {
+      "get": {
+        "tags": [
+          "households"
+        ],
+        "summary": "Lists all households",
+        "description": "",
+        "operationId": "listHouseholds",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Household"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Household"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "households"
+        ],
+        "summary": "Add a household of an interviewed person",
+        "description": "",
+        "operationId": "addHousehold",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Household"
+        },
+        "responses": {
+          "201": {
+            "description": "A household was successfully saved to the database",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Household"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Household"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/familymembers": {
+      "get": {
+        "tags": [
+          "familymembers"
+        ],
+        "summary": "Lists all family members",
+        "description": "",
+        "operationId": "listFamilyMembers",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FamilyMember"
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FamilyMember"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FamilyMember"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "familymembers"
+        ],
+        "summary": "Add a family member of an interviewed person",
+        "description": "",
+        "operationId": "addFamilyMember",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FamilyMember"
+        },
+        "responses": {
+          "201": {
+            "description": "A family member was successfully saved to the database"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/addresses": {
+      "get": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Lists all addresses",
+        "description": "",
+        "operationId": "listAddresses",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Address"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Address"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Add a household address",
+        "description": "",
+        "operationId": "addAddress",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Address"
+        },
+        "responses": {
+          "201": {
+            "description": "An address was successfully saved to the database",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/addresses/{personId}": {
+      "get": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Returns an address",
+        "description": "Address of the interviewed person",
+        "operationId": "getAddressByPersonId",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "Get personId after creating or listing persons",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Person not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Lists all users",
+        "description": "",
+        "operationId": "listUsers",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create user",
+        "description": "This creates an interviewer profile as an user",
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "Created user object",
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The user was successfully created"
+          },
+          "400": {
+            "description": "Invalid user data"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update an existing user - Interviewer profile",
+        "description": "",
+        "operationId": "updateUser",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UserUpdate"
+        },
+        "responses": {
+          "200": {
+            "description": "The user was updated"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/users/avatar": {
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Uploads an user avatar file",
+        "description": "",
+        "operationId": "uploadAvatar",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user was successfully created"
+          },
+          "400": {
+            "description": "Invalid user data"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Find user by ID",
+        "description": "Returns a single user",
+        "operationId": "getUserById",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully returned a user profile",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Auth"
+        },
+        "responses": {
+          "200": {
+            "description": "login successful",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auth"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auth"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/password/forgot": {
+      "post": {
+        "tags": [
+          "password"
+        ],
+        "summary": "Allows user to ask for new password",
+        "description": "",
+        "operationId": "newPassword",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Pass"
+        },
+        "responses": {
+          "200": {
+            "description": "login successful",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pass"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pass"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid email supplied"
+          }
+        }
+      }
+    },
+    "/password/reset": {
+      "post": {
+        "tags": [
+          "password"
+        ],
+        "summary": "Allows user to change password",
+        "description": "",
+        "operationId": "newPassword",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/NewPass"
+        },
+        "responses": {
+          "200": {
+            "description": "Password modified successfully"
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/interviews/discriminations": {
+      "post": {
+        "summary": "",
+        "operationId": "post-interviews-discriminations",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "x-stoplight": {
+          "id": "y0wv6ay34su1j"
+        },
+        "description": "Create a new discrimination interview",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "person_id": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "6s8kffzjuadd4"
+                    }
+                  },
+                  "razao_discriminacao": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "pstw3cx2sa2li"
+                    }
+                  },
+                  "seguido_ou_observado": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "r50agfgpu9ox8"
+                    }
+                  },
+                  "ameacado_ou_assediado": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "12lzfgepdizg2"
+                    }
+                  },
+                  "xingamentos": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "g2ecjhbmjbp3q"
+                    }
+                  },
+                  "agir_como_se_fossem_melhor_que_voce": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "8ugfwub9oxdsh"
+                    }
+                  },
+                  "honestidade": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "y2y0ym96tlmco"
+                    }
+                  },
+                  "medo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "zcuri7w3wio5x"
+                    }
+                  },
+                  "inteligencia": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "fuznj7almzrhl"
+                    }
+                  },
+                  "atendimento": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "nl524w6fj6tu2"
+                    }
+                  },
+                  "respeito": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "33ygklk3evhai"
+                    }
+                  },
+                  "gentileza": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "9w49lti5lujq7"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "interviews"
+        ]
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about this API here",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "requestBodies": {
+      "Project": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        },
+        "description": "Data format to create a project",
+        "required": true
+      },
+      "Interview": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/Interview"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Interview"
+            }
+          }
+        },
+        "description": "Data format to create an interview",
+        "required": true
+      },
+      "Person": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/Person"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Person"
+            }
+          }
+        },
+        "description": "Data format to create a person",
+        "required": true
+      },
+      "PersonUpdate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/PersonUpdate"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/PersonUpdate"
+            }
+          }
+        },
+        "description": "Data format to create a person",
+        "required": true
+      },
+      "User": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "description": "Data format to add an user",
+        "required": true
+      },
+      "UserUpdate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/UserUpdate"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/UserUpdate"
+            }
+          }
+        },
+        "description": "Data format to create a person",
+        "required": true
+      },
+      "Household": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Household"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Household"
+            }
+          }
+        },
+        "description": "Data format to add a Household",
+        "required": true
+      },
+      "FamilyMember": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FamilyMember"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/FamilyMember"
+            }
+          }
+        },
+        "description": "Data format to add a family member",
+        "required": true
+      },
+      "Address": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Address"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Address"
+            }
+          }
+        },
+        "description": "Data format to add a address",
+        "required": true
+      },
+      "Auth": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Auth"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Auth"
+            }
+          }
+        },
+        "description": "Data format to authenticate an user",
+        "required": true
+      },
+      "Pass": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Pass"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Pass"
+            }
+          }
+        },
+        "description": "Data format to reset password for the user",
+        "required": true
+      },
+      "NewPass": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewPass"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/NewPass"
+            }
+          }
+        },
+        "description": "Data format to reset password for the user",
+        "required": true
+      }
+    },
+    "schemas": {
+      "Project": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organizations": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Project"
+        }
+      },
+      "Interview": {
+        "type": "object",
+        "xml": {
+          "name": "Interview"
+        },
+        "properties": {
+          "interviewer_id": {
+            "type": "string"
+          },
+          "project_name": {
+            "type": "string"
+          },
+          "project_number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "person_id": {
+            "type": "string"
+          },
+          "household_id": {
+            "type": "string"
+          },
+          "address_id": {
+            "type": "string"
+          },
+          "is_complete": {
+            "type": "boolean"
+          },
+          "is_complete_with_errors": {
+            "type": "boolean"
+          },
+          "interview_type": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "discrimination_id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "079sxpm82cp3i"
+            }
+          }
+        }
+      },
+      "Person": {
+        "type": "object",
+        "properties": {
+          "interviewer_id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sexo": {
+            "type": "string",
+            "description": "Person gender",
+            "enum": [
+              "masculino",
+              "feminino",
+              "outro"
+            ]
+          },
+          "raca_cor": {
+            "type": "string"
+          },
+          "ler_escrever": {
+            "type": "string"
+          },
+          "escolaridade": {
+            "type": "string"
+          },
+          "situacao_de_trabalho": {
+            "type": "string"
+          },
+          "ocupacao": {
+            "type": "string"
+          },
+          "local_de_trabalho": {
+            "type": "string"
+          },
+          "diagnostico_covid": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Person"
+        }
+      },
+      "PersonUpdate": {
+        "type": "object",
+        "properties": {
+          "interviewer_id": {
+            "type": "string"
+          },
+          "person_id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sexo": {
+            "type": "string",
+            "description": "Person gender",
+            "enum": [
+              "masculino",
+              "feminino",
+              "outro"
+            ]
+          },
+          "raca_cor": {
+            "type": "string"
+          },
+          "ler_escrever": {
+            "type": "string"
+          },
+          "escolaridade": {
+            "type": "string"
+          },
+          "situacao_de_trabalho": {
+            "type": "string"
+          },
+          "ocupacao": {
+            "type": "string"
+          },
+          "local_de_trabalho": {
+            "type": "string"
+          },
+          "diagnostico_covid": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Person"
+        }
+      },
+      "Household": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "string"
+          },
+          "local_do_domicilio": {
+            "type": "string"
+          },
+          "povos_tradicionais": {
+            "type": "string"
+          },
+          "qual_povo_tradicional": {
+            "type": "string"
+          },
+          "pessoa_de_referencia": {
+            "type": "string"
+          },
+          "idade_pessoa_de_referencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sexo_pessoa_de_referencia": {
+            "type": "string",
+            "description": "Person gender",
+            "enum": [
+              "masculino",
+              "feminino",
+              "outro"
+            ]
+          },
+          "raca_cor": {
+            "type": "string"
+          },
+          "ler_escrever": {
+            "type": "string"
+          },
+          "escolaridade": {
+            "type": "string"
+          },
+          "situacao_de_trabalho": {
+            "type": "string"
+          },
+          "ocupacao_profissional": {
+            "type": "string"
+          },
+          "local_de_trabalho": {
+            "type": "string"
+          },
+          "covid_2020": {
+            "type": "string"
+          },
+          "covid_perda_2020": {
+            "type": "string"
+          },
+          "covid_2021": {
+            "type": "string"
+          },
+          "covid_perda_2021": {
+            "type": "string"
+          },
+          "tipo_de_residencia": {
+            "type": "string"
+          },
+          "numero_de_comodos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "material_de_construcao": {
+            "type": "string"
+          },
+          "agua_potavel": {
+            "type": "string"
+          },
+          "agua_animais": {
+            "type": "string"
+          },
+          "agua_producao_alimentos": {
+            "type": "string"
+          },
+          "esgoto": {
+            "type": "string"
+          },
+          "numero_de_pessoas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uma_pessoa_domicilio": {
+            "type": "boolean"
+          },
+          "cinco_anos_ou_mais": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entre_6_e_18": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entre_19_e_59": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sessenta_anos_ou_mais": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pessoas_convidadas": {
+            "type": "string"
+          },
+          "nao_sabe_renda": {
+            "type": "boolean"
+          },
+          "renda_familiar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "faixa_de_renda": {
+            "type": "string"
+          },
+          "perda_de_emprego": {
+            "type": "boolean"
+          },
+          "reducao_de_salario": {
+            "type": "boolean"
+          },
+          "ajuda_financeira": {
+            "type": "boolean"
+          },
+          "divida": {
+            "type": "boolean"
+          },
+          "corte_de_gastos": {
+            "type": "boolean"
+          },
+          "corte_de_gastos_nao_essenciais": {
+            "type": "boolean"
+          },
+          "ns_nr_trabalho": {
+            "type": "text"
+          },
+          "educacao_basica_publica": {
+            "type": "string"
+          },
+          "pnae": {
+            "type": "string"
+          },
+          "cadastro_unico": {
+            "type": "string"
+          },
+          "bolsa_familia": {
+            "type": "string"
+          },
+          "bpc": {
+            "type": "string"
+          },
+          "pensao": {
+            "type": "string"
+          },
+          "auxilio_reclusao": {
+            "type": "string"
+          },
+          "cesta_de_alimentos": {
+            "type": "string"
+          },
+          "restaurantes_populares": {
+            "type": "string"
+          },
+          "auxilio_emergencial": {
+            "type": "string"
+          },
+          "auxilio_vezes": {
+            "type": "string"
+          },
+          "ajuda_instituicao_caridade": {
+            "type": "string"
+          },
+          "tipo_de_ajuda": {
+            "type": "string"
+          },
+          "vergonha": {
+            "type": "string"
+          },
+          "produz_alimento": {
+            "type": "string"
+          },
+          "alimento_para_venda": {
+            "type": "string"
+          },
+          "divisao_alimento": {
+            "type": "string"
+          },
+          "dificuldade_venda": {
+            "type": "string"
+          },
+          "nao_vendeu": {
+            "type": "string"
+          },
+          "preocupacao_alimentos": {
+            "type": "string"
+          },
+          "alimentos_acabaram": {
+            "type": "string"
+          },
+          "alimentos_saudaveis": {
+            "type": "string"
+          },
+          "alimentos_poucos_tipos": {
+            "type": "string"
+          },
+          "refeicoes_adulto": {
+            "type": "string"
+          },
+          "adulto_comeu_menos": {
+            "type": "string"
+          },
+          "adulto_fome": {
+            "type": "string"
+          },
+          "adulto_uma_refeicao": {
+            "type": "string"
+          },
+          "como_adquiriu_comida": {
+            "type": "string"
+          },
+          "alteracao_preco_comida": {
+            "type": "string"
+          },
+          "perfil_de_compra": {
+            "type": "string"
+          },
+          "mercado": {
+            "type": "string"
+          },
+          "gastos_alimentacao": {
+            "type": "string"
+          },
+          "feijao": {
+            "type": "boolean"
+          },
+          "arroz": {
+            "type": "boolean"
+          },
+          "carnes": {
+            "type": "boolean"
+          },
+          "verduras_legumes": {
+            "type": "boolean"
+          },
+          "frutas_frescas": {
+            "type": "boolean"
+          },
+          "leite": {
+            "type": "boolean"
+          },
+          "hamburguer_embutidos": {
+            "type": "boolean"
+          },
+          "bebidas_adocadas": {
+            "type": "boolean"
+          },
+          "macarrao_instantaneo_salgadinhos_de_pacote_biscoitos_salgados": {
+            "type": "boolean"
+          },
+          "biscoito_recheado_doces_guloseimas": {
+            "type": "boolean"
+          }
+        },
+        "xml": {
+          "name": "Household"
+        }
+      },
+      "FamilyMember": {
+        "type": "object",
+        "properties": {
+          "person_id": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Person gender",
+            "enum": [
+              "masculino",
+              "feminino",
+              "outro"
+            ]
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "xml": {
+          "name": "FamilyMember"
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "household_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "post_code": {
+            "type": "string"
+          },
+          "neighborhood": {
+            "type": "string"
+          },
+          "street_or_location": {
+            "type": "string"
+          },
+          "telephone_number": {
+            "type": "string"
+          },
+          "house_number": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "xml": {
+          "name": "Address"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "organization_name": {
+            "type": "string"
+          },
+          "telephone_number": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "organization_name": {
+            "type": "string"
+          },
+          "telephone_number": {
+            "type": "string"
+          },
+          "old_password": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "User"
+        }
+      },
+      "Auth": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Auth"
+        }
+      },
+      "Pass": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Pass"
+        }
+      },
+      "NewPass": {
+        "type": "object",
+        "properties": {
+          "password_confirmation": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Pass"
+        }
+      }
+    }
+  }
+}

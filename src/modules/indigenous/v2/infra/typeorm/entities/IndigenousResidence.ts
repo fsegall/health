@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+
+import { IndigenousInterview } from './IndigenousInterview';
 
 @Entity('domicilio_indigena_v2')
 export class IndigenousResidence {
@@ -8,14 +10,18 @@ export class IndigenousResidence {
   @Column()
   entrevista_indigena_id: string;
 
+  @OneToOne(() => IndigenousInterview, (interview) => interview.entrevista_indigena_domicilio)
+  @JoinColumn({ name: 'entrevista_indigena_id' })
+  entrevista_indigena: IndigenousInterview;
+
   @Column()
   ultima_moradia: string;
 
   @Column()
   considera_moradia_adequada: string;
 
-  @Column()
-  tipo_moradia: string;
+  @Column('text', { array: true })
+  tipo_moradia: string[];
 
   @Column()
   piso: string;
@@ -53,8 +59,8 @@ export class IndigenousResidence {
   @Column()
   possui_banheiro: string;
 
-  @Column()
-  forma_coleta_esgoto: string;
+  @Column('text', { array: true })
+  forma_coleta_esgoto: string[];
 
   @Column('text', { array: true })
   destino_lixo_da_residencia: string[];

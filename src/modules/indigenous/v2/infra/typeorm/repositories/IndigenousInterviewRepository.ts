@@ -1,4 +1,4 @@
-import { FindManyOptions, getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import { IListAndCountIndigenousInterviewsDTO } from '@modules/indigenous/v2/dtos/IListAndCountIndigenousInterviewsDTO';
 import { IIndigenousInterviewRepository } from '@modules/indigenous/v2/repositories/IIndigenousInterviewRepository';
@@ -6,6 +6,7 @@ import { ICreateIndigenousInterview } from '@modules/indigenous/v2/repositories/
 import { ListIndigenousInterviewParams } from '@modules/indigenous/v2/repositories/interfaces/IListAndCountIndigenousInterviewParams';
 import { Roles } from '@modules/users/authorization/constants';
 import User from '@modules/users/infra/typeorm/entities/User';
+import Project from '@modules/projects/infra/typeorm/entities/Project';
 import { PaginationStrategy } from '@shared/utils/PaginationStrategy';
 
 import { IndigenousInterview } from '../entities/IndigenousInterview';
@@ -15,9 +16,11 @@ export class IndigenousInterviewRepository
 {
   private repository: Repository<IndigenousInterview>;
   private userRepository: Repository<User>;
+  private projectRepository: Repository<Project>;
   constructor() {
     this.repository = getRepository(IndigenousInterview);
     this.userRepository = getRepository(User);
+    this.projectRepository = getRepository(Project);
   }
 
   async create(data: ICreateIndigenousInterview): Promise<IndigenousInterview> {
@@ -29,7 +32,19 @@ export class IndigenousInterviewRepository
   }
 
   async findById(id: string): Promise<IndigenousInterview | undefined> {
-    return this.repository.findOne(id);
+    // Agora todas as relações OneToOne estão configuradas corretamente com @JoinColumn
+    return this.repository.findOne({
+      where: { id },
+      relations: [
+        'entrevistador',
+        'project',
+        'entrevista_indigena_demografico',
+        'entrevista_indigena_domicilio',
+        'entrevista_indigena_saude_doenca',
+        'entrevista_indigena_alimentacao_nutricao',
+        'entrevista_indigena_apoio_financeiro',
+      ],
+    });
   }
 
   async listAndCount({
@@ -46,36 +61,155 @@ export class IndigenousInterviewRepository
     });
 
     const userIsInterviewer = user?.role === Roles.INTERVIEWER;
+    const userIsCoordinator = user?.role === Roles.COORDINATOR;
 
-    let filter = {};
+    console.log('[DEBUG listAndCount]', {
+      loggedUserId,
+      userRole: user?.role,
+      userIsInterviewer,
+      userIsCoordinator,
+      entrevistador_id,
+      projeto_id,
+    });
+
+    // Se é INTERVIEWER, só mostra suas próprias entrevistas
+    if (userIsInterviewer) {
+      const filter: any = {
+        entrevistador_id: user?.id,
+      };
+
+      // Filtro adicional de projeto_id se fornecido
+      if (projeto_id) {
+        filter.project_id = projeto_id;
+      }
+
+      console.log('[DEBUG INTERVIEWER filter]', filter);
+
+      const paging = new PaginationStrategy({
+        limit,
+        page,
+      });
+
+      const [result, total] = await this.repository.findAndCount({
+        where: filter,
+        relations: ['entrevistador', 'project'],
+        take: limit,
+        skip: paging.skip,
+      });
+
+      console.log('[DEBUG INTERVIEWER result]', { count: result.length, total });
+
+      const pagination = paging.handlePagination(total);
+
+      return {
+        indigenous_interviews: result,
+        pagination,
+        totalCount: total,
+      };
+    }
+
+    // Se é COORDINATOR, filtra pelos projetos que ele criou
+    if (userIsCoordinator) {
+      // Busca todos os projetos do coordenador
+      const userProjects = await this.projectRepository.find({
+        where: { user_id: loggedUserId },
+        select: ['id'],
+      });
+      const projectIds = userProjects.map((p: any) => p.id);
+
+      console.log('[DEBUG COORDINATOR]', {
+        userProjects: userProjects.length,
+        projectIds,
+      });
+
+      if (projectIds.length === 0) {
+        // Se não tem projetos, retorna array vazio
+        const emptyPagination = new PaginationStrategy({ limit, page });
+        return {
+          indigenous_interviews: [],
+          pagination: emptyPagination.handlePagination(0),
+          totalCount: 0,
+        };
+      }
+
+      const filter: any = {};
+
+      // Se foi fornecido um projeto_id específico, verifica se está na lista do coordenador
+      if (projeto_id) {
+        console.log('[DEBUG COORDINATOR projeto_id]', {
+          projeto_id,
+          projectIds,
+          includes: projectIds.includes(projeto_id),
+        });
+        if (!projectIds.includes(projeto_id)) {
+          // Projeto não pertence ao coordenador, retorna vazio
+          console.log('[DEBUG COORDINATOR] Projeto não pertence ao coordenador');
+          const emptyPagination = new PaginationStrategy({ limit, page });
+          return {
+            indigenous_interviews: [],
+            pagination: emptyPagination.handlePagination(0),
+            totalCount: 0,
+          };
+        }
+        filter.project_id = projeto_id;
+      } else {
+        // Usa o operador In do TypeORM para filtrar por múltiplos IDs
+        const [firstProjectId] = projectIds;
+        if (projectIds.length === 1) {
+          filter.project_id = firstProjectId;
+        } else {
+          filter.project_id = In(projectIds);
+        }
+      }
+
+      // Filtro adicional de entrevistador se fornecido
+      if (entrevistador_id) {
+        filter.entrevistador_id = entrevistador_id;
+      }
+
+      console.log('[DEBUG COORDINATOR filter]', filter);
+
+      const paging = new PaginationStrategy({
+        limit,
+        page,
+      });
+
+      const [result, total] = await this.repository.findAndCount({
+        where: filter,
+        relations: ['entrevistador', 'project'],
+        take: limit,
+        skip: paging.skip,
+      });
+
+      console.log('[DEBUG COORDINATOR result]', {
+        count: result.length,
+        total,
+        interviews: result.map((i: any) => ({
+          id: i.id,
+          project_id: i.project_id,
+          entrevistador_id: i.entrevistador_id,
+        })),
+      });
+
+      const pagination = paging.handlePagination(total);
+
+      return {
+        indigenous_interviews: result,
+        pagination,
+        totalCount: total,
+      };
+    }
+
+    // Se é ADMIN ou outro role, pode ver todas as entrevistas
+    const filter: any = {};
 
     if (entrevistador_id) {
-      filter = {
-        ...filter,
-        entrevistador_id,
-      };
+      filter.entrevistador_id = entrevistador_id;
     }
 
     if (projeto_id) {
-      filter = {
-        ...filter,
-        projeto_id,
-      };
+      filter.project_id = projeto_id;
     }
-
-    const filterOptions: FindManyOptions<IndigenousInterview> =
-      userIsInterviewer
-        ? {
-            where: {
-              ...filter,
-              entrevistador_id: user?.id,
-            },
-          }
-        : {
-            where: {
-              ...filter,
-            },
-          };
 
     const paging = new PaginationStrategy({
       limit,
@@ -83,7 +217,8 @@ export class IndigenousInterviewRepository
     });
 
     const [result, total] = await this.repository.findAndCount({
-      ...filterOptions,
+      where: Object.keys(filter).length > 0 ? filter : undefined,
+      relations: ['entrevistador', 'project'],
       take: limit,
       skip: paging.skip,
     });

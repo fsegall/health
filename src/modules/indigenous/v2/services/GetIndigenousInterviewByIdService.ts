@@ -1,0 +1,102 @@
+import { inject, injectable } from 'tsyringe';
+
+import AppError from '@shared/errors/AppError';
+import { Roles } from '@modules/users/authorization/constants';
+import IProjectsRepository from '@modules/projects/repositories/IProjectsRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+
+import { IIndigenousInterviewRepository } from '../repositories/IIndigenousInterviewRepository';
+import { IndigenousInterview } from '../infra/typeorm/entities/IndigenousInterview';
+
+interface IRequest {
+  interviewId: string;
+  loggedUserId: string;
+  loggedUserRole: string;
+}
+
+@injectable()
+export class GetIndigenousInterviewByIdService {
+  constructor(
+    @inject('IndigeanousInterviewV2Repository')
+    private readonly indigenousInterviewRepository: IIndigenousInterviewRepository,
+
+    @inject('UsersRepository')
+    private readonly usersRepository: IUsersRepository,
+
+    @inject('ProjectsRepository')
+    private readonly projectsRepository: IProjectsRepository,
+  ) {}
+
+  async execute({ interviewId, loggedUserId, loggedUserRole }: IRequest): Promise<IndigenousInterview> {
+    console.log('[DEBUG GetIndigenousInterviewByIdService]', {
+      interviewId,
+      loggedUserId,
+      loggedUserRole,
+    });
+
+    const interview = await this.indigenousInterviewRepository.findById(interviewId);
+
+    console.log('[DEBUG GetIndigenousInterviewByIdService] Interview found:', {
+      found: !!interview,
+      interviewId: interview?.id,
+      project_id: interview?.project_id,
+      entrevistador_id: interview?.entrevistador_id,
+    });
+
+    if (!interview) {
+      throw new AppError('Interview not found', 404);
+    }
+
+    // Se o usuário é INTERVIEWER, só pode ver suas próprias entrevistas
+    if (loggedUserRole === Roles.INTERVIEWER) {
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Checking INTERVIEWER permission:', {
+        interviewEntrevistadorId: interview.entrevistador_id,
+        loggedUserId,
+        match: interview.entrevistador_id === loggedUserId,
+      });
+      if (interview.entrevistador_id !== loggedUserId) {
+        throw new AppError('You do not have permission to view this interview', 403);
+      }
+      return interview;
+    }
+
+    // Se o usuário é COORDINATOR, só pode ver entrevistas dos seus projetos
+    if (loggedUserRole === Roles.COORDINATOR) {
+      // Verifica se a entrevista tem project_id
+      if (!interview.project_id) {
+        console.log('[DEBUG GetIndigenousInterviewByIdService] Interview does not have project_id');
+        throw new AppError('Interview does not have an associated project', 400);
+      }
+
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Fetching project:', interview.project_id);
+      const project = await this.projectsRepository.findById(interview.project_id);
+      
+      console.log('[DEBUG GetIndigenousInterviewByIdService] Project found:', {
+        found: !!project,
+        projectId: project?.id,
+        projectUserId: project?.user_id,
+        loggedUserId,
+      });
+
+      if (!project) {
+        throw new AppError('Project not found', 404);
+      }
+
+      // Coordinator só pode ver entrevistas de projetos que ele criou (project.user_id === loggedUserId)
+      if (project.user_id !== loggedUserId) {
+        console.log('[DEBUG GetIndigenousInterviewByIdService] Project user_id does not match loggedUserId');
+        throw new AppError('You do not have permission to view this interview', 403);
+      }
+      
+      return interview;
+    }
+
+    // ADMIN pode ver todas as entrevistas
+    if (loggedUserRole === Roles.ADMIN) {
+      return interview;
+    }
+
+    throw new AppError('You do not have permission to view this interview', 403);
+  }
+}
+

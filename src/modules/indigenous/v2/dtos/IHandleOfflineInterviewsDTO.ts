@@ -9,7 +9,7 @@ export interface IHandleOfflineInterviewsDTO {
   indigenous_informacoes_basicas: ICreateIndigenousInterviewDTO;
   indigenous_demografico: ICreateIndigenousInterviewDemographyDTO;
   indigenous_domicilio: ICreateIndigenousInterviewResidenceDTO;
-  indigenous_saude_doenca: ICreateIndigenousSaudeDoencaDTO;
+  indigenous_saude_doenca?: ICreateIndigenousSaudeDoencaDTO; // Opcional - pode ser desabilitado na próxima pesquisa
   indigenous_alimentacao_nutricao: ICreateIndigenousAlimentacaoNutricaoDTO;
   indigenous_apoio_protecao_social: ICreateIndigenousApoioEProtecaoDTO;
 }

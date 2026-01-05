@@ -214,12 +214,52 @@ yarn test
 
 ## 📦 Deploy
 
-### Infraestrutura de Produção
+### Infraestrutura
 
-- **Back-end**: Digital Ocean
-- **Banco de dados**: PostgreSQL (Digital Ocean)
+- **Back-end**: Digital Ocean Droplets
+- **Banco de dados**: PostgreSQL (Digital Ocean Managed Database)
 - **Storage**: AWS S3 (avatares e arquivos)
 - **Email**: AWS SES (recuperação de senha)
+
+### Ambientes
+
+#### Staging
+- **Branch**: `develop`
+- **Droplet**: `safetyapi-staging` (NYC1)
+- **Aplicação**: `safety-api`
+- **Workflow**: `.github/workflows/staging.yml`
+- **Banco**: `PENSSAN_STAGING`
+
+#### Produção
+- **Branch**: `master`
+- **Droplet**: `safety-api` (NYC1)
+- **Aplicação**: `safety-api`
+- **Workflow**: `.github/workflows/main.yml`
+- **Banco**: `PENSSAN_PROD_V2`
+
+### CI/CD
+
+O projeto utiliza GitHub Actions para deploy automático:
+
+1. **Push para `develop`**: 
+   - Build do projeto
+   - Deploy no Droplet de staging
+   - Execução automática de migrations (se `ormconfig.js` e `ca-certificate.crt` existirem)
+   - Restart da aplicação via PM2
+
+2. **Push para `master`**:
+   - Build do projeto
+   - Deploy no Droplet de produção
+   - Execução automática de migrations (se `ormconfig.js` e `ca-certificate.crt` existirem)
+   - Restart da aplicação via PM2
+
+### Configuração no Servidor
+
+Os servidores precisam ter os seguintes arquivos em `~/app/health/`:
+- `ormconfig.js` - Configuração do TypeORM (com credenciais do banco)
+- `ca-certificate.crt` - Certificado SSL para conexão com o banco
+
+**Nota**: Esses arquivos contêm credenciais sensíveis e não devem ser commitados no repositório. Eles devem ser configurados manualmente no servidor.
 
 ## 🔒 Segurança
 

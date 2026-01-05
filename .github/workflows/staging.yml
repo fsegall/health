@@ -57,9 +57,20 @@ jobs:
         key:  ${{ secrets.SSH_KEY }}
         script: |
           whoami
+          # Carregar NVM e usar Node.js 16
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm use 16.18.0 || nvm use 16
           cd ~/app/health
           npm install
-          ./node_modules/.bin/typeorm migration:run
+          # Verificar se ormconfig.js e ca-certificate.crt existem no servidor
+          if [ -f ormconfig.js ] && [ -f ca-certificate.crt ]; then
+            echo "Using existing ormconfig.js and ca-certificate.crt"
+            ./node_modules/.bin/typeorm migration:run || echo "Migration failed or no new migrations"
+          else
+            echo "Warning: ormconfig.js or ca-certificate.crt not found. Skipping migrations."
+            echo "Files checked: ormconfig.js ($([ -f ormconfig.js ] && echo 'exists' || echo 'missing')), ca-certificate.crt ($([ -f ca-certificate.crt ] && echo 'exists' || echo 'missing'))"
+          fi
           /home/deploy/.nvm/versions/node/v16.18.0/bin/pm2 restart safety-api
 
 

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+
+import { IndigenousInterview } from './IndigenousInterview';
 
 @Entity('alimentacao_nutricao_indigena_v2')
 export class IndigenousAlimentacaoNutricao {
@@ -8,6 +10,10 @@ export class IndigenousAlimentacaoNutricao {
   @Column()
   entrevista_indigena_id: string;
 
+  @OneToOne(() => IndigenousInterview, (interview) => interview.entrevista_indigena_alimentacao_nutricao)
+  @JoinColumn({ name: 'entrevista_indigena_id' })
+  entrevista_indigena: IndigenousInterview;
+
   @Column()
   possui_moradores_menores_de_16: string;
 
@@ -15,13 +21,13 @@ export class IndigenousAlimentacaoNutricao {
   preocupação_nao_conseguir_comida: string;
 
   @Column()
-  comeu_sempre_comida_da_cultura?: string;
+  deixaram_de_comer_comida_da_cultura?: string;
 
   @Column()
-  comeram_sempre_comida_saudavel?: string;
+  deixaram_de_comer_comida_saudavel?: string;
 
   @Column()
-  teve_comida_todos_os_dias?: string;
+  faltou_comida_algum_dia?: string;
 
   @Column()
   dia_todo_sem_comer?: string;

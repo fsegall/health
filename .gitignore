@@ -7,5 +7,7 @@ tmp/*
 .env
 !tmp/.gitkeep
 ormconfig.json
+ormconfig*.js
+ca-certificate.crt
 # testing
 coverage/

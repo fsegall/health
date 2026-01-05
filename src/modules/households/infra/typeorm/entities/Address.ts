@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Household from './Household'
+import Household from './Household';
 
 @Entity('addresses')
 class Address {
@@ -40,7 +40,7 @@ class Address {
   @Column()
   house_number: number;
 
-  @Column()
+  @Column({ nullable: true })
   telephone_number: string;
 
   @CreateDateColumn()

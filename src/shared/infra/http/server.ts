@@ -6,13 +6,17 @@ import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
+// eslint-disable-next-line import/no-unresolved
 import uploadConfig from '@config/upload';
+// eslint-disable-next-line import/no-unresolved
 import AppError from '@shared/errors/AppError';
 
 import routes from './routes';
-import swaggerFile from './swagger.json';
+import swaggerSpec from './swagger';
 
+// eslint-disable-next-line import/no-unresolved
 import '@shared/infra/typeorm';
+// eslint-disable-next-line import/no-unresolved
 import '@shared/container';
 
 const app = express();
@@ -21,7 +25,9 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error - swagger-ui-express type conflict with express types (works at runtime)
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(errors());
 

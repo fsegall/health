@@ -1,10 +1,11 @@
 export interface IMoradores {
   id: string;
   nome: string;
-  relacao_com_lider: string;
+  relacao_com_lider?: string;
+  data_nascimento?: string;
   idade: string | number;
-  idade_em_meses: string | number;
-  maior_de_um_ano: string;
+  idade_em_meses?: string | number;
+  maior_de_um_ano?: string;
   sexo: string;
 }
 
@@ -27,7 +28,7 @@ export interface ICreateIndigenousInterviewDemography {
 
   crenca_religiao_igreja?: string;
 
-  situacao_no_trabalho?: string;
+  situacao_no_trabalho?: string[];
 
   remuneracao_trabalho_na_aldeia?: string;
 

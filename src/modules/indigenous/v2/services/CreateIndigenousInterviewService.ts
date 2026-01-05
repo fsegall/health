@@ -48,6 +48,8 @@ export class CreateIndigenousInterviewService {
       {
         ...data,
         projeto_numero: project.project_number as unknown as string,
+        project_id: project.id, // Garante que o project_id seja salvo para permitir filtros
+        is_offline: false, // Entrevistas criadas online são sempre false
       },
     );
 
