@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+
+import { IndigenousInterview } from './IndigenousInterview';
 
 @Entity('domicilio_indigena_v2')
 export class IndigenousResidence {
@@ -7,6 +9,10 @@ export class IndigenousResidence {
 
   @Column()
   entrevista_indigena_id: string;
+
+  @OneToOne(() => IndigenousInterview, (interview) => interview.entrevista_indigena_domicilio)
+  @JoinColumn({ name: 'entrevista_indigena_id' })
+  entrevista_indigena: IndigenousInterview;
 
   @Column()
   ultima_moradia: string;

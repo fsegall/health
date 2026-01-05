@@ -13,9 +13,11 @@ import { uuid } from 'uuidv4';
 import Project from '@modules/projects/infra/typeorm/entities/Project';
 import User from '@modules/users/infra/typeorm/entities/User';
 
+import { IndigenousAlimentacaoNutricao } from './IndigenousAlimentacaoNutricao';
 import { IndigenousApoioEProtecao } from './IndigenousApoioEProtecao';
 import { IndigenousDemography } from './IndigenousDemography';
 import { IndigenousResidence } from './IndigenousResidence';
+import { IndigeanousSaudeDoenca } from './IndigenousSaudeDoenca';
 
 @Entity('entrevistas_indigenas_v2')
 export class IndigenousInterview {
@@ -60,13 +62,19 @@ export class IndigenousInterview {
   @JoinColumn({ name: 'project_id' })
   project: Project;
 
-  @OneToOne(() => IndigenousDemography)
+  @OneToOne(() => IndigenousDemography, (demography) => demography.entrevista_indigena)
   entrevista_indigena_demografico: IndigenousDemography;
 
-  @OneToOne(() => IndigenousResidence)
+  @OneToOne(() => IndigenousResidence, (residence) => residence.entrevista_indigena)
   entrevista_indigena_domicilio: IndigenousResidence;
 
-  @OneToOne(() => IndigenousApoioEProtecao)
+  @OneToOne(() => IndigeanousSaudeDoenca, (saudeDoenca) => saudeDoenca.entrevista_indigena)
+  entrevista_indigena_saude_doenca: IndigeanousSaudeDoenca;
+
+  @OneToOne(() => IndigenousAlimentacaoNutricao, (alimentacao) => alimentacao.entrevista_indigena)
+  entrevista_indigena_alimentacao_nutricao: IndigenousAlimentacaoNutricao;
+
+  @OneToOne(() => IndigenousApoioEProtecao, (apoio) => apoio.entrevista_indigena)
   entrevista_indigena_apoio_financeiro: IndigenousApoioEProtecao;
 
   constructor() {

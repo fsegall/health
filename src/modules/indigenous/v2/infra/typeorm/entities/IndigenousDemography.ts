@@ -2,11 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { IMoradores } from '@modules/indigenous/v2/dtos/ICreateIndigenousInterviewDemographyDTO';
+import { IndigenousInterview } from './IndigenousInterview';
 
 @Entity('demografia_indigena_v2')
 export class IndigenousDemography {
@@ -15,6 +18,10 @@ export class IndigenousDemography {
 
   @Column()
   entrevista_indigena_id: string;
+
+  @OneToOne(() => IndigenousInterview, (interview) => interview.entrevista_indigena_demografico)
+  @JoinColumn({ name: 'entrevista_indigena_id' })
+  entrevista_indigena: IndigenousInterview;
 
   @Column()
   total_moradores: number;
