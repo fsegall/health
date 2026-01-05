@@ -45,6 +45,9 @@ export class IndigenousInterview {
   @Column('text', { array: true })
   responsavel_documentos: string[];
 
+  @Column({ default: false })
+  is_offline: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   created_at: Date;
 
