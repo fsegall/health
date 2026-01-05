@@ -32,15 +32,12 @@ export class IndigenousInterviewRepository
   }
 
   async findById(id: string): Promise<IndigenousInterview | undefined> {
+    // Carrega apenas as relações ManyToOne que funcionam corretamente
+    // As relações OneToOne (demografico, domicilio, apoio_financeiro) não são necessárias
+    // para verificação de permissões e podem causar erros de joinColumns
     return this.repository.findOne({
       where: { id },
-      relations: [
-        'entrevistador',
-        'project',
-        'entrevista_indigena_demografico',
-        'entrevista_indigena_domicilio',
-        'entrevista_indigena_apoio_financeiro',
-      ],
+      relations: ['entrevistador', 'project'],
     });
   }
 
