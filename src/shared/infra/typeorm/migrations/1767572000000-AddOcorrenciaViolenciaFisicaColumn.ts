@@ -16,7 +16,7 @@ export class AddOcorrenciaViolenciaFisicaColumn1767572000000
         new TableColumn({
           name: 'ocorrencia_violencia_fisica',
           type: 'text',
-          isNullable: true,
+          // Não nullable: se o módulo existe, todos os campos devem estar preenchidos
         }),
       );
     }
