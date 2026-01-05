@@ -47,7 +47,7 @@ export class IndigeanousSaudeDoenca {
   @Column('text', { array: true })
   lista_diagnosticos: string[];
 
-  @Column()
+  @Column({ nullable: true })
   lista_diagnosticos_cronico_remedio?: string;
 
   @Column('text', { array: true })
@@ -68,7 +68,7 @@ export class IndigeanousSaudeDoenca {
   @Column({ nullable: true })
   crianca_ate_6_meses_leito_do_peito?: string;
 
-  @Column()
+  @Column({ nullable: true })
   crianca_ate_6_meses_outros_alimentos?: string;
 
   @Column()
