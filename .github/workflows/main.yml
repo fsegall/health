@@ -62,13 +62,13 @@ jobs:
           nvm use 16.18.0 || nvm use 16
           cd ~/app/health
           npm install
-          # Verificar se ormconfig.js e ca-certificate.crt existem no servidor
-          if [ -f ormconfig.js ] && [ -f ca-certificate.crt ]; then
-            echo "Using existing ormconfig.js and ca-certificate.crt"
+          # Verificar se ormconfig.js e rds-ca-2019-root.pem existem no servidor (produção usa AWS RDS)
+          if [ -f ormconfig.js ] && [ -f rds-ca-2019-root.pem ]; then
+            echo "Using existing ormconfig.js and rds-ca-2019-root.pem (AWS RDS)"
             ./node_modules/.bin/typeorm migration:run || echo "Migration failed or no new migrations"
           else
-            echo "Warning: ormconfig.js or ca-certificate.crt not found. Skipping migrations."
-            echo "Files checked: ormconfig.js ($([ -f ormconfig.js ] && echo 'exists' || echo 'missing')), ca-certificate.crt ($([ -f ca-certificate.crt ] && echo 'exists' || echo 'missing'))"
+            echo "Warning: ormconfig.js or rds-ca-2019-root.pem not found. Skipping migrations."
+            echo "Files checked: ormconfig.js ($([ -f ormconfig.js ] && echo 'exists' || echo 'missing')), rds-ca-2019-root.pem ($([ -f rds-ca-2019-root.pem ] && echo 'exists' || echo 'missing'))"
           fi
           /home/deploy/.nvm/versions/node/v16.18.0/bin/pm2 restart safety-api
 
